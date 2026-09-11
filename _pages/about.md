@@ -6,7 +6,7 @@ redirect_from: ["/about/", "/about.html"]
 ---
 
 <section id="about-me" class="profile-intro">
-<p class="intro-lead" data-zh="欢迎！我致力于打造能在真实世界中持续学习、灵活适应、帮助人们的物理人工智能（Physical AI）。">Welcome! I’m building Physical AI that learns, adapts, and helps people in the real world.</p>
+<p class="intro-lead" data-zh="👋 欢迎！我致力于打造能在真实世界中学习与适应的物理人工智能（Physical AI）。">👋 Welcome! I’m building Physical AI that learns and adapts in the real world.</p>
 <div class="localized-copy" lang="en">
 <p>I am an Associate Research Officer at <a href="https://nrc.canada.ca/en">National Research Council Canada</a>. I earned my Ph.D. at the <a href="https://uwaterloo.ca/">University of Waterloo</a>, advised by <a href="https://uwaterloo.ca/mechatronic-vehicle-systems-lab/">Amir Khajepour</a> and <a href="https://yashpant.github.io/">Yash Vardhan Pant</a>, then joined the <a href="https://uwaterloo.ca/mechatronic-vehicle-systems-lab/">Mechatronic Vehicle Systems Lab</a> as a postdoctoral fellow.</p>
 <p>My work connects academic research with hands-on engineering: co-founding <a href="https://loopx.ai/">LoopX</a>, leading AMR development at <a href="https://reelinrobotics.ca/">Reel-In Robotics</a>, and developing production vehicle software at <a href="https://www.nio.com/">NIO</a> and <a href="https://www.saicmotor.com/english/">SAIC Motor</a>. I previously studied at <a href="https://english.bit.edu.cn/">Beijing Institute of Technology</a>.</p>

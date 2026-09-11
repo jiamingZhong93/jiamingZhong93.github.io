@@ -68,9 +68,11 @@ Replace the example text and URL with your actual project. `image` is optional; 
 | --- | --- |
 | Portrait | Replace `images/avatar.jpg`; if renamed, update `author.avatar` in `_config.yml`. |
 | Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work; images keep their proportions. |
-| Top cover | Put it in `images/background/`; update `image`, `image_alt` and `image_alt_zh` in `_data/background.yml`. |
+| Top cover | Add/remove photos directly in `images/background/`. All supported images automatically join the random pool; no file list to maintain. |
 
-For the cover, `position: "50% 45%"` controls horizontal/vertical crop; `height` controls height. `mobile_position` and `mobile_height` apply on phones/narrow screens. Photos are cropped without stretching. `enabled: false` hides the cover.
+The cover selects several different photos on each load/refresh and joins them edge to edge. Resizing keeps their shuffled order. The browser scales and crops each photo proportionally without altering the original file. Use higher-resolution photos for sharper results. The current examples are copies of the project images.
+
+In `_data/background.yml`, `height` / `mobile_height` retain the desktop/phone strip heights. `tile_width` / `mobile_tile_width` set the approximate width per photo: smaller values show more photos. `position` / `mobile_position` control the default crop (horizontal %, then vertical %). To adjust one photo, add `images → filename.jpg → position` or `mobile_position`. `enabled: false` hides the strip. Cover photos are decorative; their text alternatives remain empty in both languages.
 
 Keep public image-source URLs in comments beside the relevant project. The SafeTrucks entry records the source of its snow-driving photo.
 
@@ -84,7 +86,7 @@ In `_data/publications.json`, copy an existing paper inside a group's `items` ar
 | `authors` | Plain text in paper order, separated by English commas; no HTML or symbols |
 | `venue`, `year`, `url` | Original venue, year, and paper link |
 | `selected` | `true` to display; `false` to hide while retaining the record |
-| `role` | `first` (†), `co-first` (*), `corresponding` (‡), or `coauthor` (§) |
+| `role` | `first` (†), `co-first` (*), `corresponding` (‡), or `coauthor` (no symbol) |
 | `project` | Optional project URL |
 
 The template automatically highlights the exact author name `J. Zhong` and adds the role symbol. Change the name, symbols or bilingual legend once in `_data/publication_roles.yml`. Papers display in file order. JSON requires double quotes and no trailing comma after the final entry.

@@ -4,9 +4,11 @@ body { background: var(--paper); color: var(--ink); font-family: -apple-system, 
 a, a:visited { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid #bf7b42; outline-offset: 4px; }
-/* Fill a shallow cover with a proportional crop; customize in _data/background.yml. */
+/* Seamless photo tiles, selected once per load; customize in _data/background.yml. */
 .home-background { width: 100%; height: var(--background-height, 220px); overflow: hidden; background: var(--soft); }
-.home-background__image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--background-position, 50% 50%); }
+.home-background__tiles { display: flex; width: 100%; height: 100%; gap: 0; }
+.home-background__tiles:empty { display: none; }
+.home-background__image { display: block; flex: 1 1 0; min-width: 0; width: 0; height: 100%; object-fit: cover; object-position: var(--tile-position, 50% 50%); }
 .masthead { background: rgba(251,252,250,.97); border-bottom: 1px solid var(--line); box-shadow: none; }
 .masthead__inner-wrap { max-width: 1240px; padding: 1rem 2rem; }
 .masthead__menu { display: flex; align-items: center; gap: 1rem; }
@@ -49,16 +51,19 @@ html[lang="zh-CN"] .localized-copy { line-height: 1.9; }
 html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 .research-vision { container-type: inline-size; margin: .75rem 0; }
 /* A display equation: content-sized terms and mathematical spacing, without a panel. */
-.vision-equation { display: grid; grid-template-columns: repeat(5,max-content); grid-template-areas: "result equals learning plus prior"; justify-content: center; align-items: baseline; gap: .45em; text-align: center; font-family: inherit; font-size: 1rem; font-weight: 700; line-height: 1.5; }
+.vision-equation { display: grid; grid-template-columns: repeat(5,max-content); grid-template-areas: "result equals learning plus prior"; justify-content: center; align-items: baseline; gap: .4em; text-align: center; color: #0956a4; font-family: inherit; font-size: 1.12rem; font-weight: 800; letter-spacing: -.015em; line-height: 1.45; }
 .vision-title { grid-area: result; }
 .vision-learning { grid-area: learning; }
 .vision-prior { grid-area: prior; }
-.vision-equation > span { min-width: 0; font: inherit; color: var(--ink); }
+.vision-equation > span { min-width: 0; font: inherit; color: inherit; }
 .equation-equals { grid-area: equals; }
 .equation-plus { grid-area: plus; }
 /* Break at the equality on narrow columns; keep readable type instead of scaling down. */
-@container (max-width: 600px) {
+@container (max-width: 640px) {
   .vision-equation { grid-template-columns: .7em minmax(0,max-content) .7em minmax(0,max-content); grid-template-areas: "result result result result" "equals learning plus prior"; gap: .2rem .35em; }
+}
+@container (max-width: 360px) {
+  .vision-equation { font-size: 1rem; }
 }
 .vision-description { font-size: .85rem; color: var(--muted); margin: .65rem 0 .3rem !important; }
 .research-projects { margin-top: 1.4rem; scroll-margin-top: 90px; }
@@ -107,7 +112,7 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
 @media (max-width: 800px) {
   html { font-size: 16px; }
   .home-background { height: var(--background-mobile-height, 150px); }
-  .home-background__image { object-position: var(--background-mobile-position, 50% 50%); }
+  .home-background__image { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
   .masthead__inner-wrap { padding: .8rem 1.1rem; }
   #main { display: block; padding: 1.4rem 1.2rem 0; }
   .sidebar, .sidebar.sticky { width: 100%; float: none; margin: 0 0 2rem; padding: 0; position: static !important; }

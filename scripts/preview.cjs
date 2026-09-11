@@ -92,6 +92,18 @@ async function main() {
     for (const file of fs.readdirSync(path.join(root, '_data'))) {
       if (/\.(?:ya?ml|json)$/.test(file)) site.data[file.replace(/\.(?:ya?ml|json)$/, '')] = YAML.parse(read('_data/' + file));
     }
+    // Match the Jekyll static_files fields used by the automatic cover-photo pool.
+    site.static_files = [];
+    function listBackgroundFiles(folder) {
+      if (!fs.existsSync(path.join(root, folder))) return;
+      for (const entry of fs.readdirSync(path.join(root, folder), { withFileTypes: true })) {
+        if (entry.name.startsWith('.') || entry.isSymbolicLink()) continue;
+        const relative = folder + '/' + entry.name;
+        if (entry.isDirectory()) listBackgroundFiles(relative);
+        else site.static_files.push({ path: '/' + relative, name: entry.name, extname: path.extname(entry.name) });
+      }
+    }
+    listBackgroundFiles('images/background');
     const page = frontmatter(read('_pages/about.md'));
     const layout = frontmatter(read('_layouts/default.html'));
     const context = { site, page: { ...page.data, url: '/' }, layout: layout.data };
@@ -149,7 +161,7 @@ async function main() {
     }
     fs.readFile(target, (error, data) => {
       if (error) { res.writeHead(404).end('Not found'); return; }
-      res.writeHead(200, { 'Content-Type': mime[path.extname(target)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
+      res.writeHead(200, { 'Content-Type': mime[path.extname(target).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store' });
       res.end(data);
     });
   });

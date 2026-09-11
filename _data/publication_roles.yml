@@ -14,7 +14,3 @@ roles:
     symbol: "‡"
     label: "Corresponding author"
     label_zh: "通讯作者"
-  - id: coauthor
-    symbol: "§"
-    label: "Co-author"
-    label_zh: "合作者"

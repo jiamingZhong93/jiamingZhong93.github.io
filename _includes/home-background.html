@@ -1,6 +1,24 @@
 {% assign background = site.data.background %}
-{% if page.url == '/' and background.enabled and background.image != blank %}
-<div class="home-background" style="--background-position: {{ background.position | default: '50% 50%' | escape }}; --background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-position: {{ background.mobile_position | default: background.position | default: '50% 50%' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
-  <img class="home-background__image" src="{{ site.baseurl }}{{ background.image | escape }}" alt="{{ background.image_alt | default: '' | escape }}" data-zh-alt="{{ background.image_alt_zh | default: background.image_alt | escape }}" fetchpriority="high">
+{% if page.url == '/' and background.enabled %}
+{% assign background_files = site.static_files | sort: 'path' %}
+{% capture background_images %}
+{% for file in background_files %}
+{% assign extension = file.extname | downcase %}
+{% if file.path contains '/images/background/' %}
+{% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.gif' or extension == '.webp' or extension == '.svg' %}
+{% assign settings = background.images[file.name] %}
+<img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endcapture %}
+{% assign background_images = background_images | strip %}
+{% if background_images != '' %}
+<div class="home-background" aria-hidden="true" data-tile-width="{{ background.tile_width | default: 360 }}" data-mobile-tile-width="{{ background.mobile_tile_width | default: 240 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+<template class="home-background__pool">{{ background_images }}</template>
+<div class="home-background__tiles" data-background-tiles></div>
+<noscript><div class="home-background__tiles">{{ background_images }}</div></noscript>
 </div>
+<script src="{{ site.baseurl }}/assets/js/background.js"></script>
+{% endif %}
 {% endif %}

@@ -68,9 +68,11 @@
 | --- | --- |
 | 头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
 | 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG，保持原图比例。 |
-| 顶部背景 | 放进 `images/background/`，修改 `_data/background.yml` 中的 `image`、`image_alt` 和 `image_alt_zh`。 |
+| 顶部背景 | 直接往 `images/background/` 添加或删除照片；支持的图片会自动进入随机池，无需维护文件列表。 |
 
-背景的 `position: "50% 45%"` 依次控制横向、纵向裁切位置；`height` 控制高度。`mobile_position`、`mobile_height` 用于手机及窄屏。照片按比例裁切，不拉伸；`enabled: false` 隐藏背景。
+每次打开或刷新页面，背景随机选取多张不同照片，左右无缝拼接；调整窗口大小保留当前随机顺序。浏览器只做等比例缩放、裁切，不会修改原始文件。更高清的原图会有更清晰的效果；当前示例是项目图片的副本。
+
+在 `_data/background.yml` 中，`height` / `mobile_height` 控制电脑/手机横幅高度；`tile_width` / `mobile_tile_width` 控制每张照片的大致宽度，数值越小显示的照片越多。`position` / `mobile_position` 是默认裁切位置（先横向%、后纵向%）。单独调整某张照片时，在 `images → 文件名.jpg` 下设置 `position` 或 `mobile_position`。`enabled: false` 隐藏横幅。背景照片仅作装饰，中英文都不需要填写替代文字。
 
 使用公开来源图片时，在对应项目旁用注释保留出处。SafeTrucks 项目中已记录雪地行车照片的原始来源。
 
@@ -84,7 +86,7 @@
 | `authors` | 按论文顺序填写作者，用英文逗号分隔；不用 HTML 或手动加符号 |
 | `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接 |
 | `selected` | `true` 显示；`false` 保留记录但隐藏 |
-| `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者 § |
+| `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者（无符号） |
 | `project` | 可选的项目网址 |
 
 系统自动加粗准确匹配的 `J. Zhong` 并添加角色符号。修改姓名、符号或双语图例时，只改 `_data/publication_roles.yml` 即可。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
