@@ -1,0 +1,11 @@
+# Labels shared by project links; new labels fall back to their English text.
+links:
+  "SafeTrucks project": "SafeTrucks 项目"
+  "Paper · IEEE T-IV": "论文 · IEEE T-IV"
+  "Project": "项目"
+  "Paper · IEEE T-ITS 2025": "论文 · IEEE T-ITS 2025"
+  "Paper · ITSC 2024": "论文 · ITSC 2024"
+  "Lab project": "实验室项目"
+  "Paper · IEEE T-ITS 2024": "论文 · IEEE T-ITS 2024"
+  "PhD thesis": "博士学位论文"
+  "Platform": "平台"

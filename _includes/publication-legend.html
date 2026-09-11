@@ -1,0 +1,7 @@
+<div class="publication-legend section-note">
+  <p data-zh="姓名旁的符号表示我在论文中的作者角色：">Symbols next to my name indicate my role:</p>
+  <ul class="publication-role-key">
+    {% for role in site.data.publication_roles.roles %}<li><span class="publication-symbol" aria-hidden="true">{{ role.symbol }}</span> <span data-zh="{{ role.label_zh | default: role.label | escape }}">{{ role.label }}</span></li>{% endfor %}
+  </ul>
+  <a href="{{ site.author.googlescholar }}"><span data-zh="在谷歌学术查看全部论文">Full list on Google Scholar</span> <span aria-hidden="true">↗</span></a>
+</div>

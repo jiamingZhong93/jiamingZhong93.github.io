@@ -1,0 +1,20 @@
+# Symbols describe Jiaming Zhong's role, not the other authors' roles.
+# Change these labels/symbols once to update both the legend and every paper.
+author_name: "J. Zhong"
+roles:
+  - id: first
+    symbol: "†"
+    label: "First author"
+    label_zh: "第一作者"
+  - id: co-first
+    symbol: "*"
+    label: "Co-first author"
+    label_zh: "共同第一作者"
+  - id: corresponding
+    symbol: "‡"
+    label: "Corresponding author"
+    label_zh: "通讯作者"
+  - id: coauthor
+    symbol: "§"
+    label: "Co-author"
+    label_zh: "合作者"

@@ -7,13 +7,11 @@ author:
   name: "Jiaming Zhong"
   avatar: "/images/avatar.jpg"
   bio: "Associate Research Officer"
-  location: "Ottawa, Canada"
   employer: "National Research Council Canada"
   employer_url: "https://nrc.canada.ca/en"
   education: "University of Waterloo · PhD"
   education_url: "https://uwaterloo.ca/"
   googlescholar: "https://scholar.google.com/citations?user=kSAQtOoAAAAJ"
-  email: "jiaming.zhong@nrc-cnrc.gc.ca"
   github: "jiamingZhong93"
   linkedin: "jiaming-zhong"
 include: [".htaccess", "_pages", "files"]

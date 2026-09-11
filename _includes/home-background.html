@@ -1,0 +1,6 @@
+{% assign background = site.data.background %}
+{% if page.url == '/' and background.enabled and background.image != blank %}
+<div class="home-background" style="--background-position: {{ background.position | default: '50% 50%' | escape }}; --background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-position: {{ background.mobile_position | default: background.position | default: '50% 50%' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+  <img class="home-background__image" src="{{ site.baseurl }}{{ background.image | escape }}" alt="{{ background.image_alt | default: '' | escape }}" data-zh-alt="{{ background.image_alt_zh | default: background.image_alt | escape }}" fetchpriority="high">
+</div>
+{% endif %}

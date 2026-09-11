@@ -1,62 +1,89 @@
 vision:
-  title: "Trustworthy Physical AI"
-  learning: "Data-driven learning"
-  learning_detail: "adaptation & intelligence"
-  structure: "Model-based structure"
-  structure_detail: "priors & robustness"
-  description: "Learning brings adaptation and contextual understanding; models retain physical knowledge, explicit constraints, and feedback. My work connects these ideas across control, coordination, and decision-making."
-
+  title: Trustworthy Physical AI
+  title_zh: 可信物理人工智能
+  learning: Data-driven learning
+  learning_zh: 数据驱动学习
+  prior: Model-based prior
+  prior_zh: 基于模型的先验
+  description: Learning brings adaptation and contextual understanding; model-based priors ground it in physics, explicit constraints, and feedback. I bring these strengths together across perception, decision-making, and action.
+  description_zh: 学习赋予系统适应能力与情境理解；基于模型的先验则通过物理规律、显式约束与反馈提供支撑。我将两者结合，贯穿感知、决策与行动。
 projects:
   - id: articulated-vehicles
-    title: "Transformer-initiated hybrid control for articulated heavy vehicles"
-    context: "NRC · Current research"
-    description: "Combining Transformer-based imitation learning with MPC and reinforcement learning for the steering, stability, and maneuverability of articulated heavy vehicles."
+    title: Transformer-initiated hybrid control for articulated heavy vehicles
+    description: Transformer-based imitation learning, MPC, and reinforcement learning for agile, stable control of articulated heavy vehicles.
     links:
-      - label: "SafeTrucks project"
-        url: "https://safetrucks.fmi.fi/index.php/project-description/"
-
+      - label: SafeTrucks project
+        url: https://safetrucks.fmi.fi/index.php/project-description/
+    title_zh: 面向铰接式重型车辆的 Transformer 初始化混合控制
+    description_zh: 结合 Transformer 模仿学习、模型预测控制与强化学习，实现铰接式重型车辆灵活、稳定的控制。
   - id: off-road
-    title: "Agile learning-based planning and control for off-road autonomous vehicles"
-    context: "NRC · Current research"
-    description: "Hybrid learning and model-based methods for planning and control on deformable terrain, where vehicle dynamics and available traction change."
+    title: Agile learning-based planning and control for off-road autonomous vehicles
+    description: Learning and model-based planning and control for deformable terrain, changing dynamics, and variable traction.
     links: []
-
+    title_zh: 面向越野自动驾驶的学习型敏捷规划与控制
+    description_zh: 结合学习与模型方法，应对可变形地面、动态变化和附着条件不确定的规划与控制问题。
   - id: drivellm
-    title: "DriveLLM"
-    context: "Doctoral research · Decision-making"
-    image: "/images/research/drivellm.jpg"
-    image_alt: "WATonobus and driving scenes with pedestrians, snow, and LiDAR sensing from the DriveLLM research overview."
-    description: "Combining language-model reasoning with rule-based safety evaluation for explainable driving decisions. Case studies use WATonobus to examine responses to complex road situations."
+    title: "DriveLLM: Explainable Driving Decisions"
+    image: /images/research/drivellm.jpg
+    image_alt: WATonobus and driving scenes with pedestrians, snow, and LiDAR sensing from the DriveLLM research overview.
+    description: Language-model reasoning with rule-based safety checks for explainable driving decisions, evaluated through WATonobus case studies.
     links:
-      - label: "Paper · IEEE T-IV"
-        url: "https://ieeexplore.ieee.org/document/10297415"
-      - label: "Project"
-        url: "https://github.com/DriveLLM/DriveLLM"
-
+      - label: Paper · IEEE T-IV
+        url: https://ieeexplore.ieee.org/document/10297415
+      - label: Project
+        url: https://github.com/DriveLLM/DriveLLM
+    title_zh: "DriveLLM：可解释驾驶决策"
+    description_zh: 将大语言模型推理与基于规则的安全检查相结合，实现可解释的驾驶决策，并通过 WATonobus 案例进行评估。
+    image_alt_zh: DriveLLM 研究中的 WATonobus 及行人、积雪和激光雷达感知场景。
   - id: multi-agent
-    title: "Learning-based multi-agent collaboration"
-    context: "Doctoral research · Coordination"
-    image: "/images/research/multi-agent.jpg"
-    image_alt: "Vehicle subsystem agents and autonomous racing examples illustrating multi-agent coordination."
-    description: "Distributing vehicle objectives across cooperating agents, then learning how to initialize their negotiation. The work connects plug-and-play vehicle control with faster multi-objective MPC."
+    title: Learning-based multi-agent collaboration
+    image: /images/research/multi-agent.jpg
+    image_alt: Vehicle subsystem agents and autonomous racing examples illustrating multi-agent coordination.
+    description: Cooperating agents and learned negotiation initialization for plug-and-play vehicle control and faster multi-objective MPC.
     links:
-      - label: "Paper · IEEE T-ITS 2025"
-        url: "https://ieeexplore.ieee.org/document/11181563"
-      - label: "Paper · ITSC 2024"
-        url: "https://ieeexplore.ieee.org/document/10919711"
-      - label: "Lab project"
-        url: "https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/multi-objective-agent-based-mpc"
-
+      - label: Paper · IEEE T-ITS 2025
+        url: https://ieeexplore.ieee.org/document/11181563
+      - label: Paper · ITSC 2024
+        url: https://ieeexplore.ieee.org/document/10919711
+      - label: Lab project
+        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/multi-objective-agent-based-mpc
+    title_zh: 基于学习的多智能体协作
+    description_zh: 利用协作智能体与学习驱动的协商初始化，实现即插即用的车辆控制，并加速多目标模型预测控制。
+    image_alt_zh: 展示车辆子系统智能体、自动驾驶赛车与多智能体协作的研究图片。
   - id: learning-mpc
-    title: "Learning-based MPC"
-    context: "Doctoral research · Control"
-    image: "/images/research/learning-mpc.jpg"
-    image_alt: "Vehicle tests on a wet surface, data-driven dynamics modeling, and uncertainty-aware MPC constraints."
-    description: "Learning uncertain vehicle dynamics online with Gaussian processes and incorporating them into stochastic MPC. Real-vehicle experiments study adaptation across changing conditions, including low-friction surfaces."
+    title: Learning-based MPC
+    image: /images/research/learning-mpc.jpg
+    image_alt: Vehicle tests on a wet surface, data-driven dynamics modeling, and uncertainty-aware MPC constraints.
+    description: Online Gaussian-process dynamics learning with stochastic MPC, tested on real vehicles under changing and low-friction conditions.
     links:
-      - label: "Paper · IEEE T-ITS 2024"
-        url: "https://ieeexplore.ieee.org/document/10623843"
-      - label: "Lab project"
-        url: "https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/learning-agent-based-mpc"
-      - label: "PhD thesis"
-        url: "https://hdl.handle.net/10012/21401"
+      - label: Paper · IEEE T-ITS 2024
+        url: https://ieeexplore.ieee.org/document/10623843
+      - label: Lab project
+        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/learning-agent-based-mpc
+      - label: PhD thesis
+        url: https://hdl.handle.net/10012/21401
+    title_zh: 基于学习的模型预测控制
+    description_zh: 将在线高斯过程动力学学习与随机模型预测控制相结合，在变化工况及低附着路面上开展实车验证。
+    image_alt_zh: 湿滑路面车辆实验、数据驱动动力学建模和考虑不确定性的模型预测控制。
+  - id: f1tenth
+    title: "F1TENTH: World Models for Agile Racing"
+    image: /images/research/f1tenth.jpg
+    image_alt: My F1TENTH autonomous racing platform with onboard sensors and mapping views.
+    description: Ongoing exploration of multimodal world models for agile planning and control on an autonomous racing platform with vision and LiDAR.
+    links:
+      - label: Platform
+        url: https://f1tenth.org/
+    title_zh: "F1TENTH：面向敏捷赛车的世界模型"
+    description_zh: 正在探索多模态世界模型，利用配备视觉与激光雷达的自主赛车平台研究敏捷规划与控制。
+    image_alt_zh: 搭载传感器的 F1TENTH 自主赛车平台及其建图画面。
+  - id: xlerobot
+    title: "XLeRobot: Generative Mobile Manipulation"
+    image: /images/research/xlerobot.jpg
+    image_alt: My mobile dual-arm XLeRobot platform and a close-up of its manipulation setup.
+    description: Ongoing work on generative mobile manipulation with action-chunking policies, world-action models, and vision-language-action models.
+    links:
+      - label: Platform
+        url: https://github.com/Vector-Wangel/XLeRobot
+    title_zh: "XLeRobot：生成式移动操作"
+    description_zh: 正在开展生成式移动操作研究，探索动作分块策略、世界—动作模型以及视觉—语言—动作模型。
+    image_alt_zh: XLeRobot 移动双臂机器人及其操作装置的近景。

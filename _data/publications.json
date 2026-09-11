@@ -2,79 +2,91 @@
   {
     "items": [
       {
-        "authors": "<strong>J. Zhong</strong>, L. Khoshnevisan, S. Huang, M. Pirani, Y. V. Pant, A. Khajepour",
+        "authors": "J. Zhong, L. Khoshnevisan, S. Huang, M. Pirani, Y. V. Pant, A. Khajepour",
         "note": "First author",
         "title": "Multi-objective agent-based model predictive controller for plug-and-play vehicle control",
         "url": "https://ieeexplore.ieee.org/document/11181563",
         "venue": "IEEE Transactions on Intelligent Transportation Systems, 26(12), 22818–22829",
         "year": "2025",
         "selected": true,
-        "role": "first"
+        "role": "first",
+        "title_zh": "面向即插即用车辆控制的多目标智能体模型预测控制器"
       },
       {
-        "authors": "<strong>J. Zhong</strong>, R. V. Mehrizi, M. Pirani, C. Yu, A. Kasaiezadeh, Y. V. Pant, A. Khajepour",
+        "authors": "J. Zhong, R. V. Mehrizi, M. Pirani, C. Yu, A. Kasaiezadeh, Y. V. Pant, A. Khajepour",
         "note": "First author",
         "title": "Learning agent-based model predictive control for holistic vehicle performance",
         "url": "https://ieeexplore.ieee.org/document/10623843",
         "venue": "IEEE Transactions on Intelligent Transportation Systems, 25(11), 17482–17492",
         "year": "2024",
         "selected": true,
-        "role": "first"
+        "role": "first",
+        "title_zh": "面向车辆综合性能的学习型智能体模型预测控制"
       },
       {
-        "authors": "Y. Cui*, S. Huang*, <strong>J. Zhong*</strong>, Z. Liu, Y. Wang, C. Sun, B. Li, X. Wang, A. Khajepour",
+        "authors": "Y. Cui, S. Huang, J. Zhong, Z. Liu, Y. Wang, C. Sun, B. Li, X. Wang, A. Khajepour",
         "note": "Equal contribution · Early access 2023",
         "title": "DriveLLM: Charting the path toward full autonomous driving with large language models",
         "url": "https://ieeexplore.ieee.org/document/10297415",
         "venue": "IEEE Transactions on Intelligent Vehicles, 9(1), 1450–1464",
         "year": "2024",
         "selected": true,
-        "role": "co-first"
+        "role": "co-first",
+        "title_zh": "DriveLLM：利用大语言模型探索完全自动驾驶之路"
       },
       {
-        "authors": "Y. Lu, <strong>J. Zhong</strong>, L. Khoshnevisan, C. Sun, A. Khajepour",
+        "authors": "Y. Lu, J. Zhong, L. Khoshnevisan, C. Sun, A. Khajepour",
         "note": "Corresponding author",
         "title": "A review on vehicle steer-by-wire control systems",
         "url": "https://doi.org/10.1080/00423114.2025.2589913",
         "venue": "Vehicle System Dynamics, 1–33",
         "year": "2025",
         "selected": true,
-        "role": "corresponding"
+        "role": "corresponding",
+        "title_zh": "车辆线控转向控制系统综述"
       },
       {
-        "authors": "S. Huang, C. Sun, M. Ning, Y. Yang, C. Ma, <strong>J. Zhong</strong>, K. Shu, F. Shi, A. Khajepour",
+        "authors": "S. Huang, C. Sun, M. Ning, Y. Yang, C. Ma, J. Zhong, K. Shu, F. Shi, A. Khajepour",
         "title": "DriveLegal: Toward Legally Compliant Driving via Trustworthy Hybrid Retrieval-Augmented LLMs",
         "url": "https://www.sciencedirect.com/science/article/pii/S0957417426005063",
         "venue": "Expert Systems with Applications, 314, 131593",
         "year": "2026",
-        "selected": false
+        "selected": true,
+        "role": "coauthor",
+        "title_zh": "DriveLegal：通过可信的混合检索增强大语言模型实现合法合规驾驶"
       },
       {
-        "authors": "S. Huang, F. Shi, C. Sun, <strong>J. Zhong</strong>, M. Ning, Y. Yang, Y. Lu, H. Wang, A. Khajepour",
+        "authors": "S. Huang, F. Shi, C. Sun, J. Zhong, M. Ning, Y. Yang, Y. Lu, H. Wang, A. Khajepour",
         "title": "DriveSOTIF: Advancing SOTIF Through Multimodal Large Language Models",
         "url": "https://ieeexplore.ieee.org/document/11162558",
         "venue": "IEEE Transactions on Vehicular Technology, 1–14",
         "year": "2025",
-        "selected": false
+        "selected": true,
+        "role": "coauthor",
+        "title_zh": "DriveSOTIF：利用多模态大语言模型提升预期功能安全"
       },
       {
-        "authors": "Z. Deng, W. Hu, T. Huang, C. Sun, <strong>J. Zhong</strong>, A. Khajepour",
+        "authors": "Z. Deng, W. Hu, T. Huang, C. Sun, J. Zhong, A. Khajepour",
         "title": "Social predictive intelligent driver model for autonomous driving simulation",
         "url": "https://doi.org/10.1007/s42154-024-00289-w",
         "venue": "Automotive Innovation, 8(1), 1–12",
         "year": "2025",
-        "selected": false
+        "selected": true,
+        "role": "coauthor",
+        "title_zh": "面向自动驾驶仿真的社会交互预测型智能驾驶员模型"
       },
       {
-        "authors": "Y. Lu, R. Zhen, Y. Liu, <strong>J. Zhong</strong>, C. Sun, Y. Huang, A. Khajepour",
+        "authors": "Y. Lu, R. Zhen, Y. Liu, J. Zhong, C. Sun, Y. Huang, A. Khajepour",
         "title": "Practical solution for attenuating industrial heavy vehicle vibration: A new gain-adaptive coordinated suspension control system",
         "url": "https://www.sciencedirect.com/science/article/pii/S0967066124002843",
         "venue": "Control Engineering Practice, 154, 106125",
         "year": "2025",
-        "selected": false
+        "selected": true,
+        "role": "coauthor",
+        "title_zh": "减轻工业重型车辆振动的实用方案：一种增益自适应协调悬架控制系统"
       },
       {
-        "authors": "Y. Lu, Y. Huang, C. Sun, <strong>J. Zhong</strong>, A. Khajepour",
+        "authors": "Y. Lu, Y. Huang, C. Sun, J. Zhong, A. Khajepour",
         "title": "An interconnected suspension with adjustable roll and pitch stiffness (IS-ARPS) to enhance anti-roll and anti-dive/squat characteristics",
         "url": "https://doi.org/10.1177/09544070241245473",
         "venue": "Proceedings of the Institution of Mechanical Engineers, Part D: Journal of Automobile Engineering, 239(7), 2285–2296",
@@ -87,23 +99,24 @@
   {
     "items": [
       {
-        "authors": "<strong>J. Zhong</strong>, R. V. Mehrizi, Y. V. Pant, A. Khajepour",
+        "authors": "J. Zhong, R. V. Mehrizi, Y. V. Pant, A. Khajepour",
         "note": "Oral presentation",
         "title": "A data-driven distributed control scheme: Learning multi-objective agent-based MPC for path-tracking",
         "url": "https://ieeexplore.ieee.org/document/10919711",
         "venue": "IEEE International Conference on Intelligent Transportation Systems (ITSC), 2999–3004",
         "year": "2024",
         "selected": true,
-        "role": "first"
+        "role": "first",
+        "title_zh": "数据驱动的分布式控制方案：面向路径跟踪的学习型多目标智能体模型预测控制"
       },
       {
-        "authors": "<strong>J. Zhong</strong>, G. Tao, J. Liu",
+        "authors": "J. Zhong, G. Tao, J. Liu",
         "note": "Oral presentation",
         "title": "Real-time test system for electro-hydraulic proportional control loop of automatic transmission",
         "url": "https://ieeexplore.ieee.org/document/7813113",
         "venue": "International Conference on Cybernetics, Robotics and Control (CRC), 32–37",
         "year": "2016",
-        "selected": true,
+        "selected": false,
         "role": "first"
       }
     ],
@@ -112,7 +125,7 @@
   {
     "items": [
       {
-        "authors": "Y. Lu, C. Sun, S. Huang, <strong>J. Zhong</strong>, Y. Yang, K. Shu, Y. Huang, A. Khajepour",
+        "authors": "Y. Lu, C. Sun, S. Huang, J. Zhong, Y. Yang, K. Shu, Y. Huang, A. Khajepour",
         "note": "Accepted; bibliographic details forthcoming",
         "title": "Corner Modules in Vehicle Platforms: Design, Integration, and Control Perspectives",
         "venue": "Automotive Innovation",
@@ -125,7 +138,7 @@
   {
     "items": [
       {
-        "authors": "M. Ning, Y. Yang, K. Shu, S. Huang, <strong>J. Zhong</strong>, M. Salehi, M. Rahmani, J. Guo, Y. Lu, C. Sun, A. Saleh, E. Hashemi, A. Khajepour",
+        "authors": "M. Ning, Y. Yang, K. Shu, S. Huang, J. Zhong, M. Salehi, M. Rahmani, J. Guo, Y. Lu, C. Sun, A. Saleh, E. Hashemi, A. Khajepour",
         "note": "Preprint · Revised 2026",
         "project": "https://github.com/NingMingHao/CoInfra",
         "title": "CoInfra: A Large-Scale Cooperative Infrastructure Perception System and Dataset for Vehicle-Infrastructure Cooperation in Adverse Weather",
@@ -135,7 +148,7 @@
         "selected": false
       },
       {
-        "authors": "M. Ning, Y. Yang, S. Huang, <strong>J. Zhong</strong>, K. Shu, C. Sun, E. Hashemi, A. Khajepour",
+        "authors": "M. Ning, Y. Yang, S. Huang, J. Zhong, K. Shu, C. Sun, E. Hashemi, A. Khajepour",
         "note": "Preprint",
         "project": "https://github.com/HopeYless/SAP-CoPE-Project",
         "title": "SAP-CoPE: Social-Aware Planning using Cooperative Pose Estimation with Infrastructure Sensor Nodes",
@@ -145,7 +158,7 @@
         "selected": false
       },
       {
-        "authors": "C. Tang, <strong>J. Zhong</strong>, Y. Hu",
+        "authors": "C. Tang, J. Zhong, Y. Hu",
         "note": "Preprint",
         "title": "Augmented Kinesthetic Teaching: Enhancing Task Execution Efficiency through Intuitive Human Instructions",
         "url": "https://arxiv.org/abs/2312.00262",
@@ -159,14 +172,14 @@
   {
     "items": [
       {
-        "authors": "<strong>J. Zhong</strong>, Z. Deng, C. Yu, A. Khajepour",
+        "authors": "J. Zhong, Z. Deng, C. Yu, A. Khajepour",
         "title": "Mixed Vehicle Platoon Control Under Collision Avoidance Lane Change",
         "venue": "Under review",
         "year": "",
         "selected": false
       },
       {
-        "authors": "<strong>J. Zhong</strong>, Y. Lu, L. Khoshnevisan, A. Khajepour",
+        "authors": "J. Zhong, Y. Lu, L. Khoshnevisan, A. Khajepour",
         "title": "Robust Delay-compensated Controllers for Vehicle Steer-by-Wire Systems",
         "venue": "Under review",
         "year": "",

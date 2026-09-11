@@ -24,13 +24,16 @@ The lightweight preview renders this homepage. Additional Jekyll pages or plugin
 | File or folder | What it controls |
 | --- | --- |
 | [`_pages/about.md`](_pages/about.md) | Introduction, section headings, and page structure |
-| [`_config.yml`](_config.yml) | Name, portrait, role, affiliations, location, and profile links under `author` |
+| [`_config.yml`](_config.yml) | Name, portrait, role, affiliations, and profile links under `author` |
 | [`_data/research.yml`](_data/research.yml) | Research vision and project titles, descriptions, images, and links |
-| [`_data/ongoing.yml`](_data/ongoing.yml) | Ongoing research, including F1TENTH and XLeRobot |
 | [`_data/publications.json`](_data/publications.json) | Publication records and which appear in Selected publications |
+| [`_data/publication_roles.yml`](_data/publication_roles.yml) | Author name to highlight and the shared role-symbol legend |
 | [`_data/career.yml`](_data/career.yml) | Compact experience and education entries |
 | [`_data/navigation.yml`](_data/navigation.yml) | Top navigation labels and section anchors |
+| [`_data/translations.yml`](_data/translations.yml) | Shared Chinese translations for project link labels |
 | [`images/research/`](images/research/) | Project photos and figures |
+| [`images/background/`](images/background/) | Homepage cover photos |
+| [`_data/background.yml`](_data/background.yml) | Cover image, crop position, height, and visibility |
 | [`assets/css/profile.css`](assets/css/profile.css) | Layout, colors, typography, and responsive styles |
 | [`images/site.webmanifest`](images/site.webmanifest) and favicon files | Browser/site icons; these do not change the portrait |
 
@@ -48,11 +51,31 @@ Keep the other `author` fields; do not replace the whole section. An external HT
 
 Change the role with `author.bio`, workplace with `employer` / `employer_url`, and university with `education` / `education_url`. Google Scholar remains a simple profile link.
 
+### Customize the homepage cover
+
+The shallow photo strip sits above the navigation. The example is a copy of `images/research/xlerobot.jpg` in `images/background/`.
+
+Add your photo to `images/background/`, then edit `_data/background.yml`:
+
+```yaml
+enabled: true
+image: "/images/background/xlerobot.jpg"
+image_alt: "XLeRobot mobile robot and robotic arms in a home environment"
+position: "50% 45%"
+height: "220px"
+mobile_position: "65% 45%"
+mobile_height: "150px"
+```
+
+The photo keeps its proportions and fills the strip using `object-fit: cover`; excess edges are cropped. `position` is horizontal then vertical: `0%` selects the left/top edge, `50%` the center, and `100%` the right/bottom edge. Position only changes axes with overflow. Mobile settings apply at screen widths up to 800px. Use `px`, `rem`, or `vh` for heights. Set `enabled: false` to hide the cover.
+
+Save and check the local preview; changes refresh automatically. A wide, high-resolution photo (around 2000px wide) will look sharper than the temporary example. Edit the source configuration, not generated `_site/` files.
+
 ### Update projects and media
 
-In `_data/research.yml`, `vision` controls the displayed research formula and explanation; `projects` holds the project list in display order. In `_data/ongoing.yml`, edit the list of current projects.
+In `_data/research.yml`, `vision` controls the displayed research formula and explanation; `projects` holds all projects in display order, including F1TENTH and XLeRobot.
 
-Each project has a title, short description, and links. Research entries use `context` for the affiliation or period; ongoing entries use `focus` for the research topic. Keep each `id` unique.
+Each research project shows its title, short description, image (when available), and links. Mention ongoing work directly in `description`; no separate section or navigation entry is needed. Keep each `id` unique.
 
 To replace a figure, overwrite the corresponding file in `images/research/` using the **same filename**. To use a different file, update that entry:
 
@@ -65,7 +88,19 @@ links:
     url: "https://doi.org/YOUR_DOI"
 ```
 
-This is a field example to add within an existing entry. Replace the example URLs with real links or omit unused fields. `video_url` adds a demo link and is optional. JPG, PNG, and SVG are supported; use an image around 1200 pixels wide and describe its content in `image_alt`.
+This is a field example to add within an existing entry. Replace the example URLs with real links or omit unused fields. `video_url` adds a demo link and is optional. JPG, PNG, GIF (including animated GIF), WebP, and SVG are supported; use an image around 1200 pixels wide and describe its content in `image_alt`. To use a GIF, place it in `images/research/` and set `image: "/images/research/demo.gif"`. It animates natively when loaded, keeps its proportions, and opens at original size when clicked. The local preview serves GIFs as `image/gif` without converting them.
+
+### English and Chinese
+
+The language selector at the top right switches between English and Chinese. Every new visit starts in English; changing language keeps the current page and links in place.
+
+- `_pages/about.md`: opening sentence and paired English/Chinese biography paragraphs.
+- `_data/research.yml`: add `title_zh`, `description_zh`, and `image_alt_zh` beside a project's English fields. The compact formula uses `vision.title`, `vision.learning`, and `vision.prior` (with matching `_zh` fields); the explanation stays in `vision.description`.
+- `_data/publications.json`: `title_zh` is a reading translation; keep original English titles, author names, and venue details for citations.
+- `_data/career.yml`: maintain `dates` / `dates_zh`, organization and role translations. Write complete experience ranges such as `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`.
+- `_data/navigation.yml`, `_data/publication_roles.yml`, and `_data/translations.yml`: translated navigation, author-role labels, and shared project-link labels.
+
+Missing translations fall back to English. No translation service or external API is needed. For additional template text, `data-zh="中文"` switches a leaf element's text; use `data-zh-alt` or `data-zh-aria-label` for accessible attributes. Keep links/icons outside translated leaf text.
 
 The current project images come from the supplied research statement. Replace them with updated experiment photos or figures as the work develops.
 
@@ -88,7 +123,7 @@ The current project images come from the supplied research statement. Replace th
     "items": [
       {
         "title": "Learning agent-based model predictive control for holistic vehicle performance",
-        "authors": "<strong>J. Zhong</strong> et al.",
+        "authors": "J. Zhong, R. V. Mehrizi, M. Pirani, C. Yu, A. Kasaiezadeh, Y. V. Pant, A. Khajepour",
         "venue": "IEEE Transactions on Intelligent Transportation Systems",
         "year": "2024",
         "url": "https://ieeexplore.ieee.org/document/10623843",
@@ -100,7 +135,18 @@ The current project images come from the supplied research statement. Replace th
 ]
 ```
 
-Use `selected: true` only for published papers where the author role is `first`, `co-first`, or `corresponding`, confirmed by the paper. Set other records to `selected: false` to retain them without displaying them. Use JSON booleans `true` / `false`, double quotes, and no trailing commas.
+Set `selected: true` to display a paper, or `false` to keep its record without showing it. Records display in file order, group by group. The 2016 test-system paper is retained with `selected: false`.
+
+Write `authors` as a plain, comma-separated string in the paper's author order, without HTML or symbols. The template automatically highlights the exact name `J. Zhong` and adds the symbol for `role`:
+
+| `role` | Symbol | Jiaming Zhong's role |
+| --- | --- | --- |
+| `first` | † | First author |
+| `co-first` | * | Co-first author |
+| `corresponding` | ‡ | Corresponding author |
+| `coauthor` | § | Co-author |
+
+Set a special role only when confirmed by the paper. Change symbols, labels, or the highlighted author name in `_data/publication_roles.yml`; the legend and all paper markers update together. `note` is optional internal metadata and is not displayed; `project` optionally adds a project link. Use JSON booleans `true` / `false`, double quotes, and no trailing commas.
 
 ## Save code to GitHub
 

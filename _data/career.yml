@@ -1,39 +1,63 @@
+# Experience months verified against CV_JiamingZhong.pdf, page 1.
 experience:
-  - dates: "2025–present"
-    organization: "National Research Council Canada"
-    url: "https://nrc.canada.ca/en"
-    role: "Associate Research Officer"
-  - dates: "Feb–Jun 2025"
-    organization: "University of Waterloo"
-    url: "https://uwaterloo.ca/mechatronic-vehicle-systems-lab/"
-    role: "Postdoctoral Fellow · Mechatronic Vehicle Systems Lab"
-  - dates: "Feb–Jun 2025"
-    organization: "Reel-In Robotics"
-    url: "https://reelinrobotics.ca/"
-    role: "Autonomous Mobile Robot Lead"
-  - dates: "2021–2023"
-    organization: "LoopX"
-    url: "https://loopx.ai/"
-    role: "Co-founder & Planning-Control Team Lead"
-  - dates: "2020–2021"
-    organization: "NIO"
-    url: "https://www.nio.com/"
-    role: "Senior Software Engineer"
-  - dates: "2017–2020"
-    organization: "SAIC Motor"
-    url: "https://www.saicmotor.com/english/"
-    role: "Software Engineer & Software Product Manager"
-
+  - dates: Jun 2025 – present
+    organization: National Research Council Canada
+    url: https://nrc.canada.ca/en
+    role: Associate Research Officer
+    organization_zh: 加拿大国家研究委员会
+    role_zh: 副研究员（Associate Research Officer）
+    dates_zh: 2025年6月 – 至今
+  - dates: Feb 2025 – Jun 2025
+    organization: University of Waterloo
+    url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/
+    role: Postdoctoral Fellow · Mechatronic Vehicle Systems Lab
+    organization_zh: 滑铁卢大学
+    role_zh: 博士后 · 机电车辆系统实验室
+    dates_zh: 2025年2月 – 2025年6月
+  - dates: Feb 2025 – Jun 2025
+    organization: Reel-In Robotics
+    url: https://reelinrobotics.ca/
+    role: Autonomous Mobile Robot Lead
+    organization_zh: Reel-In Robotics
+    role_zh: 自主移动机器人研发负责人
+    dates_zh: 2025年2月 – 2025年6月
+  - dates: Dec 2021 – Aug 2023
+    organization: LoopX
+    url: https://loopx.ai/
+    role: Co-founder & Planning-Control Team Lead
+    organization_zh: LoopX
+    role_zh: 联合创始人、规划与控制团队负责人
+    dates_zh: 2021年12月 – 2023年8月
+  - dates: Aug 2020 – Jun 2021
+    organization: NIO
+    url: https://www.nio.com/
+    role: Senior Software Engineer
+    organization_zh: 蔚来
+    role_zh: 高级软件工程师
+    dates_zh: 2020年8月 – 2021年6月
+  - dates: May 2017 – Jul 2020
+    organization: SAIC Motor
+    url: https://www.saicmotor.com/english/
+    role: Software Engineer & Software Product Manager
+    organization_zh: 上汽集团
+    role_zh: 软件工程师、软件产品经理
+    dates_zh: 2017年5月 – 2020年7月
 education:
-  - dates: "2021–2025"
-    degree: "Ph.D., Mechanical Engineering"
-    institution: "University of Waterloo"
-    url: "https://uwaterloo.ca/"
-  - dates: "2014–2017"
-    degree: "M.Sc., Mechanical Engineering"
-    institution: "Beijing Institute of Technology"
-    url: "https://english.bit.edu.cn/"
-  - dates: "2010–2014"
-    degree: "B.Sc., Vehicle Engineering"
-    institution: "Beijing Institute of Technology"
-    url: "https://english.bit.edu.cn/"
+  - dates: 2021–2025
+    degree: Ph.D., Mechanical Engineering
+    institution: University of Waterloo
+    url: https://uwaterloo.ca/
+    degree_zh: 机械工程博士
+    institution_zh: 滑铁卢大学
+  - dates: 2014–2017
+    degree: M.Sc., Mechanical Engineering
+    institution: Beijing Institute of Technology
+    url: https://english.bit.edu.cn/
+    degree_zh: 机械工程硕士
+    institution_zh: 北京理工大学
+  - dates: 2010–2014
+    degree: B.Sc., Vehicle Engineering
+    institution: Beijing Institute of Technology
+    url: https://english.bit.edu.cn/
+    degree_zh: 车辆工程学士
+    institution_zh: 北京理工大学

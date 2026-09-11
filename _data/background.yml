@@ -1,0 +1,10 @@
+# Homepage cover photo. Position values run from 0% (left/top) to 100% (right/bottom).
+enabled: true
+image: "/images/background/xlerobot.jpg"
+image_alt: "XLeRobot mobile robot and robotic arms in a home environment"
+image_alt_zh: "家庭环境中的 XLeRobot 移动机器人和机械臂"
+position: "50% 45%"
+height: "220px"
+# A separate crop and height for screens up to 800px wide.
+mobile_position: "65% 45%"
+mobile_height: "150px"

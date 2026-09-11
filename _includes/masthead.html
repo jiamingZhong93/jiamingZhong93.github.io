@@ -1,9 +1,9 @@
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main" data-zh="跳至正文">Skip to content</a>
 <div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu">
-<nav id="site-nav" class="greedy-nav" aria-label="Main navigation">
-<button type="button" aria-label="More navigation links"><div class="navicon"></div></button>
+<nav id="site-nav" class="greedy-nav" aria-label="Main navigation" data-zh-aria-label="主导航">
+<button type="button" aria-label="More navigation links" data-zh-aria-label="更多导航链接"><div class="navicon"></div></button>
 <ul class="visible-links">
 <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="/#about-me">Jiaming Zhong<span class="nav-dot" aria-hidden="true">.</span></a></li>
-{% for link in site.data.navigation.main %}<li class="masthead__menu-item"><a href="{{ link.url }}">{{ link.title }}</a></li>{% endfor %}
+{% for link in site.data.navigation.main %}<li class="masthead__menu-item"><a href="{{ link.url }}" data-zh="{{ link.title_zh | default: link.title | escape }}">{{ link.title }}</a></li>{% endfor %}
 </ul><ul class="hidden-links hidden"></ul>
-</nav></div></div></div>
+</nav><select id="site-language" class="language-select" aria-label="Language / 语言"><option value="en" selected>English</option><option value="zh-CN">中文</option></select></div></div></div>
