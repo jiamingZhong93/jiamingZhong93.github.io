@@ -9,19 +9,18 @@ vision:
   description_zh: 学习赋予系统适应能力与情境理解；基于模型的先验则通过物理规律、显式约束与反馈提供支撑。我将两者结合，贯穿感知、决策与行动。
 projects:
   - id: articulated-vehicles
-    title: Transformer-initiated hybrid control for articulated heavy vehicles
-    description: Transformer-based imitation learning, MPC, and reinforcement learning for agile, stable control of articulated heavy vehicles.
+    title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
+    description: Improving heavy-vehicle safety under challenging road and weather conditions.
+    image: /images/research/safetrucks-snow.jpg
+    image_alt: An articulated truck driving on a snow-covered forest road, from the SafeTrucks website.
+    image_alt_zh: SafeTrucks 官网照片：铰接式卡车行驶在积雪覆盖的林间道路上。
+    # Public photo and description: https://safetrucks.fmi.fi/index.php/project-description/
+    # Original image: https://safetrucks.fmi.fi/wp-content/uploads/2023/08/rekka2.jpg
     links:
       - label: SafeTrucks project
         url: https://safetrucks.fmi.fi/index.php/project-description/
-    title_zh: 面向铰接式重型车辆的 Transformer 初始化混合控制
-    description_zh: 结合 Transformer 模仿学习、模型预测控制与强化学习，实现铰接式重型车辆灵活、稳定的控制。
-  - id: off-road
-    title: Agile learning-based planning and control for off-road autonomous vehicles
-    description: Learning and model-based planning and control for deformable terrain, changing dynamics, and variable traction.
-    links: []
-    title_zh: 面向越野自动驾驶的学习型敏捷规划与控制
-    description_zh: 结合学习与模型方法，应对可变形地面、动态变化和附着条件不确定的规划与控制问题。
+    title_zh: 面向铰接式重型车辆及越野车辆的学习型规划与控制
+    description_zh: 提升重型车辆在复杂道路与天气条件下的行驶安全。
   - id: drivellm
     title: "DriveLLM: Explainable Driving Decisions"
     image: /images/research/drivellm.jpg

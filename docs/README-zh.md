@@ -1,205 +1,129 @@
-# Jiaming Zhong — 个人学术主页
+# 主页日常维护指南
 
-学习、控制与移动自主系统研究。基于 Jekyll 和 AcadHomepage。
+[公开主页](https://jiamingzhong93.github.io/) · [English README](../README.md) · [发布设置](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)
 
-[English README](../README.md) · [GitHub 仓库](https://github.com/jiamingZhong93/jiamingZhong93.github.io)
+**日常流程：** 本地预览 → 同步修改中英文 → 检查电脑和手机效果 → 提交并推送 → 确认上线。
 
-## 本地预览
+## 1. 启动本地预览
 
-安装 **Node.js 20.19 或更新版本（含 npm）**，然后在仓库目录运行：
+安装 **Node.js 20.19 或更新版本（含 npm）**，在仓库文件夹启动：
 
-| 系统 | 命令 |
+| 系统 | 启动方式 |
 | --- | --- |
-| Windows | `.\preview.cmd`，也可以双击 `preview.cmd` |
+| Windows | 双击 `preview.cmd`，或运行 `.\preview.cmd` |
 | Ubuntu | `bash preview.sh` |
 
-打开终端显示的本地地址。首次启动需要联网安装依赖。保持终端运行，**修改文件并保存后，预览会自动重新构建并刷新**。按 **Ctrl+C** 停止。
+打开终端显示的地址，通常是 `http://127.0.0.1:4000/`。首次启动需要联网安装依赖。保持终端运行，保存修改后页面会自动重新构建、刷新；按 **Ctrl+C** 停止。
 
-只更新本地预览时，保存即可，**不需要 commit、push 或上线**。如果页面没有刷新，检查终端中的 YAML/JSON 错误，修正后重新保存。修改依赖后重新启动脚本；锁文件变化时，脚本会自动执行 `npm ci`。
+仅本地保存不会发布。修改源文件，不要编辑生成的 `_site/`。预览不再刷新时，查看终端中的 YAML/JSON 报错。当前预览器用于这份主页；新增 Jekyll 页面或插件可能需要完整 Jekyll 构建。
 
-这个轻量预览器用于当前主页；额外的 Jekyll 页面或插件可能需要完整 Jekyll 构建。不要编辑生成的 `_site/` 文件，应修改下面的源文件。
+## 2. 找到需要修改的内容
 
-## 常用文件说明
-
-| 文件或目录 | 修改内容 |
+| 修改内容 | 文件和位置 |
 | --- | --- |
-| [`_pages/about.md`](../_pages/about.md) | 个人简介、各部分标题和页面结构 |
-| [`_config.yml`](../_config.yml) | `author` 下的姓名、照片、职位、单位、大学及个人链接 |
-| [`_data/research.yml`](../_data/research.yml) | Research vision 公式、解释及研究项目 |
-| [`_data/publications.json`](../_data/publications.json) | 论文记录，以及哪些显示在 Selected publications |
-| [`_data/publication_roles.yml`](../_data/publication_roles.yml) | 自动加粗的作者姓名、作者角色符号及图例 |
-| [`_data/career.yml`](../_data/career.yml) | 简洁的工作经历和教育经历 |
-| [`_data/navigation.yml`](../_data/navigation.yml) | 顶部导航文字及其对应的页面锚点 |
-| [`_data/translations.yml`](../_data/translations.yml) | 项目链接名称的通用中文翻译 |
-| [`images/research/`](../images/research/) | 研究项目的照片和图示 |
-| [`images/background/`](../images/background/) | 主页顶部横幅的背景照片 |
-| [`_data/background.yml`](../_data/background.yml) | 横幅照片、裁切位置、高度和显示开关 |
-| [`assets/css/profile.css`](../assets/css/profile.css) | 布局、颜色、字体和不同屏幕尺寸下的样式 |
-| [`images/site.webmanifest`](../images/site.webmanifest) 及 favicon 文件 | 浏览器和网站图标，不是个人照片 |
+| 开场句、个人简介、各部分标题 | [_pages/about.md](../_pages/about.md) |
+| 头像、英文职位/单位、个人链接 | [_config.yml](../_config.yml) 的 `author` |
+| 侧栏中文职位、单位和大学 | [_includes/author-profile.html](../_includes/author-profile.html) 的 `data-zh` |
+| 研究公式、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
+| 论文、作者角色符号 | [_data/publications.json](../_data/publications.json)、[_data/publication_roles.yml](../_data/publication_roles.yml) |
+| 工作与教育经历 | [_data/career.yml](../_data/career.yml) |
+| 导航、项目链接的翻译 | [_data/navigation.yml](../_data/navigation.yml)、[_data/translations.yml](../_data/translations.yml) |
+| 顶部背景照片、裁切位置 | [_data/background.yml](../_data/background.yml) |
+| 浏览器标题、搜索简介 | [_includes/seo.html](../_includes/seo.html)；英文简介在 [_config.yml](../_config.yml) |
+| 字体、间距、手机布局 | [assets/css/profile.css](../assets/css/profile.css) |
 
-### 更换个人照片
+### 中英文要一起维护
 
-1. 用新照片替换 `images/avatar.jpg`；当前头像就保存在这里。建议使用约 600 × 600 像素的正方形照片。
-2. 在 `_config.yml` 中修改现有的 `author.avatar`：
+右上角按钮在同一页面切换语言，每次刷新默认英文。中文由你手动维护，不会自动翻译。
 
-```yaml
-author:
-  avatar: "/images/avatar.jpg"
-```
+- **数据文件：** 成对修改 `title/title_zh`、`description/description_zh`、`image_alt/image_alt_zh`。公式还包括 `learning/learning_zh`、`prior/prior_zh`。
+- **个人简介：** 在 `_pages/about.md` 中分别修改 `lang="en"` 和 `lang="zh-CN"` 的两个 `localized-copy` 区块。开场句和各部分标题的中文在 `data-zh="中文"` 中。
+- **侧栏：** 英文职位和单位在 `_config.yml`，对应中文在 `_includes/author-profile.html`。
+- **工作经历：** `dates` 和 `dates_zh` 都填写起止月份，例如 `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`。
+- **新项目链接名称：** 在 `_data/translations.yml` 的 `links` 下加入中文对应值。项目字段和链接名称缺少翻译时显示英文。
 
-保留 `author` 下其他字段，不要用这两行覆盖整个配置。也可以填写外部 HTTPS 图片地址。保存后检查本地预览；如果更换文件名或格式，让 `avatar` 与实际路径完全一致。
+不要把链接或图标包在会被 `data-zh` 替换的文字元素内。每次更新内容后都切换语言检查一次。
 
-职位对应 `author.bio`，单位及链接对应 `employer` / `employer_url`，大学及链接对应 `education` / `education_url`。Google Scholar 以简洁的个人链接显示。
+## 3. 修改项目和图片
 
-### 自定义顶部背景照片
-
-导航栏上方有一条扁平的照片横幅。当前示例是从 `images/research/xlerobot.jpg` 复制到 `images/background/` 的照片。
-
-将自己的照片放进 `images/background/`，然后修改 `_data/background.yml`：
+在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时填写中文。
 
 ```yaml
-enabled: true
-image: "/images/background/xlerobot.jpg"
-image_alt: "XLeRobot mobile robot and robotic arms in a home environment"
-position: "50% 45%"
-height: "220px"
-mobile_position: "65% 45%"
-mobile_height: "150px"
+  - id: my-project
+    title: "My project: Short focus"
+    title_zh: "我的项目：简短方向"
+    description: "One sentence about the project."
+    description_zh: "用一句话介绍项目。"
+    image: "/images/research/my-project.gif"
+    image_alt: "A short description of the demonstration."
+    image_alt_zh: "简短描述演示内容。"
+    links:
+      - label: "Project"
+        url: "https://example.com/"
 ```
 
-- `image`：照片路径；`image_alt`：照片内容说明，供屏幕阅读器使用。
-- `position`：先横向、后纵向。`0%` 对齐左侧/顶部，`50%` 居中，`100%` 对齐右侧/底部。例如 `"50% 20%"` 更偏向照片上方，`"50% 80%"` 更偏向下方。
-- `height`：桌面横幅高度，默认 `220px`；可以使用 `px`、`rem` 或 `vh`。
-- `mobile_position` / `mobile_height`：屏幕宽度不超过 800px 时的裁切位置与高度，默认高度为 `150px`。
-- `enabled: false`：隐藏横幅。
+把示例文字、网址换成真实项目内容。`image` 可省略；需要视频时可添加 `video_url` 链接。
 
-照片采用 `object-fit: cover` 等比例缩放填满横幅，超出区域直接裁切，不会拉伸变形。只有存在裁切空间的方向才能移动；例如照片宽度刚好填满横幅时，横向位置不会有明显变化。建议最终换成宽约 2000 像素的高清照片；当前示例分辨率较低，仅用于确认效果。
-
-保存后，本地预览会自动刷新，无需提交或上线。调整源文件即可，不要修改 `_site/` 中的生成文件。
-
-### 修改研究项目、图片和视频
-
-在 `_data/research.yml` 中，`vision` 控制研究公式和解释，`projects` 统一保存全部项目并按照文件顺序展示，包括 F1TENTH 和 XLeRobot。
-
-Research 项目展示项目名称、简短介绍、图片（如有）及链接。正在进行的工作直接在 `description` 中说明，无需单独的 section 或导航项。每项的 `id` 应保持唯一。
-
-替换图片最简单的方法是：用新图片覆盖 `images/research/` 中对应的文件，**保持文件名不变**。如果使用新文件名，则修改相应项目的字段：
-
-```yaml
-image: "/images/research/my-project.jpg"
-image_alt: "Test vehicle following a planned path on a wet track"
-video_url: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
-links:
-  - label: "Paper"
-    url: "https://doi.org/YOUR_DOI"
-```
-
-这段是放在已有项目内的字段示例。请将示例地址换成真实链接，不需要的字段可以省略。`video_url` 是可选的演示视频链接。图片支持 JPG、PNG、GIF（含动图）、WebP、SVG；建议宽约 1200 像素，并在 `image_alt` 中简短说明图片内容。
-
-使用 GIF 时，将文件放入 `images/research/`，再设置 `image: "/images/research/demo.gif"` 即可。动图加载后由浏览器原生播放，保持比例，点击可打开原图。本地预览以 `image/gif` 提供文件，不会转成静态图片。
-
-### 维护中英文内容
-
-右上角的语言选择器可切换 English / 中文，每次新打开页面默认英文。切换语言不会跳到其他页面或改变项目链接。
-
-- `_pages/about.md`：开场句及中英两套简介段落。
-- `_data/research.yml`：在英文项目字段旁维护 `title_zh`、`description_zh`、`image_alt_zh`。紧凑公式使用 `vision.title`、`vision.learning`、`vision.prior` 及对应的 `_zh` 字段，解释文字放在 `vision.description` 中。
-- `_data/publications.json`：`title_zh` 为辅助阅读的译文；引用论文时应使用原始英文题目、作者姓名和期刊信息。
-- `_data/career.yml`：维护 `dates` / `dates_zh`、机构和职位翻译。工作经历使用完整月份范围，例如 `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`。
-- `_data/navigation.yml`、`_data/publication_roles.yml` 和 `_data/translations.yml`：分别维护导航、作者角色和项目链接的翻译。
-
-缺少中文字段时会回退到英文，不需要接入翻译服务。若扩展页面模板，给纯文本元素添加 `data-zh="中文"`；图片说明和无障碍标签分别使用 `data-zh-alt`、`data-zh-aria-label`。链接和图标不要放进会被替换的纯文本元素内部。
-
-目前项目图片来自提供的 research statement；之后可以直接换成新的实验照片、结果图或系统示意图。
-
-| `images/research/` 中的文件 | 对应项目 |
+| 图片 | 替换方式 |
 | --- | --- |
-| `drivellm.jpg` | DriveLLM |
-| `multi-agent.jpg` | 多智能体协作 |
-| `learning-mpc.jpg` | Learning-based MPC |
-| `f1tenth.jpg` | F1TENTH |
-| `xlerobot.jpg` | XLeRobot |
+| 头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
+| 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG，保持原图比例。 |
+| 顶部背景 | 放进 `images/background/`，修改 `_data/background.yml` 中的 `image`、`image_alt` 和 `image_alt_zh`。 |
 
-### 维护 Selected publications
+背景的 `position: "50% 45%"` 依次控制横向、纵向裁切位置；`height` 控制高度。`mobile_position`、`mobile_height` 用于手机及窄屏。照片按比例裁切，不拉伸；`enabled: false` 隐藏背景。
 
-`_data/publications.json` 的顶层是一个分组数组，每组包含 `title` 和 `items`。新增论文时，放进相应组的 `items` 中。下面是一个完整的最小格式示例：
+使用公开来源图片时，在对应项目旁用注释保留出处。SafeTrucks 项目中已记录雪地行车照片的原始来源。
 
-```json
-[
-  {
-    "title": "Journal articles",
-    "items": [
-      {
-        "title": "Learning agent-based model predictive control for holistic vehicle performance",
-        "authors": "J. Zhong, R. V. Mehrizi, M. Pirani, C. Yu, A. Kasaiezadeh, Y. V. Pant, A. Khajepour",
-        "venue": "IEEE Transactions on Intelligent Transportation Systems",
-        "year": "2024",
-        "url": "https://ieeexplore.ieee.org/document/10623843",
-        "selected": true,
-        "role": "first"
-      }
-    ]
-  }
-]
-```
+## 4. 修改论文
 
-日常维护只需修改这几个字段：
+在 `_data/publications.json` 中，复制某个分组的 `items` 内已有论文，再修改：
 
-- `selected: true`：显示该论文；`false`：保留记录但隐藏。2016 年 test-system 论文已设为隐藏。
-- `authors`：按论文作者顺序填写普通文本，用英文逗号分隔；不需要写 HTML 或添加符号。系统自动加粗准确匹配的 `J. Zhong`，并在姓名后加入角色符号。
-- `role`：填写下表中的一个值。符号仅描述 Jiaming Zhong 的角色。
+| 字段 | 填写内容 |
+| --- | --- |
+| `title` / `title_zh` | 原始论文题目 / 中文阅读译文 |
+| `authors` | 按论文顺序填写作者，用英文逗号分隔；不用 HTML 或手动加符号 |
+| `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接 |
+| `selected` | `true` 显示；`false` 保留记录但隐藏 |
+| `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者 § |
+| `project` | 可选的项目网址 |
 
-| `role` | 自动符号 | 含义 |
-| --- | --- | --- |
-| `first` | † | 第一作者 |
-| `co-first` | * | 共同第一作者 |
-| `corresponding` | ‡ | 通讯作者 |
-| `coauthor` | § | 合作者 |
+系统自动加粗准确匹配的 `J. Zhong` 并添加角色符号。修改姓名、符号或双语图例时，只改 `_data/publication_roles.yml` 即可。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
 
-特殊作者角色应以论文说明为准。若要更换符号、英文说明或自动加粗的姓名，只需修改 `_data/publication_roles.yml`，section 开头的图例和每篇论文的标注会同时更新。
+## 5. 提交修改并上线
 
-论文按照数据文件中各分组和条目的顺序显示。`note` 可保留为内部备注，不会在页面输出；`project` 是可选的项目链接。JSON 使用双引号和布尔值 `true` / `false`，最后一项后不要多加逗号。
+**Pages 从 `main` 发布期间，推送到 `main` 或直接在 GitHub 网页提交修改，都会自动更新公开主页。**
 
-## 把代码同步到 GitHub
-
-**上传仓库代码和发布网页是两件事。**
-
-本地修改后，先查看改动，再提交实际修改的文件。例如：
+先确认中英文及手机预览，再提交实际修改的文件。根据本次改动调整示例中的文件路径：
 
 ```bash
 git status --short
 git diff
-git add _pages/about.md _data/research.yml images/research
+git add _data/research.yml images/research
 git diff --cached
 git commit -m "Update research projects"
 git push origin main
 ```
 
-请根据实际改动调整 `git add` 后面的路径；例如换了头像，也要加入新的图片文件。
+在 [Actions](https://github.com/jiamingZhong93/jiamingZhong93.github.io/actions) 确认 **pages build and deployment** 成功，再打开公开主页检查。部署及缓存更新可能需要几分钟。
 
-小改动也可以直接在 GitHub 完成：打开文件，点击 **铅笔 → Commit changes**。上传图片时，进入目标目录，选择 **Add file → Upload files → Commit changes**。这样只会更新 GitHub 中的文件。先提交已有的本地改动，再拉取远端更新：
+小修改也可以在 GitHub 用 **铅笔 → Commit changes**；上传图片用 **Add file → Upload files**。之后再次本地编辑前，确认本地没有未提交修改，再执行 `git pull --ff-only origin main` 同步。
 
-```bash
-git pull --ff-only origin main
-```
+## 6. 暂时下线和恢复
 
-本地预览仍在运行时，会自动读取拉取后的新内容。
-
-## 手动上线和下线
-
-打开仓库的 [Settings → Pages](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)。**Source** 就在 **Build and deployment** 下方，是显示发布方式的下拉框。
+打开 [Settings → Pages](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)：
 
 | 操作 | 步骤 |
 | --- | --- |
-| 上线 | 将 **Source** 设为 **Deploy from a branch**，选择 **main** 和 **/ (root)**，点击 **Save**。如果重新上线时没有开始构建，再向 `main` 提交并推送一次内容更新。在 **Actions** 查看部署是否完成。 |
-| 下线 | 先将 **Source** 改为 **GitHub Actions**。然后在 **Your site is live at** 的网址旁点击 **⋯ → Unpublish site**。 |
+| 下线 | 先将 **Source → GitHub Actions**，停止从分支自动发布；再在网址旁选择 **⋯ → Unpublish site**。只切换 Source 不会移除已上线网站。 |
+| 恢复上线 | 设置 **Source → Deploy from a branch**，选择 **main**、**/ (root)**，可点击时点击 **Save**。如果没有开始部署，再推送一次内容更新。 |
 
-**本仓库没有 Pages 部署工作流。因此，只要 Source 保持 GitHub Actions，普通 git push 就不会部署主页。** 想保持下线，就保留这个设置，并且不要新增 Pages 部署工作流。其他 Actions 运行记录不一定代表网站部署。
+若恢复时没有内容要改，可以用空提交触发：
 
-仅修改 Source 不会移除已上线的网站，还需要 **Unpublish site**。相反，选择从 `main` 发布期间，后续推送会自动更新公开网页。部署和缓存更新可能需要几分钟。无论公开网站是否上线，本地预览都可照常使用。
+```bash
+git commit --allow-empty -m "Trigger GitHub Pages publication"
+git push origin main
+```
 
-参考 GitHub 官方的[发布来源设置](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)和[下线说明](https://docs.github.com/en/pages/getting-started-with-github-pages/unpublishing-a-github-pages-site)。
+上述暂停方式适用于当前仓库：`.github/workflows/` 中没有自定义 Pages 部署工作流。公开主页下线期间，本地预览仍然可用。
 
-## 致谢
-
-基于 [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io) 和 [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes)。许可证见 [LICENSE](../LICENSE)。
+基于 [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io) / [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes)。[许可证](../LICENSE)。
