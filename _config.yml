@@ -6,6 +6,13 @@ baseurl: ""
 author:
   name: "Jiaming Zhong"
   avatar: "/images/avatar.jpg"
+  avatar_position: "50% 50%"
+  # Temporary SafeTrucks photo; replace with your second portrait.
+  # Source: https://safetrucks.fmi.fi/index.php/project-description/
+  avatar_alternate: "/images/portraits/alternate.jpg"
+  avatar_alternate_position: "50% 50%"
+  avatar_alternate_alt: "SafeTrucks snow-driving photo — temporary placeholder"
+  avatar_alternate_alt_zh: "SafeTrucks 雪地行车照片——备用头像示例"
   bio: "Associate Research Officer"
   employer: "National Research Council Canada"
   employer_url: "https://nrc.canada.ca/en"

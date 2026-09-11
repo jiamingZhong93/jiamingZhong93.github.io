@@ -22,7 +22,7 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Content | File and fields |
 | --- | --- |
 | Opening sentence, biography, section labels | [_pages/about.md](_pages/about.md) |
-| Portrait, English role/affiliations, profile links | [_config.yml](_config.yml), under `author` |
+| Default/alternate portrait, English role/affiliations, profile links | [_config.yml](_config.yml), under `author` |
 | Chinese sidebar role/affiliations | [_includes/author-profile.html](_includes/author-profile.html), `data-zh` |
 | Research formula and projects | [_data/research.yml](_data/research.yml), `vision` and `projects` |
 | Publications and author-role symbols | [_data/publications.json](_data/publications.json), [_data/publication_roles.yml](_data/publication_roles.yml) |
@@ -31,6 +31,8 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Cover photos, framing and bilingual captions | [_data/background.yml](_data/background.yml) |
 | Browser title and search description | [_includes/seo.html](_includes/seo.html); English description in [_config.yml](_config.yml) |
 | Fonts, spacing, responsive layout | [assets/css/profile.css](assets/css/profile.css) |
+
+Navigation labels, Chinese translations and section links live together in `_data/navigation.yml`. **Home** uses the same style as the other links. On phones, the sticky navigation shows the current section; tap it to choose another section from the dropdown.
 
 ### Maintain English and Chinese together
 
@@ -66,15 +68,35 @@ Replace the example text and URL with your actual project. `image` is optional; 
 
 | Picture | How to change it |
 | --- | --- |
-| Portrait | Replace `images/avatar.jpg`; if renamed, update `author.avatar` in `_config.yml`. |
+| Default portrait | Replace `images/avatar.jpg`; if renamed, update `author.avatar` in `_config.yml`. |
+| Alternate portrait | Replace `images/portraits/alternate.jpg`; if renamed, update `author.avatar_alternate`. |
 | Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work; images keep their proportions. |
 | Top cover | Add/remove photos directly in `images/background/`. All supported images automatically join the random pool; no file list to maintain. |
 
-The cover displays one full-width photo on every device. It selects a random next photo on refresh, every 3 seconds, or when the photo area is clicked. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Choose clear, wide photographs; framing happens in the browser without changing the original files.
+### Portraits
 
-The lower-left **i** shows the current photo's details; the lower-right **→** previews the next photo's details on hover and advances on click. On touch screens, tap **i** to show/hide details; tap **→** once to preview, again to advance. Tapping the photo outside the details also advances and closes the panel. Clicking text or links elsewhere on the page does not change the photo. Details and source links themselves never advance it.
+In `_config.yml`, keep these settings under `author`:
 
-The timer pauses while hovering over a control/details, while a touch information panel is open, or while keyboard focus is on a control/details. It also pauses when the page or banner is out of view. It resumes the remaining time when those pauses end; each new photo starts a fresh interval. **Esc** closes details. One available photo stays visible without a next arrow or timer; failed images are skipped.
+```yaml
+  avatar: "/images/avatar.jpg"
+  avatar_position: "50% 50%"
+  avatar_alternate: "/images/portraits/alternate.jpg"
+  avatar_alternate_position: "50% 50%"
+  avatar_alternate_alt: "A short description of the alternate photo"
+  avatar_alternate_alt_zh: "备用照片的简短中文说明"
+```
+
+Position values set the horizontal and vertical crop. Every refresh starts with the default portrait, which also remains the search/social sharing image. Entering the portrait with a mouse or clicking it toggles the photo; on touch screens, each tap toggles it. An absent or broken alternate image disables switching and keeps the default. Remove `avatar_alternate` to disable this feature.
+
+The current alternate is a **temporary SafeTrucks snow-photo example**, copied from the same source as the cover photo. Replace it with your own photo and update both descriptions.
+
+### Cover photos
+
+The cover displays one full-width photo on every device, starting with a random photo on refresh. It holds each photo for 3 seconds, then softly crossfades to the next over 1 second; clicking the photo also advances it. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Choose clear, wide photographs; framing happens in the browser without changing the original files.
+
+At the bottom of the image, the left **i** shows the current photo's details; the right **→** previews the next photo's details on hover and advances on click. The text sits directly over the photo, without a card. On touch screens, tap **i** to show/hide details; tap **→** once to preview, again to advance. Tapping the photo outside the details also advances and closes the explanation. Clicking text or links elsewhere on the page does not change the photo. Details and source links themselves never advance it.
+
+The timer pauses while hovering over a control/details, while touch information is open, or while keyboard focus is on a control/details. It also pauses when the page or banner is out of view. It resumes the remaining time when those pauses end; each completed transition starts a fresh hold interval. **Esc** closes details. One available photo stays visible without a next arrow or timer; failed images are skipped.
 
 New files join automatically. Optional settings live under `images → filename` in `_data/background.yml`:
 
@@ -88,7 +110,8 @@ New files join automatically. Optional settings live under `images → filename`
 
 - `position` / `mobile_position`: horizontal %, then vertical %. Values fall back to the settings at the top of the file.
 - `caption` / `caption_zh`: optional photo details, shown on hover, keyboard focus or by tapping **i**. Add `credit` / `credit_zh` and `source` for an external photo credit and source-page link. Missing Chinese text falls back to English.
-- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height; `interval` is the time per photo in milliseconds (default `3000`).
+- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
+- Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
 - The existing F1TENTH and XLeRobot examples use `crop` (x, y, width, height in source pixels) and `source_size` to show only the photographic part of a composite. **Remove both fields when replacing either file with a standalone photo**; ordinary photos do not need them.
 
 The entire research formula shares one animated gradient. Change its colors and `18s` duration in `.vision-equation` / `@keyframes vision-colors` in `assets/css/profile.css`. Reduced-motion preferences automatically show a static gradient.

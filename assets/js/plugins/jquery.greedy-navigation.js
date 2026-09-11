@@ -14,6 +14,10 @@ var breaks = [];
 
 function updateNav() {
 
+  // The homepage uses profile.js navigation; leave it alone when this legacy
+  // markup is absent. Keep this guard in the shipped main.min.js bundle too.
+  if (!$nav.length || !$vlinks.length || !$hlinks.length) return;
+
   var availableSpace = $btn.hasClass('hidden') ? $nav.width() : $nav.width() - $btn.width() - 30;
 
   // The visible list is overflowing the nav

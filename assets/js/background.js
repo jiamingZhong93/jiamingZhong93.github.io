@@ -13,6 +13,9 @@
   const panels = { current: controls.querySelector('#current-photo-info'), next: controls.querySelector('#next-photo-info') };
   const configured = Number(cover.dataset.interval);
   const interval = Number.isFinite(configured) && configured > 0 ? configured : 3000;
+  const configuredFade = Number(cover.dataset.fadeDuration);
+  const fadeDuration = Number.isFinite(configuredFade) && configuredFade >= 0 ? configuredFade : 1000;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const cache = new Map();
   const failed = new Set();
   let current = null;
@@ -123,6 +126,7 @@
     }
     info.setAttribute('aria-expanded', String(panelKind === 'current'));
     next.setAttribute('aria-expanded', String(panelKind === 'next'));
+    cover.toggleAttribute('data-info-open', panelKind !== null);
   }
 
   function openInfo(kind, touch = false) {
@@ -151,12 +155,22 @@
     });
   }
 
-  function display(record) {
+  async function display(record) {
+    const previous = current;
     current = record;
-    stage.replaceChildren(record.node);
+    // Keep the previous photo fully visible below the incoming one: no blank
+    // frame or dark dip in the middle of the dissolve. Reuse preloaded nodes.
+    stage.append(record.node);
     controls.hidden = false;
     try { sessionStorage.setItem(storageKey, record.item.dataset.photoKey); } catch {}
     queueNext();
+    if (previous && fadeDuration > 0 && !reducedMotion.matches && record.node.animate) {
+      const fade = record.node.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: fadeDuration, easing: 'ease-in-out'
+      });
+      try { await fade.finished; } catch {} // Cancellation still leaves a complete photo.
+    }
+    if (previous) previous.node.remove();
   }
 
   async function advance(automatic = false) {
@@ -171,7 +185,7 @@
     }
     if (record) {
       closeInfo();
-      display(record);
+      await display(record);
       lastSwitch = performance.now();
     }
     switching = false; syncTimer(true);
@@ -257,8 +271,8 @@
 
   let previous = null;
   try { previous = sessionStorage.getItem(storageKey); } catch {}
-  loadRandom(null, previous).then(record => {
+  loadRandom(null, previous).then(async record => {
     if (!record) { cover.hidden = true; return; }
-    display(record); syncTimer(true);
+    await display(record); syncTimer(true);
   });
 })();

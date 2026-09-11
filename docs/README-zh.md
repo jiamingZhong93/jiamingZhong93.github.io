@@ -22,15 +22,17 @@
 | 修改内容 | 文件和位置 |
 | --- | --- |
 | 开场句、个人简介、各部分标题 | [_pages/about.md](../_pages/about.md) |
-| 头像、英文职位/单位、个人链接 | [_config.yml](../_config.yml) 的 `author` |
+| 默认/备用头像、英文职位/单位、个人链接 | [_config.yml](../_config.yml) 的 `author` |
 | 侧栏中文职位、单位和大学 | [_includes/author-profile.html](../_includes/author-profile.html) 的 `data-zh` |
 | 研究公式、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
 | 论文、作者角色符号 | [_data/publications.json](../_data/publications.json)、[_data/publication_roles.yml](../_data/publication_roles.yml) |
 | 工作与教育经历 | [_data/career.yml](../_data/career.yml) |
 | 导航、项目链接的翻译 | [_data/navigation.yml](../_data/navigation.yml)、[_data/translations.yml](../_data/translations.yml) |
-| 顶部背景照片、裁切位置 | [_data/background.yml](../_data/background.yml) |
+| 顶部背景照片、裁切位置、中英文说明 | [_data/background.yml](../_data/background.yml) |
 | 浏览器标题、搜索简介 | [_includes/seo.html](../_includes/seo.html)；英文简介在 [_config.yml](../_config.yml) |
 | 字体、间距、手机布局 | [assets/css/profile.css](../assets/css/profile.css) |
+
+导航名称、中英文翻译和章节链接统一在 `_data/navigation.yml` 中维护。**Home / 主页** 与其他导航项使用相同样式。手机上导航固定在顶部，显示当前章节；轻触后从下拉菜单切换章节。
 
 ### 中英文要一起维护
 
@@ -66,15 +68,35 @@
 
 | 图片 | 替换方式 |
 | --- | --- |
-| 头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
+| 默认头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
+| 备用头像 | 替换 `images/portraits/alternate.jpg`；若改名，同步修改 `author.avatar_alternate`。 |
 | 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG，保持原图比例。 |
 | 顶部背景 | 直接往 `images/background/` 添加或删除照片；支持的图片会自动进入随机池，无需维护文件列表。 |
 
-所有设备的横幅都只显示一张铺满宽度的照片。刷新、每隔 3 秒或点击照片区域时随机切换；照片多于一张时，相邻两张不会重复。调整窗口大小或切换语言保留当前照片和已选好的下一张。建议使用清晰的宽幅照片；裁切只发生在浏览器中，不修改原文件。
+### 头像
 
-左下角 **i** 显示当前照片说明；右下角 **→** 悬停时预告下一张说明，点击时切换。触屏时，轻触 **i** 展开/收起说明；轻触 **→** 第一次预告，再点一次切换。轻触说明区以外的照片区域，也会切换并收起说明。点击网页正文或其他链接不切图，说明区及其中的来源链接也不会触发切换。
+在 `_config.yml` 的 `author` 下维护：
 
-鼠标悬停在控件或说明区、触屏说明展开、键盘焦点在控件或说明区时暂停计时；页面隐藏或横幅滚出屏幕时也暂停。暂停结束后继续剩余时间，每张新照片重新计时。**Esc** 收起说明。仅有一张可用照片时不显示下一张箭头，也不启动轮播；坏图自动跳过。
+```yaml
+  avatar: "/images/avatar.jpg"
+  avatar_position: "50% 50%"
+  avatar_alternate: "/images/portraits/alternate.jpg"
+  avatar_alternate_position: "50% 50%"
+  avatar_alternate_alt: "A short description of the alternate photo"
+  avatar_alternate_alt_zh: "备用照片的简短中文说明"
+```
+
+位置参数依次控制横向、纵向裁切。每次刷新先显示默认头像，搜索和社交分享也继续使用默认头像。鼠标每次进入头像或点击头像都会切换；触屏上每轻触一次切换一次。未配置备用照片或图片加载失败时禁用切换，保留默认头像。删除 `avatar_alternate` 即可关闭此功能。
+
+当前备用图是 **SafeTrucks 雪地照片的临时示例**，与横幅照片来源相同。之后换成自己的照片，并同步更新中英文说明。
+
+### 顶部背景照片
+
+所有设备的横幅都只显示一张铺满宽度的照片，刷新时随机选择首张。每张停留 3 秒，再用 1 秒柔和淡入淡出切换下一张；点击照片也会切换。照片多于一张时，相邻两张不会重复。调整窗口大小或切换语言保留当前照片和已选好的下一张。建议使用清晰的宽幅照片；裁切只发生在浏览器中，不修改原文件。
+
+图像底部左侧 **i** 显示当前照片说明；右侧 **→** 悬停时预告下一张说明，点击时切换。说明文字直接显示在照片上，没有卡片背景。触屏时，轻触 **i** 展开/收起说明；轻触 **→** 第一次预告，再点一次切换。轻触说明区以外的照片区域，也会切换并收起说明。点击网页正文或其他链接不切图，说明区及其中的来源链接也不会触发切换。
+
+鼠标悬停在控件或说明区、触屏说明展开、键盘焦点在控件或说明区时暂停计时；页面隐藏或横幅滚出屏幕时也暂停。暂停结束后继续剩余时间，每次过渡完成后重新计算停留时间。**Esc** 收起说明。仅有一张可用照片时不显示下一张箭头，也不启动轮播；坏图自动跳过。
 
 新文件会自动加入。需要单独设置时，在 `_data/background.yml` 的 `images → 文件名` 下添加：
 
@@ -88,7 +110,8 @@
 
 - `position` / `mobile_position`：先横向%、后纵向%；未设置时使用文件顶部的默认值。
 - `caption` / `caption_zh`：可选中英文照片说明，鼠标悬停、键盘聚焦或轻触 **i** 显示。公开来源图片还可填 `credit` / `credit_zh` 署名及 `source` 来源网页链接。未填中文时显示英文。
-- 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` / `mobile_height` 控制高度，`interval` 控制每张显示的毫秒数（默认 `3000`）。
+- 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` / `mobile_height` 控制高度。
+- 文件顶部的 `fade_duration: 1000` 控制淡入淡出过渡的毫秒数；`interval: 3000` 控制**过渡完成后的停留时间**。照片、播放时间和中英文说明仍统一在这一配置文件中维护。
 - 现有 F1TENTH、XLeRobot 示例通过 `crop`（源图像素中的 x、y、宽、高）与 `source_size` 截取拼图里的实拍区域。**换成独立照片后请删除这两个字段**，普通照片不需要它们。
 
 研究公式整体共用一条动态渐变。在 `assets/css/profile.css` 的 `.vision-equation` / `@keyframes vision-colors` 处调整颜色和 `18s` 周期；系统开启“减少动态效果”时自动显示静态渐变。

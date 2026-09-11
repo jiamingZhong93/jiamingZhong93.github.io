@@ -1,4 +1,7 @@
 main:
+  - title: Home
+    title_zh: 主页
+    url: "/#home"
   - title: "Research"
     title_zh: "研究"
     url: "/#research"

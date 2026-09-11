@@ -4,6 +4,7 @@ enabled: true
 height: "220px"
 mobile_height: "150px"
 interval: 3000
+fade_duration: 1000 # Crossfade in milliseconds, followed by the full interval above.
 position: "50% 50%"
 mobile_position: "50% 50%"
 # enabled: false excludes an image from the random rotation.
