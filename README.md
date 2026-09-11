@@ -32,7 +32,7 @@ The preview runs only on your computer and does not publish the website. It rend
 Open **Settings → Pages** in this GitHub repository.
 
 - **Publish:** push reviewed changes to `main`, then select **Deploy from a branch → main → / (root)** and click **Save**. While Pages is enabled, later pushes to `main` update the public website.
-- **Unpublish:** set the publishing branch to **None** and click **Save**. Cached pages may remain visible for a few minutes.
+- **Unpublish:** set **Source → GitHub Actions**, then open the menu next to the live site URL and choose **Unpublish site**. This repository has no Pages deployment workflow, so later pushes to `main` will not republish it. Keep it offline by leaving that source selected and not adding a Pages deployment workflow. Cached pages may remain visible for a few minutes.
 
 Editing or previewing files locally does not update the public website.
 
