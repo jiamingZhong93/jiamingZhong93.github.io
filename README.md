@@ -1,19 +1,41 @@
-# Jiaming Zhong — Academic homepage
+# Jiaming Zhong — Academic Homepage
 
-Personal homepage at https://jiamingzhong93.github.io/, built with Jekyll and the AcadHomepage theme.
+Source code for Jiaming Zhong's academic homepage, built with Jekyll and the AcadHomepage theme.
 
-## Update content
-- _pages/about.md: biography, research, experience, education, and service.
-- _data/publications.json: publications and their verified status.
-- _data/scholar.yml: dated Google Scholar citation snapshot.
-- _config.yml: identity, contact links, and site metadata.
-- assets/css/profile.css: responsive presentation.
+## Local preview
 
-GitHub Pages publishes the main branch at the repository root.
-For local Jekyll development, run bundle install, then bundle exec jekyll serve.
+Requires **Node.js 20.19+ and npm**. The first launch installs the project's dependencies and needs an internet connection.
 
-## Editorial notes
-Updated from the CV and Google Scholar profile on September 11, 2026.
-DriveLLM uses the 2024 journal issue date (early access 2023). CoInfra is represented once, using its latest preprint title and author list. The patent is described as a published application. Citation metrics are a dated snapshot, not a live count.
+Run from the repository folder:
 
-Theme: [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io), derived from Minimal Mistakes. See LICENSE.
+| System | Command |
+| --- | --- |
+| Windows | `.\preview.cmd` (or double-click `preview.cmd`) |
+| Ubuntu | `bash preview.sh` |
+
+Open the local address printed in the terminal. Saving content or style changes automatically rebuilds and refreshes the page. Press **Ctrl+C** to stop.
+
+The preview runs only on your computer and does not publish the website. It renders the current homepage; Jekyll plugins and additional pages require a full Jekyll build.
+
+## Edit content
+
+| File | Content |
+| --- | --- |
+| `_pages/about.md` | Biography, research, experience, education and service |
+| `_data/publications.json` | Publications and manuscripts |
+| `_data/scholar.yml` | Citation statistics and their update date |
+| `_config.yml` | Profile information and site settings |
+| `assets/css/profile.css` | Layout and appearance |
+
+## Publish or unpublish
+
+Open **Settings → Pages** in this GitHub repository.
+
+- **Publish:** push reviewed changes to `main`, then select **Deploy from a branch → main → / (root)** and click **Save**. While Pages is enabled, later pushes to `main` update the public website.
+- **Unpublish:** set the publishing branch to **None** and click **Save**. Cached pages may remain visible for a few minutes.
+
+Editing or previewing files locally does not update the public website.
+
+## Credits
+
+Based on [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io) and [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes). See [LICENSE](LICENSE).

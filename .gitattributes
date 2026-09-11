@@ -1,0 +1,3 @@
+preview.sh text eol=lf
+preview.cmd text eol=crlf
+run_server.sh text eol=lf

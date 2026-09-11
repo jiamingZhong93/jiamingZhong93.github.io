@@ -1,0 +1,17 @@
+{
+  "name": "jiaming-zhong-homepage-preview",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-only preview for Jiaming Zhong's academic homepage",
+  "engines": { "node": ">=20.19.0" },
+  "scripts": {
+    "preview": "node scripts/preview.cjs",
+    "build:preview": "node scripts/preview.cjs --build"
+  },
+  "dependencies": {
+    "liquidjs": "10.29.0",
+    "markdown-it": "15.0.1",
+    "sass": "1.104.0",
+    "yaml": "2.9.0"
+  }
+}

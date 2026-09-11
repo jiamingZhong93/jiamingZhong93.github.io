@@ -13,19 +13,24 @@ a:focus-visible, button:focus-visible { outline: rgb(220, 139, 67) solid 3px; ou
 .greedy-nav button { background: var(--accent); }
 .nav-dot, .title-dot { color: rgb(190, 118, 61); }
 #main { max-width: 1240px; padding: 2.6rem 2rem 0px; margin-left: auto; margin-right: auto; }
-.sidebar { width: 230px; opacity: 1; padding-top: 0.6rem; }
+.sidebar { width: 230px; float: left; margin-right: 0; opacity: 1; padding-top: 0.6rem; }
 .sidebar.sticky { top: 110px; }
-.page { width: calc(100% - 286px); padding-right: 0px; float: right; }
-.author__avatar { display: block; }
-.author__avatar img { width: 174px; height: 174px; max-width: 100%; padding: 0px; border: 0px; border-radius: 18px; object-fit: cover; }
-.author__name { font-size: 1.35rem; letter-spacing: -0.035em; margin: 1.15rem 0px 0.4rem; }
-.author__bio { font-size: 0.91rem; color: var(--ink); margin: 0px 0px 0.45rem; }
-.author__affiliation, .author__location { font-size: 0.8rem; line-height: 1.6; color: var(--muted); margin: 0.4rem 0px; }
+.page { width: calc(100% - 286px); padding: 0; margin-right: 0; float: right; }
+/* Override the original theme's horizontal profile and fixed avatar column. */
+.profile_box { display: block; }
+.author__avatar { display: block; width: auto; }
+.author__content { display: block; width: 100%; min-width: 0; padding: 0; line-height: 1.6; }
+.author__avatar img { display: block; width: 174px; height: 174px; min-width: 0; max-width: 100%; padding: 0px; border: 0px; border-radius: 18px; object-fit: cover; }
+.profile_box .author__name { font-size: 1.35rem; letter-spacing: -0.035em; margin: 1.15rem 0px 0.4rem; }
+.profile_box .author__bio { font-size: 0.91rem; color: var(--ink); margin: 0px 0px 0.45rem; }
+.profile_box .author__affiliation, .profile_box .author__location { font-size: 0.8rem; line-height: 1.6; color: var(--muted); margin: 0.4rem 0px; }
 .profile-links { list-style: none; padding: 1.1rem 0px 0px; margin: 1.1rem 0px 0px; border-top: 1px solid var(--line); }
 .profile-links li { margin: 0.4rem 0px; font-size: 0.88rem; }
 .profile-links i { width: 1.6rem; color: var(--accent); }
 .page__content p { margin: 0px 0px 1rem; }
 .page__content section { scroll-margin-top: 85px; }
+.page__content #about-me { margin-top: 0; }
+.page__content #about-me::before { display: none; }
 .eyebrow { font-size: 0.7rem; font-weight: 750; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 1.1rem !important; }
 .page__content h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.2rem, 3.45vw, 3.4rem); font-weight: 500; line-height: 1.14; letter-spacing: -0.045em; border: 0px; margin: 0.3rem 0px 1.35rem; }
 .page__content h1::before, .page__content h2::before { display: none; }
@@ -103,13 +108,13 @@ a:focus-visible, button:focus-visible { outline: rgb(220, 139, 67) solid 3px; ou
   .masthead__inner-wrap { padding: 0.8rem 1.1rem; }
   #main { padding: 1.3rem 1.15rem 0px; }
   .sidebar, .sidebar.sticky { width: 100%; float: none; margin: 0px 0px 2rem; padding: 0px; position: static !important; max-height: none !important; overflow: visible !important; }
-  .profile_box { display: grid; grid-template-columns: 86px minmax(0px, 1fr); column-gap: 1rem; }
+  .profile_box { display: grid; align-items: start; grid-template-columns: 86px minmax(0px, 1fr); column-gap: 1rem; }
   .author__avatar { display: block; align-self: start; }
   .author__avatar img { width: 86px; height: 86px; border-radius: 12px; }
   .author__content { display: block; padding: 0px; }
-  .author__name { margin: 0px 0px 0.3rem; font-size: 1.4rem; }
-  .author__bio { font-size: 0.8rem; }
-  .author__affiliation, .author__location { font-size: 0.74rem; }
+  .profile_box .author__name { margin: 0px 0px 0.3rem; font-size: 1.4rem; }
+  .profile_box .author__bio { font-size: 0.8rem; }
+  .profile_box .author__affiliation, .profile_box .author__location { font-size: 0.74rem; }
   .profile-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.55rem 1.15rem; padding: 0.75rem 0px 0px; margin: 0.7rem 0px 0px; }
   .profile-links li { font-size: 0.78rem; margin: 0px; }
   .profile-links i { width: 1.2rem; }

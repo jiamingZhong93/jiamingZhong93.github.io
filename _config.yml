@@ -14,7 +14,7 @@ author:
   github: "jiamingZhong93"
   linkedin: "jiaming-zhong"
 include: [".htaccess", "_pages", "files"]
-exclude: ["docs", "google_scholar_crawler", ".bundle", ".jekyll-assets-cache", ".sass-cache", ".github", "Gemfile", "Gemfile.lock", "README.md", "run_server.sh", "node_modules", "package.json", "tmp", "vendor", "assets/js/_main.js", "assets/js/plugins", "assets/js/vendor"]
+exclude: ["docs", "google_scholar_crawler", ".bundle", ".jekyll-assets-cache", ".sass-cache", ".github", "Gemfile", "Gemfile.lock", "README.md", "run_server.sh", "node_modules", "package.json", "package-lock.json", "scripts", "preview.cmd", "preview.sh", "tmp", "vendor", "assets/js/_main.js", "assets/js/plugins", "assets/js/vendor"]
 encoding: "utf-8"
 markdown: kramdown
 highlighter: rouge
