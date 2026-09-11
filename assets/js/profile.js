@@ -81,21 +81,45 @@
   const button = document.querySelector('.portrait-toggle');
   if (!button || !button.dataset.alternate) return;
   const image = button.querySelector('img');
-  const original = { src: image.getAttribute('src'), alt: image.alt };
+  let flipper = null;
+  let alternateImage = null;
   let alternate = false;
   function render() {
-    image.src = alternate ? button.dataset.alternate : original.src;
-    image.alt = alternate ? (document.documentElement.lang === 'zh-CN' ? button.dataset.alternateAltZh : button.dataset.alternateAlt) : original.alt;
-    image.style.objectPosition = alternate ? button.dataset.alternatePosition : button.dataset.defaultPosition;
+    if (!flipper) return;
+    flipper.classList.toggle('is-flipped', alternate);
+    button.setAttribute('aria-pressed', String(alternate));
+    image.setAttribute('aria-hidden', String(alternate));
+    alternateImage.setAttribute('aria-hidden', String(!alternate));
+    alternateImage.alt = document.documentElement.lang === 'zh-CN' ? button.dataset.alternateAltZh : button.dataset.alternateAlt;
   }
   function change() { if (!button.disabled) { alternate = !alternate; render(); } }
   const preload = new Image();
-  preload.onload = () => { button.disabled = false; };
+  preload.onload = () => {
+    // Build the reverse side only after it is loaded. The default image stays
+    // unchanged for initial rendering, no-JS visitors and sharing metadata.
+    alternateImage = image.cloneNode(false);
+    alternateImage.removeAttribute('itemprop');
+    alternateImage.className = 'portrait-alternate';
+    alternateImage.src = button.dataset.alternate;
+    alternateImage.style.objectPosition = button.dataset.alternatePosition;
+    flipper = document.createElement('span');
+    flipper.className = 'portrait-flipper';
+    button.append(flipper);
+    flipper.append(image, alternateImage);
+    alternateImage.addEventListener('error', () => {
+      // A failed replacement should reveal the original immediately, without
+      // animating a broken reverse side back into view.
+      alternate = false; button.disabled = true;
+      image.removeAttribute('aria-hidden');
+      button.removeAttribute('aria-pressed');
+      button.replaceChildren(image);
+      flipper = null;
+    });
+    render();
+    button.disabled = false;
+  };
   preload.src = button.dataset.alternate;
   button.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') change(); });
   button.addEventListener('click', change);
-  image.addEventListener('error', () => {
-    if (alternate) { alternate = false; button.disabled = true; render(); }
-  });
   document.addEventListener('site:language-change', render);
 })();

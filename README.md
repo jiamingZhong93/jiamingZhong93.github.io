@@ -88,6 +88,8 @@ In `_config.yml`, keep these settings under `author`:
 
 Position values set the horizontal and vertical crop. Every refresh starts with the default portrait, which also remains the search/social sharing image. Entering the portrait with a mouse or clicking it toggles the photo; on touch screens, each tap toggles it. An absent or broken alternate image disables switching and keeps the default. Remove `avatar_alternate` to disable this feature.
 
+Portraits turn with a gentle 3D flip; another tap/click during the animation smoothly reverses it. The hit area stays fixed. Systems with reduced motion enabled switch immediately. Adjust the `720ms` duration and easing in `.portrait-flipper` in `assets/css/profile.css` if desired.
+
 The current alternate is a **temporary SafeTrucks snow-photo example**, copied from the same source as the cover photo. Replace it with your own photo and update both descriptions.
 
 ### Cover photos
@@ -95,6 +97,8 @@ The current alternate is a **temporary SafeTrucks snow-photo example**, copied f
 The cover displays one full-width photo on every device, starting with a random photo on refresh. It holds each photo for 3 seconds, then softly crossfades to the next over 1 second; clicking the photo also advances it. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Choose clear, wide photographs; framing happens in the browser without changing the original files.
 
 At the bottom of the image, the left **i** shows the current photo's details; the right **→** previews the next photo's details on hover and advances on click. The text sits directly over the photo, without a card. On touch screens, tap **i** to show/hide details; tap **→** once to preview, again to advance. Tapping the photo outside the details also advances and closes the explanation. Clicking text or links elsewhere on the page does not change the photo. Details and source links themselves never advance it.
+
+On desktop, clicking **→** while keeping the pointer over it leaves the next-photo details open and updates them for the new candidate. Moving away closes them.
 
 The timer pauses while hovering over a control/details, while touch information is open, or while keyboard focus is on a control/details. It also pauses when the page or banner is out of view. It resumes the remaining time when those pauses end; each completed transition starts a fresh hold interval. **Esc** closes details. One available photo stays visible without a next arrow or timer; failed images are skipped.
 

@@ -13,8 +13,8 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .home-background[data-info-open]::after { opacity: 1; }
 /* 28px visible circles, with comfortable 44px touch targets. Both icons use one stroke style. */
 .home-background__control { position: absolute; z-index: 3; bottom: 4px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; margin: 0; border: 0; border-radius: 50%; background: transparent; color: white; opacity: .28; transition: opacity .25s ease; cursor: pointer; }
-.home-background__control::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: rgba(17,31,40,.24); backdrop-filter: blur(3px); }
-.home-background__control svg { position: relative; display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.home-background__control::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: rgba(17,31,40,.24); backdrop-filter: blur(3px); pointer-events: none; }
+.home-background__control svg { position: relative; display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 .home-background__info { left: 4px; }
 .home-background__next { right: 4px; }
 .home-background__control:hover, .home-background__control:focus-visible, .home-background__control[aria-expanded="true"] { opacity: .9; }
@@ -50,8 +50,14 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .profile_box, .author__avatar { display: block; width: auto; }
 .author__content { display: block; width: 100%; min-width: 0; padding: 0; line-height: 1.6; }
 .author__avatar img { display: block; width: 190px; height: 190px; min-width: 0; max-width: 100%; padding: 0; border: 0; border-radius: 16px; object-fit: cover; }
-.portrait-toggle { display: block; max-width: 100%; padding: 0; margin: 0; border: 0; border-radius: 16px; background: transparent; color: inherit; cursor: pointer; }
+.portrait-toggle { display: block; max-width: 100%; padding: 0; margin: 0; border: 0; border-radius: 16px; background: transparent; color: inherit; cursor: pointer; perspective: 900px; }
 .portrait-toggle:disabled { cursor: default; opacity: 1; }
+/* Only the inner card turns; the pointer/touch target never moves. A small
+   overshoot settles gently, and CSS transitions can reverse mid-turn. */
+.portrait-flipper { display: grid; transform-style: preserve-3d; transition: transform 720ms cubic-bezier(.22,.8,.28,1.06); pointer-events: none; }
+.portrait-flipper.is-flipped { transform: rotateY(180deg); }
+.portrait-flipper img { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.portrait-flipper .portrait-alternate { transform: rotateY(180deg); }
 .profile_box .author__name { font-size: 1.35rem; letter-spacing: -.035em; margin: 1.1rem 0 .4rem; }
 .profile_box .author__bio { font-size: .875rem; color: var(--ink); margin: 0 0 .45rem; }
 .profile_box .author__affiliation { font-size: .875rem; line-height: 1.8; color: var(--muted); margin: .4rem 0; }

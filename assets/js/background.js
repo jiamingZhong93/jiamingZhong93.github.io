@@ -184,7 +184,9 @@
       switching = false; remaining = 0; syncTimer(); return;
     }
     if (record) {
-      closeInfo();
+      // Changing photos must not dismiss a caption while a mouse is still on
+      // its control (or while keyboard focus is there). Touch retains tap-to-close.
+      if (!hovered && !panelHovered && !keyboardFocus) closeInfo();
       await display(record);
       lastSwitch = performance.now();
     }
@@ -206,6 +208,7 @@
     });
     button.addEventListener('pointerleave', event => {
       if (event.pointerType !== 'mouse') return;
+      if (event.relatedTarget && button.contains(event.relatedTarget)) return;
       hovered = null; delayedLeave();
     });
     button.addEventListener('focus', () => {
