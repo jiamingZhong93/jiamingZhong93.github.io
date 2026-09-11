@@ -8,19 +8,16 @@
 {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.gif' or extension == '.webp' or extension == '.svg' %}
 {% assign settings = background.images[file.name] %}
 {% unless settings.enabled == false %}
-<figure class="home-background__tile" data-role="{{ settings.role | default: 'both' | escape }}">
+<figure class="home-background__slide" data-photo-key="{{ file.path | escape }}">
 {% if settings.crop and settings.source_size %}
 <svg class="home-background__image" viewBox="{{ settings.crop | escape }}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg>
 {% else %}
 <img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
 {% endif %}
-{% if settings.caption %}
-<button type="button" class="home-background__info" aria-label="Photo details: {{ settings.caption | escape }}" aria-expanded="false" aria-controls="photo-caption-{{ forloop.index }}"><span aria-hidden="true">i</span></button>
-<figcaption class="home-background__caption" id="photo-caption-{{ forloop.index }}" hidden>
-<span data-photo-en="{{ settings.caption | escape }}" data-photo-zh="{{ settings.caption_zh | default: settings.caption | escape }}">{{ settings.caption }}</span>
+<figcaption hidden>
+<span data-photo-en="{{ settings.caption | default: file.name | escape }}" data-photo-zh="{{ settings.caption_zh | default: settings.caption | default: file.name | escape }}">{{ settings.caption | default: file.name }}</span>
 {% if settings.credit %}<small>{% if settings.source %}<a href="{{ settings.source | escape }}">{% endif %}<span data-photo-en="{{ settings.credit | escape }}" data-photo-zh="{{ settings.credit_zh | default: settings.credit | escape }}">{{ settings.credit }}</span>{% if settings.source %}</a>{% endif %}</small>{% endif %}
 </figcaption>
-{% endif %}
 </figure>
 {% endunless %}
 {% endif %}
@@ -29,10 +26,16 @@
 {% endcapture %}
 {% assign background_images = background_images | strip %}
 {% if background_images != '' %}
-<div class="home-background" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+<div class="home-background" data-interval="{{ background.interval | default: 3000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
-<div class="home-background__tiles" data-background-tiles></div>
-<noscript><div class="home-background__tiles home-background__fallback">{{ background_images }}</div></noscript>
+<div class="home-background__stage" data-background-stage aria-hidden="true"></div>
+<div class="home-background__controls" hidden>
+<button type="button" class="home-background__control home-background__info" aria-label="Current photo information" aria-expanded="false" aria-controls="current-photo-info"><span aria-hidden="true">i</span></button>
+<button type="button" class="home-background__control home-background__next" aria-label="Preview or show next photo" aria-expanded="false" aria-controls="next-photo-info"><span aria-hidden="true">→</span></button>
+<div class="home-background__panel" id="current-photo-info" hidden></div>
+<div class="home-background__panel home-background__panel--next" id="next-photo-info" hidden></div>
+</div>
+<noscript><div class="home-background__fallback">{{ background_images }}</div></noscript>
 </div>
 <script src="{{ site.baseurl }}/assets/js/background.js"></script>
 {% endif %}

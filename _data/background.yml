@@ -1,17 +1,17 @@
 # New photos in images/background/ join automatically; metadata is optional.
-# Desktop: one wide photo + two details. Phone: two equal photos.
+# One photo on every device. Hover/focus or open information pauses the timer.
 enabled: true
 height: "220px"
 mobile_height: "150px"
+interval: 3000
 position: "50% 50%"
 mobile_position: "50% 50%"
-# role: main, detail, or both (default). enabled: false excludes an image.
+# enabled: false excludes an image from the random rotation.
 # Ordinary photos only need position/mobile_position for custom framing.
 # crop + source_size isolate a photo inside these existing composite examples.
 # Remove BOTH fields when replacing an example with a new standalone photo.
 images:
   safetrucks-snow.jpg:
-    role: main
     position: "60% 55%"
     caption: "Heavy vehicles in winter"
     caption_zh: "冬季重型车辆行驶"
@@ -19,13 +19,11 @@ images:
     credit_zh: "图片：SafeTrucks"
     source: "https://safetrucks.fmi.fi/index.php/project-description/"
   f1tenth.jpg:
-    role: detail
     crop: "3 3 480 312"
     source_size: [791, 318]
     caption: "F1TENTH research platform"
     caption_zh: "F1TENTH 研究平台"
   xlerobot.jpg:
-    role: detail
     crop: "291 3 434 312"
     source_size: [728, 318]
     caption: "XLeRobot mobile manipulation"

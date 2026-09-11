@@ -70,26 +70,30 @@ Replace the example text and URL with your actual project. `image` is optional; 
 | Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work; images keep their proportions. |
 | Top cover | Add/remove photos directly in `images/background/`. All supported images automatically join the random pool; no file list to maintain. |
 
-The cover shows one wide scene plus two detail photos on desktop (50% / 25% / 25%), and two equal photos on phones. Every refresh shuffles eligible photos; resizing and changing language retain that order. Choose clear, standalone photographs rather than diagrams or collages. Original files are preserved: all framing happens in the browser.
+The cover displays one full-width photo on every device. It selects a random next photo on refresh, every 3 seconds, or when the photo area is clicked. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Choose clear, wide photographs; framing happens in the browser without changing the original files.
+
+The lower-left **i** shows the current photo's details; the lower-right **→** previews the next photo's details on hover and advances on click. On touch screens, tap **i** to show/hide details; tap **→** once to preview, again to advance. Tapping the photo outside the details also advances and closes the panel. Clicking text or links elsewhere on the page does not change the photo. Details and source links themselves never advance it.
+
+The timer pauses while hovering over a control/details, while a touch information panel is open, or while keyboard focus is on a control/details. It also pauses when the page or banner is out of view. It resumes the remaining time when those pauses end; each new photo starts a fresh interval. **Esc** closes details. One available photo stays visible without a next arrow or timer; failed images are skipped.
 
 New files join automatically. Optional settings live under `images → filename` in `_data/background.yml`:
 
 ```yaml
   my-photo.jpg:
-    role: both
     position: "50% 50%"
     mobile_position: "60% 50%"
     caption: "A short, factual photo description"
     caption_zh: "简短、客观的照片说明"
 ```
 
-- `role`: `main` for wide scenes, `detail` for close-ups, or `both` (default). With fewer photos, the available images fill the space without duplicates.
 - `position` / `mobile_position`: horizontal %, then vertical %. Values fall back to the settings at the top of the file.
 - `caption` / `caption_zh`: optional photo details, shown on hover, keyboard focus or by tapping **i**. Add `credit` / `credit_zh` and `source` for an external photo credit and source-page link. Missing Chinese text falls back to English.
-- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
+- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height; `interval` is the time per photo in milliseconds (default `3000`).
 - The existing F1TENTH and XLeRobot examples use `crop` (x, y, width, height in source pixels) and `source_size` to show only the photographic part of a composite. **Remove both fields when replacing either file with a standalone photo**; ordinary photos do not need them.
 
-The formula's animated gradient applies only to the research goal. Change its colors and `18s` duration in `.vision-title` / `@keyframes vision-colors` in `assets/css/profile.css`. Reduced-motion preferences automatically show a static gradient.
+The entire research formula shares one animated gradient. Change its colors and `18s` duration in `.vision-equation` / `@keyframes vision-colors` in `assets/css/profile.css`. Reduced-motion preferences automatically show a static gradient.
+
+Project titles precede their images and descriptions. Desktop uses an image on the left and text/links on the right below each title; phones stack title → image/GIF → description/links. Project, publication and career entries use spacing instead of separator lines.
 
 Keep public image-source URLs in comments beside the relevant project. The SafeTrucks entry records the source of its snow-driving photo.
 

@@ -1,8 +1,9 @@
 <div class="research-projects" id="projects">
 {% for project in site.data.research.projects %}
 <article id="{{ project.id }}" class="research-project{% if project.image %} has-media{% else %} text-project{% endif %}">
+<h3 data-zh="{{ project.title_zh | default: project.title | escape }}">{{ project.title }}</h3>
 {% if project.image %}<a class="project-media media-link" href="{{ project.image }}" aria-label="View {{ project.title }} research figure" data-zh-aria-label="查看{{ project.title_zh | default: project.title | escape }}项目图片"><img src="{{ project.image }}" alt="{{ project.image_alt | escape }}" data-zh-alt="{{ project.image_alt_zh | default: project.image_alt | escape }}" loading="lazy" width="560" height="370"></a>{% endif %}
-<div class="project-body"><h3 data-zh="{{ project.title_zh | default: project.title | escape }}">{{ project.title }}</h3><p data-zh="{{ project.description_zh | default: project.description | escape }}">{{ project.description }}</p><div class="project-links">{% for link in project.links %}<a href="{{ link.url }}"><span data-zh="{{ site.data.translations.links[link.label] | default: link.label | escape }}">{{ link.label }}</span> <span aria-hidden="true">↗</span></a>{% endfor %}{% if project.video_url %}<a href="{{ project.video_url }}"><span data-zh="视频">Video</span> <span aria-hidden="true">↗</span></a>{% endif %}</div></div>
+<div class="project-body"><p data-zh="{{ project.description_zh | default: project.description | escape }}">{{ project.description }}</p><div class="project-links">{% for link in project.links %}<a href="{{ link.url }}"><span data-zh="{{ site.data.translations.links[link.label] | default: link.label | escape }}">{{ link.label }}</span> <span aria-hidden="true">↗</span></a>{% endfor %}{% if project.video_url %}<a href="{{ project.video_url }}"><span data-zh="视频">Video</span> <span aria-hidden="true">↗</span></a>{% endif %}</div></div>
 </article>
 {% endfor %}
 </div>
