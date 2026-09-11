@@ -1,0 +1,6 @@
+<ol class="publication-list">
+{% for group in site.data.publications %}{% for paper in group.items %}{% if paper.selected %}
+{% if paper.role == 'first' or paper.role == 'co-first' or paper.role == 'corresponding' %}
+<li class="publication"><div class="publication-year">{{ paper.year }}</div><div class="publication-body"><h3>{% if paper.url %}<a href="{{ paper.url }}">{{ paper.title }}</a>{% else %}{{ paper.title }}{% endif %}</h3><p class="publication-authors">{{ paper.authors }}</p><p class="publication-venue">{{ paper.venue }}</p><p class="publication-note">{% case paper.role %}{% when 'co-first' %}Co-first author · Equal contribution{% when 'corresponding' %}Corresponding author{% else %}First author{% endcase %}{% if paper.project %} · <a href="{{ paper.project }}">Project ↗</a>{% endif %}</p></div></li>
+{% endif %}{% endif %}{% endfor %}{% endfor %}
+</ol>

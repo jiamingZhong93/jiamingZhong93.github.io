@@ -1,0 +1,62 @@
+vision:
+  title: "Trustworthy Physical AI"
+  learning: "Data-driven learning"
+  learning_detail: "adaptation & intelligence"
+  structure: "Model-based structure"
+  structure_detail: "priors & robustness"
+  description: "Learning brings adaptation and contextual understanding; models retain physical knowledge, explicit constraints, and feedback. My work connects these ideas across control, coordination, and decision-making."
+
+projects:
+  - id: articulated-vehicles
+    title: "Transformer-initiated hybrid control for articulated heavy vehicles"
+    context: "NRC · Current research"
+    description: "Combining Transformer-based imitation learning with MPC and reinforcement learning for the steering, stability, and maneuverability of articulated heavy vehicles."
+    links:
+      - label: "SafeTrucks project"
+        url: "https://safetrucks.fmi.fi/index.php/project-description/"
+
+  - id: off-road
+    title: "Agile learning-based planning and control for off-road autonomous vehicles"
+    context: "NRC · Current research"
+    description: "Hybrid learning and model-based methods for planning and control on deformable terrain, where vehicle dynamics and available traction change."
+    links: []
+
+  - id: drivellm
+    title: "DriveLLM"
+    context: "Doctoral research · Decision-making"
+    image: "/images/research/drivellm.jpg"
+    image_alt: "WATonobus and driving scenes with pedestrians, snow, and LiDAR sensing from the DriveLLM research overview."
+    description: "Combining language-model reasoning with rule-based safety evaluation for explainable driving decisions. Case studies use WATonobus to examine responses to complex road situations."
+    links:
+      - label: "Paper · IEEE T-IV"
+        url: "https://ieeexplore.ieee.org/document/10297415"
+      - label: "Project"
+        url: "https://github.com/DriveLLM/DriveLLM"
+
+  - id: multi-agent
+    title: "Learning-based multi-agent collaboration"
+    context: "Doctoral research · Coordination"
+    image: "/images/research/multi-agent.jpg"
+    image_alt: "Vehicle subsystem agents and autonomous racing examples illustrating multi-agent coordination."
+    description: "Distributing vehicle objectives across cooperating agents, then learning how to initialize their negotiation. The work connects plug-and-play vehicle control with faster multi-objective MPC."
+    links:
+      - label: "Paper · IEEE T-ITS 2025"
+        url: "https://ieeexplore.ieee.org/document/11181563"
+      - label: "Paper · ITSC 2024"
+        url: "https://ieeexplore.ieee.org/document/10919711"
+      - label: "Lab project"
+        url: "https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/multi-objective-agent-based-mpc"
+
+  - id: learning-mpc
+    title: "Learning-based MPC"
+    context: "Doctoral research · Control"
+    image: "/images/research/learning-mpc.jpg"
+    image_alt: "Vehicle tests on a wet surface, data-driven dynamics modeling, and uncertainty-aware MPC constraints."
+    description: "Learning uncertain vehicle dynamics online with Gaussian processes and incorporating them into stochastic MPC. Real-vehicle experiments study adaptation across changing conditions, including low-friction surfaces."
+    links:
+      - label: "Paper · IEEE T-ITS 2024"
+        url: "https://ieeexplore.ieee.org/document/10623843"
+      - label: "Lab project"
+        url: "https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/learning-agent-based-mpc"
+      - label: "PhD thesis"
+        url: "https://hdl.handle.net/10012/21401"

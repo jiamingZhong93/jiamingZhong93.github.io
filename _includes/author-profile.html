@@ -1,6 +1,6 @@
 <div class="profile_box" itemscope itemtype="https://schema.org/Person">
-<div class="author__avatar"><img src="{{ site.author.avatar }}" alt="Jiaming Zhong" width="180" height="180" itemprop="image"></div>
-<div class="author__content"><h2 class="author__name" itemprop="name">{{ site.author.name }}</h2><p class="author__bio">{{ site.author.bio }}</p><p class="author__affiliation">National Research Council Canada<br>Automotive &amp; Surface Transportation</p><p class="author__location">Ottawa, Canada</p></div>
+<div class="author__avatar"><img src="{{ site.author.avatar }}" alt="{{ site.author.name }}" width="180" height="180" itemprop="image"></div>
+<div class="author__content"><h2 class="author__name" itemprop="name">{{ site.author.name }}</h2><p class="author__bio">{{ site.author.bio }}</p><p class="author__affiliation"><a href="{{ site.author.employer_url }}">{{ site.author.employer }}</a><br><a href="{{ site.author.education_url }}">{{ site.author.education }}</a></p><p class="author__location">{{ site.author.location }}</p></div>
 <ul class="profile-links">
 <li><a href="mailto:{{ site.author.email }}"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a></li>
 <li><a href="{{ site.author.googlescholar }}"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Google Scholar</a></li>

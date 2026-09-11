@@ -1,0 +1,19 @@
+- id: f1tenth
+  title: "F1TENTH"
+  focus: "Agile planning & control"
+  image: "/images/research/f1tenth.jpg"
+  image_alt: "My F1TENTH autonomous racing platform with onboard sensors and mapping views."
+  description: "An autonomous racing platform with vision and LiDAR sensing. I am exploring multimodal world models for agile planning and control."
+  links:
+    - label: "Platform"
+      url: "https://f1tenth.org/"
+
+- id: xlerobot
+  title: "XLeRobot"
+  focus: "Mobile manipulation"
+  image: "/images/research/xlerobot.jpg"
+  image_alt: "My mobile dual-arm XLeRobot platform and a close-up of its manipulation setup."
+  description: "A mobile dual-arm platform for exploring generative manipulation with action-chunking policies, world-action models, and vision-language-action models."
+  links:
+    - label: "Platform"
+      url: "https://github.com/Vector-Wangel/XLeRobot"
