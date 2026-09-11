@@ -14,10 +14,10 @@ redirect_from: ["/about/", "/about.html"]
 <p>I received my Ph.D. in Mechanical Engineering from the University of Waterloo in January 2025, advised by <a href="https://uwaterloo.ca/mechatronic-vehicle-systems-lab/">Prof. Amir Khajepour</a> and co-advised by <a href="https://yashpant.github.io/">Prof. Yash Vardhan Pant</a>. Before joining NRC, I was a postdoctoral fellow in Waterloo's Mechatronic Vehicle Systems Lab. My research is informed by experience building autonomous robots and production vehicle software.</p>
 <div class="intro-actions"><a class="primary-link" href="#publications">Explore my research <span aria-hidden="true">↗</span></a><a href="mailto:jiaming.zhong@nrc-cnrc.gc.ca">Get in touch <span aria-hidden="true">→</span></a></div>
 <div class="scholar-strip" aria-label="Google Scholar citation metrics">
-<div><strong>281</strong><span>Citations</span></div>
-<div><strong>5</strong><span>h-index</span></div>
-<div><strong>4</strong><span>i10-index</span></div>
-<p><a href="https://scholar.google.com/citations?user=kSAQtOoAAAAJ">Google Scholar</a><br>Snapshot · September 11, 2026</p>
+<div><strong>{{ site.data.scholar.citations }}</strong><span>Citations</span></div>
+<div><strong>{{ site.data.scholar.h_index }}</strong><span>h-index</span></div>
+<div><strong>{{ site.data.scholar.i10_index }}</strong><span>i10-index</span></div>
+<p><a href="https://scholar.google.com/citations?user=kSAQtOoAAAAJ">Google Scholar</a><br>Snapshot · {{ site.data.scholar.checked }}</p>
 </div>
 </section>
 <section id="research" class="profile-section">
@@ -84,5 +84,3 @@ redirect_from: ["/about/", "/about.html"]
 <a href="mailto:jiaming.zhong@nrc-cnrc.gc.ca">jiaming.zhong@nrc-cnrc.gc.ca <span aria-hidden="true">↗</span></a>
 </section>
 <footer class="profile-footer"><span>© 2026 Jiaming Zhong</span><span>Last updated September 2026</span></footer>
-
-          
