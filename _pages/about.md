@@ -6,7 +6,7 @@ redirect_from: ["/about/", "/about.html"]
 ---
 
 
-            <section id="about-me" class="profile-intro">
+<section id="about-me" class="profile-intro">
 <p class="eyebrow">LEARNING · CONTROL · MOBILE AUTONOMY</p>
 <h1>Trustworthy physical AI<br>for mobile autonomy<span class="title-dot">.</span></h1>
 <p class="intro-lead">I combine data-driven learning with model-based methods to help autonomous vehicles and robots operate safely under uncertainty.</p>
