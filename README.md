@@ -28,7 +28,7 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Publications and author-role symbols | [_data/publications.json](_data/publications.json), [_data/publication_roles.yml](_data/publication_roles.yml) |
 | Experience and education | [_data/career.yml](_data/career.yml) |
 | Navigation and project-link translations | [_data/navigation.yml](_data/navigation.yml), [_data/translations.yml](_data/translations.yml) |
-| Cover image and crop | [_data/background.yml](_data/background.yml) |
+| Cover photos, framing and bilingual captions | [_data/background.yml](_data/background.yml) |
 | Browser title and search description | [_includes/seo.html](_includes/seo.html); English description in [_config.yml](_config.yml) |
 | Fonts, spacing, responsive layout | [assets/css/profile.css](assets/css/profile.css) |
 
@@ -70,9 +70,26 @@ Replace the example text and URL with your actual project. `image` is optional; 
 | Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work; images keep their proportions. |
 | Top cover | Add/remove photos directly in `images/background/`. All supported images automatically join the random pool; no file list to maintain. |
 
-The cover selects several different photos on each load/refresh and joins them edge to edge. Resizing keeps their shuffled order. The browser scales and crops each photo proportionally without altering the original file. Use higher-resolution photos for sharper results. The current examples are copies of the project images.
+The cover shows one wide scene plus two detail photos on desktop (50% / 25% / 25%), and two equal photos on phones. Every refresh shuffles eligible photos; resizing and changing language retain that order. Choose clear, standalone photographs rather than diagrams or collages. Original files are preserved: all framing happens in the browser.
 
-In `_data/background.yml`, `height` / `mobile_height` retain the desktop/phone strip heights. `tile_width` / `mobile_tile_width` set the approximate width per photo: smaller values show more photos. `position` / `mobile_position` control the default crop (horizontal %, then vertical %). To adjust one photo, add `images → filename.jpg → position` or `mobile_position`. `enabled: false` hides the strip. Cover photos are decorative; their text alternatives remain empty in both languages.
+New files join automatically. Optional settings live under `images → filename` in `_data/background.yml`:
+
+```yaml
+  my-photo.jpg:
+    role: both
+    position: "50% 50%"
+    mobile_position: "60% 50%"
+    caption: "A short, factual photo description"
+    caption_zh: "简短、客观的照片说明"
+```
+
+- `role`: `main` for wide scenes, `detail` for close-ups, or `both` (default). With fewer photos, the available images fill the space without duplicates.
+- `position` / `mobile_position`: horizontal %, then vertical %. Values fall back to the settings at the top of the file.
+- `caption` / `caption_zh`: optional photo details, shown on hover, keyboard focus or by tapping **i**. Add `credit` / `credit_zh` and `source` for an external photo credit and source-page link. Missing Chinese text falls back to English.
+- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
+- The existing F1TENTH and XLeRobot examples use `crop` (x, y, width, height in source pixels) and `source_size` to show only the photographic part of a composite. **Remove both fields when replacing either file with a standalone photo**; ordinary photos do not need them.
+
+The formula's animated gradient applies only to the research goal. Change its colors and `18s` duration in `.vision-title` / `@keyframes vision-colors` in `assets/css/profile.css`. Reduced-motion preferences automatically show a static gradient.
 
 Keep public image-source URLs in comments beside the relevant project. The SafeTrucks entry records the source of its snow-driving photo.
 

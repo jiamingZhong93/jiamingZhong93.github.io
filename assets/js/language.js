@@ -20,6 +20,7 @@
     selector.value = chinese ? 'zh-CN' : 'en';
     for (const item of textNodes) item.element.textContent = chinese && item.zh ? item.zh : item.en;
     for (const item of attributes) item.element.setAttribute(item.attribute, chinese && item.zh ? item.zh : item.en);
+    document.dispatchEvent(new Event('site:language-change'));
     // Re-measure translated labels in the existing responsive navigation.
     window.dispatchEvent(new Event('resize'));
   }

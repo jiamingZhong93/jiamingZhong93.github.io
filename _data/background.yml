@@ -1,17 +1,39 @@
-# Every supported image in images/background/ joins the pool automatically.
-# Refresh picks a new random order; resize keeps that order. No duplicate tiles.
+# New photos in images/background/ join automatically; metadata is optional.
+# Desktop: one wide photo + two details. Phone: two equal photos.
 enabled: true
 height: "220px"
 mobile_height: "150px"
-# Approximate tile widths in pixels. Smaller values show more photos.
-tile_width: 360
-mobile_tile_width: 240
 position: "50% 50%"
 mobile_position: "50% 50%"
-# Optional crop overrides, keyed by filename. New photos do not need an entry.
+# role: main, detail, or both (default). enabled: false excludes an image.
+# Ordinary photos only need position/mobile_position for custom framing.
+# crop + source_size isolate a photo inside these existing composite examples.
+# Remove BOTH fields when replacing an example with a new standalone photo.
 images:
-  xlerobot.jpg:
-    position: "50% 45%"
-    mobile_position: "65% 45%"
   safetrucks-snow.jpg:
-    position: "60% 50%"
+    role: main
+    position: "60% 55%"
+    caption: "Heavy vehicles in winter"
+    caption_zh: "冬季重型车辆行驶"
+    credit: "Photo: SafeTrucks"
+    credit_zh: "图片：SafeTrucks"
+    source: "https://safetrucks.fmi.fi/index.php/project-description/"
+  f1tenth.jpg:
+    role: detail
+    crop: "3 3 480 312"
+    source_size: [791, 318]
+    caption: "F1TENTH research platform"
+    caption_zh: "F1TENTH 研究平台"
+  xlerobot.jpg:
+    role: detail
+    crop: "291 3 434 312"
+    source_size: [728, 318]
+    caption: "XLeRobot mobile manipulation"
+    caption_zh: "XLeRobot 移动操作"
+  # Keep research diagrams in the folder, outside the photo selection.
+  drivellm.jpg:
+    enabled: false
+  learning-mpc.jpg:
+    enabled: false
+  multi-agent.jpg:
+    enabled: false

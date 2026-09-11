@@ -70,9 +70,26 @@
 | 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG，保持原图比例。 |
 | 顶部背景 | 直接往 `images/background/` 添加或删除照片；支持的图片会自动进入随机池，无需维护文件列表。 |
 
-每次打开或刷新页面，背景随机选取多张不同照片，左右无缝拼接；调整窗口大小保留当前随机顺序。浏览器只做等比例缩放、裁切，不会修改原始文件。更高清的原图会有更清晰的效果；当前示例是项目图片的副本。
+电脑横幅采用一张宽景主图、两张细节辅图（50% / 25% / 25%），手机显示两张等宽照片。每次刷新会重新随机排序；调整窗口大小或切换语言保留当前顺序。建议选清晰的独立实景照片，避免图表和拼图。裁切只发生在浏览器中，不修改原文件。
 
-在 `_data/background.yml` 中，`height` / `mobile_height` 控制电脑/手机横幅高度；`tile_width` / `mobile_tile_width` 控制每张照片的大致宽度，数值越小显示的照片越多。`position` / `mobile_position` 是默认裁切位置（先横向%、后纵向%）。单独调整某张照片时，在 `images → 文件名.jpg` 下设置 `position` 或 `mobile_position`。`enabled: false` 隐藏横幅。背景照片仅作装饰，中英文都不需要填写替代文字。
+新文件会自动加入。需要单独设置时，在 `_data/background.yml` 的 `images → 文件名` 下添加：
+
+```yaml
+  my-photo.jpg:
+    role: both
+    position: "50% 50%"
+    mobile_position: "60% 50%"
+    caption: "A short, factual photo description"
+    caption_zh: "简短、客观的照片说明"
+```
+
+- `role`：宽景用 `main`，近景用 `detail`，都适合用 `both`（默认）。照片不足时，用已有照片填满，不重复显示。
+- `position` / `mobile_position`：先横向%、后纵向%；未设置时使用文件顶部的默认值。
+- `caption` / `caption_zh`：可选中英文照片说明，鼠标悬停、键盘聚焦或轻触 **i** 显示。公开来源图片还可填 `credit` / `credit_zh` 署名及 `source` 来源网页链接。未填中文时显示英文。
+- 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` / `mobile_height` 控制高度。
+- 现有 F1TENTH、XLeRobot 示例通过 `crop`（源图像素中的 x、y、宽、高）与 `source_size` 截取拼图里的实拍区域。**换成独立照片后请删除这两个字段**，普通照片不需要它们。
+
+研究公式仅在左侧目标文字使用动态渐变。在 `assets/css/profile.css` 的 `.vision-title` / `@keyframes vision-colors` 处调整颜色和 `18s` 周期；系统开启“减少动态效果”时自动显示静态渐变。
 
 使用公开来源图片时，在对应项目旁用注释保留出处。SafeTrucks 项目中已记录雪地行车照片的原始来源。
 
