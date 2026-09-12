@@ -143,9 +143,9 @@ Example entry under `images`:
 - `source` and `credit/credit_zh` keep attribution records in the data file; captions do not contain links. Include any visible photo credit in the description, as in the SafeTrucks example.
 - Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` sets the desktop base height (220 px). Extra-wide screens scale it gently up to 360 px to preserve subjects; `mobile_height` stays at 150 px. The wide-screen scaling is in `.home-background` in `assets/css/profile.css`.
 - Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
-- Legacy composite images can use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` when both framing modes are `cover`. Remove both fields when replacing a composite with a standalone photo; ordinary photos need only framing and position settings.
+- Use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` to trim empty borders without editing the file. `fit` / `mobile_fit` then frame that crop: `contain` preserves it completely; `cover` fills the banner. Cropped frames are centered, so adjust `crop` rather than `position` to move the subject. See the F1Tenth entry. Update or remove both fields when replacing the source photo.
 
-**Edit a desktop photo group:** find `desktop_groups` at the end of `_data/background.yml`. Each group has a unique `id`, bilingual `title` and `description`, and a `photos` list in left-to-right order.
+**Edit a desktop photo group:** find `desktop_groups` at the end of `_data/background.yml`. Each group has a unique `id`, bilingual `title` and `description`, and a `photos` list in left-to-right order. Tiles join edge to edge, with no gaps or individual rounded corners.
 
 - Each tile's `file` must also exist and be enabled under `images`. Keep its individual captions and mobile framing there. When renaming or deleting a grouped file, update both places.
 - Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative width (default `1`); `fit: "contain"` preserves a full subject within its tile. Other tiles default to `cover`.

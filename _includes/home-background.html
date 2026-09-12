@@ -17,8 +17,13 @@
 {% if photo_fit == 'contain' or photo_mobile_fit == 'contain' %}
 <img class="home-background__backdrop" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" aria-hidden="true">
 {% endif %}
-{% if settings.crop and settings.source_size and photo_fit == 'cover' and photo_mobile_fit == 'cover' %}
-<svg class="home-background__image" viewBox="{{ settings.crop | escape }}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg>
+{% if settings.crop and settings.source_size %}
+{% assign crop_parts = settings.crop | split: ' ' %}
+{% for viewport in (1..2) %}
+{% assign crop_fit = photo_fit %}
+{% if viewport == 2 %}{% assign crop_fit = photo_mobile_fit %}{% endif %}
+<svg class="home-background__image home-background__crop--{% if viewport == 1 %}desktop{% else %}mobile{% endif %}" viewBox="{{ settings.crop | escape }}" preserveAspectRatio="xMidYMid {% if crop_fit == 'contain' %}meet{% else %}slice{% endif %}" aria-hidden="true" focusable="false"><svg x="{{ crop_parts[0] }}" y="{{ crop_parts[1] }}" width="{{ crop_parts[2] }}" height="{{ crop_parts[3] }}" viewBox="{{ settings.crop | escape }}" overflow="hidden"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg></svg>
+{% endfor %}
 {% else %}
 <img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async">
 {% endif %}

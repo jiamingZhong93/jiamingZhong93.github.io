@@ -143,9 +143,9 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 - `source` 和 `credit/credit_zh` 在数据文件中保留来源及署名记录，背景说明不显示链接。需要直接显示的图片署名写进描述，可参考 SafeTrucks 示例。
 - 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` 设置电脑基础高度（220 px）；超宽屏会适度增加高度，最高 360 px，以保留人物和机器人主体。`mobile_height` 仍为 150 px。超宽屏比例在 `assets/css/profile.css` 的 `.home-background` 中调整。
 - 文件顶部的 `fade_duration: 1000` 控制淡入淡出过渡的毫秒数；`interval: 3000` 控制**过渡完成后的停留时间**。照片、播放时间和中英文说明仍统一在这一配置文件中维护。
-- 旧拼图仍可用 `crop`（源图像素中的 x、y、宽、高）与 `source_size: [宽, 高]` 截取局部，但两种布局都需设为 `cover`。换成独立照片时删除这两个字段；普通照片只需调整显示方式和位置。
+- 使用 `crop`（原图像素中的 x、y、宽、高）和 `source_size: [宽, 高]`，可以裁掉多余留白而不修改原文件。`fit` / `mobile_fit` 再决定如何显示裁切区域：`contain` 完整保留，`cover` 铺满横幅。裁切区域居中显示，要移动主体请调整 `crop`，此时 `position` 不控制裁切区域。可参考 F1Tenth 条目；替换原照片时同步更新或删除这两个字段。
 
-**修改电脑端横向组合：** 在 `_data/background.yml` 末尾找到 `desktop_groups`。每组包含唯一的 `id`、中英文 `title` 与 `description`，以及按从左到右排列的 `photos` 列表。
+**修改电脑端横向组合：** 在 `_data/background.yml` 末尾找到 `desktop_groups`。每组包含唯一的 `id`、中英文 `title` 与 `description`，以及按从左到右排列的 `photos` 列表。各小图紧密相连，不留空隙，也没有独立圆角。
 
 - 每个小图的 `file` 必须同时存在于 `images` 配置中并保持启用；原有单图说明和手机取景仍在那里维护。重命名或删除组合内的照片时，两处都要更新。
 - 小图的 `position` 单独控制电脑组合中的取景，不影响手机；`weight` 控制相对宽度，默认为 `1`。需要完整保留人物时可设 `fit: "contain"`，其余小图默认 `cover`。

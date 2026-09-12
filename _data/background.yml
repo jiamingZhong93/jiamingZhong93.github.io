@@ -335,15 +335,6 @@ images:
     mobile_position: "50% 50%"
     fit: "contain"
     mobile_fit: "contain"
-  photo_20240925_011142000_iOS.jpg:
-    title: "Edmonton"
-    title_zh: "埃德蒙顿"
-    description: "ITSC 2024."
-    description_zh: "2024 年 ITSC 会议。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
   photo_20251011_194941022_iOS.jpg:
     title: "Algonquin Park"
     title_zh: "阿冈昆公园"
@@ -426,6 +417,18 @@ images:
     mobile_position: "50% 50%"
     fit: "contain"
     mobile_fit: "contain"
+  photo_f1tenth_new_1.jpg:
+    title: "F1Tenth"
+    title_zh: "F1Tenth"
+    description: "F1Tenth"
+    description_zh: "F1Tenth"
+    # Crop the empty wall/floor, retaining the complete vehicle and antennas.
+    crop: "0 990 4032 1150"
+    source_size: [4032, 3024]
+    fit: "contain"
+    mobile_fit: "cover"
+    position: "50% 65%"
+    mobile_position: "50% 65%"
 
 # Desktop only: related photos form one strip; phones keep the individual entries above.
 # Tiles appear left to right. Each file must also be enabled under images.

@@ -10,12 +10,14 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .home-background__stage, .home-background__fallback { width: 100%; height: 100%; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .home-background__slide { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; overflow: hidden; }
 .home-background__image { position: relative; display: block; width: 100%; height: 100%; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); pointer-events: none; }
+.home-background__crop--mobile { display: none; }
 /* Keep the complete subject visible when a photo cannot fill a wide banner. */
 .home-background__backdrop { position: absolute; inset: -24px; display: none; width: calc(100% + 48px); height: calc(100% + 48px); max-width: none; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); filter: blur(18px) brightness(.7); pointer-events: none; }
 .home-background__slide.is-contained .home-background__image { object-fit: contain; }
 .home-background__slide.is-contained .home-background__backdrop { display: block; }
 /* Related photos share a desktop strip; each tile keeps its own focal point. */
-.home-background__strip { display: flex; width: 100%; height: 100%; gap: 3px; }
+.home-background__strip { display: flex; width: 100%; height: 100%; gap: 0; }
+.home-background__strip img { border-radius: 0; }
 .home-background__tile { position: relative; flex: var(--tile-weight, 1) 1 0%; min-width: 0; height: 100%; overflow: hidden; }
 .home-background__tile.is-contained .home-background__image { object-fit: contain; }
 .home-background__tile.is-contained .home-background__backdrop { display: block; }
@@ -164,6 +166,8 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
   .home-background { --cover-height: var(--background-mobile-height, 150px); }
   /* A brief resize during a crossfade still shows one complete tile. */
   .home-background__slide--group .home-background__tile:not(:first-child) { display: none; }
+  .home-background__crop--desktop { display: none; }
+  .home-background__crop--mobile { display: block; }
   .home-background__panel { max-height: calc(var(--background-mobile-height,150px) - 24px); }
   .home-background__image, .home-background__backdrop { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
   .home-background__slide.is-contained .home-background__image { object-fit: cover; }
