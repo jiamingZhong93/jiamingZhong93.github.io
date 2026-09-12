@@ -173,7 +173,11 @@
       });
       try { await fade.finished; } catch {} // Cancellation still leaves a complete photo.
     }
-    if (previous) previous.node.remove();
+    if (previous) {
+      previous.node.remove();
+      // A large photo library should not retain every decoded slide on mobile.
+      if (!upcoming || upcoming.item !== previous.item) cache.delete(previous.item);
+    }
   }
 
   async function advance(automatic = false) {

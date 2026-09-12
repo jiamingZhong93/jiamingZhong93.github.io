@@ -81,7 +81,7 @@ Replace the example text and URL with your actual project. `image` is optional; 
 | Default portrait | Replace `images/avatar.jpg`; if renamed, update `author.avatar` in `_config.yml`. |
 | Alternate portrait | Replace `images/portraits/alternate.jpg`; if renamed, update `author.avatar_alternate`. |
 | Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work; images keep their proportions. |
-| Top cover | Add/remove photos directly in `images/background/`. All supported images automatically join the random pool; no file list to maintain. |
+| Top cover | Put photos in `images/background/` and add matching filenames under `images` in `_data/background.yml`. Only configured photos join the carousel. |
 
 ### Portraits
 
@@ -102,11 +102,11 @@ Portrait sizes are set in `assets/css/profile.css`: 208 × 236 px on desktop (19
 
 Portraits turn with a gentle 3D flip; another tap/click during the animation smoothly reverses it. The hit area stays fixed. Systems with reduced motion enabled switch immediately. Adjust the `720ms` duration and easing in `.portrait-flipper` in `assets/css/profile.css` if desired.
 
-The current alternate is a **temporary SafeTrucks snow-photo example**, copied from the same source as the cover photo. Replace it with your own photo and update both descriptions.
+The default photo is an outdoor portrait; the alternate is a formal portrait. Both image URLs receive a build version so replacements refresh with the page. Update both descriptions when changing photos.
 
 ### Cover photos
 
-The cover displays one full-width photo on every device, starting with a random photo on refresh. It holds each photo for 3 seconds, then softly crossfades to the next over 1 second; clicking the photo also advances it. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Choose clear, wide photographs; framing happens in the browser without changing the original files.
+The cover displays one full-width photo on every device, starting with a random photo on refresh. It holds each photo for 3 seconds, then softly crossfades to the next over 1 second; clicking the photo also advances it. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Framing happens in the browser without changing the files. Wide landscapes can fill the banner; portraits and photos with several people can keep their full composition over a softly blurred backdrop.
 
 Hover **anywhere on the photo** to show both the current-photo details and the next-photo preview. There are no corner icons. Click the photo outside those details to advance; the captions stay open while the pointer remains over the banner. Moving away closes them.
 
@@ -114,10 +114,20 @@ On touch screens, **long press for about half a second** to show both captions a
 
 The timer pauses while hovering anywhere over the banner, during a touch gesture or while its details remain open, and while the banner/details have keyboard focus. It also pauses when the page or banner is out of view, then resumes the remaining time. Every completed transition starts a fresh hold interval. **Tab** focuses the banner and shows details; **Enter/Space** advances; **Esc** closes details. One available photo stays visible with only its current details and no timer; failed images are skipped.
 
-New files join automatically. Optional settings live under `images → filename` in `_data/background.yml`:
+To add a photo:
+
+1. Save a web-ready JPG, PNG or WebP in `images/background/`, using a unique name such as `photo_2026_waterloo.jpg`. Convert HEIC to JPG first; preserve the correct orientation. For large originals, an exported copy with a long edge around 2400 px keeps downloads light. Keep full-size originals outside this public directory.
+2. Add that exact filename under the existing `images` block in `_data/background.yml`, with English and Chinese text. **Files without a matching entry are not displayed.**
+3. Check both desktop and phone framing. To remove a photo, delete its entry and the corresponding file; use `enabled: false` to hide it temporarily.
+
+Filenames **can start with numbers**; the `photo_` prefix is just a consistent naming convention. Names are case-sensitive online, and each filename key must occur only once in YAML. Duplicate keys cause a configuration error.
+
+Example entry under `images`:
 
 ```yaml
-  my-photo.jpg:
+  photo_2026_waterloo.jpg:
+    fit: "cover"
+    mobile_fit: "contain"
     position: "50% 50%"
     mobile_position: "60% 50%"
     title: "A short photo title"
@@ -126,13 +136,14 @@ New files join automatically. Optional settings live under `images → filename`
     description_zh: "一句简短的照片说明。"
 ```
 
-- `position` / `mobile_position`: horizontal %, then vertical %. Values fall back to the settings at the top of the file.
+- `fit` / `mobile_fit`: `cover` fills the banner and crops its edges; `contain` shows the entire photo over a blurred version of the same image. Use `contain` when a face, robot or group would otherwise be cut off. Desktop defaults to `cover`; omitted `mobile_fit` follows `fit`. The phone layout applies at widths up to 800 px.
+- `position` / `mobile_position`: horizontal %, then vertical %, e.g. `"50% 35%"`. In `cover` mode, increase the second number to show more of the lower part, or decrease it to show more of the top. The effect depends on the photo's proportions. In `contain` mode, position aligns the whole photo inside the banner. A missing mobile position follows the image's desktop position; otherwise the file's global defaults apply.
 - **Left:** `title/title_zh` first, then smaller `description/description_zh` text, limited to two lines. **Right:** “Next”, then only the next photo's title. Both sides align at the bottom; the left gets most of the width on every device. Keep titles brief for phones.
 - Missing Chinese fields fall back to English. Legacy `caption/caption_zh` still work as title fields; an absent title uses the filename. Descriptions are optional.
 - `source` and `credit/credit_zh` keep attribution records in the data file; captions do not contain links. Include any visible photo credit in the description, as in the SafeTrucks example.
 - Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
 - Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
-- The existing F1TENTH and XLeRobot examples use `crop` (x, y, width, height in source pixels) and `source_size` to show only the photographic part of a composite. **Remove both fields when replacing either file with a standalone photo**; ordinary photos do not need them.
+- Legacy composite images can use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` when both framing modes are `cover`. Remove both fields when replacing a composite with a standalone photo; ordinary photos need only framing and position settings.
 
 The entire research formula shares one animated gradient. Change its colors and `18s` duration in `.vision-equation` / `@keyframes vision-colors` in `assets/css/profile.css`. Reduced-motion preferences automatically show a static gradient.
 

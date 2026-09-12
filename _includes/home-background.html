@@ -8,13 +8,19 @@
 {% if file.path contains '/images/background/' %}
 {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.gif' or extension == '.webp' or extension == '.svg' %}
 {% assign settings = background.images[file.name] %}
+{% if settings %}
 {% unless settings.enabled == false %}
+{% assign photo_fit = settings.fit | default: 'cover' %}
+{% assign photo_mobile_fit = settings.mobile_fit | default: photo_fit %}
 {% capture background_image %}
-<figure class="home-background__slide" data-photo-key="{{ file.path | escape }}">
-{% if settings.crop and settings.source_size %}
+<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}{% if photo_mobile_fit == 'contain' %} is-mobile-contained{% endif %}" data-photo-key="{{ file.path | escape }}" style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+{% if photo_fit == 'contain' or photo_mobile_fit == 'contain' %}
+<img class="home-background__backdrop" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" aria-hidden="true">
+{% endif %}
+{% if settings.crop and settings.source_size and photo_fit == 'cover' and photo_mobile_fit == 'cover' %}
 <svg class="home-background__image" viewBox="{{ settings.crop | escape }}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg>
 {% else %}
-<img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+<img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async">
 {% endif %}
 {% assign photo_title = settings.title | default: settings.caption | default: file.name %}
 {% assign photo_title_zh = settings.title_zh | default: settings.caption_zh | default: photo_title %}
@@ -29,6 +35,7 @@
 {% if background_fallback == '' %}{% assign background_fallback = background_image %}{% endif %}
 {{ background_image }}
 {% endunless %}
+{% endif %}
 {% endif %}
 {% endif %}
 {% endfor %}

@@ -81,7 +81,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 | 默认头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
 | 备用头像 | 替换 `images/portraits/alternate.jpg`；若改名，同步修改 `author.avatar_alternate`。 |
 | 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG，保持原图比例。 |
-| 顶部背景 | 直接往 `images/background/` 添加或删除照片；支持的图片会自动进入随机池，无需维护文件列表。 |
+| 顶部背景 | 照片放进 `images/background/`，再在 `_data/background.yml` 的 `images` 下添加对应文件名；只有已配置的照片参与轮播。 |
 
 ### 头像
 
@@ -102,11 +102,11 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 头像采用轻柔的 3D 翻面；动画中再次点击会流畅地反向切换，触发区域始终固定。系统开启“减少动态效果”时直接切换。如需调整动画，在 `assets/css/profile.css` 的 `.portrait-flipper` 中修改 `720ms` 时长和缓动参数。
 
-当前备用图是 **SafeTrucks 雪地照片的临时示例**，与横幅照片来源相同。之后换成自己的照片，并同步更新中英文说明。
+当前默认图为户外肖像，备用图为正装肖像。两张头像的地址也带构建版本，替换后随新页面刷新；换图时同步维护中英文说明。
 
 ### 顶部背景照片
 
-所有设备的横幅都只显示一张铺满宽度的照片，刷新时随机选择首张。每张停留 3 秒，再用 1 秒柔和淡入淡出切换下一张；点击照片也会切换。照片多于一张时，相邻两张不会重复。调整窗口大小或切换语言保留当前照片和已选好的下一张。建议使用清晰的宽幅照片；裁切只发生在浏览器中，不修改原文件。
+所有设备的横幅都只显示一张铺满宽度的照片，刷新时随机选择首张。每张停留 3 秒，再用 1 秒柔和淡入淡出切换下一张；点击照片也会切换。照片多于一张时，相邻两张不会重复。调整窗口大小或切换语言保留当前照片和已选好的下一张。裁切只发生在浏览器中，不修改图片文件。宽幅风景可以铺满横幅；人像、合照等也可以完整显示，并用同一张照片的柔和虚化背景填充两侧。
 
 电脑上，鼠标悬停在**照片任意区域**，同时显示当前照片说明和下一张预告，不再显示角落图标。点击说明区以外的照片区域切换；只要鼠标仍在横幅内，两条说明就保持显示并更新。移开鼠标后收起。
 
@@ -114,10 +114,20 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 鼠标悬停横幅任意区域、触屏按住或说明保持展开、键盘焦点位于横幅或说明内时暂停计时。页面隐藏或横幅滚出屏幕时也暂停，恢复后继续剩余时间；每次过渡完成后重新计算停留时间。用 **Tab** 聚焦横幅显示说明，**回车/空格**切换，**Esc** 收起说明。仅有一张可用照片时只显示当前说明、不轮播；坏图自动跳过。
 
-新文件会自动加入。需要单独设置时，在 `_data/background.yml` 的 `images → 文件名` 下添加：
+新增一张照片：
+
+1. 将适合网页的 JPG、PNG 或 WebP 放进 `images/background/`，使用不重复的文件名，例如 `photo_2026_waterloo.jpg`。HEIC 请先转成 JPG，并确认方向正确。大照片可导出长边约 2400 px 的副本，减小下载量；全尺寸原图保存在这个公开目录之外。
+2. 在 `_data/background.yml` 已有的 `images` 下添加完全对应的文件名，并填写中英文。**只有文件、没有对应配置的照片不会显示。**
+3. 分别检查电脑与手机效果。删除照片时，同时删除配置和对应文件；暂时隐藏可设 `enabled: false`。
+
+文件名**可以数字开头**；统一使用 `photo_` 只是方便维护。线上文件名区分大小写；同一个文件名在 YAML 中只能配置一次，重复的键会导致配置报错。
+
+在 `images` 下添加条目的示例：
 
 ```yaml
-  my-photo.jpg:
+  photo_2026_waterloo.jpg:
+    fit: "cover"
+    mobile_fit: "contain"
     position: "50% 50%"
     mobile_position: "60% 50%"
     title: "A short photo title"
@@ -126,13 +136,14 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
     description_zh: "一句简短的照片说明。"
 ```
 
-- `position` / `mobile_position`：先横向%、后纵向%；未设置时使用文件顶部的默认值。
+- `fit` / `mobile_fit`：`cover` 铺满横幅，边缘可能被裁切；`contain` 完整显示照片，以同图虚化背景补齐空白。人物、机器人或合照会被裁掉时，选 `contain`。电脑默认 `cover`；省略 `mobile_fit` 时沿用 `fit`。手机布局适用于不超过 800 px 的窗口宽度。
+- `position` / `mobile_position`：先横向%、后纵向%，例如 `"50% 35%"`。使用 `cover` 时，第二个数增大可显示更靠下的区域，减小可显示更靠上的区域，实际效果取决于照片比例。使用 `contain` 时，位置决定完整照片在横幅内的对齐方式。省略手机位置时优先沿用该照片的电脑位置，否则使用文件顶部的默认设置。
 - **左下角：** 第一行是 `title/title_zh` 标题，下方是较小字号的 `description/description_zh` 描述，描述最多两行。**右下角：** 第一行是“Next / 下一张”，第二行只显示下一张的标题。左右底部对齐，大部分宽度留给左侧；标题应简短，便于手机阅读。
 - 未填中文时显示英文；旧的 `caption/caption_zh` 仍可作为标题使用，标题未填时显示文件名。描述可以省略。
 - `source` 和 `credit/credit_zh` 在数据文件中保留来源及署名记录，背景说明不显示链接。需要直接显示的图片署名写进描述，可参考 SafeTrucks 示例。
 - 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` / `mobile_height` 控制高度。
 - 文件顶部的 `fade_duration: 1000` 控制淡入淡出过渡的毫秒数；`interval: 3000` 控制**过渡完成后的停留时间**。照片、播放时间和中英文说明仍统一在这一配置文件中维护。
-- 现有 F1TENTH、XLeRobot 示例通过 `crop`（源图像素中的 x、y、宽、高）与 `source_size` 截取拼图里的实拍区域。**换成独立照片后请删除这两个字段**，普通照片不需要它们。
+- 旧拼图仍可用 `crop`（源图像素中的 x、y、宽、高）与 `source_size: [宽, 高]` 截取局部，但两种布局都需设为 `cover`。换成独立照片时删除这两个字段；普通照片只需调整显示方式和位置。
 
 研究公式整体共用一条动态渐变。在 `assets/css/profile.css` 的 `.vision-equation` / `@keyframes vision-colors` 处调整颜色和 `18s` 周期；系统开启“减少动态效果”时自动显示静态渐变。
 

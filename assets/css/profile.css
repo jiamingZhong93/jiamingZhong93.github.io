@@ -9,7 +9,11 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .home-background:focus-visible { outline: 2px solid white; outline-offset: -4px; }
 .home-background__stage, .home-background__fallback { width: 100%; height: 100%; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .home-background__slide { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; overflow: hidden; }
-.home-background__image { display: block; width: 100%; height: 100%; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); }
+.home-background__image { position: relative; display: block; width: 100%; height: 100%; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); pointer-events: none; }
+/* Keep the complete subject visible when a photo cannot fill a wide banner. */
+.home-background__backdrop { position: absolute; inset: -24px; display: none; width: calc(100% + 48px); height: calc(100% + 48px); max-width: none; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); filter: blur(18px) brightness(.7); pointer-events: none; }
+.home-background__slide.is-contained .home-background__image { object-fit: contain; }
+.home-background__slide.is-contained .home-background__backdrop { display: block; }
 .home-background::after { content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: min(100%, 130px); background: linear-gradient(transparent, rgba(12,23,30,.7)); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
 .home-background[data-info-open]::after { opacity: 1; }
 .home-background__controls { position: absolute; z-index: 2; inset: auto 16px 12px; display: grid; grid-template-columns: minmax(0,7fr) minmax(0,3fr); align-items: end; gap: 16px; pointer-events: none; }
@@ -154,7 +158,11 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
   html { font-size: 16px; }
   .home-background { height: var(--background-mobile-height, 150px); }
   .home-background__panel { max-height: calc(var(--background-mobile-height,150px) - 24px); }
-  .home-background__image { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
+  .home-background__image, .home-background__backdrop { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
+  .home-background__slide.is-contained .home-background__image { object-fit: cover; }
+  .home-background__slide.is-contained .home-background__backdrop { display: none; }
+  .home-background__slide.is-mobile-contained .home-background__image { object-fit: contain; }
+  .home-background__slide.is-mobile-contained .home-background__backdrop { display: block; }
   .masthead__inner-wrap { padding: .8rem 1.1rem; }
   .profile-nav__links { flex-wrap: wrap; gap: .2rem 1rem; }
   .profile-nav.is-enhanced .profile-nav__toggle { display: flex; align-items: center; gap: .5rem; max-width: 100%; min-height: 36px; padding: .3rem 0; margin: 0; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: .82rem; font-weight: 600; text-align: left; cursor: pointer; }

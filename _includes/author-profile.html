@@ -1,7 +1,7 @@
 <div class="profile_box" itemscope itemtype="https://schema.org/Person">
 <div class="author__avatar">
-<button type="button" class="portrait-toggle" aria-label="Switch profile photo" data-zh-aria-label="切换头像" data-alternate="{{ site.author.avatar_alternate | escape }}" data-alternate-alt="{{ site.author.avatar_alternate_alt | default: site.author.name | escape }}" data-alternate-alt-zh="{{ site.author.avatar_alternate_alt_zh | default: site.author.avatar_alternate_alt | default: site.author.name | escape }}" data-default-position="{{ site.author.avatar_position | default: '50% 50%' | escape }}" data-alternate-position="{{ site.author.avatar_alternate_position | default: '50% 50%' | escape }}" disabled>
-<img src="{{ site.author.avatar }}" alt="{{ site.author.name }}" width="208" height="236" itemprop="image" style="object-position: {{ site.author.avatar_position | default: '50% 50%' | escape }};">
+<button type="button" class="portrait-toggle" aria-label="Switch profile photo" data-zh-aria-label="切换头像" data-alternate="{% if site.author.avatar_alternate %}{{ site.author.avatar_alternate | escape }}?v={{ site.time | date: '%s' }}{% endif %}" data-alternate-alt="{{ site.author.avatar_alternate_alt | default: site.author.name | escape }}" data-alternate-alt-zh="{{ site.author.avatar_alternate_alt_zh | default: site.author.avatar_alternate_alt | default: site.author.name | escape }}" data-default-position="{{ site.author.avatar_position | default: '50% 50%' | escape }}" data-alternate-position="{{ site.author.avatar_alternate_position | default: '50% 50%' | escape }}" disabled>
+<img src="{{ site.author.avatar | escape }}?v={{ site.time | date: '%s' }}" alt="{{ site.author.name }}" width="208" height="236" itemprop="image" style="object-position: {{ site.author.avatar_position | default: '50% 50%' | escape }};">
 </button></div>
 <div class="author__content">
 <h1 class="author__name" itemprop="name">{{ site.author.name }}</h1>
