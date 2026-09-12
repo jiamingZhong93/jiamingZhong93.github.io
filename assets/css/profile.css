@@ -5,7 +5,7 @@ a, a:visited { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 /* The photo itself is the interaction surface; captions share two separate columns. */
-.home-background { position: relative; width: 100%; height: var(--background-height, 220px); overflow: hidden; background: var(--soft); touch-action: pan-y pinch-zoom; }
+.home-background { position: relative; width: 100%; --cover-height: clamp(var(--background-height, 220px), 11.46vw, 360px); height: var(--cover-height); overflow: hidden; background: var(--soft); touch-action: pan-y pinch-zoom; }
 .home-background:focus-visible { outline: 2px solid white; outline-offset: -4px; }
 .home-background__stage, .home-background__fallback { width: 100%; height: 100%; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .home-background__slide { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; overflow: hidden; }
@@ -14,10 +14,15 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .home-background__backdrop { position: absolute; inset: -24px; display: none; width: calc(100% + 48px); height: calc(100% + 48px); max-width: none; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); filter: blur(18px) brightness(.7); pointer-events: none; }
 .home-background__slide.is-contained .home-background__image { object-fit: contain; }
 .home-background__slide.is-contained .home-background__backdrop { display: block; }
+/* Related photos share a desktop strip; each tile keeps its own focal point. */
+.home-background__strip { display: flex; width: 100%; height: 100%; gap: 3px; }
+.home-background__tile { position: relative; flex: var(--tile-weight, 1) 1 0%; min-width: 0; height: 100%; overflow: hidden; }
+.home-background__tile.is-contained .home-background__image { object-fit: contain; }
+.home-background__tile.is-contained .home-background__backdrop { display: block; }
 .home-background::after { content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: min(100%, 130px); background: linear-gradient(transparent, rgba(12,23,30,.7)); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
 .home-background[data-info-open]::after { opacity: 1; }
 .home-background__controls { position: absolute; z-index: 2; inset: auto 16px 12px; display: grid; grid-template-columns: minmax(0,7fr) minmax(0,3fr); align-items: end; gap: 16px; pointer-events: none; }
-.home-background__panel { justify-self: start; min-width: 0; max-width: 100%; max-height: calc(var(--background-height,220px) - 24px); overflow-y: auto; overscroll-behavior: contain; padding: 0; border: 0; color: rgba(255,255,255,.95); font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.5; text-shadow: 0 1px 8px rgba(0,0,0,.4); cursor: auto; overflow-wrap: anywhere; pointer-events: auto; animation: photo-caption-in .3s ease both; }
+.home-background__panel { justify-self: start; min-width: 0; max-width: 100%; max-height: calc(var(--cover-height,220px) - 24px); overflow-y: auto; overscroll-behavior: contain; padding: 0; border: 0; color: rgba(255,255,255,.95); font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.5; text-shadow: 0 1px 8px rgba(0,0,0,.4); cursor: auto; overflow-wrap: anywhere; pointer-events: auto; animation: photo-caption-in .3s ease both; }
 .home-background__panel--next { justify-self: end; text-align: right; }
 .home-background__panel small { display: block; font-size: 10px; margin-top: 1px; opacity: .8; }
 .home-background__panel .home-background__label { margin: 0; }
@@ -156,7 +161,9 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
 }
 @media (max-width: 800px) {
   html { font-size: 16px; }
-  .home-background { height: var(--background-mobile-height, 150px); }
+  .home-background { --cover-height: var(--background-mobile-height, 150px); }
+  /* A brief resize during a crossfade still shows one complete tile. */
+  .home-background__slide--group .home-background__tile:not(:first-child) { display: none; }
   .home-background__panel { max-height: calc(var(--background-mobile-height,150px) - 24px); }
   .home-background__image, .home-background__backdrop { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
   .home-background__slide.is-contained .home-background__image { object-fit: cover; }

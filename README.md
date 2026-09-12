@@ -106,7 +106,7 @@ The default photo is an outdoor portrait; the alternate is a formal portrait. Bo
 
 ### Cover photos
 
-The cover displays one full-width photo on every device, starting with a random photo on refresh. It holds each photo for 3 seconds, then softly crossfades to the next over 1 second; clicking the photo also advances it. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Framing happens in the browser without changing the files. Wide landscapes can fill the banner; portraits and photos with several people can keep their full composition over a softly blurred backdrop.
+Phones show individual photos. On desktop (over 800 px wide), related robot and vehicle photos form horizontal groups of 3–4, while landscapes remain single photos. Refresh selects a random photo or group; each stays for 3 seconds and crossfades over 1 second. Clicking also advances, and consecutive selections differ. Changing language retains the current and next selection. Crossing the 800 px breakpoint maps a grouped photo to its desktop group, or a group to its first available phone photo; ungrouped photos stay in place. Framing happens in the browser without changing the files. Full portraits can still use a softly blurred backdrop.
 
 Hover **anywhere on the photo** to show both the current-photo details and the next-photo preview. There are no corner icons. Click the photo outside those details to advance; the captions stay open while the pointer remains over the banner. Moving away closes them.
 
@@ -141,9 +141,18 @@ Example entry under `images`:
 - **Left:** `title/title_zh` first, then smaller `description/description_zh` text, limited to two lines. **Right:** “Next”, then only the next photo's title. Both sides align at the bottom; the left gets most of the width on every device. Keep titles brief for phones.
 - Missing Chinese fields fall back to English. Legacy `caption/caption_zh` still work as title fields; an absent title uses the filename. Descriptions are optional.
 - `source` and `credit/credit_zh` keep attribution records in the data file; captions do not contain links. Include any visible photo credit in the description, as in the SafeTrucks example.
-- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
+- Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` sets the desktop base height (220 px). Extra-wide screens scale it gently up to 360 px to preserve subjects; `mobile_height` stays at 150 px. The wide-screen scaling is in `.home-background` in `assets/css/profile.css`.
 - Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
 - Legacy composite images can use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` when both framing modes are `cover`. Remove both fields when replacing a composite with a standalone photo; ordinary photos need only framing and position settings.
+
+**Edit a desktop photo group:** find `desktop_groups` at the end of `_data/background.yml`. Each group has a unique `id`, bilingual `title` and `description`, and a `photos` list in left-to-right order.
+
+- Each tile's `file` must also exist and be enabled under `images`. Keep its individual captions and mobile framing there. When renaming or deleting a grouped file, update both places.
+- Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative width (default `1`); `fit: "contain"` preserves a full subject within its tile. Other tiles default to `cover`.
+- A group's captions describe the complete strip; phones use the original individual captions. The group replaces its members in desktop rotation, so those images do not also repeat as desktop singles. Every tile loads before the strip crossfades in.
+- Set a group's `enabled: false`, or remove the group entry, to restore its single photos on desktop. Missing or disabled members invalidate the group and leave the remaining singles available. Keep group IDs unique and use each photo in only one group.
+
+No stitched image file is created: replacing the original photo updates its tile automatically.
 
 The entire research formula shares one animated gradient. Change its colors and `18s` duration in `.vision-equation` / `@keyframes vision-colors` in `assets/css/profile.css`. Reduced-motion preferences automatically show a static gradient.
 

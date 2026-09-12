@@ -5,7 +5,23 @@
 (() => {
   const cover = document.querySelector('.home-background');
   if (!cover) return;
-  const pool = Array.from(cover.querySelector('.home-background__pool').content.querySelectorAll('figure'));
+  const templates = Array.from(cover.querySelector('.home-background__pool').content.querySelectorAll('figure'));
+  const singles = templates.filter(item => !item.hasAttribute('data-photo-group'));
+  const byKey = new Map(singles.map(item => [item.dataset.photoKey, item]));
+  const groupMembers = new Map();
+  const memberGroup = new Map();
+  const groupIds = new Set();
+  // Invalid, disabled or overlapping groups fall back to the configured single photos.
+  for (const group of templates.filter(item => item.hasAttribute('data-photo-group'))) {
+    if (!group.dataset.photoGroup || groupIds.has(group.dataset.photoGroup)) continue;
+    const members = Array.from(group.querySelectorAll('.home-background__tile'), tile => byKey.get(tile.dataset.photoKey));
+    if (members.length < 2 || members.some(item => !item || memberGroup.has(item)) || new Set(members).size !== members.length) continue;
+    groupIds.add(group.dataset.photoGroup);
+    groupMembers.set(group, members);
+    for (const member of members) memberGroup.set(member, group);
+  }
+  const pool = [...singles, ...groupMembers.keys()];
+  const desktopLayout = window.matchMedia('(min-width: 801px)');
   const stage = cover.querySelector('[data-background-stage]');
   const controls = cover.querySelector('.home-background__controls');
   const panels = { current: controls.querySelector('#current-photo-info'), next: controls.querySelector('#next-photo-info') };
@@ -22,7 +38,10 @@
   let upcoming = null;
   let nextTask = null;
   let nextVersion = 0;
-  let switching = false;
+  let switching = true;
+  let layoutPending = false;
+  let layoutVersion = 0;
+  const layoutWaiters = new Set();
   let manualRequested = false;
   let lastSwitch = -Infinity;
   let timer = null;
@@ -39,7 +58,18 @@
   let holdTimer = null;
   let suppressClick = false;
 
-  function available(exclude) { return pool.filter(item => item !== exclude && !failed.has(item)); }
+  function eligible(item) {
+    if (!item || failed.has(item)) return false;
+    if (groupMembers.has(item)) return desktopLayout.matches;
+    const group = memberGroup.get(item);
+    return !desktopLayout.matches || !group || failed.has(group);
+  }
+  function available(exclude) { return pool.filter(item => item !== exclude && eligible(item)); }
+  function trimCache() {
+    for (const item of cache.keys()) {
+      if (item !== current?.item && item !== upcoming?.item) cache.delete(item);
+    }
+  }
   function hasNext() { return current && available(current.item).length > 0; }
   function random(items) { return items[Math.floor(Math.random() * items.length)]; }
   function language() { return document.documentElement.lang === 'zh-CN'; }
@@ -57,14 +87,24 @@
     }
   }
 
-  function prepare(item) {
-    if (cache.has(item)) return cache.get(item);
-    const promise = new Promise(resolve => {
-      const node = item.cloneNode(true);
-      node.querySelector('figcaption').remove();
-      const media = node.querySelector('img, image');
-      if (media.tagName === 'IMG') media.draggable = false;
-      // Also preload assets referenced by SVG crop windows off-DOM.
+  // A breakpoint change can interrupt network waiting, but not the visible fade.
+  function waitForLayout(promise) {
+    return new Promise(resolve => {
+      let settled = false;
+      const cancel = () => finish(null);
+      function finish(record) {
+        if (settled) return;
+        settled = true;
+        layoutWaiters.delete(cancel);
+        resolve(record);
+      }
+      layoutWaiters.add(cancel);
+      Promise.resolve(promise).then(finish, () => finish(null));
+    });
+  }
+
+  function preload(url) {
+    return new Promise(resolve => {
       const probe = new Image();
       let settled = false;
       const timeout = setTimeout(() => finish(false), 15000);
@@ -73,24 +113,40 @@
         settled = true;
         clearTimeout(timeout);
         probe.onload = probe.onerror = null;
-        if (!ok) failed.add(item);
-        resolve(ok ? { item, node } : null);
+        resolve(ok);
       }
       probe.onload = () => finish(true);
       probe.onerror = () => finish(false);
-      probe.src = media.getAttribute('src') || media.getAttribute('href');
+      probe.src = url;
       if (probe.complete && probe.naturalWidth > 0) finish(true);
+    });
+  }
+
+  function prepare(item) {
+    if (cache.has(item)) return cache.get(item);
+    const node = item.cloneNode(true);
+    node.querySelector('figcaption').remove();
+    const media = Array.from(node.querySelectorAll('img, image'));
+    for (const image of media) if (image.tagName === 'IMG') image.draggable = false;
+    const urls = [...new Set(media.map(image => image.getAttribute('src') || image.getAttribute('href')))];
+    // A desktop strip becomes visible only when every tile is ready. Mobile uses
+    // single-photo templates, so it never downloads the other tiles in a group.
+    const promise = Promise.all(urls.map(preload)).then(results => {
+      if (!results.length || results.some(ok => !ok)) { failed.add(item); return null; }
+      return { item, node };
     });
     cache.set(item, promise);
     return promise;
   }
 
-  async function loadRandom(exclude, firstAvoid) {
+  async function loadRandom(exclude, firstAvoid, valid = () => true) {
     let candidates = available(exclude);
-    while (candidates.length) {
+    while (candidates.length && valid()) {
       const preferred = candidates.filter(item => item.dataset.photoKey !== firstAvoid);
-      const record = await prepare(random(preferred.length ? preferred : candidates));
-      if (record) return record;
+      const item = random(preferred.length ? preferred : candidates);
+      const record = await waitForLayout(prepare(item));
+      if (valid() && record && eligible(item)) return record;
+      if (item !== current?.item && item !== upcoming?.item) cache.delete(item);
       candidates = available(exclude);
     }
     return null;
@@ -150,9 +206,10 @@
     const version = ++nextVersion;
     upcoming = null;
     updateInfo();
-    nextTask = loadRandom(current.item).then(record => {
+    nextTask = loadRandom(current.item, null, () => version === nextVersion).then(record => {
       if (version !== nextVersion) return null;
       upcoming = record;
+      trimCache();
       refreshInteraction();
       return record;
     });
@@ -185,17 +242,51 @@
     if (!hasNext() || performance.now() - lastSwitch < 180) return;
     manualRequested = !automatic;
     switching = true; syncTimer();
-    const record = await nextTask;
+    const record = await waitForLayout(nextTask);
     // A pause may start while a slow next photo loads; explicit clicks still win.
-    if (!manualRequested && interactionPaused()) {
+    if (!layoutPending && !manualRequested && interactionPaused()) {
       switching = false; remaining = 0; syncTimer(); return;
     }
-    if (record) {
+    if (record && eligible(record.item) && !layoutPending) {
       await display(record);
       lastSwitch = performance.now();
     }
+    switching = false;
+    if (layoutPending) reconcileLayout();
+    else syncTimer(true);
+  }
+
+  async function reconcileLayout() {
+    layoutPending = true;
+    if (switching || !current) return;
+    switching = true; syncTimer();
+    ++nextVersion; upcoming = null; nextTask = null;
+    while (layoutPending) {
+      layoutPending = false;
+      const members = groupMembers.get(current.item);
+      const group = memberGroup.get(current.item);
+      const target = desktopLayout.matches
+        ? (group && !failed.has(group) ? group : current.item)
+        : (members ? members.find(item => !failed.has(item)) : current.item);
+      const version = layoutVersion;
+      let record = target === current.item ? current : target ? await waitForLayout(prepare(target)) : null;
+      if (version !== layoutVersion) { layoutPending = true; continue; }
+      // A failed group makes its individual photos eligible again.
+      if (!record && eligible(current.item)) record = current;
+      if (!record) record = await loadRandom(null);
+      if (version !== layoutVersion) { layoutPending = true; continue; }
+      if (!record) break; // Keep the rendered photo if every replacement failed.
+      if (!eligible(record.item)) { layoutPending = true; continue; }
+      if (record !== current) await display(record);
+      else queueNext();
+    }
     switching = false; syncTimer(true);
   }
+  desktopLayout.addEventListener('change', () => {
+    layoutVersion++;
+    for (const cancel of Array.from(layoutWaiters)) cancel();
+    reconcileLayout();
+  });
 
   cover.addEventListener('pointerenter', event => {
     if (event.pointerType !== 'mouse') return;
@@ -290,6 +381,9 @@
     if (!record) { cover.hidden = true; return; }
     // Covers a stationary mouse that was already here when the script loaded.
     mouseInside = window.matchMedia('(hover: hover)').matches && cover.matches(':hover');
-    await display(record); syncTimer(true);
+    await display(record);
+    switching = false;
+    if (layoutPending) reconcileLayout();
+    else syncTimer(true);
   });
 })();

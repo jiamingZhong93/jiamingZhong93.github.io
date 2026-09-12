@@ -250,7 +250,7 @@ images:
     title_zh: "露易丝湖"
     description: "Stunning!"
     description_zh: "令人惊叹！"
-    position: "50% 51%"
+    position: "50% 60%"
     mobile_position: "50% 50%"
     fit: "cover"
     mobile_fit: "cover"
@@ -268,7 +268,7 @@ images:
     title_zh: "阿格尼丝湖"
     description: "A mountain lake above Lake Louise."
     description_zh: "路易斯湖上方的高山湖泊。"
-    position: "50% 52%"
+    position: "50% 60%"
     mobile_position: "50% 55%"
     fit: "cover"
     mobile_fit: "cover"
@@ -304,7 +304,7 @@ images:
     title_zh: "玛琳湖"
     description: "Picturesque!"
     description_zh: "如诗如画！"
-    position: "50% 20%"
+    position: "50% 96%"
     mobile_position: "50% 48%"
     fit: "cover"
     mobile_fit: "cover"
@@ -313,7 +313,7 @@ images:
     title_zh: "冰原大道"
     description: "Scenery is everywhere."
     description_zh: "沿途皆是风景。"
-    position: "50% 30%"
+    position: "50% 66%"
     mobile_position: "50% 45%"
     fit: "cover"
     mobile_fit: "cover"
@@ -322,7 +322,7 @@ images:
     title_zh: "约翰斯顿峡谷"
     description: "Amazing!"
     description_zh: "太震撼了！"
-    position: "50% 75%"
+    position: "50% 80%"
     mobile_position: "50% 60%"
     fit: "cover"
     mobile_fit: "cover"
@@ -426,3 +426,90 @@ images:
     mobile_position: "50% 50%"
     fit: "contain"
     mobile_fit: "contain"
+
+# Desktop only: related photos form one strip; phones keep the individual entries above.
+# Tiles appear left to right. Each file must also be enabled under images.
+# position is specific to this tile; weight sets its relative width. No files are merged.
+desktop_groups:
+  - id: robot-development
+    title: "Delivery robot: from development to demos"
+    title_zh: "配送机器人：从研发到展示"
+    description: "Testing at the Accelerator Center and showcasing at the Toronto Auto Show."
+    description_zh: "在 Accelerator Center 测试，并亮相多伦多车展。"
+    photos:
+      - file: photo_20221002_211816789_iOS.jpg
+        position: "50% 65%"
+        weight: 1.1
+      - file: photo_20221002_225600984_iOS.jpg
+        position: "50% 70%"
+        weight: 1
+      - file: photo_20230216_144647464_iOS.jpg
+        position: "50% 62%"
+        weight: 1.1
+      - file: photo_20230216_163928287_iOS.jpg
+        position: "50% 50%"
+        weight: 0.8
+        fit: "contain"
+  - id: campus-deliveries
+    title: "Campus deliveries"
+    title_zh: "校园配送"
+    description: "Street crossings, navigating among people, and parking from day to night."
+    description_zh: "从白天到夜晚，过马路、穿行人群与自动泊车。"
+    photos:
+      - file: photo_20221007_153114634_iOS.jpg
+        position: "48% 55%"
+      - file: photo_20221118_172355792_iOS.jpg
+        position: "50% 48%"
+      - file: photo_20221104_200559616_iOS.jpg
+        position: "50% 65%"
+      - file: photo_20221120_232621002_iOS.jpg
+        position: "50% 60%"
+  - id: winter-robots
+    title: "Delivery robots in winter"
+    title_zh: "冬季配送机器人"
+    description: "Campus deliveries and snow testing in Waterloo."
+    description_zh: "在滑铁卢开展校园配送与雪地测试。"
+    photos:
+      - file: photo_20221118_174312015_iOS.jpg
+        position: "50% 57%"
+        weight: 1.15
+      - file: photo_20230129_162430220_iOS.jpg
+        position: "50% 40%"
+        weight: 0.65
+      - file: photo_20230129_165020481_iOS.jpg
+        position: "40% 65%"
+        weight: 1.1
+      - file: photo_20230129_165423899_iOS.jpg
+        position: "60% 65%"
+        weight: 1.1
+  - id: robot-shuttle
+    title: "Robot & shuttle bus"
+    title_zh: "配送机器人与接驳巴士"
+    description: "Autonomous driving buddies, big and small."
+    description_zh: "一大一小，自动驾驶好伙伴。"
+    photos:
+      - file: photo_20221015_201823889_iOS.jpg
+        position: "50% 65%"
+        weight: 1.15
+      - file: photo_20221125_175832378_iOS.jpg
+        position: "60% 67%"
+        weight: 1.1
+      - file: photo_20221125_193929293_iOS.jpg
+        position: "50% 63%"
+        weight: 1.15
+      - file: photo_Big_little.jpg
+        position: "50% 50%"
+        weight: 0.6
+        fit: "contain"
+  - id: wet-track-testing
+    title: "Learning-based control"
+    title_zh: "基于学习的控制"
+    description: "Vehicle testing on low-friction road surfaces."
+    description_zh: "低附着路面上的实车测试。"
+    photos:
+      - file: photo_20230928_191105157_iOS.jpg
+        position: "50% 67%"
+      - file: photo_20230928_191124793_iOS.jpg
+        position: "50% 57%"
+      - file: photo_20230928_191137142_iOS.jpg
+        position: "50% 67%"

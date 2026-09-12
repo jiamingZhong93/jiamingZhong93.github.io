@@ -39,6 +39,24 @@
 {% endif %}
 {% endif %}
 {% endfor %}
+{% for group in background.desktop_groups %}
+{% unless group.enabled == false %}
+<figure class="home-background__slide home-background__slide--group" data-photo-key="group:{{ group.id | escape }}" data-photo-group="{{ group.id | escape }}">
+<div class="home-background__strip">
+{% for tile in group.photos %}
+<div class="home-background__tile{% if tile.fit == 'contain' %} is-contained{% endif %}" data-photo-key="/images/background/{{ tile.file | escape }}" style="--tile-position: {{ tile.position | default: '50% 50%' | escape }}; --tile-weight: {{ tile.weight | default: 1 }};">
+{% if tile.fit == 'contain' %}<img class="home-background__backdrop" src="{{ site.baseurl }}/images/background/{{ tile.file | escape }}" alt="" decoding="async" aria-hidden="true">{% endif %}
+<img class="home-background__image" src="{{ site.baseurl }}/images/background/{{ tile.file | escape }}" alt="" decoding="async">
+</div>
+{% endfor %}
+</div>
+<figcaption hidden>
+<span class="home-background__title" data-photo-en="{{ group.title | escape }}" data-photo-zh="{{ group.title_zh | default: group.title | escape }}">{{ group.title | escape }}</span>
+{% if group.description %}<span class="home-background__description" data-photo-en="{{ group.description | escape }}" data-photo-zh="{{ group.description_zh | default: group.description | escape }}">{{ group.description | escape }}</span>{% endif %}
+</figcaption>
+</figure>
+{% endunless %}
+{% endfor %}
 {% endcapture %}
 {% assign background_images = background_images | strip %}
 {% if background_images != '' %}
