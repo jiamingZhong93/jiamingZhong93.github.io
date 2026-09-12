@@ -1,5 +1,5 @@
 # New photos in images/background/ join automatically; metadata is optional.
-# One photo on every device. Hover/focus or open information pauses the timer.
+# One photo on every device. Hover anywhere or long press for both captions; this pauses the timer.
 enabled: true
 height: "220px"
 mobile_height: "150px"
@@ -7,6 +7,8 @@ interval: 3000
 fade_duration: 1000 # Crossfade in milliseconds, followed by the full interval above.
 position: "50% 50%"
 mobile_position: "50% 50%"
+# title/title_zh name each photo; description/description_zh provide its short details.
+# Older caption/caption_zh fields still work as title fallbacks; otherwise the filename is used.
 # enabled: false excludes an image from the random rotation.
 # Ordinary photos only need position/mobile_position for custom framing.
 # crop + source_size isolate a photo inside these existing composite examples.
@@ -14,21 +16,27 @@ mobile_position: "50% 50%"
 images:
   safetrucks-snow.jpg:
     position: "60% 55%"
-    caption: "Heavy vehicles in winter"
-    caption_zh: "冬季重型车辆行驶"
+    title: "Heavy vehicles in winter"
+    title_zh: "冬季重型车辆"
+    description: "SafeTrucks research on safer heavy-vehicle control. Photo: SafeTrucks."
+    description_zh: "SafeTrucks 重型车辆安全控制研究。图片：SafeTrucks。"
     credit: "Photo: SafeTrucks"
     credit_zh: "图片：SafeTrucks"
     source: "https://safetrucks.fmi.fi/index.php/project-description/"
   f1tenth.jpg:
     crop: "3 3 480 312"
     source_size: [791, 318]
-    caption: "F1TENTH research platform"
-    caption_zh: "F1TENTH 研究平台"
+    title: "F1TENTH"
+    title_zh: "F1TENTH"
+    description: "Agile planning and control with vision and LiDAR."
+    description_zh: "结合视觉与激光雷达的敏捷规划与控制。"
   xlerobot.jpg:
     crop: "291 3 434 312"
     source_size: [728, 318]
-    caption: "XLeRobot mobile manipulation"
-    caption_zh: "XLeRobot 移动操作"
+    title: "XLeRobot"
+    title_zh: "XLeRobot"
+    description: "Generative mobile manipulation with a dual-arm robot."
+    description_zh: "面向双臂机器人的生成式移动操作。"
   # Keep research diagrams in the folder, outside the photo selection.
   drivellm.jpg:
     enabled: false

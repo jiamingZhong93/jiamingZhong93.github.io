@@ -14,9 +14,17 @@
 {% else %}
 <img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
 {% endif %}
+{% assign photo_title = settings.title | default: settings.caption | default: file.name %}
+{% assign photo_title_zh = settings.title_zh | default: settings.caption_zh | default: photo_title %}
+{% assign photo_description = settings.description | default: '' %}
+{% assign photo_description_zh = settings.description_zh | default: photo_description %}
 <figcaption hidden>
-<span data-photo-en="{{ settings.caption | default: file.name | escape }}" data-photo-zh="{{ settings.caption_zh | default: settings.caption | default: file.name | escape }}">{{ settings.caption | default: file.name }}</span>
-{% if settings.credit %}<small>{% if settings.source %}<a href="{{ settings.source | escape }}">{% endif %}<span data-photo-en="{{ settings.credit | escape }}" data-photo-zh="{{ settings.credit_zh | default: settings.credit | escape }}">{{ settings.credit }}</span>{% if settings.source %}</a>{% endif %}</small>{% endif %}
+{% if settings.source %}
+<a class="home-background__title" href="{{ settings.source | escape }}" data-photo-credit-en="{{ settings.credit | escape }}" data-photo-credit-zh="{{ settings.credit_zh | default: settings.credit | escape }}"><span data-photo-en="{{ photo_title | escape }}" data-photo-zh="{{ photo_title_zh | escape }}">{{ photo_title | escape }}</span></a>
+{% else %}
+<span class="home-background__title" data-photo-en="{{ photo_title | escape }}" data-photo-zh="{{ photo_title_zh | escape }}">{{ photo_title | escape }}</span>
+{% endif %}
+{% if photo_description != '' %}<span class="home-background__description" data-photo-en="{{ photo_description | escape }}" data-photo-zh="{{ photo_description_zh | escape }}">{{ photo_description | escape }}</span>{% endif %}
 </figcaption>
 </figure>
 {% endunless %}
@@ -26,12 +34,10 @@
 {% endcapture %}
 {% assign background_images = background_images | strip %}
 {% if background_images != '' %}
-<div class="home-background" data-interval="{{ background.interval | default: 3000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+<div class="home-background" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-interval="{{ background.interval | default: 3000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
 <div class="home-background__stage" data-background-stage aria-hidden="true"></div>
 <div class="home-background__controls" hidden>
-<button type="button" class="home-background__control home-background__info" aria-label="Current photo information" aria-expanded="false" aria-controls="current-photo-info"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 11v6M12 7v.1" /></svg></button>
-<button type="button" class="home-background__control home-background__next" aria-label="Preview or show next photo" aria-expanded="false" aria-controls="next-photo-info"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></button>
 <div class="home-background__panel" id="current-photo-info" hidden></div>
 <div class="home-background__panel home-background__panel--next" id="next-photo-info" hidden></div>
 </div>

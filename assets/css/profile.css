@@ -4,25 +4,23 @@ body { background: var(--paper); color: var(--ink); font-family: -apple-system, 
 a, a:visited { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-/* A single full-width photo with two quiet, stable overlay controls. */
-.home-background { position: relative; width: 100%; height: var(--background-height, 220px); overflow: hidden; background: var(--soft); }
-.home-background__stage, .home-background__fallback { width: 100%; height: 100%; cursor: pointer; }
+/* The photo itself is the interaction surface; captions share two separate columns. */
+.home-background { position: relative; width: 100%; height: var(--background-height, 220px); overflow: hidden; background: var(--soft); touch-action: pan-y pinch-zoom; }
+.home-background:focus-visible { outline: 2px solid white; outline-offset: -4px; }
+.home-background__stage, .home-background__fallback { width: 100%; height: 100%; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .home-background__slide { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; overflow: hidden; }
 .home-background__image { display: block; width: 100%; height: 100%; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); }
-.home-background::after { content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: min(100%, 100px); background: linear-gradient(transparent, rgba(12,23,30,.65)); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+.home-background::after { content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: min(100%, 130px); background: linear-gradient(transparent, rgba(12,23,30,.7)); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
 .home-background[data-info-open]::after { opacity: 1; }
-/* 28px visible circles, with comfortable 44px touch targets. Both icons use one stroke style. */
-.home-background__control { position: absolute; z-index: 3; bottom: 4px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; margin: 0; border: 0; border-radius: 50%; background: transparent; color: white; opacity: .28; transition: opacity .25s ease; cursor: pointer; }
-.home-background__control::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: rgba(17,31,40,.24); backdrop-filter: blur(3px); pointer-events: none; }
-.home-background__control svg { position: relative; display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
-.home-background__info { left: 4px; }
-.home-background__next { right: 4px; }
-.home-background__control:hover, .home-background__control:focus-visible, .home-background__control[aria-expanded="true"] { opacity: .9; }
-.home-background__control:focus-visible { outline: 2px solid white; outline-offset: 3px; }
-.home-background__panel { position: absolute; z-index: 2; bottom: 15px; left: 52px; width: max-content; max-width: min(440px, calc(100% - 104px)); padding: 0; border: 0; color: rgba(255,255,255,.95); font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.5; text-shadow: 0 1px 8px rgba(0,0,0,.4); cursor: auto; overflow-wrap: anywhere; animation: photo-caption-in .3s ease both; }
-.home-background__panel--next { left: auto; right: 52px; text-align: right; }
+.home-background__controls { position: absolute; z-index: 2; inset: auto 16px 12px; display: grid; grid-template-columns: minmax(0,7fr) minmax(0,3fr); align-items: end; gap: 16px; pointer-events: none; }
+.home-background__panel { justify-self: start; min-width: 0; max-width: 100%; max-height: calc(var(--background-height,220px) - 24px); overflow-y: auto; overscroll-behavior: contain; padding: 0; border: 0; color: rgba(255,255,255,.95); font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.5; text-shadow: 0 1px 8px rgba(0,0,0,.4); cursor: auto; overflow-wrap: anywhere; pointer-events: auto; animation: photo-caption-in .3s ease both; }
+.home-background__panel--next { justify-self: end; text-align: right; }
 .home-background__panel small { display: block; font-size: 10px; margin-top: 1px; opacity: .8; }
 .home-background__panel .home-background__label { margin: 0; }
+.home-background__title { display: block; font-size: 12px; line-height: 1.5; font-weight: 400; }
+.home-background__panel:not(.home-background__panel--next) .home-background__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-background__description { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; max-height: 3em; overflow: hidden; font-size: 10px; line-height: 1.5; margin-top: 1px; opacity: .8; }
+.home-background__panel--next .home-background__title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
 @keyframes photo-caption-in { from { opacity: 0; } to { opacity: 1; } }
 .home-background__panel a, .home-background__panel a:visited { color: white; text-decoration: underline; text-underline-offset: 3px; }
 .home-background [hidden] { display: none !important; }
@@ -49,7 +47,7 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 /* The theme originally used a horizontal author profile; keep a stable column. */
 .profile_box, .author__avatar { display: block; width: auto; }
 .author__content { display: block; width: 100%; min-width: 0; padding: 0; line-height: 1.6; }
-.author__avatar img { display: block; width: 190px; height: 190px; min-width: 0; max-width: 100%; padding: 0; border: 0; border-radius: 16px; object-fit: cover; }
+.author__avatar img { display: block; width: 208px; height: 236px; min-width: 0; max-width: 100%; padding: 0; border: 0; border-radius: 16px; object-fit: cover; }
 .portrait-toggle { display: block; max-width: 100%; padding: 0; margin: 0; border: 0; border-radius: 16px; background: transparent; color: inherit; cursor: pointer; perspective: 900px; }
 .portrait-toggle:disabled { cursor: default; opacity: 1; }
 /* Only the inner card turns; the pointer/touch target never moves. A small
@@ -58,9 +56,10 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .portrait-flipper.is-flipped { transform: rotateY(180deg); }
 .portrait-flipper img { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .portrait-flipper .portrait-alternate { transform: rotateY(180deg); }
-.profile_box .author__name { font-size: 1.35rem; letter-spacing: -.035em; margin: 1.1rem 0 .4rem; }
-.profile_box .author__bio { font-size: .875rem; color: var(--ink); margin: 0 0 .45rem; }
-.profile_box .author__affiliation { font-size: .875rem; line-height: 1.8; color: var(--muted); margin: .4rem 0; }
+.profile_box .author__name { font-size: 1.35rem; letter-spacing: -.035em; margin: 1.1rem 0 .65rem; }
+.profile_box .author__bio { font-size: .875rem; color: var(--ink); margin: 0; font-weight: 550; }
+.profile_box .author__affiliation { font-size: .875rem; line-height: 1.55; color: var(--muted); margin: .12rem 0 0; }
+.author__role + .author__role { margin-top: .85rem; }
 .author__affiliation a { color: var(--muted); }
 .profile-links { list-style: none; padding: .5rem 0 0; margin: 1rem 0 0; border: 0; }
 .profile-links li { margin: .4rem 0; font-size: .875rem; }
@@ -76,7 +75,11 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 html[lang="zh-CN"] .localized-copy[lang="en"] { display: none; }
 html[lang="zh-CN"] .localized-copy[lang="zh-CN"] { display: block; }
 html[lang="zh-CN"] .localized-copy { line-height: 1.9; }
-.intro-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.2rem 0 .3rem; font-size: .82rem; font-weight: 600; }
+.home-vision { margin-top: 1.65rem; }
+.page__content .vision-heading { font: inherit; font-size: .9rem; font-weight: 650; margin: 0 0 .8rem; padding: 0; border: 0; }
+.vision-points { padding-left: 1.15rem; margin: .8rem 0 0; font-size: .95rem; color: var(--muted); }
+.vision-points li { margin-bottom: .4rem; padding-left: .15rem; }
+.vision-points li::marker { color: var(--accent); }
 .profile-section { padding-top: 3.1rem; }
 .page__content .section-label { font-family: inherit; font-size: .8rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); line-height: 1.5; margin: 0 0 1.2rem; padding: 0; border: 0; }
 html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
@@ -144,13 +147,14 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
 @media (min-width: 801px) { .author__affiliation a { white-space: nowrap; } }
 @media (max-width: 1050px) {
   #main { gap: 28px; padding: 2rem 1.5rem 0; }
-  .author__avatar img { width: 174px; height: 174px; }
+  .author__avatar img { width: 198px; height: 224px; }
   .research-project.has-media { gap: 1.1rem; grid-template-columns: minmax(0,34%) minmax(0,1fr); }
   .career-list article { grid-template-columns: 145px minmax(0,1fr); }
 }
 @media (max-width: 800px) {
   html { font-size: 16px; }
   .home-background { height: var(--background-mobile-height, 150px); }
+  .home-background__panel { max-height: calc(var(--background-mobile-height,150px) - 24px); }
   .home-background__image { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
   .masthead__inner-wrap { padding: .8rem 1.1rem; }
   .profile-nav__links { flex-wrap: wrap; gap: .2rem 1rem; }
@@ -162,11 +166,14 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
   .profile-nav__links a { padding: .75rem 0; }
   #main { display: block; padding: 1.4rem 1.2rem 0; }
   .sidebar, .sidebar.sticky { width: 100%; float: none; margin: 0 0 2rem; padding: 0; position: static !important; }
-  .profile_box { display: grid; grid-template-columns: 86px minmax(0,1fr); gap: 0 1rem; align-items: start; }
-  .author__avatar img { width: 86px; height: 86px; border-radius: 12px; }
+  .profile_box { display: grid; grid-template-columns: clamp(96px,26vw,112px) minmax(0,1fr); gap: 0 1rem; align-items: start; }
+  .author__avatar { position: relative; align-self: stretch; min-height: 0; }
+  .portrait-toggle { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; }
+  .portrait-flipper { height: 100%; }
+  .author__avatar img { width: 100%; height: 100%; border-radius: 12px; }
   .profile_box .author__name { margin: 0 0 .25rem; font-size: 1.4rem; }
   .profile_box .author__bio { font-size: .875rem; }
-  .profile_box .author__affiliation { font-size: .875rem; margin: .2rem 0; }
+  .profile_box .author__affiliation { font-size: .875rem; margin: .12rem 0 0; }
   .profile-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; padding: .75rem 0 0; margin: .75rem 0 0; }
   .profile-links li { font-size: .875rem; margin: 0; }
   .profile-links i { width: 1.2rem; }

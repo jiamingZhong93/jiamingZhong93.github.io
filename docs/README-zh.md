@@ -1,6 +1,6 @@
 # 主页日常维护指南
 
-[公开主页](https://jiamingzhong93.github.io/) · [English README](../README.md) · [发布设置](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)
+[公开主页](https://jiamingzhong.world/) · [English README](../README.md) · [发布设置](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)
 
 **日常流程：** 本地预览 → 同步修改中英文 → 检查电脑和手机效果 → 提交并推送 → 确认上线。
 
@@ -22,17 +22,19 @@
 | 修改内容 | 文件和位置 |
 | --- | --- |
 | 开场句、个人简介、各部分标题 | [_pages/about.md](../_pages/about.md) |
-| 默认/备用头像、英文职位/单位、个人链接 | [_config.yml](../_config.yml) 的 `author` |
-| 侧栏中文职位、单位和大学 | [_includes/author-profile.html](../_includes/author-profile.html) 的 `data-zh` |
-| 研究公式、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
+| 默认/备用头像、个人链接 | [_config.yml](../_config.yml) 的 `author` |
+| 中英文职位及单位 | [_config.yml](../_config.yml) 的 `author.roles` |
+| Home 研究愿景、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
 | 论文、作者角色符号 | [_data/publications.json](../_data/publications.json)、[_data/publication_roles.yml](../_data/publication_roles.yml) |
-| 工作与教育经历 | [_data/career.yml](../_data/career.yml) |
+| 教学、工作与教育经历 | [_data/career.yml](../_data/career.yml) |
 | 导航、项目链接的翻译 | [_data/navigation.yml](../_data/navigation.yml)、[_data/translations.yml](../_data/translations.yml) |
-| 顶部背景照片、裁切位置、中英文说明 | [_data/background.yml](../_data/background.yml) |
+| 顶部背景照片、裁切位置、中英文标题与描述 | [_data/background.yml](../_data/background.yml) |
 | 浏览器标题、搜索简介 | [_includes/seo.html](../_includes/seo.html)；英文简介在 [_config.yml](../_config.yml) |
 | 字体、间距、手机布局 | [assets/css/profile.css](../assets/css/profile.css) |
 
 导航名称、中英文翻译和章节链接统一在 `_data/navigation.yml` 中维护。**Home / 主页** 与其他导航项使用相同样式。手机上导航固定在顶部，显示当前章节；轻触后从下拉菜单切换章节。
+
+Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 相同的中英文字段，显示在 Experience 前面。
 
 ### 中英文要一起维护
 
@@ -40,13 +42,21 @@
 
 - **数据文件：** 成对修改 `title/title_zh`、`description/description_zh`、`image_alt/image_alt_zh`。公式还包括 `learning/learning_zh`、`prior/prior_zh`。
 - **个人简介：** 在 `_pages/about.md` 中分别修改 `lang="en"` 和 `lang="zh-CN"` 的两个 `localized-copy` 区块。开场句和各部分标题的中文在 `data-zh="中文"` 中。
-- **侧栏：** 英文职位和单位在 `_config.yml`，对应中文在 `_includes/author-profile.html`。
+- **个人职位：** 在 `_config.yml` 的 `author.roles` 列表统一修改中英文。每项包含 `title/title_zh`、`institution/institution_zh` 和 `url`；列表顺序即显示顺序。
 - **工作经历：** `dates` 和 `dates_zh` 都填写起止月份，例如 `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`。
 - **新项目链接名称：** 在 `_data/translations.yml` 的 `links` 下加入中文对应值。项目字段和链接名称缺少翻译时显示英文。
 
 不要把链接或图标包在会被 `data-zh` 替换的文字元素内。每次更新内容后都切换语言检查一次。
 
-## 3. 修改项目和图片
+## 3. 修改研究愿景、项目和图片
+
+**Home 末尾的 Research vision / 研究愿景** 在 `_data/research.yml` 的 `vision` 下维护：修改公式字段、`description/description_zh` 简介，以及 `bullets` 简短要点。每条要点同时填写中英文：
+
+```yaml
+  bullets:
+    - text: "One concise research direction."
+      text_zh: "一句简短的研究方向。"
+```
 
 在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时填写中文。
 
@@ -88,6 +98,8 @@
 
 位置参数依次控制横向、纵向裁切。每次刷新先显示默认头像，搜索和社交分享也继续使用默认头像。鼠标每次进入头像或点击头像都会切换；触屏上每轻触一次切换一次。未配置备用照片或图片加载失败时禁用切换，保留默认头像。删除 `avatar_alternate` 即可关闭此功能。
 
+头像尺寸在 `assets/css/profile.css` 中设置：电脑为 208 × 236 px，窗口宽度不超过 1050 px 时为 198 × 224 px；手机宽度为 96–112 px，高度跟随旁边的职位文字。改尺寸时调整 CSS，改裁切位置时调整上面的 position 参数。
+
 头像采用轻柔的 3D 翻面；动画中再次点击会流畅地反向切换，触发区域始终固定。系统开启“减少动态效果”时直接切换。如需调整动画，在 `assets/css/profile.css` 的 `.portrait-flipper` 中修改 `720ms` 时长和缓动参数。
 
 当前备用图是 **SafeTrucks 雪地照片的临时示例**，与横幅照片来源相同。之后换成自己的照片，并同步更新中英文说明。
@@ -96,11 +108,11 @@
 
 所有设备的横幅都只显示一张铺满宽度的照片，刷新时随机选择首张。每张停留 3 秒，再用 1 秒柔和淡入淡出切换下一张；点击照片也会切换。照片多于一张时，相邻两张不会重复。调整窗口大小或切换语言保留当前照片和已选好的下一张。建议使用清晰的宽幅照片；裁切只发生在浏览器中，不修改原文件。
 
-图像底部左侧 **i** 显示当前照片说明；右侧 **→** 悬停时预告下一张说明，点击时切换。说明文字直接显示在照片上，没有卡片背景。触屏时，轻触 **i** 展开/收起说明；轻触 **→** 第一次预告，再点一次切换。轻触说明区以外的照片区域，也会切换并收起说明。点击网页正文或其他链接不切图，说明区及其中的来源链接也不会触发切换。
+电脑上，鼠标悬停在**照片任意区域**，同时显示当前照片说明和下一张预告，不再显示角落图标。点击说明区以外的照片区域切换；只要鼠标仍在横幅内，两条说明就保持显示并更新。移开鼠标后收起。
 
-电脑上点击 **→** 后，只要鼠标仍停在上面，说明会继续显示并更新为新的下一张预告；移开后收起。
+触屏时，**长按约半秒**显示两条说明，并保留供阅读；松手不会切图。轻触说明区以外的照片区域，切换并收起说明；普通短按也会切换。滚动、拖动和双指缩放不会触发手动切图。说明文字及其来源链接不会切图。
 
-鼠标悬停在控件或说明区、触屏说明展开、键盘焦点在控件或说明区时暂停计时；页面隐藏或横幅滚出屏幕时也暂停。暂停结束后继续剩余时间，每次过渡完成后重新计算停留时间。**Esc** 收起说明。仅有一张可用照片时不显示下一张箭头，也不启动轮播；坏图自动跳过。
+鼠标悬停横幅任意区域、触屏按住或说明保持展开、键盘焦点位于横幅或说明内时暂停计时。页面隐藏或横幅滚出屏幕时也暂停，恢复后继续剩余时间；每次过渡完成后重新计算停留时间。用 **Tab** 聚焦横幅显示说明，**回车/空格**切换，**Esc** 收起说明。仅有一张可用照片时只显示当前说明、不轮播；坏图自动跳过。
 
 新文件会自动加入。需要单独设置时，在 `_data/background.yml` 的 `images → 文件名` 下添加：
 
@@ -108,12 +120,16 @@
   my-photo.jpg:
     position: "50% 50%"
     mobile_position: "60% 50%"
-    caption: "A short, factual photo description"
-    caption_zh: "简短、客观的照片说明"
+    title: "A short photo title"
+    title_zh: "简短的照片标题"
+    description: "One brief description of the photo."
+    description_zh: "一句简短的照片说明。"
 ```
 
 - `position` / `mobile_position`：先横向%、后纵向%；未设置时使用文件顶部的默认值。
-- `caption` / `caption_zh`：可选中英文照片说明，鼠标悬停、键盘聚焦或轻触 **i** 显示。公开来源图片还可填 `credit` / `credit_zh` 署名及 `source` 来源网页链接。未填中文时显示英文。
+- **左下角：** 第一行是 `title/title_zh` 标题，下方是较小字号的 `description/description_zh` 描述，描述最多两行。**右下角：** 第一行是“Next / 下一张”，第二行只显示下一张的标题。左右底部对齐，大部分宽度留给左侧；标题应简短，便于手机阅读。
+- 未填中文时显示英文；旧的 `caption/caption_zh` 仍可作为标题使用，标题未填时显示文件名。描述可以省略。
+- `source` 让当前标题链接到来源网页；`credit/credit_zh` 提供无障碍署名。需要直接显示的图片署名写进描述，可参考 SafeTrucks 示例。
 - 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` / `mobile_height` 控制高度。
 - 文件顶部的 `fade_duration: 1000` 控制淡入淡出过渡的毫秒数；`interval: 3000` 控制**过渡完成后的停留时间**。照片、播放时间和中英文说明仍统一在这一配置文件中维护。
 - 现有 F1TENTH、XLeRobot 示例通过 `crop`（源图像素中的 x、y、宽、高）与 `source_size` 截取拼图里的实拍区域。**换成独立照片后请删除这两个字段**，普通照片不需要它们。

@@ -1,6 +1,6 @@
 # Homepage maintenance
 
-[Live homepage](https://jiamingzhong93.github.io/) · [中文维护指南](docs/README-zh.md) · [Pages settings](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)
+[Live homepage](https://jiamingzhong.world/) · [中文维护指南](docs/README-zh.md) · [Pages settings](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)
 
 **Daily workflow:** preview locally → edit English and Chinese → check desktop and phone → commit and push → confirm deployment.
 
@@ -22,17 +22,19 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Content | File and fields |
 | --- | --- |
 | Opening sentence, biography, section labels | [_pages/about.md](_pages/about.md) |
-| Default/alternate portrait, English role/affiliations, profile links | [_config.yml](_config.yml), under `author` |
-| Chinese sidebar role/affiliations | [_includes/author-profile.html](_includes/author-profile.html), `data-zh` |
-| Research formula and projects | [_data/research.yml](_data/research.yml), `vision` and `projects` |
+| Default/alternate portrait and profile links | [_config.yml](_config.yml), under `author` |
+| Bilingual profile titles and institutions | [_config.yml](_config.yml), `author.roles` |
+| Home research vision and projects | [_data/research.yml](_data/research.yml), `vision` and `projects` |
 | Publications and author-role symbols | [_data/publications.json](_data/publications.json), [_data/publication_roles.yml](_data/publication_roles.yml) |
-| Experience and education | [_data/career.yml](_data/career.yml) |
+| Teaching, experience and education | [_data/career.yml](_data/career.yml) |
 | Navigation and project-link translations | [_data/navigation.yml](_data/navigation.yml), [_data/translations.yml](_data/translations.yml) |
-| Cover photos, framing and bilingual captions | [_data/background.yml](_data/background.yml) |
+| Cover photos, framing, bilingual titles and descriptions | [_data/background.yml](_data/background.yml) |
 | Browser title and search description | [_includes/seo.html](_includes/seo.html); English description in [_config.yml](_config.yml) |
 | Fonts, spacing, responsive layout | [assets/css/profile.css](assets/css/profile.css) |
 
 Navigation labels, Chinese translations and section links live together in `_data/navigation.yml`. **Home** uses the same style as the other links. On phones, the sticky navigation shows the current section; tap it to choose another section from the dropdown.
+
+Teaching entries live under `teaching` in `_data/career.yml` and use the same bilingual fields as Experience. They appear immediately before Experience.
 
 ### Maintain English and Chinese together
 
@@ -40,13 +42,21 @@ The selector changes language on the same page. Every reload starts in English; 
 
 - **Data files:** update English fields and matching `_zh` fields together: `title/title_zh`, `description/description_zh`, `image_alt/image_alt_zh`. For the formula, also pair `learning/learning_zh` and `prior/prior_zh`.
 - **Biography:** edit both `localized-copy` blocks (`lang="en"` and `lang="zh-CN"`) in `_pages/about.md`. The opening sentence and section labels use `data-zh="中文"`.
-- **Sidebar:** English role/affiliations are in `_config.yml`; their Chinese text is in `_includes/author-profile.html`.
+- **Profile roles:** edit the `author.roles` list in `_config.yml`. Each entry has `title/title_zh`, `institution/institution_zh` and `url`; list order controls display order. Both languages are maintained here.
 - **Experience:** include start/end months in both `dates` and `dates_zh`, e.g. `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`.
 - **New project-link labels:** add the Chinese mapping under `links` in `_data/translations.yml`. Untranslated project fields/labels fall back to English.
 
 Keep links and icons outside elements whose text is replaced by `data-zh`. Check both languages after each content update.
 
-## 3. Update projects and pictures
+## 3. Update research, projects and pictures
+
+The **Research vision at the end of Home** is in `_data/research.yml` under `vision`: edit the formula fields, `description/description_zh`, and the short `bullets` list. Each bullet has both languages:
+
+```yaml
+  bullets:
+    - text: "One concise research direction."
+      text_zh: "一句简短的研究方向。"
+```
 
 Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Use a short description and maintain its Chinese fields.
 
@@ -88,6 +98,8 @@ In `_config.yml`, keep these settings under `author`:
 
 Position values set the horizontal and vertical crop. Every refresh starts with the default portrait, which also remains the search/social sharing image. Entering the portrait with a mouse or clicking it toggles the photo; on touch screens, each tap toggles it. An absent or broken alternate image disables switching and keeps the default. Remove `avatar_alternate` to disable this feature.
 
+Portrait sizes are set in `assets/css/profile.css`: 208 × 236 px on desktop (198 × 224 px at widths up to 1050 px). On phones, width is 96–112 px and height follows the adjacent role text. Adjust the CSS to resize; use the position settings above to reframe.
+
 Portraits turn with a gentle 3D flip; another tap/click during the animation smoothly reverses it. The hit area stays fixed. Systems with reduced motion enabled switch immediately. Adjust the `720ms` duration and easing in `.portrait-flipper` in `assets/css/profile.css` if desired.
 
 The current alternate is a **temporary SafeTrucks snow-photo example**, copied from the same source as the cover photo. Replace it with your own photo and update both descriptions.
@@ -96,11 +108,11 @@ The current alternate is a **temporary SafeTrucks snow-photo example**, copied f
 
 The cover displays one full-width photo on every device, starting with a random photo on refresh. It holds each photo for 3 seconds, then softly crossfades to the next over 1 second; clicking the photo also advances it. Consecutive photos differ when more than one is available. Resizing and changing language retain the current photo and next candidate. Choose clear, wide photographs; framing happens in the browser without changing the original files.
 
-At the bottom of the image, the left **i** shows the current photo's details; the right **→** previews the next photo's details on hover and advances on click. The text sits directly over the photo, without a card. On touch screens, tap **i** to show/hide details; tap **→** once to preview, again to advance. Tapping the photo outside the details also advances and closes the explanation. Clicking text or links elsewhere on the page does not change the photo. Details and source links themselves never advance it.
+Hover **anywhere on the photo** to show both the current-photo details and the next-photo preview. There are no corner icons. Click the photo outside those details to advance; the captions stay open while the pointer remains over the banner. Moving away closes them.
 
-On desktop, clicking **→** while keeping the pointer over it leaves the next-photo details open and updates them for the new candidate. Moving away closes them.
+On touch screens, **long press for about half a second** to show both captions and keep them open for reading. Releasing that long press does not change the photo. Tap outside the captions to advance and close them; a normal short tap also advances. Scrolling, dragging and pinch gestures do not advance the photo. Caption text and source links never trigger a switch.
 
-The timer pauses while hovering over a control/details, while touch information is open, or while keyboard focus is on a control/details. It also pauses when the page or banner is out of view. It resumes the remaining time when those pauses end; each completed transition starts a fresh hold interval. **Esc** closes details. One available photo stays visible without a next arrow or timer; failed images are skipped.
+The timer pauses while hovering anywhere over the banner, during a touch gesture or while its details remain open, and while the banner/details have keyboard focus. It also pauses when the page or banner is out of view, then resumes the remaining time. Every completed transition starts a fresh hold interval. **Tab** focuses the banner and shows details; **Enter/Space** advances; **Esc** closes details. One available photo stays visible with only its current details and no timer; failed images are skipped.
 
 New files join automatically. Optional settings live under `images → filename` in `_data/background.yml`:
 
@@ -108,12 +120,16 @@ New files join automatically. Optional settings live under `images → filename`
   my-photo.jpg:
     position: "50% 50%"
     mobile_position: "60% 50%"
-    caption: "A short, factual photo description"
-    caption_zh: "简短、客观的照片说明"
+    title: "A short photo title"
+    title_zh: "简短的照片标题"
+    description: "One brief description of the photo."
+    description_zh: "一句简短的照片说明。"
 ```
 
 - `position` / `mobile_position`: horizontal %, then vertical %. Values fall back to the settings at the top of the file.
-- `caption` / `caption_zh`: optional photo details, shown on hover, keyboard focus or by tapping **i**. Add `credit` / `credit_zh` and `source` for an external photo credit and source-page link. Missing Chinese text falls back to English.
+- **Left:** `title/title_zh` first, then smaller `description/description_zh` text, limited to two lines. **Right:** “Next”, then only the next photo's title. Both sides align at the bottom; the left gets most of the width on every device. Keep titles brief for phones.
+- Missing Chinese fields fall back to English. Legacy `caption/caption_zh` still work as title fields; an absent title uses the filename. Descriptions are optional.
+- `source` links the current title to the source page; `credit/credit_zh` provides accessible attribution. Include any visible photo credit in the description, as in the SafeTrucks example.
 - Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
 - Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
 - The existing F1TENTH and XLeRobot examples use `crop` (x, y, width, height in source pixels) and `source_size` to show only the photographic part of a composite. **Remove both fields when replacing either file with a standalone photo**; ordinary photos do not need them.

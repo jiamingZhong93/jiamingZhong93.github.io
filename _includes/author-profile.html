@@ -1,9 +1,17 @@
 <div class="profile_box" itemscope itemtype="https://schema.org/Person">
 <div class="author__avatar">
 <button type="button" class="portrait-toggle" aria-label="Switch profile photo" data-zh-aria-label="切换头像" data-alternate="{{ site.author.avatar_alternate | escape }}" data-alternate-alt="{{ site.author.avatar_alternate_alt | default: site.author.name | escape }}" data-alternate-alt-zh="{{ site.author.avatar_alternate_alt_zh | default: site.author.avatar_alternate_alt | default: site.author.name | escape }}" data-default-position="{{ site.author.avatar_position | default: '50% 50%' | escape }}" data-alternate-position="{{ site.author.avatar_alternate_position | default: '50% 50%' | escape }}" disabled>
-<img src="{{ site.author.avatar }}" alt="{{ site.author.name }}" width="190" height="190" itemprop="image" style="object-position: {{ site.author.avatar_position | default: '50% 50%' | escape }};">
+<img src="{{ site.author.avatar }}" alt="{{ site.author.name }}" width="208" height="236" itemprop="image" style="object-position: {{ site.author.avatar_position | default: '50% 50%' | escape }};">
 </button></div>
-<div class="author__content"><h1 class="author__name" itemprop="name">{{ site.author.name }}</h1><p class="author__bio" data-zh="副研究员">{{ site.author.bio }}</p><p class="author__affiliation"><a href="{{ site.author.employer_url }}" data-zh="加拿大国家研究委员会">{{ site.author.employer }}</a><br><a href="{{ site.author.education_url }}" data-zh="滑铁卢大学 · 博士">{{ site.author.education }}</a></p></div>
+<div class="author__content">
+<h1 class="author__name" itemprop="name">{{ site.author.name }}</h1>
+{% for role in site.author.roles %}
+<div class="author__role">
+<p class="author__bio" data-zh="{{ role.title_zh | default: role.title | escape }}">{{ role.title }}</p>
+<p class="author__affiliation"><a href="{{ role.url }}" data-zh="{{ role.institution_zh | default: role.institution | escape }}">{{ role.institution }}</a></p>
+</div>
+{% endfor %}
+</div>
 <ul class="profile-links">
 <li><a href="{{ site.author.googlescholar }}"><i class="fas fa-graduation-cap" aria-hidden="true"></i> <span data-zh="谷歌学术">Google Scholar</span></a></li>
 <li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
