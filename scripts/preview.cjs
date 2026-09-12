@@ -86,6 +86,7 @@ async function main() {
   async function build() {
     const site = YAML.parse(read('_config.yml'));
     // Canonical URLs and template-generated navigation stay on the local server.
+    site.time = new Date(); // Match Jekyll's build timestamp for versioned CSS/JS URLs.
     site.url = localUrl;
     site.baseurl = '';
     site.data = {};

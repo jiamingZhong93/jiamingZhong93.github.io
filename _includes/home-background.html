@@ -1,6 +1,7 @@
 {% assign background = site.data.background %}
 {% if page.url == '/' and background.enabled %}
 {% assign background_files = site.static_files | sort: 'path' %}
+{% assign background_fallback = '' %}
 {% capture background_images %}
 {% for file in background_files %}
 {% assign extension = file.extname | downcase %}
@@ -8,6 +9,7 @@
 {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.gif' or extension == '.webp' or extension == '.svg' %}
 {% assign settings = background.images[file.name] %}
 {% unless settings.enabled == false %}
+{% capture background_image %}
 <figure class="home-background__slide" data-photo-key="{{ file.path | escape }}">
 {% if settings.crop and settings.source_size %}
 <svg class="home-background__image" viewBox="{{ settings.crop | escape }}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg>
@@ -19,14 +21,13 @@
 {% assign photo_description = settings.description | default: '' %}
 {% assign photo_description_zh = settings.description_zh | default: photo_description %}
 <figcaption hidden>
-{% if settings.source %}
-<a class="home-background__title" href="{{ settings.source | escape }}" data-photo-credit-en="{{ settings.credit | escape }}" data-photo-credit-zh="{{ settings.credit_zh | default: settings.credit | escape }}"><span data-photo-en="{{ photo_title | escape }}" data-photo-zh="{{ photo_title_zh | escape }}">{{ photo_title | escape }}</span></a>
-{% else %}
 <span class="home-background__title" data-photo-en="{{ photo_title | escape }}" data-photo-zh="{{ photo_title_zh | escape }}">{{ photo_title | escape }}</span>
-{% endif %}
 {% if photo_description != '' %}<span class="home-background__description" data-photo-en="{{ photo_description | escape }}" data-photo-zh="{{ photo_description_zh | escape }}">{{ photo_description | escape }}</span>{% endif %}
 </figcaption>
 </figure>
+{% endcapture %}
+{% if background_fallback == '' %}{% assign background_fallback = background_image %}{% endif %}
+{{ background_image }}
 {% endunless %}
 {% endif %}
 {% endif %}
@@ -36,13 +37,12 @@
 {% if background_images != '' %}
 <div class="home-background" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-interval="{{ background.interval | default: 3000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
-<div class="home-background__stage" data-background-stage aria-hidden="true"></div>
+<div class="home-background__stage" data-background-stage aria-hidden="true">{{ background_fallback }}</div>
 <div class="home-background__controls" hidden>
 <div class="home-background__panel" id="current-photo-info" hidden></div>
 <div class="home-background__panel home-background__panel--next" id="next-photo-info" hidden></div>
 </div>
-<noscript><div class="home-background__fallback">{{ background_images }}</div></noscript>
 </div>
-<script src="{{ site.baseurl }}/assets/js/background.js"></script>
+<script src="{{ site.baseurl }}/assets/js/background.js?v={{ site.time | date: '%s' }}"></script>
 {% endif %}
 {% endif %}

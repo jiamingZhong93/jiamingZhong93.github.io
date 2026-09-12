@@ -98,7 +98,7 @@ In `_config.yml`, keep these settings under `author`:
 
 Position values set the horizontal and vertical crop. Every refresh starts with the default portrait, which also remains the search/social sharing image. Entering the portrait with a mouse or clicking it toggles the photo; on touch screens, each tap toggles it. An absent or broken alternate image disables switching and keeps the default. Remove `avatar_alternate` to disable this feature.
 
-Portrait sizes are set in `assets/css/profile.css`: 208 × 236 px on desktop (198 × 224 px at widths up to 1050 px). On phones, width is 96–112 px and height follows the adjacent role text. Adjust the CSS to resize; use the position settings above to reframe.
+Portrait sizes are set in `assets/css/profile.css`: 208 × 236 px on desktop (198 × 224 px at widths up to 1050 px). On phones, width is 96–112 px and height follows the adjacent role text, capped at 140 px. Adjust the CSS to resize; use the position settings above to reframe.
 
 Portraits turn with a gentle 3D flip; another tap/click during the animation smoothly reverses it. The hit area stays fixed. Systems with reduced motion enabled switch immediately. Adjust the `720ms` duration and easing in `.portrait-flipper` in `assets/css/profile.css` if desired.
 
@@ -110,7 +110,7 @@ The cover displays one full-width photo on every device, starting with a random 
 
 Hover **anywhere on the photo** to show both the current-photo details and the next-photo preview. There are no corner icons. Click the photo outside those details to advance; the captions stay open while the pointer remains over the banner. Moving away closes them.
 
-On touch screens, **long press for about half a second** to show both captions and keep them open for reading. Releasing that long press does not change the photo. Tap outside the captions to advance and close them; a normal short tap also advances. Scrolling, dragging and pinch gestures do not advance the photo. Caption text and source links never trigger a switch.
+On touch screens, **long press for about half a second** to show both captions and keep them open for reading. Releasing that long press does not change the photo. Tap outside the captions to advance and close them; a normal short tap also advances. Scrolling, dragging and pinch gestures do not advance the photo. Caption text never triggers a switch. Titles and descriptions are plain text, without links.
 
 The timer pauses while hovering anywhere over the banner, during a touch gesture or while its details remain open, and while the banner/details have keyboard focus. It also pauses when the page or banner is out of view, then resumes the remaining time. Every completed transition starts a fresh hold interval. **Tab** focuses the banner and shows details; **Enter/Space** advances; **Esc** closes details. One available photo stays visible with only its current details and no timer; failed images are skipped.
 
@@ -129,7 +129,7 @@ New files join automatically. Optional settings live under `images → filename`
 - `position` / `mobile_position`: horizontal %, then vertical %. Values fall back to the settings at the top of the file.
 - **Left:** `title/title_zh` first, then smaller `description/description_zh` text, limited to two lines. **Right:** “Next”, then only the next photo's title. Both sides align at the bottom; the left gets most of the width on every device. Keep titles brief for phones.
 - Missing Chinese fields fall back to English. Legacy `caption/caption_zh` still work as title fields; an absent title uses the filename. Descriptions are optional.
-- `source` links the current title to the source page; `credit/credit_zh` provides accessible attribution. Include any visible photo credit in the description, as in the SafeTrucks example.
+- `source` and `credit/credit_zh` keep attribution records in the data file; captions do not contain links. Include any visible photo credit in the description, as in the SafeTrucks example.
 - Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` / `mobile_height` control its height.
 - Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
 - The existing F1TENTH and XLeRobot examples use `crop` (x, y, width, height in source pixels) and `source_size` to show only the photographic part of a composite. **Remove both fields when replacing either file with a standalone photo**; ordinary photos do not need them.
@@ -170,7 +170,7 @@ git commit -m "Update research projects"
 git push origin main
 ```
 
-Check [Actions](https://github.com/jiamingZhong93/jiamingZhong93.github.io/actions) for a successful **pages build and deployment**, then open the live homepage. Deployment and caching can take a few minutes.
+Check [Actions](https://github.com/jiamingZhong93/jiamingZhong93.github.io/actions) for a successful **pages build and deployment**, then open the live homepage. Deployment and caching can take a few minutes. CSS and JavaScript URLs automatically receive a build version to avoid mixing old assets with new HTML. If a phone still shows an older page, reopen it in a private tab or add `?refresh=1` to the homepage URL.
 
 For small edits, use GitHub's **pencil → Commit changes**; for pictures, **Add file → Upload files**. Before your next local edit, bring those changes down with `git pull --ff-only origin main` when the local working tree is clean.
 

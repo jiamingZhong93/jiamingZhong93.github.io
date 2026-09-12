@@ -120,14 +120,6 @@
           if (kind === 'current') {
             panel.append(...Array.from(caption.childNodes, node => node.cloneNode(true)));
             for (const text of panel.querySelectorAll('[data-photo-en]')) text.textContent = zh ? text.dataset.photoZh : text.dataset.photoEn;
-            const source = panel.querySelector('a.home-background__title');
-            if (source) {
-              const credit = zh ? source.dataset.photoCreditZh : source.dataset.photoCreditEn;
-              if (credit) {
-                source.title = credit;
-                source.setAttribute('aria-label', source.textContent.trim() + '. ' + credit);
-              }
-            }
           } else {
             const title = document.createElement('span');
             title.className = 'home-background__title';
@@ -170,7 +162,8 @@
     const previous = current;
     current = record;
     // Keep the old photo fully visible underneath: no blank frame or dark dip.
-    stage.append(record.node);
+    if (previous) stage.append(record.node);
+    else stage.replaceChildren(record.node); // Replace the HTML poster once a random photo is ready.
     controls.hidden = false;
     try { sessionStorage.setItem(storageKey, record.item.dataset.photoKey); } catch {}
     queueNext();
@@ -209,7 +202,7 @@
     mouseInside = false; refreshInteraction();
   });
   for (const panel of Object.values(panels)) {
-    // Reading captions and activating credits never changes the photo.
+    // Reading captions never changes the photo.
     panel.addEventListener('click', event => event.stopPropagation());
   }
 

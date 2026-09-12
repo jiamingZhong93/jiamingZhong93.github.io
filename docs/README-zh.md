@@ -98,7 +98,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 位置参数依次控制横向、纵向裁切。每次刷新先显示默认头像，搜索和社交分享也继续使用默认头像。鼠标每次进入头像或点击头像都会切换；触屏上每轻触一次切换一次。未配置备用照片或图片加载失败时禁用切换，保留默认头像。删除 `avatar_alternate` 即可关闭此功能。
 
-头像尺寸在 `assets/css/profile.css` 中设置：电脑为 208 × 236 px，窗口宽度不超过 1050 px 时为 198 × 224 px；手机宽度为 96–112 px，高度跟随旁边的职位文字。改尺寸时调整 CSS，改裁切位置时调整上面的 position 参数。
+头像尺寸在 `assets/css/profile.css` 中设置：电脑为 208 × 236 px，窗口宽度不超过 1050 px 时为 198 × 224 px；手机宽度为 96–112 px，高度跟随旁边的职位文字，最高 140 px。改尺寸时调整 CSS，改裁切位置时调整上面的 position 参数。
 
 头像采用轻柔的 3D 翻面；动画中再次点击会流畅地反向切换，触发区域始终固定。系统开启“减少动态效果”时直接切换。如需调整动画，在 `assets/css/profile.css` 的 `.portrait-flipper` 中修改 `720ms` 时长和缓动参数。
 
@@ -110,7 +110,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 电脑上，鼠标悬停在**照片任意区域**，同时显示当前照片说明和下一张预告，不再显示角落图标。点击说明区以外的照片区域切换；只要鼠标仍在横幅内，两条说明就保持显示并更新。移开鼠标后收起。
 
-触屏时，**长按约半秒**显示两条说明，并保留供阅读；松手不会切图。轻触说明区以外的照片区域，切换并收起说明；普通短按也会切换。滚动、拖动和双指缩放不会触发手动切图。说明文字及其来源链接不会切图。
+触屏时，**长按约半秒**显示两条说明，并保留供阅读；松手不会切图。轻触说明区以外的照片区域，切换并收起说明；普通短按也会切换。滚动、拖动和双指缩放不会触发手动切图。说明文字不会切图。标题和描述均为纯文字，不含链接。
 
 鼠标悬停横幅任意区域、触屏按住或说明保持展开、键盘焦点位于横幅或说明内时暂停计时。页面隐藏或横幅滚出屏幕时也暂停，恢复后继续剩余时间；每次过渡完成后重新计算停留时间。用 **Tab** 聚焦横幅显示说明，**回车/空格**切换，**Esc** 收起说明。仅有一张可用照片时只显示当前说明、不轮播；坏图自动跳过。
 
@@ -129,7 +129,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 - `position` / `mobile_position`：先横向%、后纵向%；未设置时使用文件顶部的默认值。
 - **左下角：** 第一行是 `title/title_zh` 标题，下方是较小字号的 `description/description_zh` 描述，描述最多两行。**右下角：** 第一行是“Next / 下一张”，第二行只显示下一张的标题。左右底部对齐，大部分宽度留给左侧；标题应简短，便于手机阅读。
 - 未填中文时显示英文；旧的 `caption/caption_zh` 仍可作为标题使用，标题未填时显示文件名。描述可以省略。
-- `source` 让当前标题链接到来源网页；`credit/credit_zh` 提供无障碍署名。需要直接显示的图片署名写进描述，可参考 SafeTrucks 示例。
+- `source` 和 `credit/credit_zh` 在数据文件中保留来源及署名记录，背景说明不显示链接。需要直接显示的图片署名写进描述，可参考 SafeTrucks 示例。
 - 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` / `mobile_height` 控制高度。
 - 文件顶部的 `fade_duration: 1000` 控制淡入淡出过渡的毫秒数；`interval: 3000` 控制**过渡完成后的停留时间**。照片、播放时间和中英文说明仍统一在这一配置文件中维护。
 - 现有 F1TENTH、XLeRobot 示例通过 `crop`（源图像素中的 x、y、宽、高）与 `source_size` 截取拼图里的实拍区域。**换成独立照片后请删除这两个字段**，普通照片不需要它们。
@@ -170,7 +170,7 @@ git commit -m "Update research projects"
 git push origin main
 ```
 
-在 [Actions](https://github.com/jiamingZhong93/jiamingZhong93.github.io/actions) 确认 **pages build and deployment** 成功，再打开公开主页检查。部署及缓存更新可能需要几分钟。
+在 [Actions](https://github.com/jiamingZhong93/jiamingZhong93.github.io/actions) 确认 **pages build and deployment** 成功，再打开公开主页检查。部署及缓存更新可能需要几分钟。CSS 和 JavaScript 地址会自动带上构建版本，避免旧资源与新页面混用。如果手机仍显示旧页面，可用无痕标签页打开，或在主页网址末尾加上 `?refresh=1`。
 
 小修改也可以在 GitHub 用 **铅笔 → Commit changes**；上传图片用 **Add file → Upload files**。之后再次本地编辑前，确认本地没有未提交修改，再执行 `git pull --ff-only origin main` 同步。
 
