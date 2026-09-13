@@ -119,12 +119,15 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 /* Four related themes, joined by a fine path; the same reading order wraps on phones. */
 .research-trajectory { display: block; container-type: inline-size; margin: 1.65rem 0 .3rem; }
 .research-trajectory figcaption { margin-bottom: .85rem; color: var(--ink); font-family: inherit; font-size: .88rem; font-weight: 600; font-style: normal; }
-.trajectory-map { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1.25rem; margin: 0; padding: 1.15rem 1.15rem 1.2rem; list-style: none; border: 1px solid rgba(65,99,106,.09); border-radius: 14px; background: linear-gradient(115deg,rgba(224,239,237,.42),rgba(235,229,245,.42)); }
+.trajectory-map { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.35rem 1.25rem; margin: 0; padding: 1.15rem 1.15rem 1.2rem; list-style: none; border: 1px solid rgba(65,99,106,.09); border-radius: 14px; background: linear-gradient(115deg,rgba(224,239,237,.42),rgba(235,229,245,.42)); }
 .trajectory-phase { --phase-color: #2f737b; position: relative; min-width: 0; margin: 0; padding: 0; }
 .trajectory-phase:nth-child(2) { --phase-color: #456991; }
-.trajectory-phase:nth-child(3) { --phase-color: #6d5799; }
-.trajectory-phase:nth-child(4) { --phase-color: #89517f; }
+.trajectory-phase:nth-child(3) { --phase-color: #5d6097; }
+.trajectory-phase:nth-child(4) { --phase-color: #705695; }
+.trajectory-phase:nth-child(5) { --phase-color: #855282; }
+.trajectory-phase:nth-child(6) { --phase-color: #96586f; }
 .trajectory-phase:not(:last-child)::after { content: ""; position: absolute; top: 14px; left: 38px; right: -7px; height: 1px; background: linear-gradient(90deg,var(--phase-color),rgba(111,112,148,.18)); opacity: .45; }
+.trajectory-phase:nth-child(3n)::after { display: none; }
 .trajectory-motif { width: 28px; height: 28px; color: var(--phase-color); }
 .trajectory-motif svg { display: block; width: 100%; height: 100%; overflow: visible; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .trajectory-motif .motif-guide { opacity: .45; }
@@ -135,6 +138,7 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 html[lang="zh-CN"] .trajectory-methods span { word-break: keep-all; overflow-wrap: anywhere; }
 @container (max-width: 640px) {
   .trajectory-map { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem 1.15rem; padding: 1rem; }
+  .trajectory-phase:nth-child(3n)::after { display: block; }
   .trajectory-phase:nth-child(2n)::after { display: none; }
   .page__content .trajectory-theme { margin-top: .5rem; }
 }
@@ -198,10 +202,9 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
   .home-background__crop--mobile { display: block; }
   .home-background__panel { max-height: calc(var(--background-mobile-height,150px) - 24px); }
   .home-background__image, .home-background__backdrop { object-position: var(--tile-mobile-position, var(--tile-position, 50% 50%)); }
-  .home-background__slide.is-contained .home-background__image { object-fit: cover; }
-  .home-background__slide.is-contained .home-background__backdrop { display: none; }
-  .home-background__slide.is-mobile-contained .home-background__image { object-fit: contain; }
-  .home-background__slide.is-mobile-contained .home-background__backdrop { display: block; }
+  /* Phones always fill the frame, including legacy contain settings. */
+  .home-background .home-background__image { object-fit: cover !important; }
+  .home-background .home-background__backdrop { display: none !important; }
   .masthead__inner-wrap { padding: .8rem 1.1rem; }
   .profile-nav__links { flex-wrap: wrap; gap: .2rem 1rem; }
   .profile-nav.is-enhanced .profile-nav__toggle { display: flex; align-items: center; gap: .5rem; max-width: 100%; min-height: 36px; padding: .3rem 0; margin: 0; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: .82rem; font-weight: 600; text-align: left; cursor: pointer; }

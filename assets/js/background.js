@@ -1,7 +1,7 @@
 'use strict';
 
 // Preload a fixed random next candidate and preserve the current crossfade.
-// Hover, held/open touch details, keyboard focus, and visibility pause the remaining time.
+// Details add one extra second per slide; only visibility pauses the remaining time.
 (() => {
   const cover = document.querySelector('.home-background');
   if (!cover) return;
@@ -22,11 +22,26 @@
   }
   const pool = [...singles, ...groupMembers.keys()];
   const desktopLayout = window.matchMedia('(min-width: 801px)');
+  const widthQueries = new Map();
+  function widthLimits(field) {
+    const limits = new Map();
+    for (const item of singles) {
+      const width = Number(item.dataset[field]);
+      if (!Number.isFinite(width) || width <= 0) continue;
+      if (!widthQueries.has(width)) widthQueries.set(width, window.matchMedia(`(max-width: ${width}px)`));
+      limits.set(item, widthQueries.get(width));
+    }
+    return limits;
+  }
+  const desktopWidthLimits = widthLimits('desktopMaxWidth');
+  const mobileWidthLimits = widthLimits('mobileMaxWidth');
   const stage = cover.querySelector('[data-background-stage]');
   const controls = cover.querySelector('.home-background__controls');
   const panels = { current: controls.querySelector('#current-photo-info'), next: controls.querySelector('#next-photo-info') };
   const configured = Number(cover.dataset.interval);
   const interval = Number.isFinite(configured) && configured > 0 ? configured : 3000;
+  const configuredExtra = Number(cover.dataset.infoExtra);
+  const infoExtra = Number.isFinite(configuredExtra) && configuredExtra >= 0 ? configuredExtra : 1000;
   const configuredFade = Number(cover.dataset.fadeDuration);
   const fadeDuration = Number.isFinite(configuredFade) && configuredFade >= 0 ? configuredFade : 1000;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -47,9 +62,11 @@
   let timer = null;
   let deadline = 0;
   let remaining = interval;
+  let infoExtended = false;
   let inView = true;
   let mouseInside = false;
   let touchOpen = false;
+  let touchHeld = false;
   let keyboardFocus = false;
   let dismissed = false;
   let inputMode = 'pointer';
@@ -60,10 +77,12 @@
 
   function eligible(item) {
     if (!item || failed.has(item)) return false;
-    if (groupMembers.has(item)) return desktopLayout.matches;
+    if (groupMembers.has(item)) return desktopLayout.matches && groupMembers.get(item).every(member => !desktopWidthLimits.has(member) || desktopWidthLimits.get(member).matches);
     if (desktopLayout.matches && item.dataset.desktop === 'false') return false;
+    const limits = desktopLayout.matches ? desktopWidthLimits : mobileWidthLimits;
+    if (limits.has(item) && !limits.get(item).matches) return false;
     const group = memberGroup.get(item);
-    return !desktopLayout.matches || !group || failed.has(group);
+    return !desktopLayout.matches || !group || !eligible(group);
   }
   function available(exclude) { return pool.filter(item => item !== exclude && eligible(item)); }
   function trimCache() {
@@ -75,14 +94,18 @@
   function random(items) { return items[Math.floor(Math.random() * items.length)]; }
   function language() { return document.documentElement.lang === 'zh-CN'; }
   function isInfo(target) { return Object.values(panels).some(panel => panel.contains(target)); }
-  function interactionPaused() { return document.hidden || !inView || mouseInside || touchOpen || keyboardFocus || pointerStart !== null; }
+  function detailsVisible() { return Boolean(current && !dismissed && (mouseInside || touchOpen || keyboardFocus)); }
+  function visibilityPaused() { return document.hidden || !inView; }
 
   function syncTimer(reset = false) {
-    if (reset) { clearTimeout(timer); timer = null; remaining = interval; }
-    const paused = !current || !hasNext() || switching || interactionPaused();
-    if (paused) {
-      if (timer !== null) { remaining = Math.max(0, deadline - performance.now()); clearTimeout(timer); timer = null; }
-    } else if (timer === null) {
+    if (timer !== null) {
+      remaining = Math.max(0, deadline - performance.now());
+      clearTimeout(timer); timer = null;
+    }
+    if (reset) remaining = interval + (infoExtended ? infoExtra : 0);
+    // Repeated hover/press events never accumulate additional time on one photo.
+    if (detailsVisible() && !infoExtended) { infoExtended = true; remaining += infoExtra; }
+    if (current && hasNext() && !switching && !visibilityPaused()) {
       deadline = performance.now() + remaining;
       timer = setTimeout(() => { timer = null; remaining = 0; advance(true); }, remaining);
     }
@@ -155,7 +178,7 @@
 
   function updateInfo() {
     const zh = language();
-    const open = Boolean(current && !dismissed && (mouseInside || touchOpen || keyboardFocus));
+    const open = detailsVisible();
     cover.setAttribute('aria-label', zh
       ? '背景照片轮播。悬停或长按显示说明；按回车或空格切换下一张。'
       : 'Photo carousel. Hover or long press for details; press Enter or Space for the next photo.');
@@ -199,7 +222,7 @@
   function refreshInteraction() { updateInfo(); syncTimer(); }
   function clearHold() { clearTimeout(holdTimer); holdTimer = null; }
   function cancelGesture() {
-    clearHold(); pointerStart = null; suppressClick = true; touchOpen = false;
+    clearHold(); pointerStart = null; suppressClick = true; touchOpen = false; touchHeld = false;
     refreshInteraction();
   }
 
@@ -219,6 +242,11 @@
   async function display(record) {
     const previous = current;
     current = record;
+    infoExtended = false;
+    remaining = interval;
+    // A released long press is readable on its current slide, but does not latch
+    // captions onto future slides. A finger still held down carries across fades.
+    touchOpen = touchHeld;
     // Keep the old photo fully visible underneath: no blank frame or dark dip.
     if (previous) stage.append(record.node);
     else stage.replaceChildren(record.node); // Replace the HTML poster once a random photo is ready.
@@ -236,6 +264,8 @@
       // A large photo library should not retain every decoded slide on mobile.
       if (!upcoming || upcoming.item !== previous.item) cache.delete(previous.item);
     }
+    touchOpen = touchHeld;
+    updateInfo();
   }
 
   async function advance(automatic = false) {
@@ -244,9 +274,10 @@
     manualRequested = !automatic;
     switching = true; syncTimer();
     const record = await waitForLayout(nextTask);
-    // A pause may start while a slow next photo loads; explicit clicks still win.
-    if (!layoutPending && !manualRequested && interactionPaused()) {
-      switching = false; remaining = 0; syncTimer(); return;
+    // Visibility or a newly earned caption second can change while loading.
+    // Explicit clicks still advance immediately once the next photo is ready.
+    if (!layoutPending && !manualRequested && (visibilityPaused() || remaining > 0)) {
+      switching = false; syncTimer(); return;
     }
     if (record && eligible(record.item) && !layoutPending) {
       await display(record);
@@ -268,7 +299,7 @@
       const group = memberGroup.get(current?.item);
       let target = desktopLayout.matches
         ? (group && !failed.has(group) ? group : current?.item)
-        : (members ? members.find(item => !failed.has(item)) : current?.item);
+        : (members ? members.find(eligible) : current?.item);
       // A mobile-only photo must map to an eligible desktop replacement, even
       // when it has no group. Otherwise the resize loop would retain it forever.
       if (!eligible(target)) target = null;
@@ -287,11 +318,13 @@
     }
     switching = false; syncTimer(true);
   }
-  desktopLayout.addEventListener('change', () => {
+  function layoutChanged() {
     layoutVersion++;
     for (const cancel of Array.from(layoutWaiters)) cancel();
     reconcileLayout();
-  });
+  }
+  desktopLayout.addEventListener('change', layoutChanged);
+  for (const limit of widthQueries.values()) limit.addEventListener('change', layoutChanged);
 
   cover.addEventListener('pointerenter', event => {
     if (event.pointerType !== 'mouse') return;
@@ -315,7 +348,7 @@
     suppressClick = false;
     if (!event.isPrimary && pointerStart) cancelGesture();
     if (!cover.contains(event.target)) {
-      mouseInside = false; touchOpen = false; clearHold(); pointerStart = null;
+      mouseInside = false; touchOpen = false; touchHeld = false; clearHold(); pointerStart = null;
     }
     refreshInteraction();
   }, true);
@@ -328,7 +361,7 @@
   cover.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
       if (isInfo(document.activeElement)) cover.focus({ preventScroll: true });
-      clearHold(); touchOpen = false; dismissed = true; refreshInteraction();
+      clearHold(); touchOpen = false; touchHeld = false; dismissed = true; refreshInteraction();
     } else if (event.target === cover && ['Enter', ' '].includes(event.key)) {
       event.preventDefault();
       if (!event.repeat) advance();
@@ -337,11 +370,10 @@
 
   cover.addEventListener('pointerdown', event => {
     if (!event.isPrimary || event.button !== 0) { cancelGesture(); return; }
-    if (isInfo(event.target)) return;
     pointerStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
     if (event.pointerType === 'touch' || event.pointerType === 'pen') {
       holdTimer = setTimeout(() => {
-        holdTimer = null; suppressClick = true; touchOpen = true; dismissed = false;
+        holdTimer = null; suppressClick = true; touchOpen = true; touchHeld = true; dismissed = false;
         refreshInteraction();
       }, holdDuration);
     }
@@ -353,7 +385,7 @@
   });
   document.addEventListener('pointerup', event => {
     if (!pointerStart || event.pointerId !== pointerStart.id) return;
-    clearHold(); pointerStart = null; syncTimer();
+    clearHold(); pointerStart = null; touchHeld = false; syncTimer();
   });
   document.addEventListener('pointercancel', event => {
     if (pointerStart && event.pointerId === pointerStart.id) cancelGesture();
@@ -364,7 +396,7 @@
   cover.addEventListener('click', event => {
     if (isInfo(event.target)) return;
     if (suppressClick) { suppressClick = false; event.preventDefault(); return; }
-    clearHold(); pointerStart = null; touchOpen = false;
+    clearHold(); pointerStart = null; touchOpen = false; touchHeld = false;
     refreshInteraction(); advance();
   });
   document.addEventListener('site:language-change', updateInfo);

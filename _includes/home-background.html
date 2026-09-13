@@ -12,9 +12,9 @@
 {% if settings %}
 {% unless settings.enabled == false %}
 {% assign photo_fit = settings.fit | default: 'cover' %}
-{% assign photo_mobile_fit = settings.mobile_fit | default: photo_fit %}
+{% assign photo_mobile_fit = 'cover' %}
 {% capture background_image %}
-<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}{% if photo_mobile_fit == 'contain' %} is-mobile-contained{% endif %}" data-photo-key="{{ file.path | escape }}"{% if settings.desktop == false %} data-desktop="false"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}"{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
 {% if photo_fit == 'contain' or photo_mobile_fit == 'contain' %}
 <img class="home-background__backdrop" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" aria-hidden="true">
 {% endif %}
@@ -67,7 +67,7 @@
 {% endcapture %}
 {% assign background_images = background_images | strip %}
 {% if background_images != '' %}
-<div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-interval="{{ background.interval | default: 3000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+<div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-interval="{{ background.interval | default: 3000 }}" data-info-extra="{{ background.info_extra | default: 1000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
 <div class="home-background__stage" data-background-stage aria-hidden="true">{{ background_fallback | default: background_mobile_fallback }}</div>
 <div class="home-background__controls" hidden>

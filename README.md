@@ -59,7 +59,7 @@ The **Research vision in Home** is in `_data/research.yml` under `vision`: edit 
       text_zh: "这一方向希望回答什么研究问题？"
 ```
 
-The **Research trajectory** follows these questions in four themes, each with two short research labels. Edit `phases` and the nested `steps` in `_data/trajectory.yml`. Their list order determines the route; update English and Chinese together:
+The **Research trajectory** follows these questions in six themes, each with two short research labels. Edit `phases` and the nested `steps` in `_data/trajectory.yml`. Their list order determines the route; update English and Chinese together:
 
 ```yaml
 phases:
@@ -68,11 +68,11 @@ phases:
     title_zh: "动力学与不确定性"
     steps:
       - id: residual-dynamics
-        title: "Residual dynamics"
-        title_zh: "动力学残差学习"
+        title: "Probabilistic residual learning"
+        title_zh: "概率残差学习"
 ```
 
-The diagram heading uses the top-level `title/title_zh`. Keep existing phase IDs when changing headings: they select the small icons. Keep all step IDs unique and preserve them when reordering. Short labels keep the four themes compact in one desktop row or a 2×2 phone layout; no descriptions or numbers are shown. Text and order need only YAML edits. For visual changes, use `assets/css/profile.css`; icons are in `_includes/research-trajectory.html`.
+The diagram heading uses the top-level `title/title_zh`. Keep existing phase IDs when changing headings: they select the small icons. Keep all step IDs unique and preserve them when reordering. Short labels keep the six themes compact in three columns × two rows on desktop, or two columns × three rows on phones; no descriptions or numbers are shown. Text and order need only YAML edits. For visual changes, use `assets/css/profile.css`; icons are in `_includes/research-trajectory.html`.
 
 Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Use a short description and maintain its Chinese fields.
 
@@ -122,19 +122,19 @@ The default photo is an outdoor portrait; the alternate is a formal portrait. Bo
 
 ### Cover photos
 
-Phones show individual photos. On desktop (over 800 px wide), scenic photos use single-image `cover` framing; related research and robot photos form horizontal groups. Tall mountain views that cannot fit the banner use `desktop: false` and remain available on phones. Refresh selects a random photo or group; each stays for 3 seconds and crossfades over 1 second. Clicking also advances, and consecutive selections differ. Changing language retains the current and next selection. Crossing the 800 px breakpoint maps a grouped photo to its desktop group, or a group to its first available phone photo. A phone-only photo is replaced by an eligible desktop selection. Framing happens in the browser without changing the files.
+Phones show individual photos with `cover` framing: the image fills the banner without stretching or blurred sidebars. On desktop (over 800 px wide), scenic photos stay as single images; related research and robot photos form horizontal groups. Photos that cannot fit a wide banner use `desktop: false` and remain available on phones. Refresh selects a random photo or group; each normally stays for 3 seconds after its 1-second crossfade. Clicking also advances, and consecutive selections differ. Changing language retains the current and next selection. Crossing the 800 px breakpoint maps a grouped photo to its desktop group, or a group to its first available phone photo. A phone-only photo is replaced by an eligible desktop selection. Framing happens in the browser without changing the files.
 
 Hover **anywhere on the photo** to show both the current-photo details and the next-photo preview. There are no corner icons. Click the photo outside those details to advance; the captions stay open while the pointer remains over the banner. Moving away closes them.
 
-On touch screens, **long press for about half a second** to show both captions and keep them open for reading. Releasing that long press does not change the photo. Tap outside the captions to advance and close them; a normal short tap also advances. Scrolling, dragging and pinch gestures do not advance the photo. Caption text never triggers a switch. Titles and descriptions are plain text, without links.
+On touch screens, **long press for about half a second** to show both captions. Keep holding to retain them across automatic changes. After release, they remain readable for the current photo and close when the next photo appears; release itself does not change the photo. Tap outside the captions to advance and close them; a normal short tap also advances. Scrolling, dragging and pinch gestures do not manually advance the photo. Caption text never triggers a switch. Titles and descriptions are plain text, without links.
 
-The timer pauses while hovering anywhere over the banner, during a touch gesture or while its details remain open, and while the banner/details have keyboard focus. It also pauses when the page or banner is out of view, then resumes the remaining time. Every completed transition starts a fresh hold interval. **Tab** focuses the banner and shows details; **Enter/Space** advances; **Esc** closes details. One available photo stays visible with only its current details and no timer; failed images are skipped.
+Showing details adds **one second to that photo's hold time (3 → 4 seconds)** and keeps the carousel running. Repeated hovers do not add more time to the same photo. If the pointer or long press remains active at the next photo, its captions stay open and its hold time is also 4 seconds. The timer pauses only when the page is hidden or the banner is out of view, then resumes the remaining time. Every completed transition starts a fresh hold interval. **Tab** focuses the banner and shows details; **Enter/Space** advances; **Esc** closes details. One available photo stays visible with only its current details and no timer; failed images are skipped.
 
 To add a photo:
 
 1. Save a web-ready JPG, PNG or WebP in `images/background/`, using a unique name such as `photo_2026_waterloo.jpg`. Convert HEIC to JPG first; preserve the correct orientation. For large originals, an exported copy with a long edge around 2400 px keeps downloads light. Keep full-size originals outside this public directory.
 2. Add that exact filename under the existing `images` block in `_data/background.yml`, with English and Chinese text. **Files without a matching entry are not displayed.**
-3. Check both desktop and phone framing. If a photo cannot work well across a wide banner, add `desktop: false` to keep it on phones only. To remove it from the carousel, delete its configuration entry; the original file can stay for later use. Use `enabled: false` to hide it temporarily on all devices.
+3. Check desktop, tablet and phone framing. If a photo cannot work well across a wide banner, add `desktop: false` to keep it in the mobile layout only. To remove it from the carousel, delete its configuration entry; the original file can stay for later use. Use `enabled: false` to hide it temporarily on all devices.
 
 Filenames **can start with numbers**; the `photo_` prefix is just a consistent naming convention. Names are case-sensitive online, and each filename key must occur only once in YAML. Duplicate keys cause a configuration error.
 
@@ -143,7 +143,6 @@ Example entry under `images`:
 ```yaml
   photo_2026_waterloo.jpg:
     fit: "cover"
-    mobile_fit: "contain"
     position: "50% 50%"
     mobile_position: "60% 50%"
     title: "A short photo title"
@@ -152,20 +151,22 @@ Example entry under `images`:
     description_zh: "一句简短的照片说明。"
 ```
 
-- `fit` / `mobile_fit`: `cover` fills the banner and crops its edges; `contain` shows the entire photo over a blurred version of the same image. Prefer `cover` for desktop scenery; reserve `contain` for phone framing or narrower research-photo tiles. Desktop defaults to `cover`; omitted `mobile_fit` follows `fit`. The phone layout applies at widths up to 800 px.
-- `position` / `mobile_position`: horizontal %, then vertical %, e.g. `"50% 35%"`. In `cover` mode, increase the second number to show more of the lower part, or decrease it to show more of the top. The effect depends on the photo's proportions. In `contain` mode, position aligns the whole photo inside the banner. A missing mobile position follows the image's desktop position; otherwise the file's global defaults apply.
+- `fit`: use `cover` (the default) to fill the desktop banner by cropping, without stretching. `contain` preserves the whole photo with blurred padding; the cropped F1TENTH photo is the current exception. Avoid broad blurred areas: reframe, use a related research-photo group, or set `desktop: false`. Phones always enforce `cover`; the legacy `mobile_fit` field can be omitted and cannot enable blurred padding. The phone layout applies at widths up to 800 px.
+- `position` / `mobile_position`: horizontal %, then vertical %, e.g. `"50% 35%"`. Increase the second number to show more of the lower part, or decrease it to show more of the top. For lakes and waterfront scenes, check that the phone crop retains enough water. The effect depends on the photo's proportions. In desktop `contain` mode, position aligns the whole photo inside the banner. A missing mobile position follows the image's desktop position; otherwise the file's global defaults apply.
 - **Left:** `title/title_zh` first, then smaller `description/description_zh` text, limited to two lines. **Right:** “Next”, then only the next photo's title. Both sides align at the bottom; the left gets most of the width on every device. Keep titles brief for phones.
 - Missing Chinese fields fall back to English. Legacy `caption/caption_zh` still work as title fields; an absent title uses the filename. Descriptions are optional.
 - `source` and `credit/credit_zh` keep attribution records in the data file; captions do not contain links. Include any visible photo credit in the description, as in the SafeTrucks example.
 - Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` sets the desktop base height (220 px). Extra-wide screens scale it gently up to 360 px to preserve subjects; `mobile_height` stays at 150 px. The wide-screen scaling is in `.home-background` in `assets/css/profile.css`.
 - Per-image `desktop: false` excludes the photo above 800 px and keeps its existing phone framing and captions. Remove that field to allow desktop display again. Use this for low-resolution photos or subjects that need too much vertical space; avoid a tiny centered photo surrounded by broad blurred areas on desktop.
-- Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
-- Use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` to trim empty borders without editing the file. `fit` / `mobile_fit` then frame that crop: `contain` preserves it completely; `cover` fills the banner. Cropped frames are centered, so adjust `crop` rather than `position` to move the subject. See the F1Tenth entry. Update or remove both fields when replacing the source photo.
+- Optional per-image `desktop_max_width` limits desktop display to that window width in pixels. F1TENTH uses `desktop_max_width: 1100` to keep its padding modest and is excluded on wider screens; phones still use the same photo with `cover` framing.
+- Optional per-image `mobile_max_width` limits a photo within the mobile layout (up to 800 px): for example, `520` skips a tall portrait on wider tablets where the crop loses its subject. It does not exclude the photo or its group from desktop display.
+- Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. `info_extra: 1000` adds this many milliseconds once per photo when details are shown. Photos, timing and bilingual details all use this one configuration file.
+- Use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` to trim empty borders without editing the file. Desktop `fit` then frames that crop: `contain` preserves it completely; `cover` fills the banner. Phones always fill the banner with `cover`. Cropped frames are centered, so adjust `crop` rather than `position` to move the subject. See the F1TENTH entry. Update or remove both fields when replacing the source photo.
 
 **Edit a desktop photo group:** find `desktop_groups` at the end of `_data/background.yml`. Each group has a unique `id`, bilingual `title` and `description`, and a `photos` list in left-to-right order. Tiles join edge to edge, with no gaps or individual rounded corners.
 
 - Each tile's `file` must also exist and be enabled under `images`, without `desktop: false`. Keep its individual captions and mobile framing there. When renaming or deleting a grouped file, update both places.
-- Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative width (default `1`); `fit: "contain"` preserves a full subject within its tile. Other tiles default to `cover`.
+- Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative width (default `1`). Keep `fit: "cover"` or omit it; adjust the width and position to preserve the subject without blurred padding.
 - Optional tile `max_aspect` caps its width divided by the banner height. **Leave at least one tile in every group without this cap** to fill the remaining width. Check both normal and extra-wide desktop windows.
 - A group's captions describe the complete strip; phones use the original individual captions. The group replaces its members in desktop rotation, so those images do not also repeat as desktop singles. Every tile loads before the strip crossfades in.
 - Set a group's `enabled: false`, or remove the group entry, to restore its eligible single photos on desktop. Missing, disabled or phone-only members invalidate the group and leave eligible singles available. Keep group IDs unique and use each photo in only one group.

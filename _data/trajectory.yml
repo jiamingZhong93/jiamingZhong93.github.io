@@ -1,5 +1,5 @@
-# Four themes, each with short bilingual research labels. List order controls the path.
-# 四个主题串联研究历程；在每个主题下维护中英文短标签，顺序由列表决定。
+# Six themes, each with short bilingual research labels. List order controls the path.
+# 六个主题串联研究历程；在每个主题下维护中英文短标签，顺序由列表决定。
 title: Research trajectory
 title_zh: 研究历程
 phases:
@@ -8,38 +8,58 @@ phases:
     title_zh: 动力学与不确定性
     steps:
       - id: residual-dynamics
-        title: Residual dynamics
-        title_zh: 动力学残差学习
-      - id: probabilistic-mpc
-        title: Probabilistic MPC
-        title_zh: 概率学习与 MPC
-  - id: interactions
-    title: Interaction & reasoning
-    title_zh: 交互与推理
-    steps:
-      - id: multi-agent-coordination
-        title: Multi-agent learning
-        title_zh: 多智能体交互学习
-      - id: llm-decisions
-        title: LLM decisions
-        title_zh: 大模型可解释决策
-  - id: optimization
-    title: Learning & optimization
-    title_zh: 学习与优化
-    steps:
-      - id: transformer-imitation
-        title: Transformer imitation
-        title_zh: Transformer 模仿学习
-      - id: rl-mpc
-        title: RL + MPC
-        title_zh: 强化学习与 MPC
-  - id: autonomy
-    title: Racing & manipulation
-    title_zh: 赛车与机器人操作
-    steps:
+        title: Probabilistic residual learning
+        title_zh: 概率残差学习
       - id: autonomous-racing
         title: F1TENTH racing
         title_zh: F1TENTH 自主赛车
+  - id: interactions
+    title: Interaction learning
+    title_zh: 交互学习
+    steps:
+      - id: system-level-coordination
+        title: System-level coordination
+        title_zh: 系统级协调
+      - id: multi-agent-coordination
+        title: Multi-agent collaboration
+        title_zh: 多智能体协作
+  - id: decisions
+    title: Intelligent decisions
+    title_zh: 智能决策
+    steps:
+      - id: llm-decisions
+        title: DriveLLM
+        title_zh: DriveLLM
+      - id: explainable-reasoning
+        title: Explainable reasoning
+        title_zh: 可解释推理
+  - id: imitation
+    title: Imitation control
+    title_zh: 模仿学习控制
+    steps:
+      - id: transformer-imitation
+        title: Transformer time-series learning
+        title_zh: Transformer 时序学习
+      - id: articulated-vehicle-control
+        title: Articulated vehicles
+        title_zh: 铰接式车辆
+  - id: reinforcement
+    title: Reinforcement learning
+    title_zh: 强化学习
+    steps:
+      - id: rl-mpc
+        title: RL + MPC
+        title_zh: 强化学习与 MPC
+      - id: objective-learning
+        title: Objective learning
+        title_zh: 目标函数学习
+  - id: manipulation
+    title: Multimodal manipulation
+    title_zh: 多模态机器人操作
+    steps:
+      - id: xlerobot-platform
+        title: XLeRobot
+        title_zh: XLeRobot
       - id: manipulation-world-models
-        title: VLM/WM manipulation
-        title_zh: VLM/WM 机器人操作
+        title: VLA / WAM
+        title_zh: VLA / WAM

@@ -3,8 +3,8 @@ vision:
   title_zh: 可信物理人工智能
   learning: Data-driven learning
   learning_zh: 数据驱动学习
-  prior: Model-based structure
-  prior_zh: 基于模型的结构
+  prior: Model-based scheme
+  prior_zh: 基于模型的方法
   description: "My research focuses on hybrid data-driven and model-based frameworks that formally embed learning within safety-critical control and decision-making architectures. Data-driven methods improve adaptability under uncertainty, while model-based structure incorporates human knowledge as priors and enforces safety, stability, and robustness."
   description_zh: "我的研究聚焦于融合数据驱动与模型方法的混合框架，将学习以形式化方式嵌入安全关键的控制与决策架构。数据驱动方法提升不确定环境下的适应能力，模型结构则融入人类知识先验，并保障安全性、稳定性与鲁棒性。"
   bullets:

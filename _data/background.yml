@@ -1,13 +1,15 @@
 # Only photos configured below enter the carousel. Filenames must be unique.
 # Keep matching files in images/background/; photo_ is a naming convention, not a requirement.
 # position / mobile_position set the horizontal and vertical focal point.
-# fit: cover fills the banner; contain preserves the full photo over a soft backdrop.
-# mobile_fit can override fit. Framing is applied in the browser, without cutting the file.
+# Use cover to fill the banner without blurred sidebars; mobile_fit must stay cover.
+# Desktop contain is reserved for the explicitly cropped F1TENTH photo.
+# Framing is applied in the browser, without cutting the original file.
 # desktop: false keeps a photo on phones only; leave it unset to allow both layouts.
 enabled: true
 height: "220px"
 mobile_height: "150px"
 interval: 3000
+info_extra: 1000
 fade_duration: 1000
 position: "50% 50%"
 mobile_position: "50% 50%"
@@ -31,31 +33,34 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221002_211816789_iOS.jpg:
+    mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Delivery robot at the Accelerator Center incubator."
     description_zh: "Accelerator Center 孵化器里的配送机器人。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    position: "50% 68%"
+    mobile_position: "50% 72%"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_20221002_225600984_iOS.jpg:
+    mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Delivery robot testing."
     description_zh: "配送机器人测试。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    position: "50% 70%"
+    mobile_position: "50% 77%"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_20221007_153114634_iOS.jpg:
+    mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Delivery robot crossing the street."
     description_zh: "配送机器人过马路。"
-    position: "50% 50%"
+    position: "48% 55%"
     mobile_position: "50% 52%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20221015_201823889_iOS.jpg:
     title: "Delivery robot"
@@ -67,29 +72,31 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221104_200559616_iOS.jpg:
+    mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Automatic parking at sunset."
     description_zh: "夕阳下的自动泊车。"
-    position: "50% 50%"
+    position: "50% 65%"
     mobile_position: "50% 60%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20221118_172355792_iOS.jpg:
+    mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Campus delivery, navigating nimbly among people."
     description_zh: "校园配送，灵活穿行于人群间。"
-    position: "50% 50%"
+    position: "50% 48%"
     mobile_position: "50% 50%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20221118_174312015_iOS.jpg:
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Campus delivery in the snow."
     description_zh: "雪中的校园配送。"
-    position: "50% 58%"
+    position: "50% 54%"
     mobile_position: "50% 54%"
     fit: "cover"
     mobile_fit: "cover"
@@ -98,109 +105,119 @@ images:
     title_zh: "配送机器人"
     description: "Campus delivery at night."
     description_zh: "夜间校园配送。"
-    position: "50% 50%"
+    position: "50% 57%"
     mobile_position: "50% 58%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20221125_175832378_iOS.jpg:
+    mobile_max_width: 430
     title: "Robot & shuttle bus"
     title_zh: "配送机器人与接驳巴士"
     description: "Autonomous driving buddy."
     description_zh: "自动驾驶好伙伴。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    position: "60% 67%"
+    mobile_position: "50% 58%"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_20221125_193929293_iOS.jpg:
+    mobile_max_width: 430
     title: "Robot & shuttle bus"
     title_zh: "配送机器人与接驳巴士"
     description: "Take your time, little one; there's no need to rush."
     description_zh: "慢慢来，小家伙，不用着急。"
-    position: "50% 50%"
-    mobile_position: "50% 55%"
-    fit: "contain"
+    position: "50% 63%"
+    mobile_position: "50% 58%"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230117_160446651_iOS.jpg:
+    mobile_max_width: 430
     desktop: false
     title: "Underground mining"
     title_zh: "地下采矿"
     description: "Underground mine autonomy research with LoopX."
     description_zh: "与 LoopX 开展地下矿山自主作业研究。"
     position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    mobile_position: "50% 55%"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_20230129_162430220_iOS.jpg:
+    mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Snow testing in winter."
     description_zh: "冬季雪地测试。"
-    position: "50% 50%"
-    mobile_position: "50% 40%"
-    fit: "contain"
+    position: "50% 40%"
+    mobile_position: "50% 36%"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230129_165020481_iOS.jpg:
+    mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Testing in winter."
     description_zh: "冬季测试。"
-    position: "50% 50%"
+    position: "40% 65%"
     mobile_position: "40% 64%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230129_165423899_iOS.jpg:
+    mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Testing in winter."
     description_zh: "冬季测试。"
-    position: "50% 50%"
+    position: "60% 65%"
     mobile_position: "60% 60%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230216_144647464_iOS.jpg:
+    mobile_max_width: 520
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Showcased at the Toronto Auto Show."
     description_zh: "亮相多伦多车展。"
-    position: "50% 50%"
-    mobile_position: "50% 55%"
-    fit: "contain"
+    position: "50% 85%"
+    mobile_position: "50% 90%"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230216_163928287_iOS.jpg:
+    mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Showcased at the Toronto Auto Show."
     description_zh: "亮相多伦多车展。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    position: "50% 48%"
+    mobile_position: "50% 38%"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_20230928_191105157_iOS.jpg:
+    mobile_max_width: 600
     title: "Learning-based control"
     title_zh: "基于学习的控制"
     description: "Low-friction road surface testing."
     description_zh: "低附着路面测试。"
-    position: "50% 50%"
-    mobile_position: "50% 58%"
-    fit: "contain"
+    position: "50% 67%"
+    mobile_position: "50% 65%"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230928_191124793_iOS.jpg:
     title: "Learning-based control"
     title_zh: "基于学习的控制"
     description: "Low-friction road surface testing."
     description_zh: "低附着路面测试。"
-    position: "50% 50%"
+    position: "50% 57%"
     mobile_position: "50% 58%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20230928_191137142_iOS.jpg:
+    mobile_max_width: 600
     title: "Learning-based control"
     title_zh: "基于学习的控制"
     description: "Low-friction road surface testing."
     description_zh: "低附着路面测试。"
-    position: "50% 50%"
+    position: "50% 67%"
     mobile_position: "50% 60%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20240525_010116534_iOS.jpg:
     title: "Bruce Peninsula"
@@ -208,7 +225,7 @@ images:
     description: "Little Cove at sunset."
     description_zh: "夕阳下的 Little Cove。"
     position: "50% 45%"
-    mobile_position: "50% 50%"
+    mobile_position: "50% 55%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240526_165334691_iOS.jpg:
@@ -217,7 +234,7 @@ images:
     description: "Beautiful and peaceful."
     description_zh: "美丽而宁静。"
     position: "50% 49%"
-    mobile_position: "50% 55%"
+    mobile_position: "50% 70%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240602_220210028_iOS.jpg:
@@ -226,7 +243,7 @@ images:
     description: "Beautiful and peaceful."
     description_zh: "美丽而宁静。"
     position: "50% 47%"
-    mobile_position: "50% 50%"
+    mobile_position: "50% 100%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240603_165727518_iOS.jpg:
@@ -235,7 +252,7 @@ images:
     description: "Stunning!"
     description_zh: "令人惊叹！"
     position: "50% 60%"
-    mobile_position: "50% 50%"
+    mobile_position: "50% 68%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240603_170208017_iOS.jpg:
@@ -245,8 +262,8 @@ images:
     description: "Gorgeous!"
     description_zh: "美不胜收！"
     position: "50% 50%"
-    mobile_position: "50% 40%"
-    fit: "contain"
+    mobile_position: "50% 100%"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20240603_205551384_iOS.jpg:
     title: "Lake Agnes"
@@ -254,7 +271,7 @@ images:
     description: "A mountain lake above Lake Louise."
     description_zh: "路易斯湖上方的高山湖泊。"
     position: "50% 60%"
-    mobile_position: "50% 55%"
+    mobile_position: "50% 65%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240606_190705666_iOS.jpg:
@@ -263,7 +280,7 @@ images:
     description: "Picturesque!"
     description_zh: "如诗如画！"
     position: "50% 44%"
-    mobile_position: "50% 50%"
+    mobile_position: "50% 95%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240606_191152176_iOS.jpg:
@@ -273,8 +290,8 @@ images:
     description: "Picturesque!"
     description_zh: "如诗如画！"
     position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
+    mobile_position: "50% 90%"
+    fit: "cover"
     mobile_fit: "cover"
   photo_20240606_201725840_iOS.jpg:
     title: "Maligne Lake"
@@ -282,7 +299,7 @@ images:
     description: "Picturesque!"
     description_zh: "如诗如画！"
     position: "50% 87%"
-    mobile_position: "50% 55%"
+    mobile_position: "50% 90%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240607_001756457_iOS.jpg:
@@ -291,7 +308,7 @@ images:
     description: "Picturesque!"
     description_zh: "如诗如画！"
     position: "50% 96%"
-    mobile_position: "50% 48%"
+    mobile_position: "50% 100%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240607_180806563_iOS.jpg:
@@ -300,7 +317,7 @@ images:
     description: "Scenery is everywhere."
     description_zh: "沿途皆是风景。"
     position: "50% 66%"
-    mobile_position: "50% 45%"
+    mobile_position: "50% 70%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240607_203746523_iOS.jpg:
@@ -309,10 +326,11 @@ images:
     description: "Amazing!"
     description_zh: "太震撼了！"
     position: "50% 80%"
-    mobile_position: "50% 60%"
+    mobile_position: "50% 85%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20240925_002300891_iOS.jpg:
+    mobile_max_width: 430
     desktop: false
     title: "Edmonton"
     title_zh: "埃德蒙顿"
@@ -320,15 +338,15 @@ images:
     description_zh: "2024 年 ITSC 会议。"
     position: "50% 50%"
     mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_20251011_194941022_iOS.jpg:
     title: "Algonquin Park"
     title_zh: "阿冈昆公园"
     description: "Lookout Trail."
     description_zh: "Lookout 观景步道。"
     position: "50% 62%"
-    mobile_position: "50% 60%"
+    mobile_position: "50% 75%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20251012_173208850_iOS.jpg:
@@ -337,19 +355,21 @@ images:
     description: "Gravenhurst."
     description_zh: "格雷文赫斯特。"
     position: "50% 71%"
-    mobile_position: "50% 60%"
+    mobile_position: "50% 70%"
     fit: "cover"
     mobile_fit: "cover"
   photo_20260214_212847377_iOS.jpg:
+    desktop_max_width: 1500
     title: "Parc Oméga"
     title_zh: "欧米伽公园"
     description: "Deer in the forest."
     description_zh: "林间的鹿。"
     position: "50% 72%"
-    mobile_position: "50% 55%"
+    mobile_position: "50% 65%"
     fit: "cover"
     mobile_fit: "cover"
   photo_AV_test.jpg:
+    mobile_max_width: 520
     desktop: false
     title: "Autonomous driving"
     title_zh: "自动驾驶"
@@ -357,18 +377,22 @@ images:
     description_zh: "双车交互测试。"
     position: "50% 50%"
     mobile_position: "50% 55%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_Big_little.jpg:
+    mobile_max_width: 430
+    # The 255 x 190 original is too small for a desktop banner.
+    desktop: false
     title: "Robot & shuttle bus"
     title_zh: "配送机器人与接驳巴士"
     description: "Autonomous driving buddy."
     description_zh: "自动驾驶好伙伴。"
     position: "50% 50%"
-    mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    mobile_position: "50% 45%"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_GM_testing.png:
+    mobile_max_width: 520
     desktop: false
     title: "Real vehicle testing"
     title_zh: "实车测试"
@@ -376,9 +400,11 @@ images:
     description_zh: "准备湿滑测试路面。"
     position: "50% 50%"
     mobile_position: "50% 55%"
-    fit: "contain"
+    fit: "cover"
     mobile_fit: "cover"
   photo_safetrucks-snow.jpg:
+    desktop: false
+    mobile_max_width: 520
     title: "Heavy vehicles in winter"
     title_zh: "冬季重型车辆"
     description: "SafeTrucks research on safer heavy-vehicle control. Photo: SafeTrucks."
@@ -389,6 +415,7 @@ images:
     mobile_fit: "cover"
     # Photo source: https://safetrucks.fmi.fi/index.php/project-description/
   photo_xlerobot_1.jpg:
+    mobile_max_width: 430
     desktop: false
     title: "XLeRobot"
     title_zh: "XLeRobot"
@@ -396,9 +423,10 @@ images:
     description_zh: "面向双臂机器人的生成式移动操作。"
     position: "50% 50%"
     mobile_position: "50% 50%"
-    fit: "contain"
-    mobile_fit: "contain"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_f1tenth_new_1.jpg:
+    mobile_max_width: 600
     title: "F1Tenth"
     title_zh: "F1Tenth"
     description: "F1Tenth"
@@ -406,6 +434,8 @@ images:
     # Crop the empty wall/floor, retaining the complete vehicle and antennas.
     crop: "0 990 4032 1150"
     source_size: [4032, 3024]
+    # Above this width, retaining the car would leave broad blurred sides.
+    desktop_max_width: 1100
     fit: "contain"
     mobile_fit: "cover"
     position: "50% 65%"
@@ -425,18 +455,18 @@ desktop_groups:
     description_zh: "在 Accelerator Center 测试，并亮相多伦多车展。"
     photos:
       - file: photo_20221002_211816789_iOS.jpg
-        position: "50% 65%"
+        position: "50% 72%"
         weight: 1.1
       - file: photo_20221002_225600984_iOS.jpg
-        position: "50% 70%"
+        position: "50% 75%"
         weight: 1
       - file: photo_20230216_144647464_iOS.jpg
-        position: "50% 62%"
+        position: "50% 90%"
         weight: 1.1
       - file: photo_20230216_163928287_iOS.jpg
-        position: "50% 50%"
+        position: "50% 55%"
         weight: 0.8
-        fit: "contain"
+        max_aspect: 1.6
   - id: campus-deliveries
     title: "Campus deliveries"
     title_zh: "校园配送"
@@ -481,13 +511,11 @@ desktop_groups:
       - file: photo_20221125_175832378_iOS.jpg
         position: "60% 67%"
         weight: 1.1
+        max_aspect: 2.1
       - file: photo_20221125_193929293_iOS.jpg
         position: "50% 63%"
         weight: 1.15
-      - file: photo_Big_little.jpg
-        position: "50% 50%"
-        weight: 0.6
-        fit: "contain"
+        max_aspect: 2.1
   - id: wet-track-testing
     title: "Learning-based control"
     title_zh: "基于学习的控制"
