@@ -3,17 +3,17 @@ vision:
   title_zh: 可信物理人工智能
   learning: Data-driven learning
   learning_zh: 数据驱动学习
-  prior: Model-based prior
-  prior_zh: 基于模型的先验
-  description: "My goal is to connect multimodal world models with reliable, real-time control of articulated vehicles, off-road robots, and mobile manipulators."
-  description_zh: "我希望将多模态世界模型与可靠的实时控制结合，面向铰接车辆、越野机器人和移动操作系统。"
+  prior: Model-based prior and structure
+  prior_zh: 基于模型的先验与结构
+  description: "I combine learning’s ability to represent complex worlds and adapt to change with the physical priors, explicit constraints, and feedback of model-based methods. This hybrid approach aims to make intelligent systems more adaptable while keeping their decisions and actions interpretable and reliable."
+  description_zh: "我将学习方法对复杂世界的表征与适应能力，与模型方法中的物理先验、显式约束和反馈机制相结合。这一混合框架旨在提升智能系统的适应性，同时保持决策与行动的可解释性和可靠性。"
   bullets:
-    - text: "Multimodal world models: fuse vision, LiDAR, and motion history with physical priors."
-      text_zh: "多模态世界模型：结合视觉、激光雷达、运动历史与物理先验。"
-    - text: "Action-conditioned prediction: learn future outcomes and control sensitivities for online optimization."
-      text_zh: "动作条件预测：学习未来状态及其对控制输入的敏感性，服务在线优化。"
-    - text: "Learning-enhanced MPC: combine uncertainty-aware constraints, adaptive objectives, and generative trajectory proposals."
-      text_zh: "学习增强 MPC：融合不确定性感知约束、自适应目标与生成式轨迹提案。"
+    - text: "How can multimodal sensing help us learn representations of complex, dynamic, interactive worlds?"
+      text_zh: "如何从多模态感知中学习复杂、动态且具有交互性的世界表征？"
+    - text: "How can we learn action-conditioned, optimization-friendly world models for safety-critical decision-making, planning, and control?"
+      text_zh: "如何学习以动作为条件、适于优化的世界模型，服务安全关键的决策、规划与控制？"
+    - text: "How can imitation, reinforcement, and self-supervised learning work together with classical model-based methods?"
+      text_zh: "如何将模仿学习、强化学习与自监督学习，同经典的基于模型的方法更好地结合？"
 
 projects:
   - id: articulated-vehicles

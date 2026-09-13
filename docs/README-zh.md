@@ -25,6 +25,7 @@
 | 默认/备用头像、个人链接 | [_config.yml](../_config.yml) 的 `author` |
 | 中英文职位及单位 | [_config.yml](../_config.yml) 的 `author.roles` |
 | Home 研究愿景、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
+| Home 中英文研究历程图 | [_data/trajectory.yml](../_data/trajectory.yml) 的 `steps` |
 | 论文、作者角色符号 | [_data/publications.json](../_data/publications.json)、[_data/publication_roles.yml](../_data/publication_roles.yml) |
 | 教学、工作与教育经历 | [_data/career.yml](../_data/career.yml) |
 | 导航、项目链接的翻译 | [_data/navigation.yml](../_data/navigation.yml)、[_data/translations.yml](../_data/translations.yml) |
@@ -50,13 +51,25 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 ## 3. 修改研究愿景、项目和图片
 
-**Home 末尾的 Research vision / 研究愿景** 在 `_data/research.yml` 的 `vision` 下维护：修改公式字段、`description/description_zh` 简介，以及 `bullets` 简短要点。每条要点同时填写中英文：
+**Home 中的 Research vision / 研究愿景** 在 `_data/research.yml` 的 `vision` 下维护：修改公式字段、`description/description_zh` 简介，以及 `bullets` 简短研究问题。每个问题同时填写中英文：
 
 ```yaml
   bullets:
-    - text: "One concise research direction."
-      text_zh: "一句简短的研究方向。"
+    - text: "What research question guides this direction?"
+      text_zh: "这一方向希望回答什么研究问题？"
 ```
+
+**Research trajectory / 研究历程图** 位于这些问题之后。在 `_data/trajectory.yml` 中维护目前的八个步骤；列表顺序决定路线，编号自动生成。新增、删除或调整顺序时，无需修改 HTML 或重新画图。每个 `id` 保持唯一，中英文同时修改：
+
+```yaml
+  - id: my-next-step
+    title: "A short method or direction"
+    title_zh: "简短的方法或方向"
+    description: "One sentence connecting it to the research vision."
+    description_zh: "用一句话说明它与研究愿景的联系。"
+```
+
+图的标题和简短说明分别在文件顶部的 `title/title_zh`、`note/note_zh`。手机上会自动重新排版；改动文字长度后检查中英文效果。
 
 在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时填写中文。
 
@@ -106,7 +119,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 ### 顶部背景照片
 
-手机逐张显示照片；电脑端（窗口宽度超过 800 px）将相关机器人、车辆照片以 3–4 张横向组合，风景照仍单独显示。刷新时随机选择首张照片或组合，每张停留 3 秒，再用 1 秒淡入淡出；点击也会切换，相邻选择不会重复。切换语言保留当前和下一张。窗口跨过 800 px 时，组合内的单图对应到电脑组合，组合则对应到手机首张可用照片；不属于组合的照片保持不变。裁切只发生在浏览器中，不修改图片文件。需要完整保留的人像仍可使用柔和虚化背景补齐空白。
+手机逐张显示照片；电脑端（窗口宽度超过 800 px）可将同一主题的照片横向组合，例如机器人研发、车辆冬季测试或同一个湖的不同风景。其余适合电脑的照片仍单独显示。刷新时随机选择首张照片或组合，每张停留 3 秒，再用 1 秒淡入淡出；点击也会切换，相邻选择不会重复。切换语言保留当前和下一张。窗口跨过 800 px 时，组合内的单图对应到电脑组合，组合则对应到手机首张可用照片；仅手机显示的照片会替换为可用的电脑照片或组合。裁切只发生在浏览器中，不修改图片文件。
 
 电脑上，鼠标悬停在**照片任意区域**，同时显示当前照片说明和下一张预告，不再显示角落图标。点击说明区以外的照片区域切换；只要鼠标仍在横幅内，两条说明就保持显示并更新。移开鼠标后收起。
 
@@ -118,7 +131,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 
 1. 将适合网页的 JPG、PNG 或 WebP 放进 `images/background/`，使用不重复的文件名，例如 `photo_2026_waterloo.jpg`。HEIC 请先转成 JPG，并确认方向正确。大照片可导出长边约 2400 px 的副本，减小下载量；全尺寸原图保存在这个公开目录之外。
 2. 在 `_data/background.yml` 已有的 `images` 下添加完全对应的文件名，并填写中英文。**只有文件、没有对应配置的照片不会显示。**
-3. 分别检查电脑与手机效果。删除照片时，同时删除配置和对应文件；暂时隐藏可设 `enabled: false`。
+3. 分别检查电脑与手机效果。照片不适合宽横幅时，添加 `desktop: false`，仅在手机显示。删除照片时，同时删除配置和对应文件；所有设备暂时隐藏可设 `enabled: false`。
 
 文件名**可以数字开头**；统一使用 `photo_` 只是方便维护。线上文件名区分大小写；同一个文件名在 YAML 中只能配置一次，重复的键会导致配置报错。
 
@@ -142,15 +155,17 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
 - 未填中文时显示英文；旧的 `caption/caption_zh` 仍可作为标题使用，标题未填时显示文件名。描述可以省略。
 - `source` 和 `credit/credit_zh` 在数据文件中保留来源及署名记录，背景说明不显示链接。需要直接显示的图片署名写进描述，可参考 SafeTrucks 示例。
 - 单张照片设 `enabled: false` 可暂时排除；文件顶部的 `enabled: false` 隐藏整个横幅。`height` 设置电脑基础高度（220 px）；超宽屏会适度增加高度，最高 360 px，以保留人物和机器人主体。`mobile_height` 仍为 150 px。超宽屏比例在 `assets/css/profile.css` 的 `.home-background` 中调整。
+- 单张照片设 `desktop: false` 后，超过 800 px 的窗口不再显示它，原有手机取景和说明保持不变。删除这个字段即可恢复电脑端显示。分辨率较低或主体需要较大纵向空间的照片适合这样处理，避免电脑上只在中央显示小图、两侧留下大面积虚化。
 - 文件顶部的 `fade_duration: 1000` 控制淡入淡出过渡的毫秒数；`interval: 3000` 控制**过渡完成后的停留时间**。照片、播放时间和中英文说明仍统一在这一配置文件中维护。
 - 使用 `crop`（原图像素中的 x、y、宽、高）和 `source_size: [宽, 高]`，可以裁掉多余留白而不修改原文件。`fit` / `mobile_fit` 再决定如何显示裁切区域：`contain` 完整保留，`cover` 铺满横幅。裁切区域居中显示，要移动主体请调整 `crop`，此时 `position` 不控制裁切区域。可参考 F1Tenth 条目；替换原照片时同步更新或删除这两个字段。
 
 **修改电脑端横向组合：** 在 `_data/background.yml` 末尾找到 `desktop_groups`。每组包含唯一的 `id`、中英文 `title` 与 `description`，以及按从左到右排列的 `photos` 列表。各小图紧密相连，不留空隙，也没有独立圆角。
 
-- 每个小图的 `file` 必须同时存在于 `images` 配置中并保持启用；原有单图说明和手机取景仍在那里维护。重命名或删除组合内的照片时，两处都要更新。
+- 每个小图的 `file` 必须同时存在于 `images` 配置中、保持启用，且不能设 `desktop: false`；原有单图说明和手机取景仍在那里维护。重命名或删除组合内的照片时，两处都要更新。
 - 小图的 `position` 单独控制电脑组合中的取景，不影响手机；`weight` 控制相对宽度，默认为 `1`。需要完整保留人物时可设 `fit: "contain"`，其余小图默认 `cover`。
+- 可选字段 `max_aspect` 限制该小图“宽度 ÷ 横幅高度”的最大值。例如 `max_aspect: 1.333` 将山景近照限制在约 4:3 以内，`2.4` 可用于更宽的车辆或船只画面。这是宽度上限，并非固定宽度；实际仍受 `weight` 和可用空间影响。**每组至少一张照片不设 `max_aspect`**，用于填满剩余宽度。普通电脑窗口和超宽屏都要检查取景。
 - 电脑使用整组的标题与描述，手机继续使用每张照片原有的说明。组合会替代其成员在电脑端的单图轮播，避免重复；全部小图准备好后才淡入显示。
-- 给组合设置 `enabled: false`，或删除该组合，即可恢复电脑端逐张显示。若某个成员缺失或被禁用，该组合失效，其余单图仍可显示。组合 `id` 不要重复，同一张照片只加入一组。
+- 给组合设置 `enabled: false`，或删除该组合，即可恢复其中适合电脑的单图逐张显示。若某个成员缺失、被禁用或仅手机显示，该组合失效，其余符合条件的单图仍可显示。组合 `id` 不要重复，同一张照片只加入一组。
 
 不会生成额外的拼接图片文件；替换原照片后，组合里的对应小图也会更新。
 

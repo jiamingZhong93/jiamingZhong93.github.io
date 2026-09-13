@@ -15,7 +15,7 @@
   for (const group of templates.filter(item => item.hasAttribute('data-photo-group'))) {
     if (!group.dataset.photoGroup || groupIds.has(group.dataset.photoGroup)) continue;
     const members = Array.from(group.querySelectorAll('.home-background__tile'), tile => byKey.get(tile.dataset.photoKey));
-    if (members.length < 2 || members.some(item => !item || memberGroup.has(item)) || new Set(members).size !== members.length) continue;
+    if (members.length < 2 || members.some(item => !item || item.dataset.desktop === 'false' || memberGroup.has(item)) || new Set(members).size !== members.length) continue;
     groupIds.add(group.dataset.photoGroup);
     groupMembers.set(group, members);
     for (const member of members) memberGroup.set(member, group);
@@ -61,6 +61,7 @@
   function eligible(item) {
     if (!item || failed.has(item)) return false;
     if (groupMembers.has(item)) return desktopLayout.matches;
+    if (desktopLayout.matches && item.dataset.desktop === 'false') return false;
     const group = memberGroup.get(item);
     return !desktopLayout.matches || !group || failed.has(group);
   }
@@ -258,25 +259,29 @@
 
   async function reconcileLayout() {
     layoutPending = true;
-    if (switching || !current) return;
+    if (switching) return;
     switching = true; syncTimer();
     ++nextVersion; upcoming = null; nextTask = null;
     while (layoutPending) {
       layoutPending = false;
-      const members = groupMembers.get(current.item);
-      const group = memberGroup.get(current.item);
-      const target = desktopLayout.matches
-        ? (group && !failed.has(group) ? group : current.item)
-        : (members ? members.find(item => !failed.has(item)) : current.item);
+      const members = groupMembers.get(current?.item);
+      const group = memberGroup.get(current?.item);
+      let target = desktopLayout.matches
+        ? (group && !failed.has(group) ? group : current?.item)
+        : (members ? members.find(item => !failed.has(item)) : current?.item);
+      // A mobile-only photo must map to an eligible desktop replacement, even
+      // when it has no group. Otherwise the resize loop would retain it forever.
+      if (!eligible(target)) target = null;
       const version = layoutVersion;
-      let record = target === current.item ? current : target ? await waitForLayout(prepare(target)) : null;
+      let record = target && target === current?.item ? current : target ? await waitForLayout(prepare(target)) : null;
       if (version !== layoutVersion) { layoutPending = true; continue; }
       // A failed group makes its individual photos eligible again.
-      if (!record && eligible(current.item)) record = current;
+      if (!record && eligible(current?.item)) record = current;
       if (!record) record = await loadRandom(null);
       if (version !== layoutVersion) { layoutPending = true; continue; }
-      if (!record) break; // Keep the rendered photo if every replacement failed.
+      if (!record) { cover.hidden = true; break; }
       if (!eligible(record.item)) { layoutPending = true; continue; }
+      cover.hidden = false;
       if (record !== current) await display(record);
       else queueNext();
     }
@@ -378,7 +383,11 @@
   let previous = null;
   try { previous = sessionStorage.getItem(storageKey); } catch {}
   loadRandom(null, previous).then(async record => {
-    if (!record) { cover.hidden = true; return; }
+    if (!record) {
+      cover.hidden = true; switching = false;
+      if (layoutPending) reconcileLayout();
+      return;
+    }
     // Covers a stationary mouse that was already here when the script loaded.
     mouseInside = window.matchMedia('(hover: hover)').matches && cover.matches(':hover');
     await display(record);

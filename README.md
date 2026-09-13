@@ -25,6 +25,7 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Default/alternate portrait and profile links | [_config.yml](_config.yml), under `author` |
 | Bilingual profile titles and institutions | [_config.yml](_config.yml), `author.roles` |
 | Home research vision and projects | [_data/research.yml](_data/research.yml), `vision` and `projects` |
+| Bilingual research trajectory diagram in Home | [_data/trajectory.yml](_data/trajectory.yml), `steps` |
 | Publications and author-role symbols | [_data/publications.json](_data/publications.json), [_data/publication_roles.yml](_data/publication_roles.yml) |
 | Teaching, experience and education | [_data/career.yml](_data/career.yml) |
 | Navigation and project-link translations | [_data/navigation.yml](_data/navigation.yml), [_data/translations.yml](_data/translations.yml) |
@@ -50,13 +51,25 @@ Keep links and icons outside elements whose text is replaced by `data-zh`. Check
 
 ## 3. Update research, projects and pictures
 
-The **Research vision at the end of Home** is in `_data/research.yml` under `vision`: edit the formula fields, `description/description_zh`, and the short `bullets` list. Each bullet has both languages:
+The **Research vision in Home** is in `_data/research.yml` under `vision`: edit the formula fields, `description/description_zh`, and the short research questions in `bullets`. Each question has both languages:
 
 ```yaml
   bullets:
-    - text: "One concise research direction."
-      text_zh: "一句简短的研究方向。"
+    - text: "What research question guides this direction?"
+      text_zh: "这一方向希望回答什么研究问题？"
 ```
+
+The **Research trajectory** diagram follows these questions. Edit its eight steps in `_data/trajectory.yml`; the list order determines the route and the numbers are generated automatically. Add, remove or reorder entries without editing HTML or drawing a new image. Keep every `id` unique and maintain both languages:
+
+```yaml
+  - id: my-next-step
+    title: "A short method or direction"
+    title_zh: "简短的方法或方向"
+    description: "One sentence connecting it to the research vision."
+    description_zh: "用一句话说明它与研究愿景的联系。"
+```
+
+Also update the diagram's top-level `title/title_zh` and `note/note_zh` if needed. The diagram reflows on phones; preview both languages after changing text length.
 
 Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Use a short description and maintain its Chinese fields.
 
@@ -106,7 +119,7 @@ The default photo is an outdoor portrait; the alternate is a formal portrait. Bo
 
 ### Cover photos
 
-Phones show individual photos. On desktop (over 800 px wide), related robot and vehicle photos form horizontal groups of 3–4, while landscapes remain single photos. Refresh selects a random photo or group; each stays for 3 seconds and crossfades over 1 second. Clicking also advances, and consecutive selections differ. Changing language retains the current and next selection. Crossing the 800 px breakpoint maps a grouped photo to its desktop group, or a group to its first available phone photo; ungrouped photos stay in place. Framing happens in the browser without changing the files. Full portraits can still use a softly blurred backdrop.
+Phones show individual photos. On desktop (over 800 px wide), related photos can form horizontal groups: robot development, winter vehicle testing or views from the same lake, for example. Other eligible photos remain single. Refresh selects a random photo or group; each stays for 3 seconds and crossfades over 1 second. Clicking also advances, and consecutive selections differ. Changing language retains the current and next selection. Crossing the 800 px breakpoint maps a grouped photo to its desktop group, or a group to its first available phone photo. A phone-only photo is replaced by an eligible desktop selection. Framing happens in the browser without changing the files.
 
 Hover **anywhere on the photo** to show both the current-photo details and the next-photo preview. There are no corner icons. Click the photo outside those details to advance; the captions stay open while the pointer remains over the banner. Moving away closes them.
 
@@ -118,7 +131,7 @@ To add a photo:
 
 1. Save a web-ready JPG, PNG or WebP in `images/background/`, using a unique name such as `photo_2026_waterloo.jpg`. Convert HEIC to JPG first; preserve the correct orientation. For large originals, an exported copy with a long edge around 2400 px keeps downloads light. Keep full-size originals outside this public directory.
 2. Add that exact filename under the existing `images` block in `_data/background.yml`, with English and Chinese text. **Files without a matching entry are not displayed.**
-3. Check both desktop and phone framing. To remove a photo, delete its entry and the corresponding file; use `enabled: false` to hide it temporarily.
+3. Check both desktop and phone framing. If a photo cannot work well across a wide banner, add `desktop: false` to keep it on phones only. To remove a photo, delete its entry and the corresponding file; use `enabled: false` to hide it on all devices temporarily.
 
 Filenames **can start with numbers**; the `photo_` prefix is just a consistent naming convention. Names are case-sensitive online, and each filename key must occur only once in YAML. Duplicate keys cause a configuration error.
 
@@ -142,15 +155,17 @@ Example entry under `images`:
 - Missing Chinese fields fall back to English. Legacy `caption/caption_zh` still work as title fields; an absent title uses the filename. Descriptions are optional.
 - `source` and `credit/credit_zh` keep attribution records in the data file; captions do not contain links. Include any visible photo credit in the description, as in the SafeTrucks example.
 - Per-image `enabled: false` keeps a file out of the selection. Top-level `enabled: false` hides the entire cover. `height` sets the desktop base height (220 px). Extra-wide screens scale it gently up to 360 px to preserve subjects; `mobile_height` stays at 150 px. The wide-screen scaling is in `.home-background` in `assets/css/profile.css`.
+- Per-image `desktop: false` excludes the photo above 800 px and keeps its existing phone framing and captions. Remove that field to allow desktop display again. Use this for low-resolution photos or subjects that need too much vertical space; avoid a tiny centered photo surrounded by broad blurred areas on desktop.
 - Top-level `fade_duration: 1000` sets the crossfade duration in milliseconds; `interval: 3000` sets the hold time **after the transition finishes**. Photos, timing and bilingual details all use this one configuration file.
 - Use `crop` (x, y, width, height in source pixels) with `source_size: [width, height]` to trim empty borders without editing the file. `fit` / `mobile_fit` then frame that crop: `contain` preserves it completely; `cover` fills the banner. Cropped frames are centered, so adjust `crop` rather than `position` to move the subject. See the F1Tenth entry. Update or remove both fields when replacing the source photo.
 
 **Edit a desktop photo group:** find `desktop_groups` at the end of `_data/background.yml`. Each group has a unique `id`, bilingual `title` and `description`, and a `photos` list in left-to-right order. Tiles join edge to edge, with no gaps or individual rounded corners.
 
-- Each tile's `file` must also exist and be enabled under `images`. Keep its individual captions and mobile framing there. When renaming or deleting a grouped file, update both places.
+- Each tile's `file` must also exist and be enabled under `images`, without `desktop: false`. Keep its individual captions and mobile framing there. When renaming or deleting a grouped file, update both places.
 - Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative width (default `1`); `fit: "contain"` preserves a full subject within its tile. Other tiles default to `cover`.
+- Optional tile `max_aspect` caps its width divided by the banner height. For example, `max_aspect: 1.333` limits a mountain close-up to roughly 4:3, while `2.4` allows a wider vehicle or boat view. This is a maximum, not a fixed width; `weight` and available space still matter. **Leave at least one tile in every group without `max_aspect`** so it fills the remaining width. Check the crop on both normal and extra-wide desktop windows.
 - A group's captions describe the complete strip; phones use the original individual captions. The group replaces its members in desktop rotation, so those images do not also repeat as desktop singles. Every tile loads before the strip crossfades in.
-- Set a group's `enabled: false`, or remove the group entry, to restore its single photos on desktop. Missing or disabled members invalidate the group and leave the remaining singles available. Keep group IDs unique and use each photo in only one group.
+- Set a group's `enabled: false`, or remove the group entry, to restore its eligible single photos on desktop. Missing, disabled or phone-only members invalidate the group and leave eligible singles available. Keep group IDs unique and use each photo in only one group.
 
 No stitched image file is created: replacing the original photo updates its tile automatically.
 
