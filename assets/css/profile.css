@@ -91,6 +91,7 @@ html[lang="zh-CN"] .localized-copy { line-height: 1.9; }
 .vision-points { padding-left: 1.15rem; margin: .8rem 0 0; font-size: .95rem; color: var(--muted); }
 .vision-points li { margin-bottom: .4rem; padding-left: .15rem; }
 .vision-points li::marker { color: var(--accent); }
+html:not([lang="zh-CN"]) .vision-points { font-style: italic; }
 .profile-section { padding-top: 3.1rem; }
 .page__content .section-label { font-family: inherit; font-size: .8rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); line-height: 1.5; margin: 0 0 1.2rem; padding: 0; border: 0; }
 html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
@@ -108,41 +109,21 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 .equation-equals { grid-area: equals; }
 .equation-plus { grid-area: plus; }
 /* Break at the equality on narrow columns; keep readable type instead of scaling down. */
-@container (max-width: 800px) {
-  .vision-equation { grid-template-columns: .7em minmax(0,max-content) .7em minmax(0,max-content); grid-template-areas: "result result result result" "equals learning plus prior"; gap: .2rem .35em; }
+@container (max-width: 720px) {
+  .vision-equation { grid-template-columns: .7em minmax(0,max-content) .7em minmax(0,max-content); grid-template-areas: "result result result result" "equals learning plus prior"; align-items: center; gap: .2rem .35em; }
 }
 @container (max-width: 360px) {
   .vision-equation { font-size: 1rem; }
-  html:not([lang="zh-CN"]) .vision-equation { grid-template-columns: .7em minmax(0,max-content); grid-template-areas: "result result" "equals learning" "plus prior"; }
-  html:not([lang="zh-CN"]) .vision-learning, html:not([lang="zh-CN"]) .vision-prior { text-align: left; }
 }
 .vision-description { font-size: 1rem; color: var(--muted); margin: .85rem 0 .3rem !important; }
-/* A compact, data-driven route: reading order is always 01 to 08, with no dates
-   implied. The same ordered list becomes a continuous vertical rail on phones. */
-.research-trajectory { container-type: inline-size; margin: 2rem 0 .3rem; }
-.research-trajectory figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; color: var(--ink); font-family: inherit; font-style: normal; }
-.trajectory-heading { font-size: .9rem; font-weight: 650; }
-.trajectory-note { font-size: .75rem; color: var(--muted); }
-.trajectory-list { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1.3rem 0; padding: 0; margin: 0; list-style: none; counter-reset: none; }
-.trajectory-list li { position: relative; margin: 0; padding: 0 1rem .2rem 0; min-width: 0; }
-.trajectory-list li::before { content: ""; position: absolute; top: 12px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, #5789a7, #b4a3cd); opacity: .45; }
-.trajectory-step { position: relative; display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid #bdd0d4; border-radius: 50%; background: var(--paper); color: var(--accent); font-size: .65rem; font-weight: 650; font-variant-numeric: tabular-nums; }
-.trajectory-list li:nth-child(n+5) .trajectory-step { border-color: #cbbedd; color: #755392; }
-.page__content .trajectory-list h3 { font: inherit; font-size: .84rem; font-weight: 650; line-height: 1.4; margin: .65rem 0 .35rem; color: var(--ink); }
-.page__content .trajectory-list p { font-size: .78rem; line-height: 1.55; color: var(--muted); margin: 0; }
-@container (max-width: 640px) {
-  .trajectory-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
-}
-@media (max-width: 600px) {
-  .trajectory-list { grid-template-columns: 1fr; gap: 0; }
-  .trajectory-list li { min-height: 64px; padding: 0 0 1.2rem 40px; }
-  .trajectory-list li::before { top: 12px; bottom: 0; left: 12px; right: auto; width: 1px; height: auto; background: linear-gradient(#5789a7, #b4a3cd); }
-  .trajectory-list li:last-child { padding-bottom: 0; }
-  .trajectory-list li:last-child::before { display: none; }
-  .trajectory-step { position: absolute; left: 0; top: 0; }
-  .page__content .trajectory-list h3 { margin: .05rem 0 .2rem; font-size: .9rem; }
-  .page__content .trajectory-list p { font-size: .8rem; }
-}
+/* A short, wrapping path keeps the progression readable without a tall timeline. */
+.research-trajectory { margin: 1.5rem 0 .3rem; }
+.research-trajectory figcaption { margin-bottom: .55rem; color: var(--ink); font-family: inherit; font-style: normal; }
+.trajectory-heading { font-size: .85rem; font-weight: 600; }
+.trajectory-list { display: flex; flex-wrap: wrap; gap: .35rem .65rem; padding: 0; margin: 0; list-style: none; }
+.trajectory-list li { display: inline-flex; align-items: baseline; gap: .65rem; min-width: 0; max-width: 100%; margin: 0; padding: 0; color: var(--accent); font-size: .82rem; font-weight: 500; line-height: 1.7; }
+.trajectory-list li:last-child { color: #755392; }
+.trajectory-arrow { flex: 0 0 auto; color: #91a6aa; font-weight: 400; }
 .research-projects { margin-top: 1.4rem; scroll-margin-top: 0; }
 .research-project { border: 0; padding: 1.6rem 0; }
 .research-project.has-media { display: grid; grid-template-columns: minmax(0,36%) minmax(0,1fr); gap: .9rem 1.5rem; align-items: start; }

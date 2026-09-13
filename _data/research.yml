@@ -3,17 +3,17 @@ vision:
   title_zh: 可信物理人工智能
   learning: Data-driven learning
   learning_zh: 数据驱动学习
-  prior: Model-based prior and structure
-  prior_zh: 基于模型的先验与结构
-  description: "I combine learning’s ability to represent complex worlds and adapt to change with the physical priors, explicit constraints, and feedback of model-based methods. This hybrid approach aims to make intelligent systems more adaptable while keeping their decisions and actions interpretable and reliable."
-  description_zh: "我将学习方法对复杂世界的表征与适应能力，与模型方法中的物理先验、显式约束和反馈机制相结合。这一混合框架旨在提升智能系统的适应性，同时保持决策与行动的可解释性和可靠性。"
+  prior: Model-based structure
+  prior_zh: 基于模型的结构
+  description: "My research focuses on hybrid data-driven and model-based frameworks that formally embed learning within safety-critical control and decision-making architectures. Data-driven methods improve adaptability under uncertainty, while model-based structure incorporates human knowledge as priors and enforces safety, stability, and robustness."
+  description_zh: "我的研究聚焦于融合数据驱动与模型方法的混合框架，将学习以形式化方式嵌入安全关键的控制与决策架构。数据驱动方法提升不确定环境下的适应能力，模型结构则融入人类知识先验，并保障安全性、稳定性与鲁棒性。"
   bullets:
-    - text: "How can multimodal sensing help us learn representations of complex, dynamic, interactive worlds?"
-      text_zh: "如何从多模态感知中学习复杂、动态且具有交互性的世界表征？"
-    - text: "How can we learn action-conditioned, optimization-friendly world models for safety-critical decision-making, planning, and control?"
-      text_zh: "如何学习以动作为条件、适于优化的世界模型，服务安全关键的决策、规划与控制？"
-    - text: "How can imitation, reinforcement, and self-supervised learning work together with classical model-based methods?"
-      text_zh: "如何将模仿学习、强化学习与自监督学习，同经典的基于模型的方法更好地结合？"
+    - text: "How can multimodal learning capture the dynamics and interactions of complex worlds?"
+      text_zh: "如何通过多模态学习，表征复杂世界的动态变化与交互关系？"
+    - text: "How can action-conditioned world models support efficient optimization for safety-critical decision-making, planning, and control?"
+      text_zh: "如何让世界模型刻画动作的影响，并高效支持安全关键的优化决策、规划与控制？"
+    - text: "How can imitation, reinforcement, and self-supervised learning best complement classical model-based methods?"
+      text_zh: "如何将模仿学习、强化学习与自监督学习的优势融入经典的基于模型的方法？"
 
 projects:
   - id: articulated-vehicles

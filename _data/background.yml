@@ -26,18 +26,9 @@ images:
     title_zh: "电动汽车漂移"
     description: "I drifted an electric vehicle on snow."
     description_zh: "我驾驶电动汽车在雪地漂移。"
-    position: "50% 78%"
+    position: "50% 66%"
     mobile_position: "50% 70%"
     fit: "cover"
-    mobile_fit: "cover"
-  photo_20190305_035502187_iOS.jpg:
-    title: "Electric vehicle"
-    title_zh: "电动汽车"
-    description: "Winter testing of an electric vehicle."
-    description_zh: "电动汽车冬季测试。"
-    position: "50% 50%"
-    mobile_position: "50% 58%"
-    fit: "contain"
     mobile_fit: "cover"
   photo_20221002_211816789_iOS.jpg:
     title: "Delivery robot"
@@ -127,15 +118,6 @@ images:
     description_zh: "慢慢来，小家伙，不用着急。"
     position: "50% 50%"
     mobile_position: "50% 55%"
-    fit: "contain"
-    mobile_fit: "cover"
-  photo_20230116_212703921_iOS.jpg:
-    title: "Killarney, Georgian Bay"
-    title_zh: "基拉尼，乔治亚湾"
-    description: "Enjoy the moment."
-    description_zh: "享受当下。"
-    position: "50% 50%"
-    mobile_position: "50% 60%"
     fit: "contain"
     mobile_fit: "cover"
   photo_20230117_160446651_iOS.jpg:
@@ -257,6 +239,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240603_170208017_iOS.jpg:
+    desktop: false
     title: "Lake Louise"
     title_zh: "露易丝湖"
     description: "Gorgeous!"
@@ -284,6 +267,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240606_191152176_iOS.jpg:
+    desktop: false
     title: "Maligne Lake"
     title_zh: "玛琳湖"
     description: "Picturesque!"
@@ -346,15 +330,6 @@ images:
     position: "50% 62%"
     mobile_position: "50% 60%"
     fit: "cover"
-    mobile_fit: "cover"
-  photo_20251012_172321266_iOS.jpg:
-    title: "Lake Muskoka"
-    title_zh: "马斯科卡湖"
-    description: "Gravenhurst."
-    description_zh: "格雷文赫斯特。"
-    position: "50% 50%"
-    mobile_position: "50% 58%"
-    fit: "contain"
     mobile_fit: "cover"
   photo_20251012_173208850_iOS.jpg:
     title: "Lake Muskoka"
@@ -436,7 +411,8 @@ images:
     position: "50% 65%"
     mobile_position: "50% 65%"
 
-# Desktop only: related photos form one strip; phones keep the individual entries above.
+# Desktop only: related research photos form one strip; scenic photos stay single.
+# Phones keep the individual entries above.
 # Tiles appear left to right. Each file must also be enabled under images.
 # position is specific to this tile; weight sets its relative width. No files are merged.
 # Optional max_aspect caps tile width / banner height to preserve a tall subject.
@@ -524,67 +500,3 @@ desktop_groups:
         position: "50% 57%"
       - file: photo_20230928_191137142_iOS.jpg
         position: "50% 67%"
-  - id: maligne-lake
-    title: "Maligne Lake"
-    title_zh: "玛琳湖"
-    description: "Mountain views and boats on the lake."
-    description_zh: "湖光山色与游船掠影。"
-    photos:
-      - file: photo_20240606_190705666_iOS.jpg
-        position: "50% 55%"
-        weight: 1.1
-      - file: photo_20240606_191152176_iOS.jpg
-        position: "40% 50%"
-        weight: 0.55
-        max_aspect: 1.333
-      - file: photo_20240606_201725840_iOS.jpg
-        position: "50% 78%"
-        weight: 1.1
-      - file: photo_20240607_001756457_iOS.jpg
-        position: "50% 72%"
-        weight: 1.1
-  - id: louise-agnes
-    title: "Lake Louise & Lake Agnes"
-    title_zh: "露易丝湖与阿格尼丝湖"
-    description: "Turquoise water and snowy mountain scenery."
-    description_zh: "碧蓝湖水与皑皑雪峰。"
-    photos:
-      - file: photo_20240603_165727518_iOS.jpg
-        position: "50% 58%"
-        weight: 1.35
-      - file: photo_20240603_170208017_iOS.jpg
-        position: "50% 50%"
-        weight: 0.5
-        max_aspect: 1.333
-      - file: photo_20240603_205551384_iOS.jpg
-        position: "50% 60%"
-        weight: 1.35
-  - id: muskoka
-    title: "Lake Muskoka"
-    title_zh: "马斯科卡湖"
-    description: "Steamships and autumn scenery in Gravenhurst."
-    description_zh: "格雷文赫斯特的汽船与秋日湖景。"
-    photos:
-      - file: photo_20251012_172321266_iOS.jpg
-        position: "50% 68%"
-        weight: 0.65
-        max_aspect: 2.4
-      - file: photo_20251012_173208850_iOS.jpg
-        position: "50% 72%"
-        weight: 1.6
-  - id: electric-vehicle-winter
-    title: "Electric vehicle winter testing"
-    title_zh: "电动汽车冬季测试"
-    description: "Winter testing and drifting on snow."
-    description_zh: "冬季测试与雪地漂移。"
-    photos:
-      - file: photo_20180422_154734356_iOS.jpg
-        position: "50% 73%"
-        weight: 1.2
-      - file: photo_20190305_035502187_iOS.jpg
-        position: "50% 85%"
-        weight: 0.92
-        max_aspect: 2.4
-      - file: photo_20180422_154738723_iOS.jpg
-        position: "50% 75%"
-        weight: 1.2

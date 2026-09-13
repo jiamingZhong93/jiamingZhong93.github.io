@@ -1,47 +1,29 @@
-# Display order follows this list. Edit each English/Chinese pair together.
-# 顺序由列表决定；维护时同步修改英文与中文，不需要手动编号。
+# Short bilingual labels in research order; arrows are added automatically.
+# 用简短的中英文标签维护研究顺序；箭头自动生成，无需编号。
 title: Research trajectory
 title_zh: 研究历程
-note: One vision, evolving methods
-note_zh: 愿景一以贯之，方法不断演进
 steps:
   - id: residual-dynamics
-    title: Residual dynamics learning
-    title_zh: 动力学残差学习
-    description: Learning what nominal models miss.
-    description_zh: 学习标称模型未能描述的动力学。
+    title: Residual learning
+    title_zh: 残差学习
   - id: probabilistic-mpc
-    title: Probabilistic learning + MPC
+    title: Probabilistic MPC
     title_zh: 概率学习与 MPC
-    description: Uncertainty-aware learning with stochastic MPC.
-    description_zh: 将不确定性感知学习与随机 MPC 结合。
   - id: multi-agent-coordination
-    title: Learning to coordinate
-    title_zh: 学习协作
-    description: Learning interactions for convergent multi-agent coordination.
-    description_zh: 学习交互，支持具有收敛性的多智能体协作。
+    title: Multi-agent learning
+    title_zh: 多智能体交互学习
   - id: llm-decisions
-    title: LLM-assisted decisions
-    title_zh: 大模型辅助决策
-    description: Explainable reasoning with explicit safety checks.
-    description_zh: 将可解释推理与显式安全检查结合。
+    title: LLM reasoning
+    title_zh: 大模型推理
   - id: transformer-imitation
-    title: Transformer imitation learning
+    title: Transformer imitation
     title_zh: Transformer 模仿学习
-    description: Planning and control for articulated and off-road vehicles.
-    description_zh: 面向铰接车辆与越野车辆的规划与控制。
   - id: rl-mpc
     title: RL + MPC
     title_zh: 强化学习与 MPC
-    description: Combining learned behavior with model-based optimization.
-    description_zh: 将学习得到的行为与基于模型的优化结合。
   - id: autonomous-racing
-    title: Agile autonomous racing
-    title_zh: 敏捷自主赛车
-    description: Deep learning for F1TENTH planning and control.
-    description_zh: 基于深度学习的 F1TENTH 规划与控制。
+    title: F1TENTH racing
+    title_zh: F1TENTH 自主赛车
   - id: manipulation-world-models
-    title: Vision-language & world models
-    title_zh: 视觉语言与世界模型
-    description: Exploring mobile manipulation with XLeRobot.
-    description_zh: 基于 XLeRobot 探索移动操作。
+    title: VLM/WM manipulation
+    title_zh: VLM/WM 机器人操作

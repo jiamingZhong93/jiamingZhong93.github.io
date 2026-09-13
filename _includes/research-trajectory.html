@@ -2,14 +2,12 @@
 <figure class="research-trajectory">
 <figcaption>
 <span class="trajectory-heading" data-zh="{{ trajectory.title_zh | default: trajectory.title | escape }}">{{ trajectory.title | escape }}</span>
-<span class="trajectory-note" data-zh="{{ trajectory.note_zh | default: trajectory.note | escape }}">{{ trajectory.note | escape }}</span>
 </figcaption>
-<ol class="trajectory-list">
+<ol class="trajectory-list" role="list">
 {% for step in trajectory.steps %}
 <li id="trajectory-{{ step.id | escape }}">
-<span class="trajectory-step" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-<h3 data-zh="{{ step.title_zh | default: step.title | escape }}">{{ step.title | escape }}</h3>
-<p data-zh="{{ step.description_zh | default: step.description | escape }}">{{ step.description | escape }}</p>
+<span data-zh="{{ step.title_zh | default: step.title | escape }}">{{ step.title | escape }}</span>
+{% unless forloop.last %}<span class="trajectory-arrow" aria-hidden="true">→</span>{% endunless %}
 </li>
 {% endfor %}
 </ol>
