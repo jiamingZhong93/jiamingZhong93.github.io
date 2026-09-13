@@ -25,7 +25,7 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Default/alternate portrait and profile links | [_config.yml](_config.yml), under `author` |
 | Bilingual profile titles and institutions | [_config.yml](_config.yml), `author.roles` |
 | Home research vision and projects | [_data/research.yml](_data/research.yml), `vision` and `projects` |
-| Bilingual research trajectory diagram in Home | [_data/trajectory.yml](_data/trajectory.yml), `steps` |
+| Bilingual research trajectory diagram in Home | [_data/trajectory.yml](_data/trajectory.yml), `phases` and their `steps` |
 | Publications and author-role symbols | [_data/publications.json](_data/publications.json), [_data/publication_roles.yml](_data/publication_roles.yml) |
 | Teaching, experience and education | [_data/career.yml](_data/career.yml) |
 | Navigation and project-link translations | [_data/navigation.yml](_data/navigation.yml), [_data/translations.yml](_data/translations.yml) |
@@ -59,16 +59,20 @@ The **Research vision in Home** is in `_data/research.yml` under `vision`: edit 
       text_zh: "这一方向希望回答什么研究问题？"
 ```
 
-The **Research trajectory** follows these questions as eight short labels connected by arrows. Edit `steps` in `_data/trajectory.yml`; list order determines the route. Keep every `id` unique and update both languages:
+The **Research trajectory** follows these questions in four themes, each with two short research labels. Edit `phases` and the nested `steps` in `_data/trajectory.yml`. Their list order determines the route; update English and Chinese together:
 
 ```yaml
-steps:
-  - id: my-next-step
-    title: "A short label"
-    title_zh: "简短标签"
+phases:
+  - id: dynamics
+    title: "Dynamics & uncertainty"
+    title_zh: "动力学与不确定性"
+    steps:
+      - id: residual-dynamics
+        title: "Residual dynamics"
+        title_zh: "动力学残差学习"
 ```
 
-The diagram heading uses the top-level `title/title_zh`. Arrows are automatic; no descriptions, numbers or note are shown. Keep labels brief so the route wraps compactly on phones. Adding or reordering labels requires no HTML changes.
+The diagram heading uses the top-level `title/title_zh`. Keep existing phase IDs when changing headings: they select the small icons. Keep all step IDs unique and preserve them when reordering. Short labels keep the four themes compact in one desktop row or a 2×2 phone layout; no descriptions or numbers are shown. Text and order need only YAML edits. For visual changes, use `assets/css/profile.css`; icons are in `_includes/research-trajectory.html`.
 
 Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Use a short description and maintain its Chinese fields.
 

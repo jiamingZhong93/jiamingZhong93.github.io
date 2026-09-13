@@ -25,7 +25,7 @@
 | 默认/备用头像、个人链接 | [_config.yml](../_config.yml) 的 `author` |
 | 中英文职位及单位 | [_config.yml](../_config.yml) 的 `author.roles` |
 | Home 研究愿景、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
-| Home 中英文研究历程图 | [_data/trajectory.yml](../_data/trajectory.yml) 的 `steps` |
+| Home 中英文研究历程图 | [_data/trajectory.yml](../_data/trajectory.yml) 的 `phases` 及各组 `steps` |
 | 论文、作者角色符号 | [_data/publications.json](../_data/publications.json)、[_data/publication_roles.yml](../_data/publication_roles.yml) |
 | 教学、工作与教育经历 | [_data/career.yml](../_data/career.yml) |
 | 导航、项目链接的翻译 | [_data/navigation.yml](../_data/navigation.yml)、[_data/translations.yml](../_data/translations.yml) |
@@ -59,16 +59,20 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
       text_zh: "这一方向希望回答什么研究问题？"
 ```
 
-**Research trajectory / 研究历程** 位于这些问题之后，由八个简短标签和箭头组成。在 `_data/trajectory.yml` 的 `steps` 中维护；列表顺序就是研究路线。每个 `id` 保持唯一，中英文同时修改：
+**Research trajectory / 研究历程** 位于这些问题之后，分成四个主题，每组包含两个简短研究标签。在 `_data/trajectory.yml` 的 `phases` 及各组内部的 `steps` 中维护；两层列表的顺序决定路线，中英文同时修改：
 
 ```yaml
-steps:
-  - id: my-next-step
-    title: "A short label"
-    title_zh: "简短标签"
+phases:
+  - id: dynamics
+    title: "Dynamics & uncertainty"
+    title_zh: "动力学与不确定性"
+    steps:
+      - id: residual-dynamics
+        title: "Residual dynamics"
+        title_zh: "动力学残差学习"
 ```
 
-图的标题在文件顶部的 `title/title_zh`。箭头自动生成，不显示描述、编号或附注。标签尽量简短，手机上会紧凑换行；新增或调整顺序无需修改 HTML。
+图的标题在文件顶部的 `title/title_zh`。修改主题名称时保留原有 `id`，小图标由这个字段选择；各研究步骤的 `id` 保持唯一，调整顺序时也保留。标签尽量简短，四个主题在电脑上排成一行、手机上排成 2×2，不显示描述或编号。文字与顺序只需修改 YAML；样式在 `assets/css/profile.css`，图标在 `_includes/research-trajectory.html`。
 
 在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时填写中文。
 

@@ -8,10 +8,10 @@ vision:
   description: "My research focuses on hybrid data-driven and model-based frameworks that formally embed learning within safety-critical control and decision-making architectures. Data-driven methods improve adaptability under uncertainty, while model-based structure incorporates human knowledge as priors and enforces safety, stability, and robustness."
   description_zh: "我的研究聚焦于融合数据驱动与模型方法的混合框架，将学习以形式化方式嵌入安全关键的控制与决策架构。数据驱动方法提升不确定环境下的适应能力，模型结构则融入人类知识先验，并保障安全性、稳定性与鲁棒性。"
   bullets:
-    - text: "How can multimodal learning capture the dynamics and interactions of complex worlds?"
-      text_zh: "如何通过多模态学习，表征复杂世界的动态变化与交互关系？"
-    - text: "How can action-conditioned world models support efficient optimization for safety-critical decision-making, planning, and control?"
-      text_zh: "如何让世界模型刻画动作的影响，并高效支持安全关键的优化决策、规划与控制？"
+    - text: "How can multimodal learning capture the physical dynamics and interactions of complex worlds?"
+      text_zh: "如何通过多模态学习，表征复杂世界的物理动力学与交互关系？"
+    - text: "How can action-conditioned world models support efficient optimization for downstream tasks of safety-critical decision-making, planning, and control?"
+      text_zh: "如何让世界模型刻画动作的影响，为下游安全关键的决策、规划与控制任务提供高效的优化支持？"
     - text: "How can imitation, reinforcement, and self-supervised learning best complement classical model-based methods?"
       text_zh: "如何将模仿学习、强化学习与自监督学习的优势融入经典的基于模型的方法？"
 

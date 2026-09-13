@@ -1,29 +1,45 @@
-# Short bilingual labels in research order; arrows are added automatically.
-# 用简短的中英文标签维护研究顺序；箭头自动生成，无需编号。
+# Four themes, each with short bilingual research labels. List order controls the path.
+# 四个主题串联研究历程；在每个主题下维护中英文短标签，顺序由列表决定。
 title: Research trajectory
 title_zh: 研究历程
-steps:
-  - id: residual-dynamics
-    title: Residual learning
-    title_zh: 残差学习
-  - id: probabilistic-mpc
-    title: Probabilistic MPC
-    title_zh: 概率学习与 MPC
-  - id: multi-agent-coordination
-    title: Multi-agent learning
-    title_zh: 多智能体交互学习
-  - id: llm-decisions
-    title: LLM reasoning
-    title_zh: 大模型推理
-  - id: transformer-imitation
-    title: Transformer imitation
-    title_zh: Transformer 模仿学习
-  - id: rl-mpc
-    title: RL + MPC
-    title_zh: 强化学习与 MPC
-  - id: autonomous-racing
-    title: F1TENTH racing
-    title_zh: F1TENTH 自主赛车
-  - id: manipulation-world-models
-    title: VLM/WM manipulation
-    title_zh: VLM/WM 机器人操作
+phases:
+  - id: dynamics
+    title: Dynamics & uncertainty
+    title_zh: 动力学与不确定性
+    steps:
+      - id: residual-dynamics
+        title: Residual dynamics
+        title_zh: 动力学残差学习
+      - id: probabilistic-mpc
+        title: Probabilistic MPC
+        title_zh: 概率学习与 MPC
+  - id: interactions
+    title: Interaction & reasoning
+    title_zh: 交互与推理
+    steps:
+      - id: multi-agent-coordination
+        title: Multi-agent learning
+        title_zh: 多智能体交互学习
+      - id: llm-decisions
+        title: LLM decisions
+        title_zh: 大模型可解释决策
+  - id: optimization
+    title: Learning & optimization
+    title_zh: 学习与优化
+    steps:
+      - id: transformer-imitation
+        title: Transformer imitation
+        title_zh: Transformer 模仿学习
+      - id: rl-mpc
+        title: RL + MPC
+        title_zh: 强化学习与 MPC
+  - id: autonomy
+    title: Racing & manipulation
+    title_zh: 赛车与机器人操作
+    steps:
+      - id: autonomous-racing
+        title: F1TENTH racing
+        title_zh: F1TENTH 自主赛车
+      - id: manipulation-world-models
+        title: VLM/WM manipulation
+        title_zh: VLM/WM 机器人操作
