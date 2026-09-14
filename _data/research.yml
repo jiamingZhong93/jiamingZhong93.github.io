@@ -8,12 +8,12 @@ vision:
   description: "My research focuses on hybrid data-driven and model-based priors that formally embed AI within classic models, human preferences, and safety-critical architectures. Data-driven learning improves intelligence and adaptability under uncertainty, while structured schemes incorporate human knowledge as priors and enforces safety, stability, and robustness."
   description_zh: "我的研究聚焦于数据驱动与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。数据驱动学习提升不确定环境下的智能水平与适应能力，结构化方法则融入人类知识先验，保障安全性、稳定性与鲁棒性。"
   bullets:
-    - text: "How can multimodal learning capture the physical dynamics and interactions of complex worlds?"
-      text_zh: "如何通过多模态学习，表征复杂世界的物理动力学与交互关系？"
-    - text: "How can action-conditioned world models support downstream tasks of safety-critical action and optimization?"
-      text_zh: "如何让以动作为条件的世界模型支撑下游安全关键的行动与优化任务？"
-    - text: "How can imitation, reinforcement, and self-supervised learning best formally be coupled with classical methods?"
-      text_zh: "如何将模仿学习、强化学习和自监督学习与经典方法进行更有效的形式化耦合？"
+    - text: "How can multimodal learning capture the dynamics and interactions of our complex physical world?"
+      text_zh: "如何通过多模态学习，表征复杂物理世界中的动力学与交互关系？"
+    - text: "How can action-conditioned world models support action and optimization in downstream safety-critical tasks?"
+      text_zh: "如何让以动作为条件的世界模型，支撑下游安全关键任务中的行动与优化？"
+    - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classical methods?"
+      text_zh: "如何以形式化方式，将模仿学习、强化学习和自监督学习与经典方法相结合？"
 
 projects:
   - id: articulated-vehicles

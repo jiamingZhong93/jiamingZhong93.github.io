@@ -173,7 +173,7 @@ phases:
 
 不会生成额外的拼接图片文件；替换原照片后，组合里的对应小图也会更新。
 
-研究公式整体共用一条动态渐变。在 `assets/css/profile.css` 的 `.vision-equation` / `@keyframes vision-colors` 处调整颜色和 `18s` 周期；系统开启“减少动态效果”时自动显示静态渐变。
+研究公式与研究历程箭头共用一条动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。箭头由细到粗的线身与后掠箭头形状在 `.trajectory-phase::after` 的 `clip-path` 中定义。系统开启“减少动态效果”时自动显示静态渐变。
 
 每个项目先显示标题，电脑上标题下方左图右文，手机上依次为“标题 → 图片/GIF → 介绍和链接”。项目、论文及经历条目通过间距区分，不使用分隔横线。
 
