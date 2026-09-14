@@ -69,15 +69,15 @@ phases:
         title: Model-based RL
         title_zh: 基于模型的强化学习
   - id: manipulation
-    title: Multimodal manipulation
-    title_zh: 多模态机器人操作
+    title: Multimodal Operation
+    title_zh: 多模态操作
     steps:
       - id: physical AGI
         title: Physical AGI
         title_zh: 物理世界通用人工智能
       - id: latent-space representation
-        title: Latent-space representation
-        title_zh: 潜在空间表征
+        title: VLA/WAM
+        title_zh: VLA/WAM
       - id: manipulation-world-models
-        title: VLA, WAM, XLeRobot
-        title_zh: VLA、WAM、XLeRobot
+        title: AV + arm (XLeRobot)
+        title_zh: 自动驾驶车 + 机械臂（XLeRobot）
