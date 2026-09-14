@@ -84,7 +84,7 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .page__content #about-me { margin-top: 0; }
 .page__content #about-me::before, .page__content h1::before, .page__content h2::before { display: none; }
 .eyebrow { font-size: .66rem; font-weight: 700; letter-spacing: .16em; color: var(--accent); margin-bottom: .85rem !important; }
-.intro-lead { font-size: 1.15rem; font-weight: 500; letter-spacing: -.015em; line-height: 1.65; max-width: 720px; }
+.intro-lead { font-size: 1.15rem; font-weight: 500; letter-spacing: -.015em; line-height: 1.65; }
 .localized-copy { font-size: 1rem; color: var(--muted); }
 .localized-copy[lang="zh-CN"] { display: none; }
 html[lang="zh-CN"] .localized-copy[lang="en"] { display: none; }

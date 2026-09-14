@@ -21,8 +21,8 @@ phases:
     title_zh: 交互感知
     steps:
       - id: system-level-coordination
-        title: System-level coordination
-        title_zh: 系统级协调
+        title: System-level coop.
+        title_zh: 系统级协作
       - id: prediction
         title: Interaction learning
         title_zh: 交互学习
@@ -34,8 +34,8 @@ phases:
     title_zh: 智能决策
     steps:
       - id: high-level-decision-making
-        title: Explainable reasoning
-        title_zh: 可解释推理
+        title: High-level intelligence
+        title_zh: 高层智能
       - id: explainable-reasoning
         title: Explainable reasoning
         title_zh: 可解释推理
