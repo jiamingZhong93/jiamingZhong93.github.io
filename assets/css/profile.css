@@ -120,7 +120,7 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
   .vision-equation { font-size: 1rem; }
 }
 .vision-description { font-size: 1rem; color: var(--muted); margin: .85rem 0 .3rem !important; }
-/* Tapered arrows share the equation's gradient and continue after every theme. */
+/* Soft, open arrows share the equation's gradient and continue after every theme. */
 .research-trajectory { display: block; container-type: inline-size; margin: 1.65rem 0 .3rem; }
 .research-trajectory figcaption { margin-bottom: .85rem; color: var(--ink); font-family: inherit; font-size: .88rem; font-weight: 600; font-style: normal; }
 .trajectory-map { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.35rem 1.25rem; margin: 0; padding: 1.15rem 1.15rem 1.2rem; list-style: none; border: 1px solid rgba(65,99,106,.09); border-radius: 14px; background: linear-gradient(115deg,rgba(224,239,237,.42),rgba(235,229,245,.42)); }
@@ -131,11 +131,14 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 .trajectory-phase:nth-child(5) { --phase-color: #855282; }
 .trajectory-phase:nth-child(6) { --phase-color: #96586f; }
 .trajectory-phase::after {
-  content: ""; position: absolute; top: 9px; left: 38px; right: 2px; height: 10px; pointer-events: none;
+  content: ""; position: absolute; top: 8px; left: 38px; right: 2px; height: 12px; pointer-events: none;
   background: var(--research-gradient); background-size: 240% 100%; opacity: .68;
   animation: vision-colors var(--research-gradient-duration) ease-in-out infinite alternate;
-  /* A fine tail widens toward swept-back wings; one silhouette keeps colors seamless. */
-  clip-path: polygon(0 47%, calc(100% - 8px) 37%, calc(100% - 13px) 6%, 100% 50%, calc(100% - 13px) 94%, calc(100% - 8px) 63%, 0 53%);
+  /* A fading shaft joins a fixed-size curved tip without stretching it on narrow screens. */
+  -webkit-mask: linear-gradient(to right, transparent, #000 18%) left center / calc(100% - 6px) 1.8px no-repeat,
+    url("../icons/trajectory-arrowhead.svg") right center / 12px 12px no-repeat;
+  mask: linear-gradient(to right, transparent, #000 18%) left center / calc(100% - 6px) 1.8px no-repeat,
+    url("../icons/trajectory-arrowhead.svg") right center / 12px 12px no-repeat;
 }
 .trajectory-motif { width: 28px; height: 28px; color: var(--phase-color); }
 .trajectory-motif svg { display: block; width: 100%; height: 100%; overflow: visible; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }

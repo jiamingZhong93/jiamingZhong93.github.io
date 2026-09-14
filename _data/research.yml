@@ -10,9 +10,9 @@ vision:
   bullets:
     - text: "How can multimodal learning capture the dynamics and interactions of our complex physical world?"
       text_zh: "如何通过多模态学习，表征复杂物理世界中的动力学与交互关系？"
-    - text: "How can action-conditioned world models support action and optimization in downstream safety-critical tasks?"
-      text_zh: "如何让以动作为条件的世界模型，支撑下游安全关键任务中的行动与优化？"
-    - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classical methods?"
+    - text: "How can action-conditioned predictive world models support downstream optimization-based tasks?"
+      text_zh: "如何让以动作为条件的预测性世界模型，支撑下游基于优化的任务？"
+    - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classic schemes?"
       text_zh: "如何以形式化方式，将模仿学习、强化学习和自监督学习与经典方法相结合？"
 
 projects:

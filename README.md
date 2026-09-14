@@ -173,7 +173,7 @@ Example entry under `images`:
 
 No stitched image file is created: replacing the original photo updates its tile automatically.
 
-The research formula and trajectory arrows share one animated gradient. Set its colors and `18s` duration with `--research-gradient` and `--research-gradient-duration` at the top of `assets/css/profile.css`. The arrow's taper and swept-back tip are defined by `clip-path` in `.trajectory-phase::after`. Reduced-motion preferences automatically show a static gradient.
+The research formula and trajectory arrows share one animated gradient. Set its colors and `18s` duration with `--research-gradient` and `--research-gradient-duration` at the top of `assets/css/profile.css`. The soft arrowhead is defined in `assets/icons/trajectory-arrowhead.svg`; its size, line thickness and fading tail are controlled by the masks in `.trajectory-phase::after`. The tip keeps its proportions on phones. Reduced-motion preferences automatically show a static gradient.
 
 Project titles precede their images and descriptions. Desktop uses an image on the left and text/links on the right below each title; phones stack title → image/GIF → description/links. Project, publication and career entries use spacing instead of separator lines.
 
