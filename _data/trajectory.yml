@@ -4,62 +4,80 @@ title: Research trajectory
 title_zh: 研究历程
 phases:
   - id: dynamics
-    title: Dynamics & uncertainty
-    title_zh: 动力学与不确定性
+    title: Uncertain dynamics
+    title_zh: 不确定动力学
     steps:
+      - id: low-level-control
+        title: Low-level control
+        title_zh: 底层控制
       - id: residual-dynamics
-        title: Probabilistic residual learning
-        title_zh: 概率残差学习
+        title: Probabilistic residual
+        title_zh: 概率残差
       - id: autonomous-racing
-        title: F1TENTH racing
-        title_zh: F1TENTH 自主赛车
+        title: EVs, F1TENTH
+        title_zh: 电动汽车、F1TENTH
   - id: interactions
-    title: Interaction learning
-    title_zh: 交互学习
+    title: Interaction awareness
+    title_zh: 交互感知
     steps:
       - id: system-level-coordination
         title: System-level coordination
         title_zh: 系统级协调
-      - id: multi-agent-coordination
-        title: Multi-agent collaboration
-        title_zh: 多智能体协作
+      - id: prediction
+        title: Interaction learning
+        title_zh: 交互学习
+      - id: multi-agent-system
+        title: Multi-agent system
+        title_zh: 多智能体系统
   - id: decisions
     title: Intelligent decisions
     title_zh: 智能决策
     steps:
-      - id: llm-decisions
-        title: DriveLLM
-        title_zh: DriveLLM
+      - id: high-level-decision-making
+        title: Explainable reasoning
+        title_zh: 可解释推理
       - id: explainable-reasoning
         title: Explainable reasoning
         title_zh: 可解释推理
+      - id: llm-decisions
+        title: DriveLLM, LLM agent
+        title_zh: DriveLLM、大模型智能体
   - id: imitation
     title: Imitation control
     title_zh: 模仿学习控制
     steps:
+      - id: end-to-end
+        title: End-to-end
+        title_zh: 端到端
       - id: transformer-imitation
-        title: Transformer time-series learning
-        title_zh: Transformer 时序学习
+        title: Transformer
+        title_zh: Transformer
       - id: articulated-vehicle-control
-        title: Articulated vehicles
-        title_zh: 铰接式车辆
+        title: Articulated, off-road AVs
+        title_zh: 铰接式及越野自动驾驶车
   - id: reinforcement
     title: Reinforcement learning
     title_zh: 强化学习
     steps:
+      - id: task-level generalization
+        title: Task-level generalization
+        title_zh: 任务级泛化
       - id: rl-mpc
-        title: RL + MPC
-        title_zh: 强化学习与 MPC
-      - id: objective-learning
-        title: Objective learning
-        title_zh: 目标函数学习
+        title: RL-enhanced MPC
+        title_zh: 强化学习增强 MPC
+      - id: model-based-rl
+        title: Model-based RL
+        title_zh: 基于模型的强化学习
   - id: manipulation
     title: Multimodal manipulation
     title_zh: 多模态机器人操作
     steps:
-      - id: xlerobot-platform
-        title: XLeRobot
-        title_zh: XLeRobot
+      - id: physical AGI
+        title: Physical AGI
+        title_zh: 物理世界通用人工智能
+      - id: latent-space representation
+        title: Latent-space representation
+        title_zh: 潜在空间表征
       - id: manipulation-world-models
-        title: VLA / WAM
-        title_zh: VLA / WAM
+        title: VLA, WAM, XLeRobot
+        title_zh: VLA、WAM、XLeRobot
