@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">JZ — Jiaming Zhong</title>
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1260b6"/>
+      <stop offset=".55" stop-color="#7044b5"/>
+      <stop offset="1" stop-color="#b63879"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#brand)"/>
+  <!-- Letter outlines keep the monogram identical without relying on installed fonts. -->
+  <g fill="#fff">
+    <path d="M11 16H29V37C29 44.5 25 49 18 49C11 49 7 44.5 7 38H14C14 41 15.5 43 18 43C21 43 22 41 22 37V23H11Z"/>
+    <path d="M34 16H56V22L41 42H56V49H32V43L47 23H34Z"/>
+  </g>
+</svg>

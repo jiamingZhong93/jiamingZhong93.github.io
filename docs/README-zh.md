@@ -1,8 +1,10 @@
 # 主页日常维护指南
 
-[公开主页](https://jiamingzhong.world/) · [English README](../README.md) · [发布设置](https://github.com/jiamingZhong93/jiamingZhong93.github.io/settings/pages)
+[仓库概览](../README.md) · [English maintenance guide](maintenance-en.md) · [公开主页](https://jiamingzhong.world/)
 
 **日常流程：** 本地预览 → 同步修改中英文 → 检查电脑和手机效果 → 提交并推送 → 确认上线。
+
+[本地预览](#1-启动本地预览) · [内容与翻译](#2-找到需要修改的内容) · [研究与图片](#3-修改研究愿景项目和图片) · [论文](#4-修改论文) · [发布](#5-提交修改并上线) · [暂时下线](#6-暂时下线和恢复)
 
 ## 1. 启动本地预览
 
@@ -22,7 +24,7 @@
 | 修改内容 | 文件和位置 |
 | --- | --- |
 | 开场句、个人简介、各部分标题 | [_pages/about.md](../_pages/about.md) |
-| 默认/备用头像、个人链接 | [_config.yml](../_config.yml) 的 `author` |
+| 中英文姓名、默认/备用头像、个人链接 | [_config.yml](../_config.yml) 的 `author` |
 | 中英文职位及单位 | [_config.yml](../_config.yml) 的 `author.roles` |
 | Home 研究愿景、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
 | Home 中英文研究历程图 | [_data/trajectory.yml](../_data/trajectory.yml) 的 `phases` 及各组 `steps` |
@@ -30,28 +32,30 @@
 | 教学、工作与教育经历 | [_data/career.yml](../_data/career.yml) |
 | 导航、项目链接的翻译 | [_data/navigation.yml](../_data/navigation.yml)、[_data/translations.yml](../_data/translations.yml) |
 | 顶部背景照片、裁切位置、中英文标题与描述 | [_data/background.yml](../_data/background.yml) |
-| 浏览器标题、搜索简介 | [_includes/seo.html](../_includes/seo.html)；英文简介在 [_config.yml](../_config.yml) |
+| 浏览器标题、中英文搜索简介 | [_config.yml](../_config.yml) 的 `title`、`author.name_zh`、`description/description_zh`；由 [_includes/seo.html](../_includes/seo.html) 生成 |
+| JZ 标签页图标 | [images/favicon.svg](../images/favicon.svg) 及 `images/` 下对应的 PNG/ICO 文件 |
 | 字体、间距、手机布局 | [assets/css/profile.css](../assets/css/profile.css) |
 
 导航名称、中英文翻译和章节链接统一在 `_data/navigation.yml` 中维护。**Home / 主页** 与其他导航项使用相同样式。手机上导航固定在顶部，显示当前章节；轻触后从下拉菜单切换章节。
 
-Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 相同的中英文字段，显示在 Experience 前面。
+教学经历在 `_data/career.yml` 的 `teaching` 下维护，使用与工作经历相同的中英文字段，显示在工作经历之前。
 
 ### 中英文要一起维护
 
-右上角按钮在同一页面切换语言，每次刷新默认英文。中文由你手动维护，不会自动翻译。
+右上角的语言选项用于在同一页面切换语言，每次刷新默认显示英文。中文内容需要手动维护，不会自动翻译。
 
 - **数据文件：** 成对修改 `title/title_zh`、`description/description_zh`、`image_alt/image_alt_zh`。公式还包括 `learning/learning_zh`、`prior/prior_zh`。
 - **个人简介：** 在 `_pages/about.md` 中分别修改 `lang="en"` 和 `lang="zh-CN"` 的两个 `localized-copy` 区块。开场句和各部分标题的中文在 `data-zh="中文"` 中。
+- **姓名与页面简介：** 在 `_config.yml` 中成对维护 `author.name` / `author.name_zh` 和 `description` / `description_zh`。中文姓名使用“钟嘉鸣”，姓与名之间不留空格；论文作者列表保留原文姓名。
 - **个人职位：** 在 `_config.yml` 的 `author.roles` 列表统一修改中英文。每项包含 `title/title_zh`、`institution/institution_zh` 和 `url`；列表顺序即显示顺序。
 - **工作经历：** `dates` 和 `dates_zh` 都填写起止月份，例如 `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`。
 - **新项目链接名称：** 在 `_data/translations.yml` 的 `links` 下加入中文对应值。项目字段和链接名称缺少翻译时显示英文。
 
-不要把链接或图标包在会被 `data-zh` 替换的文字元素内。每次更新内容后都切换语言检查一次。
+链接和图标应放在带有 `data-zh` 的文字元素之外，避免切换语言时被替换。每次更新内容后都切换语言检查一次。
 
 ## 3. 修改研究愿景、项目和图片
 
-**Home 中的 Research vision / 研究愿景** 在 `_data/research.yml` 的 `vision` 下维护：修改公式字段、`description/description_zh` 简介，以及 `bullets` 简短研究问题。每个问题同时填写中英文：
+**主页中的研究愿景** 在 `_data/research.yml` 的 `vision` 下维护：修改公式字段、`description/description_zh` 简介，以及 `bullets` 简短研究问题。每个问题同时填写中英文：
 
 ```yaml
   bullets:
@@ -59,7 +63,7 @@ Teaching 数据在 `_data/career.yml` 的 `teaching` 下，使用与 Experience 
       text_zh: "这一方向希望回答什么研究问题？"
 ```
 
-**Research trajectory / 研究历程** 位于这些问题之后，分成六个主题，每组包含两个简短研究标签。在 `_data/trajectory.yml` 的 `phases` 及各组内部的 `steps` 中维护；两层列表的顺序决定路线，中英文同时修改：
+**研究历程图** 位于这些问题之后，分为六个主题，每组包含若干简短的研究标签。在 `_data/trajectory.yml` 的 `phases` 及各组内部的 `steps` 中维护；两层列表的顺序决定路线，中英文同时修改：
 
 ```yaml
 phases:
@@ -126,9 +130,9 @@ phases:
 
 电脑上，鼠标悬停在**照片任意区域**，同时显示当前照片说明和下一张预告，不再显示角落图标。点击说明区以外的照片区域切换；只要鼠标仍在横幅内，两条说明就保持显示并更新。移开鼠标后收起。
 
-触屏时，**长按约半秒**显示两条说明，持续按住可让说明在自动切图后继续显示。松手后，本张照片的说明保留供阅读，到下一张时收起；松手本身不会切图。轻触说明区以外的照片区域，切换并收起说明；普通短按也会切换。滚动、拖动和双指缩放不会触发手动切图。说明文字不会切图。标题和描述均为纯文字，不含链接。
+触屏时，**长按约半秒**显示两条说明，持续按住可让说明在自动切换照片后继续显示。松手后，本张照片的说明保留供阅读，到下一张时收起；松手本身不会切换照片。轻触说明区以外的照片区域，切换并收起说明；普通短按也会切换。滚动、拖动和双指缩放不会触发手动切换照片。点击说明文字不会触发切换。标题和描述均为纯文字，不含链接。
 
-显示说明时继续轮播，仅把**本张照片的停留时间增加 1 秒（3 → 4 秒）**，同一张照片反复悬停不会叠加。如果切到下一张时仍悬停或持续长按，说明保持显示，新照片也停留 4 秒。只有页面隐藏或横幅滚出屏幕时暂停计时，恢复后继续剩余时间；每次过渡完成后重新计算停留时间。用 **Tab** 聚焦横幅显示说明，**回车/空格**切换，**Esc** 收起说明。仅有一张可用照片时只显示当前说明、不轮播；坏图自动跳过。
+显示说明时继续轮播，仅把**本张照片的停留时间增加 1 秒（3 → 4 秒）**，同一张照片反复悬停不会叠加。如果切到下一张时仍悬停或持续长按，说明保持显示，新照片也停留 4 秒。只有页面隐藏或横幅滚出屏幕时暂停计时，恢复后继续剩余时间；每次过渡完成后重新计算停留时间。用 **Tab** 聚焦横幅显示说明，**回车/空格**切换，**Esc** 收起说明。仅有一张可用照片时只显示当前说明、不轮播；加载失败的图片自动跳过。
 
 新增一张照片：
 
@@ -173,11 +177,19 @@ phases:
 
 不会生成额外的拼接图片文件；替换原照片后，组合里的对应小图也会更新。
 
-研究公式与研究历程箭头共用一条动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。圆润的箭头形状在 `assets/icons/trajectory-arrowhead.svg` 中定义；大小、线身粗细与尾部淡入由 `.trajectory-phase::after` 中的遮罩控制。箭头头部在手机端也保持原有比例。系统开启“减少动态效果”时自动显示静态渐变。
+### 公式与研究历程的样式
+
+研究公式与研究历程箭头使用同一套动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。圆润的箭头形状在 `assets/icons/trajectory-arrowhead.svg` 中定义；大小、线身粗细与尾部淡入由 `.trajectory-phase::after` 中的遮罩控制。箭头头部在手机端也保持原有比例。系统开启“减少动态效果”时自动显示静态渐变。
 
 每个项目先显示标题，电脑上标题下方左图右文，手机上依次为“标题 → 图片/GIF → 介绍和链接”。项目、论文及经历条目通过间距区分，不使用分隔横线。
 
 使用公开来源图片时，在对应项目旁用注释保留出处。SafeTrucks 项目中已记录雪地行车照片的原始来源。
+
+### 标签页图标（favicon）
+
+JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。如需重新设计，请同时更新 `images/` 下的配套文件：`favicon.ico`、`favicon-16x16.png`、`favicon-32x32.png`、`apple-touch-icon.png`（180 × 180）、`android-chrome-192x192.png` 和 `android-chrome-512x512.png`。修改 SVG 后，PNG/ICO 文件不会自动重新生成。
+
+替换图标后，同步更新 [_includes/head/custom.html](../_includes/head/custom.html) 和 [images/site.webmanifest](../images/site.webmanifest) 中的版本后缀（当前为 `?v=jz-1`），让浏览器重新加载新图标。
 
 ## 4. 修改论文
 
@@ -185,14 +197,14 @@ phases:
 
 | 字段 | 填写内容 |
 | --- | --- |
-| `title` / `title_zh` | 原始论文题目 / 中文阅读译文 |
+| `title` / `title_zh` | 原始论文题目 / 便于阅读的中文译题 |
 | `authors` | 按论文顺序填写作者，用英文逗号分隔；不用 HTML 或手动加符号 |
 | `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接 |
 | `selected` | `true` 显示；`false` 保留记录但隐藏 |
 | `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者（无符号） |
 | `project` | 可选的项目网址 |
 
-系统自动加粗准确匹配的 `J. Zhong` 并添加角色符号。修改姓名、符号或双语图例时，只改 `_data/publication_roles.yml` 即可。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
+系统自动加粗与 `J. Zhong` 完全匹配的作者姓名，并添加相应的作者角色符号。修改姓名、符号或双语图例时，只改 `_data/publication_roles.yml` 即可。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
 
 ## 5. 提交修改并上线
 

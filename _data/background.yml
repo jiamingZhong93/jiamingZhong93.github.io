@@ -37,7 +37,7 @@ images:
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Delivery robot at the Accelerator Center incubator."
-    description_zh: "Accelerator Center 孵化器里的配送机器人。"
+    description_zh: "位于 Accelerator Center 孵化器的配送机器人。"
     position: "50% 68%"
     mobile_position: "50% 72%"
     fit: "cover"
@@ -269,7 +269,7 @@ images:
     title: "Lake Agnes"
     title_zh: "阿格尼丝湖"
     description: "A mountain lake above Lake Louise."
-    description_zh: "路易斯湖上方的高山湖泊。"
+    description_zh: "露易丝湖上方的高山湖泊。"
     position: "50% 60%"
     mobile_position: "50% 65%"
     fit: "cover"
@@ -406,7 +406,7 @@ images:
     desktop: false
     mobile_max_width: 520
     title: "Heavy vehicles in winter"
-    title_zh: "冬季重型车辆"
+    title_zh: "冬日里的重型车辆"
     description: "SafeTrucks research on safer heavy-vehicle control. Photo: SafeTrucks."
     description_zh: "SafeTrucks 重型车辆安全控制研究。图片：SafeTrucks。"
     position: "50% 57%"
@@ -420,7 +420,7 @@ images:
     title: "XLeRobot"
     title_zh: "XLeRobot"
     description: "Generative mobile manipulation with a dual-arm robot."
-    description_zh: "面向双臂机器人的生成式移动操作。"
+    description_zh: "双臂机器人的生成式移动操作。"
     position: "50% 50%"
     mobile_position: "50% 50%"
     fit: "cover"
@@ -471,7 +471,7 @@ desktop_groups:
     title: "Campus deliveries"
     title_zh: "校园配送"
     description: "Street crossings, navigating among people, and parking from day to night."
-    description_zh: "从白天到夜晚，过马路、穿行人群与自动泊车。"
+    description_zh: "从白天到夜晚，穿越道路、穿行人群、完成泊车。"
     photos:
       - file: photo_20221007_153114634_iOS.jpg
         position: "48% 55%"
@@ -483,7 +483,7 @@ desktop_groups:
         position: "50% 60%"
   - id: winter-robots
     title: "Delivery robots in winter"
-    title_zh: "冬季配送机器人"
+    title_zh: "冬日里的配送机器人"
     description: "Campus deliveries and snow testing in Waterloo."
     description_zh: "在滑铁卢开展校园配送与雪地测试。"
     photos:

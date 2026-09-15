@@ -41,7 +41,7 @@ phases:
         title_zh: 可解释推理
       - id: llm-decisions
         title: DriveLLM, LLM agent
-        title_zh: DriveLLM、大模型智能体
+        title_zh: DriveLLM、大语言模型智能体
   - id: imitation
     title: Imitation control
     title_zh: 模仿学习控制
@@ -54,7 +54,7 @@ phases:
         title_zh: Transformer
       - id: articulated-vehicle-control
         title: Articulated, off-road AVs
-        title_zh: 铰接式及越野自动驾驶车
+        title_zh: 铰接式与越野自动驾驶车辆
   - id: reinforcement
     title: Reinforcement learning
     title_zh: 强化学习
@@ -64,7 +64,7 @@ phases:
         title_zh: 任务级泛化
       - id: rl-mpc
         title: RL-enhanced MPC
-        title_zh: 强化学习增强 MPC
+        title_zh: 强化学习增强的 MPC
       - id: model-based-rl
         title: Model-based RL
         title_zh: 基于模型的强化学习

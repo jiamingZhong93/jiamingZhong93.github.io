@@ -6,14 +6,14 @@ vision:
   prior: Model-based prior
   prior_zh: 基于模型的先验
   description: "My research focuses on hybrid data-driven and model-based priors that formally embed AI within classic models, human preferences, and safety-critical architectures. Data-driven learning improves intelligence and adaptability under uncertainty, while structured schemes incorporate human knowledge as priors and enforces safety, stability, and robustness."
-  description_zh: "我的研究聚焦于数据驱动与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。数据驱动学习提升不确定环境下的智能水平与适应能力，结构化方法则融入人类知识先验，保障安全性、稳定性与鲁棒性。"
+  description_zh: "我的研究聚焦于数据驱动方法与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。数据驱动学习提升系统在不确定环境下的智能水平与适应能力，结构化方法则将人类知识作为先验，保障安全性、稳定性与鲁棒性。"
   bullets:
     - text: "How can multimodal learning capture the dynamics and interactions of our complex physical world?"
-      text_zh: "如何通过多模态学习，表征复杂物理世界中的动力学与交互关系？"
+      text_zh: "多模态学习如何刻画复杂物理世界中的动力学与交互关系？"
     - text: "How can action-conditioned predictive world models support downstream optimization-based tasks?"
-      text_zh: "如何让以动作为条件的预测性世界模型，支撑下游基于优化的任务？"
+      text_zh: "以动作为条件的预测性世界模型如何支撑下游基于优化的任务？"
     - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classic schemes?"
-      text_zh: "如何以形式化方式，将模仿学习、强化学习和自监督学习与经典方法相结合？"
+      text_zh: "如何实现模仿学习、强化学习、自监督学习与经典方法的形式化融合？"
 
 projects:
   - id: articulated-vehicles
@@ -27,8 +27,8 @@ projects:
     links:
       - label: SafeTrucks project
         url: https://safetrucks.fmi.fi/index.php/project-description/
-    title_zh: 面向铰接式重型车辆及越野车辆的学习型规划与控制
-    description_zh: 提升重型车辆在复杂道路与天气条件下的行驶安全。
+    title_zh: 基于学习的铰接式重型及越野车辆规划与控制
+    description_zh: 提升重型车辆在复杂道路与恶劣天气条件下的行驶安全性。
   - id: drivellm
     title: "DriveLLM: Explainable Driving Decisions"
     image: /images/research/drivellm.jpg
@@ -41,7 +41,7 @@ projects:
         url: https://github.com/DriveLLM/DriveLLM
     title_zh: "DriveLLM：可解释驾驶决策"
     description_zh: 将大语言模型推理与基于规则的安全检查相结合，实现可解释的驾驶决策，并通过 WATonobus 案例进行评估。
-    image_alt_zh: DriveLLM 研究中的 WATonobus 及行人、积雪和激光雷达感知场景。
+    image_alt_zh: DriveLLM 研究概览中的 WATonobus，以及涉及行人、积雪和激光雷达感知的驾驶场景。
   - id: multi-agent
     title: Learning-based multi-agent collaboration
     image: /images/research/multi-agent.jpg
@@ -55,7 +55,7 @@ projects:
       - label: Lab project
         url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/multi-objective-agent-based-mpc
     title_zh: 基于学习的多智能体协作
-    description_zh: 利用协作智能体与学习驱动的协商初始化，实现即插即用的车辆控制，并加速多目标模型预测控制。
+    description_zh: 通过智能体协作与基于学习的协商初始化，实现即插即用的车辆控制，并加速多目标模型预测控制。
     image_alt_zh: 展示车辆子系统智能体、自动驾驶赛车与多智能体协作的研究图片。
   - id: learning-mpc
     title: Learning-based MPC
@@ -70,8 +70,8 @@ projects:
       - label: PhD thesis
         url: https://hdl.handle.net/10012/21401
     title_zh: 基于学习的模型预测控制
-    description_zh: 将在线高斯过程动力学学习与随机模型预测控制相结合，在变化工况及低附着路面上开展实车验证。
-    image_alt_zh: 湿滑路面车辆实验、数据驱动动力学建模和考虑不确定性的模型预测控制。
+    description_zh: 将基于高斯过程的在线动力学学习与随机模型预测控制相结合，在多变工况及低附着路面上开展实车验证。
+    image_alt_zh: 湿滑路面实车试验、数据驱动动力学建模，以及考虑不确定性的模型预测控制约束。
   - id: f1tenth
     title: "F1TENTH: World Models for Agile Racing"
     image: /images/research/f1tenth.jpg
@@ -80,8 +80,8 @@ projects:
     links:
       - label: Platform
         url: https://f1tenth.org/
-    title_zh: "F1TENTH：面向敏捷赛车的世界模型"
-    description_zh: 正在探索多模态世界模型，利用配备视觉与激光雷达的自主赛车平台研究敏捷规划与控制。
+    title_zh: "F1TENTH：面向敏捷竞速的世界模型"
+    description_zh: 正在配备视觉与激光雷达的自主赛车平台上，探索基于多模态世界模型的敏捷规划与控制。
     image_alt_zh: 搭载传感器的 F1TENTH 自主赛车平台及其建图画面。
   - id: xlerobot
     title: "XLeRobot: Generative Mobile Manipulation"
