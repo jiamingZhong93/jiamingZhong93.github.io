@@ -1,6 +1,9 @@
-# Symbols describe Jiaming Zhong's role, not the other authors' roles.
-# Change these labels/symbols once to update both the legend and every paper.
+# Keep full, comma-separated author lists in publications.json.
+# Show authors through Jiaming, then et al.; retain any later co-first authors.
+# List every co-first author in a paper's co_first_authors array, using the same names.
+# Other role symbols describe Jiaming's role. Labels also update the legend.
 author_name: "J. Zhong"
+abbreviate_after_author: true
 roles:
   - id: first
     symbol: "†"

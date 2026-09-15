@@ -34,6 +34,7 @@
         "year": "2024",
         "selected": true,
         "role": "co-first",
+        "co_first_authors": ["Y. Cui", "S. Huang", "J. Zhong"],
         "title_zh": "DriveLLM：利用大语言模型探索完全自动驾驶之路"
       },
       {
@@ -147,9 +148,11 @@
         "project": "https://github.com/NingMingHao/CoInfra",
         "title": "CoInfra: A Large-Scale Cooperative Infrastructure Perception System and Dataset for Vehicle-Infrastructure Cooperation in Adverse Weather",
         "url": "https://arxiv.org/abs/2507.02245",
-        "venue": "arXiv:2507.02245",
+        "arxiv": "https://arxiv.org/abs/2507.02245",
         "year": "2025",
-        "selected": false
+        "selected": true,
+        "role": "coauthor",
+        "title_zh": "CoInfra：面向恶劣天气下车路协同的大规模协同路侧感知系统与数据集"
       },
       {
         "authors": "M. Ning, Y. Yang, S. Huang, J. Zhong, K. Shu, C. Sun, E. Hashemi, A. Khajepour",

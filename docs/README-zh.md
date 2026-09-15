@@ -79,14 +79,14 @@ phases:
 
 图的标题在文件顶部的 `title/title_zh`。修改主题名称时保留原有 `id`，小图标由这个字段选择；各研究步骤的 `id` 保持唯一，调整顺序时也保留。标签尽量简短，六个主题在电脑上排成三列两行、手机上排成两列三行，不显示描述或编号。文字与顺序只需修改 YAML；样式在 `assets/css/profile.css`，图标在 `_includes/research-trajectory.html`。
 
-在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时填写中文。
+在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时维护中英文。`description/description_zh` 支持用 Markdown `**加粗**` 突出关键方法；两种语言分别渲染到独立的 `localized-copy` 区块，切换语言时会保留格式。
 
 ```yaml
   - id: my-project
     title: "My project: Short focus"
     title_zh: "我的项目：简短方向"
-    description: "One sentence about the project."
-    description_zh: "用一句话介绍项目。"
+    description: "One sentence about the project and its **key method**."
+    description_zh: "用一句话介绍项目及其**关键方法**。"
     image: "/images/research/my-project.gif"
     image_alt: "A short description of the demonstration."
     image_alt_zh: "简短描述演示内容。"
@@ -97,11 +97,13 @@ phases:
 
 把示例文字、网址换成真实项目内容。`image` 可省略；需要视频时可添加 `video_url` 链接。
 
+每个项目的 `links` 列表统一按**学位论文 → 正式发表 → arXiv → 项目 → 平台**排序，没有的类别跳过，同一类别的多个链接放在一起。页面按列表顺序显示；新增链接名称时，在 `_data/translations.yml` 中补充中文翻译。
+
 | 图片 | 替换方式 |
 | --- | --- |
 | 默认头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
 | 备用头像 | 替换 `images/portraits/alternate.jpg`；若改名，同步修改 `author.avatar_alternate`。 |
-| 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG，保持原图比例。 |
+| 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG；宽度统一，高度按原图比例自适应，无需填写 `image_aspect_ratio`。 |
 | 顶部背景 | 照片放进 `images/background/`，再在 `_data/background.yml` 的 `images` 下添加对应文件名；只有已配置的照片参与轮播。 |
 
 ### 头像
@@ -182,17 +184,15 @@ phases:
 
 研究公式与研究历程箭头使用同一套动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。圆润的箭头形状在 `assets/icons/trajectory-arrowhead.svg` 中定义；大小、线身粗细与尾部淡入由 `.trajectory-track::after` 中的遮罩控制。箭头头部在手机端也保持原有比例。系统开启“减少动态效果”时自动显示静态渐变。
 
-每个项目先显示标题，电脑上标题下方左图右文，手机上依次为“标题 → 图片/GIF → 介绍和链接”。项目、论文及经历条目通过间距区分，不使用分隔横线。
+每个项目先显示标题，电脑上标题下方左图右文，图片上沿与介绍对齐；手机上依次为“标题 → 图片/GIF → 介绍和链接”。图片高度自适应，不使用固定画框或额外补边；如果原图文件本身含有白边，需要在原文件中裁去。项目、论文及经历条目通过间距区分，不使用分隔横线。
 
-使用公开来源图片时，在对应项目旁用注释保留出处。SafeTrucks 项目中已记录雪地行车照片的原始来源。
+项目图片的署名与许可信息保存在 `image_credit/image_credit_zh`、`image_source_url`、`image_license` 和 `image_license_url` 中，可参考 CoInfra 条目。页面不单独显示署名段落：配置 `image_source_url` 后，点击图片可打开来源页，悬停提示显示署名与许可；未配置时打开图片文件本身。替换图片时保留来源注释及许可元数据。
 
 ### 标签页图标（favicon）
 
 JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。如需重新设计，请同时更新 `images/` 下的配套文件：`favicon.ico`、`favicon-16x16.png`、`favicon-32x32.png`、`apple-touch-icon.png`（180 × 180）、`android-chrome-192x192.png` 和 `android-chrome-512x512.png`。修改 SVG 后，PNG/ICO 文件不会自动重新生成。
 
 替换图标后，同步更新 [_includes/head/custom.html](../_includes/head/custom.html) 和 [images/site.webmanifest](../images/site.webmanifest) 中的版本后缀（当前为 `?v=jz-1`），让浏览器重新加载新图标。
-
-项目图片如需署名，可填写 `image_credit/image_credit_zh`、`image_source_url`、`image_license` 和 `image_license_url`；CoInfra 条目提供了示例。宽幅图可设置 `image_aspect_ratio`（如 `"2437 / 889"`），按原比例显示，避免多余留白。
 
 ## 4. 修改论文
 
@@ -201,14 +201,17 @@ JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。
 | 字段 | 填写内容 |
 | --- | --- |
 | `title` / `title_zh` | 原始论文题目 / 便于阅读的中文译题 |
-| `authors` | 按论文顺序填写作者，用英文逗号分隔；不用 HTML 或手动加符号 |
-| `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接 |
+| `authors` | 按论文顺序填写完整作者列表，用英文逗号分隔；不用 HTML，不手动加符号或 `et al.` |
+| `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接；未被期刊或会议接收的预印本省略 `venue` |
 | `selected` | `true` 显示；`false` 保留记录但隐藏 |
 | `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者（无符号） |
+| `co_first_authors` | 可选数组，填写该论文的**所有共同第一作者**，姓名须与 `authors` 中完全一致 |
 | `project` | 可选的项目网址 |
 | `arxiv` | 可选，须核实为同一篇论文的 arXiv 版本 |
 
-系统自动加粗与 `J. Zhong` 完全匹配的作者姓名，并添加相应的作者角色符号。修改姓名、符号或双语图例时，只改 `_data/publication_roles.yml` 即可。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
+系统自动加粗 `J. Zhong`，并为 `co_first_authors` 中的每位作者加上相同的共同第一作者符号。例如，`"co_first_authors": ["A. Researcher", "J. Zhong"]` 会同时标记这两位作者。JSON 中始终保留完整的 `authors` 列表：`_data/publication_roles.yml` 中的 `abbreviate_after_author: true` 会显示至 J. Zhong，并保留其后的共同第一作者，其余作者统一缩写为 `et al.`；改成 `false` 即显示全部作者。
+
+同一配置文件也控制加粗姓名、角色符号和双语图例。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
 
 ## 5. 提交修改并上线
 

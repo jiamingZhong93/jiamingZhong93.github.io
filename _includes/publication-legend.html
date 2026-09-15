@@ -1,5 +1,5 @@
 <div class="publication-legend section-note">
-  <p data-zh="姓名旁的符号表示我在论文中的作者角色：">Symbols next to my name indicate my role:</p>
+  <p data-zh="符号表示作者角色；共同第一作者均标注相同的符号：">Symbols indicate authorship roles; all co-first authors share the same symbol:</p>
   <ul class="publication-role-key">
     {% for role in site.data.publication_roles.roles %}<li><span class="publication-symbol" aria-hidden="true">{{ role.symbol }}</span> <span data-zh="{{ role.label_zh | default: role.label | escape }}">{{ role.label }}</span></li>{% endfor %}
   </ul>

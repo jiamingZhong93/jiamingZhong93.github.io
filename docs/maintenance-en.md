@@ -79,14 +79,14 @@ phases:
 
 The diagram heading uses the top-level `title/title_zh`. Keep existing phase IDs when changing headings: they select the small icons. Keep all step IDs unique and preserve them when reordering. Short labels keep the six themes compact in three columns × two rows on desktop, or two columns × three rows on phones; no descriptions or numbers are shown. Text and order need only YAML edits. For visual changes, use `assets/css/profile.css`; icons are in `_includes/research-trajectory.html`.
 
-Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Use a short description and maintain its Chinese fields.
+Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Keep descriptions concise and maintain both languages. Use Markdown `**bold**` to highlight key methods in `description/description_zh`; each language is rendered as a separate `localized-copy` block, so formatting survives language switching.
 
 ```yaml
   - id: my-project
     title: "My project: Short focus"
     title_zh: "我的项目：简短方向"
-    description: "One sentence about the project."
-    description_zh: "用一句话介绍项目。"
+    description: "One sentence about the project and its **key method**."
+    description_zh: "用一句话介绍项目及其**关键方法**。"
     image: "/images/research/my-project.gif"
     image_alt: "A short description of the demonstration."
     image_alt_zh: "简短描述演示内容。"
@@ -97,11 +97,13 @@ Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` 
 
 Replace the example text and URL with your actual project. `image` is optional; `video_url` optionally adds a video link.
 
+Order each project's `links` list as **Thesis → publications → arXiv → projects → platforms**, skipping categories without a link. Multiple links in a category stay together. The template preserves this order; add Chinese label translations in `_data/translations.yml` when needed.
+
 | Picture | How to change it |
 | --- | --- |
 | Default portrait | Replace `images/avatar.jpg`; if renamed, update `author.avatar` in `_config.yml`. |
 | Alternate portrait | Replace `images/portraits/alternate.jpg`; if renamed, update `author.avatar_alternate`. |
-| Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work; images keep their proportions. |
+| Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work. Images share a common width and use their native proportions for automatic height; no `image_aspect_ratio` field is needed. |
 | Top cover | Put photos in `images/background/` and add matching filenames under `images` in `_data/background.yml`. Only configured photos join the carousel. |
 
 ### Portraits
@@ -182,9 +184,9 @@ No stitched image file is created: replacing the original photo updates its tile
 
 The research formula and trajectory arrows share one animated gradient. Set its colors and `18s` duration with `--research-gradient` and `--research-gradient-duration` at the top of `assets/css/profile.css`. The soft arrowhead is defined in `assets/icons/trajectory-arrowhead.svg`; its size, line thickness and fading tail are controlled by the masks in `.trajectory-track::after`. The tip keeps its proportions on phones. Reduced-motion preferences automatically show a static gradient.
 
-Project titles precede their images and descriptions. Desktop uses an image on the left and text/links on the right below each title; phones stack title → image/GIF → description/links. Project, publication and career entries use spacing instead of separator lines.
+Project titles precede their images and descriptions. Desktop uses an image on the left, aligned with the top of the text/links on the right; phones stack title → image/GIF → description/links. Images have automatic height without a fixed frame or added padding. White margins inside the source image itself must be removed from that file if unwanted. Project, publication and career entries use spacing instead of separator lines.
 
-Optional project image attribution uses `image_credit/image_credit_zh`, `image_source_url`, `image_license` and `image_license_url`. CoInfra provides an example. For a wide figure, set `image_aspect_ratio` (e.g. `"2437 / 889"`) to display its native proportions without empty padding. Keep public image-source URLs in comments beside the relevant project. The SafeTrucks entry records the source of its snow-driving photo.
+Retain project image attribution in `image_credit/image_credit_zh`, `image_source_url`, `image_license` and `image_license_url`; CoInfra provides an example. There is no separate credit paragraph: clicking the image opens `image_source_url` when supplied, and its hover title shows the credit and license. Otherwise, the image links to its own file. Keep source comments and license metadata when replacing a picture.
 
 ### Browser icon (favicon)
 
@@ -199,14 +201,17 @@ In `_data/publications.json`, copy an existing paper inside a group's `items` ar
 | Field | What to enter |
 | --- | --- |
 | `title` / `title_zh` | Original paper title / Chinese reading translation |
-| `authors` | Plain text in paper order, separated by English commas; no HTML or symbols |
-| `venue`, `year`, `url` | Original venue, year, and paper link |
+| `authors` | Complete author list in published order, separated by English commas; no HTML, symbols or manually added `et al.` |
+| `venue`, `year`, `url` | Original venue, year, and paper link; omit `venue` for a preprint not accepted by a journal/conference |
 | `selected` | `true` to display; `false` to hide while retaining the record |
 | `role` | `first` (†), `co-first` (*), `corresponding` (‡), or `coauthor` (no symbol) |
+| `co_first_authors` | Optional array containing **every** shared first author, using names exactly as they appear in `authors` |
 | `project` | Optional project URL |
 | `arxiv` | Optional verified arXiv version of the same paper |
 
-The template automatically highlights the exact author name `J. Zhong` and adds the role symbol. Change the name, symbols or bilingual legend once in `_data/publication_roles.yml`. Papers display in file order. JSON requires double quotes and no trailing comma after the final entry.
+The template highlights `J. Zhong` and applies the same shared-first-author symbol to every name in `co_first_authors`. For example, `"co_first_authors": ["A. Researcher", "J. Zhong"]` marks both names. Keep the full `authors` list in JSON: `abbreviate_after_author: true` in `_data/publication_roles.yml` displays authors through J. Zhong, retains any later shared first authors, and abbreviates the remainder as `et al.`. Set it to `false` to show all authors.
+
+The same configuration file controls the highlighted author name, role symbols and bilingual legend. Papers display in file order. JSON requires double quotes and no trailing comma after the final entry.
 
 ## 5. Publish changes
 

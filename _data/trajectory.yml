@@ -17,29 +17,29 @@ stages:
 phases:
   - id: dynamics
     stage: foundations
-    title: Uncertain dynamics
-    title_zh: 不确定动力学
+    title: Dynamics learning
+    title_zh: 动力学学习
     steps:
       - id: low-level-control
-        title: Low-level control
-        title_zh: 底层控制
+        title: Learning-based MPC
+        title_zh: 基于学习的 MPC
       - id: residual-dynamics
-        title: Probabilistic residual
-        title_zh: 概率残差
+        title: Stochastic & real-time
+        title_zh: 随机性与实时性
       - id: autonomous-racing
-        title: EVs, F1TENTH
-        title_zh: 电动汽车、F1TENTH
+        title: Electric / autonomous vehicles
+        title_zh: 电动/自动驾驶车辆
   - id: interactions
     stage: foundations
     title: Interaction awareness
     title_zh: 交互感知
     steps:
       - id: system-level-coordination
-        title: System-level coop.
-        title_zh: 系统级协作
+        title: Learning-enhanced ADMM
+        title_zh: 学习增强的 ADMM
       - id: prediction
-        title: Interaction learning
-        title_zh: 交互学习
+        title: Convergence and efficiency
+        title_zh: 收敛性与效率
       - id: multi-agent-system
         title: Multi-agent system
         title_zh: 多智能体系统
@@ -49,11 +49,11 @@ phases:
     title_zh: 智能决策
     steps:
       - id: high-level-decision-making
-        title: High-level intelligence
-        title_zh: 高层智能
+        title: Structured tokenization
+        title_zh: 结构化词元编码
       - id: explainable-reasoning
-        title: Explainable reasoning
-        title_zh: 可解释推理
+        title: Recursive interpretability
+        title_zh: 递归可解释性
       - id: llm-decisions
         title: DriveLLM, LLM agent
         title_zh: DriveLLM、大语言模型智能体
@@ -63,39 +63,39 @@ phases:
     title_zh: 模仿学习控制
     steps:
       - id: end-to-end
-        title: End-to-end
-        title_zh: 端到端
+        title: Multimodal end-to-end
+        title_zh: 多模态端到端
       - id: transformer-imitation
-        title: Transformer
-        title_zh: Transformer
+        title: Transformer-MPC
+        title_zh: Transformer-MPC
       - id: articulated-vehicle-control
-        title: Articulated, off-road AVs
-        title_zh: 铰接式与越野自动驾驶车辆
+        title: Articulated/off-road AVs
+        title_zh: 铰接式/越野自动驾驶车辆
   - id: reinforcement
     stage: ongoing
     title: Reinforcement learning
     title_zh: 强化学习
     steps:
       - id: task-level generalization
+        title: RL-MPC, Model-based RL
+        title_zh: RL-MPC、基于模型的强化学习
+      - id: rl-mpc
         title: Task-level generalization
         title_zh: 任务级泛化
-      - id: rl-mpc
-        title: RL-enhanced MPC
-        title_zh: 强化学习增强的 MPC
       - id: model-based-rl
-        title: Model-based RL
-        title_zh: 基于模型的强化学习
+        title: Autonomous racing (F1TENTH)
+        title_zh: 自动驾驶赛车
   - id: manipulation
     stage: frontier
-    title: Multimodal Operation
-    title_zh: 多模态操作
+    title: Autonomous Operation
+    title_zh: 自主操作
     steps:
       - id: physical AGI
+        title: Multimodal generation (VLA/WAM)
+        title_zh: 多模态生成（VLA/WAM）
+      - id: latent-space representation
         title: Physical AGI
         title_zh: 物理世界通用人工智能
-      - id: latent-space representation
-        title: VLA/WAM
-        title_zh: VLA/WAM
       - id: manipulation-world-models
         title: AV + arm (XLeRobot)
-        title_zh: 自动驾驶车/机械臂(XLeRobot)
+        title_zh: 移动底盘+机械臂

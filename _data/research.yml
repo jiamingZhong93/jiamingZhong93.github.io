@@ -18,7 +18,7 @@ vision:
 projects:
   - id: articulated-vehicles
     title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
-    description: Learning-based planning and control for articulated and off-road vehicles under complex vehicle–terrain interactions. The public SafeTrucks project connects vehicle dynamics with road-weather and friction information to improve heavy-vehicle safety.
+    description: "Ongoing research on **Transformer-based imitation learning** and **reinforcement-learning-enhanced MPC** for articulated heavy-duty and off-road vehicles under complex vehicle–terrain interactions. The public SafeTrucks project combines vehicle dynamics, road weather, and friction information to improve heavy-vehicle safety."
     image: /images/research/safetrucks-snow.jpg
     image_alt: An articulated truck driving on a snow-covered forest road, from the SafeTrucks website.
     image_alt_zh: SafeTrucks 官网照片：铰接式卡车行驶在积雪覆盖的林间道路上。
@@ -28,27 +28,27 @@ projects:
       - label: SafeTrucks project
         url: https://safetrucks.fmi.fi/index.php/project-description/
     title_zh: 基于学习的铰接式重型及越野车辆规划与控制
-    description_zh: 面向复杂车辆—地形交互的铰接式及越野车辆学习型规划与控制。公开的 SafeTrucks 项目结合车辆动力学、道路气象与摩擦信息，提升重型车辆的行驶安全性。
+    description_zh: "面向复杂车辆—地形交互下的铰接式重型及越野车辆，正在探索**基于 Transformer 的模仿学习**与**强化学习增强的模型预测控制（MPC）**。公开的 SafeTrucks 项目结合车辆动力学、道路气象与摩擦信息，提升重型车辆的行驶安全性。"
   - id: drivellm
     title: "DriveLLM: Explainable Driving Decisions"
     image: /images/research/drivellm.jpg
     image_alt: WATonobus and driving scenes with pedestrians, snow, and LiDAR sensing from the DriveLLM research overview.
-    description: Integrating large language models with autonomous driving stacks for commonsense reasoning and explainable decisions. Driving-specific instruction tuning and cyber-physical feedback help address unfamiliar scenarios and human instructions, with real-world WATonobus case studies.
+    description: "Integrating **large language models** with autonomous driving stacks for commonsense reasoning and explainable decisions. Driving-specific **instruction tuning** and **cyber-physical feedback** help address unfamiliar scenarios and human instructions, with real-world WATonobus case studies."
     links:
       - label: Paper · IEEE T-IV
         url: https://ieeexplore.ieee.org/document/10297415
       - label: Project
         url: https://github.com/DriveLLM/DriveLLM
     title_zh: "DriveLLM：可解释驾驶决策"
-    description_zh: 将大语言模型融入自动驾驶软件栈，实现常识推理与可解释决策。结合面向驾驶场景的指令微调与信息物理反馈，探索对陌生场景和人类指令的应对，并开展 WATonobus 实车案例研究。
+    description_zh: "将**大语言模型**融入自动驾驶软件栈，实现常识推理与可解释决策。结合面向驾驶场景的**指令微调**与**信息物理反馈**，探索对陌生场景和人类指令的应对，并开展 WATonobus 实车案例研究。"
     image_alt_zh: DriveLLM 研究概览中的 WATonobus，以及涉及行人、积雪和激光雷达感知的驾驶场景。
   # Official project page and unmodified figure; CoInfra is an ongoing preprint project.
   # Image source: https://raw.githubusercontent.com/NingMingHao/CoInfra/main/assets/DatasetExample.jpg
   - id: coinfra
     title: "CoInfra: Cooperative Perception in Adverse Weather"
     title_zh: CoInfra：恶劣天气下的车路协同感知
-    description: Cooperative camera–LiDAR perception with shared bird’s-eye-view representations, 3D detection, and delay-aware multi-node fusion. CoInfra provides a real-world platform and adverse-weather dataset for robust vehicle–infrastructure cooperation beyond onboard sensing.
-    description_zh: 融合相机与激光雷达观测，结合共享鸟瞰视角（BEV）表征、三维目标检测与时延感知的多节点融合。CoInfra 提供真实部署平台与恶劣天气数据集，支持超越车载感知范围的稳健车路协同研究。
+    description: "Cooperative camera–LiDAR perception with shared **bird’s-eye-view representations**, **3D detection**, and **delay-aware multi-node fusion**. CoInfra provides a real-world platform and adverse-weather dataset for robust vehicle–infrastructure cooperation beyond onboard sensing."
+    description_zh: "融合相机与激光雷达观测，结合共享**鸟瞰视角（BEV）表征**、**三维目标检测**与**时延感知的多节点融合**。CoInfra 提供真实部署平台与恶劣天气数据集，支持超越车载感知范围的稳健车路协同研究。"
     image: /images/research/coinfra.jpg
     image_alt: CoInfra multi-node LiDAR point clouds and camera views with 3D object annotations around a roundabout.
     image_alt_zh: CoInfra 环岛场景中的多节点激光雷达点云、相机视角与三维目标标注。
@@ -62,62 +62,61 @@ projects:
         url: https://arxiv.org/abs/2507.02245
       - label: Project
         url: https://github.com/NingMingHao/CoInfra
-    image_aspect_ratio: 2437 / 889
   - id: multi-agent
     title: Learning-based multi-agent collaboration
     image: /images/research/multi-agent.jpg
     image_alt: Vehicle subsystem agents and autonomous racing examples illustrating multi-agent coordination.
-    description: ADMM-based distributed MPC coordinates coupled agents with convergence guarantees, while learned initialization accelerates negotiation. The framework supports plug-and-play control objectives, evaluated through path-tracking simulations and electric-vehicle experiments.
+    description: "**ADMM-based distributed MPC** coordinates coupled agents with convergence guarantees, while **learned initialization** accelerates negotiation. The framework supports plug-and-play control objectives, evaluated through path-tracking simulations and electric-vehicle experiments."
     links:
       - label: Paper · IEEE T-ITS 2025
         url: https://ieeexplore.ieee.org/document/11181563
       - label: Paper · ITSC 2024
         url: https://ieeexplore.ieee.org/document/10919711
-      - label: Lab project
-        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/multi-objective-agent-based-mpc
       - label: arXiv · T-ITS
         url: https://arxiv.org/abs/2609.12108
       - label: arXiv · ITSC
         url: https://arxiv.org/abs/2609.12142
+      - label: Lab project
+        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/multi-objective-agent-based-mpc
     title_zh: 基于学习的多智能体协作
-    description_zh: 基于交替方向乘子法（ADMM）的分布式模型预测控制，在收敛保证下协调耦合智能体，并通过学习迭代初值加速协商。框架支持控制目标的即插即用，以路径跟踪仿真和电动汽车试验验证性能。
+    description_zh: "基于**交替方向乘子法（ADMM）的分布式模型预测控制**，在收敛保证下协调耦合智能体，并通过**学习迭代初值**加速协商。框架支持控制目标的即插即用，以路径跟踪仿真和电动汽车试验验证性能。"
     image_alt_zh: 展示车辆子系统智能体、自动驾驶赛车与多智能体协作的研究图片。
   - id: learning-mpc
     title: Learning-based MPC
     image: /images/research/learning-mpc.jpg
     image_alt: Vehicle tests on a wet surface, data-driven dynamics modeling, and uncertainty-aware MPC constraints.
-    description: Online Gaussian-process learning models unknown dynamics within agent-based MPC. Multi-step uncertainty prediction and stochastic chance constraints balance adaptability, tracking performance, and safety, supported by real-time data management and validation on physical vehicles.
+    description: "**Online Gaussian-process learning** models unknown dynamics within agent-based MPC. **Multi-step uncertainty prediction** and **stochastic chance constraints** balance adaptability, tracking performance, and safety, supported by real-time data management and validation on physical vehicles."
     links:
-      - label: Paper · IEEE T-ITS 2024
-        url: https://ieeexplore.ieee.org/document/10623843
-      - label: Lab project
-        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/learning-agent-based-mpc
       - label: PhD thesis
         url: https://hdl.handle.net/10012/21401
+      - label: Paper · IEEE T-ITS 2024
+        url: https://ieeexplore.ieee.org/document/10623843
       - label: arXiv
         url: https://arxiv.org/abs/2609.11871
+      - label: Lab project
+        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/research/vehicle-control-systems/learning-agent-based-mpc
     title_zh: 基于学习的模型预测控制
-    description_zh: 在智能体模型预测控制中，通过在线高斯过程学习刻画未知动力学。结合多步不确定性预测与随机机会约束，兼顾适应能力、跟踪性能与安全，并以实时数据管理和实车试验加以支撑与验证。
+    description_zh: "在智能体模型预测控制中，通过**在线高斯过程学习**刻画未知动力学。结合**多步不确定性预测**与**随机机会约束**，兼顾适应能力、跟踪性能与安全，并以实时数据管理和实车试验加以支撑与验证。"
     image_alt_zh: 湿滑路面实车试验、数据驱动动力学建模，以及考虑不确定性的模型预测控制约束。
   - id: f1tenth
     title: "F1TENTH: World Models for Agile Racing"
     image: /images/research/f1tenth.jpg
     image_alt: My F1TENTH autonomous racing platform with onboard sensors and mapping views.
-    description: Ongoing exploration of multimodal, action-conditioned world models for agile autonomous racing. Vision and LiDAR observations support predictive representations for learning-based planning and control under fast, uncertain vehicle dynamics.
+    description: "Ongoing exploration of **multimodal, action-conditioned world models** for agile autonomous racing. Vision and LiDAR observations support **predictive representations** for learning-based planning and control under fast, uncertain vehicle dynamics."
     links:
       - label: Platform
         url: https://f1tenth.org/
     title_zh: "F1TENTH：面向敏捷竞速的世界模型"
-    description_zh: 正在探索面向敏捷自主竞速的多模态、动作条件世界模型。结合视觉与激光雷达观测学习预测性表征，为高速、不确定工况下的学习型规划与控制提供支持。
+    description_zh: "正在探索面向敏捷自主竞速的**多模态、动作条件世界模型**。结合视觉与激光雷达观测学习**预测性表征**，为高速、不确定工况下的学习型规划与控制提供支持。"
     image_alt_zh: 搭载传感器的 F1TENTH 自主赛车平台及其建图画面。
   - id: xlerobot
     title: "XLeRobot: Generative Mobile Manipulation"
     image: /images/research/xlerobot.jpg
     image_alt: My mobile dual-arm XLeRobot platform and a close-up of its manipulation setup.
-    description: Ongoing exploration of action-chunking policies, vision-language-action (VLA) models, and world-action models (WAM) for generative mobile manipulation. XLeRobot connects multimodal perception with coordinated mobile-base and dual-arm actions.
+    description: "Ongoing exploration of **action-chunking policies**, **vision-language-action (VLA) models**, and **world-action models (WAM)** for generative mobile manipulation. XLeRobot connects multimodal perception with coordinated mobile-base and dual-arm actions."
     links:
       - label: Platform
         url: https://github.com/Vector-Wangel/XLeRobot
     title_zh: "XLeRobot：生成式移动操作"
-    description_zh: 正在探索用于生成式移动操作的动作分块策略、视觉—语言—动作（VLA）模型与世界—动作模型（WAM）。以 XLeRobot 为平台，研究从多模态感知到移动底盘与双臂协同动作的映射。
+    description_zh: "正在探索用于生成式移动操作的**动作分块策略**、**视觉—语言—动作（VLA）模型**与**世界—动作模型（WAM）**。以 XLeRobot 为平台，研究从多模态感知到移动底盘与双臂协同动作的映射。"
     image_alt_zh: XLeRobot 移动双臂机器人及其操作装置的近景。

@@ -1,15 +1,27 @@
 <ol class="publication-list">
+{% assign co_first_role = site.data.publication_roles.roles | where: 'id', 'co-first' | first %}
 {% for group in site.data.publications %}
 {% for paper in group.items %}
 {% if paper.selected %}
 {% assign author_role = site.data.publication_roles.roles | where: 'id', paper.role | first %}
 {% assign authors = paper.authors | split: ',' %}
+{% assign display_author_count = authors.size %}
+{% if site.data.publication_roles.abbreviate_after_author %}
+{% assign last_required_author = 0 %}
+{% for author in authors %}
+{% assign author_name = author | strip %}
+{% if author_name == site.data.publication_roles.author_name or paper.co_first_authors contains author_name %}
+{% assign last_required_author = forloop.index %}
+{% endif %}
+{% endfor %}
+{% if last_required_author > 0 %}{% assign display_author_count = last_required_author %}{% endif %}
+{% endif %}
 <li class="publication">
 <div class="publication-year">{{ paper.year }}</div>
 <div class="publication-body">
 <h3>{% if paper.url %}<a href="{{ paper.url }}" data-zh="{{ paper.title_zh | default: paper.title | escape }}">{{ paper.title | escape }}</a>{% else %}<span data-zh="{{ paper.title_zh | default: paper.title | escape }}">{{ paper.title | escape }}</span>{% endif %}</h3>
-<p class="publication-authors">{% for author in authors %}{% assign author_name = author | strip %}{% if author_name == site.data.publication_roles.author_name %}<strong>{{ author_name | escape }}</strong>{% if author_role %}<sup class="publication-symbol" aria-label="{{ author_role.label | escape }}" data-zh-aria-label="{{ author_role.label_zh | default: author_role.label | escape }}">{{ author_role.symbol }}</sup>{% endif %}{% else %}{{ author_name | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
-<p class="publication-venue">{{ paper.venue | escape }}</p>
+<p class="publication-authors">{% for author in authors limit:display_author_count %}{% assign author_name = author | strip %}{% if author_name == site.data.publication_roles.author_name %}<strong>{{ author_name | escape }}</strong>{% else %}{{ author_name | escape }}{% endif %}{% if paper.co_first_authors contains author_name %}<sup class="publication-symbol" aria-label="{{ co_first_role.label | escape }}" data-zh-aria-label="{{ co_first_role.label_zh | default: co_first_role.label | escape }}">{{ co_first_role.symbol }}</sup>{% elsif author_name == site.data.publication_roles.author_name and author_role %}<sup class="publication-symbol" aria-label="{{ author_role.label | escape }}" data-zh-aria-label="{{ author_role.label_zh | default: author_role.label | escape }}">{{ author_role.symbol }}</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if display_author_count < authors.size %}, et al.{% endif %}</p>
+{% if paper.venue and paper.venue != '' %}<p class="publication-venue">{{ paper.venue | escape }}</p>{% endif %}
 {% if paper.arxiv or paper.project %}<div class="publication-links">
 {% if paper.arxiv %}<a class="publication-project" href="{{ paper.arxiv | escape }}">arXiv <span aria-hidden="true">↗</span></a>{% endif %}
 {% if paper.project %}<a class="publication-project" href="{{ paper.project }}"><span data-zh="项目">Project</span> <span aria-hidden="true">↗</span></a>{% endif %}
