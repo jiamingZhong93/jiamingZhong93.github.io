@@ -10,7 +10,8 @@
         "year": "2025",
         "selected": true,
         "role": "first",
-        "title_zh": "面向即插即用车辆控制的多目标智能体模型预测控制器"
+        "title_zh": "面向即插即用车辆控制的多目标智能体模型预测控制器",
+        "arxiv": "https://arxiv.org/abs/2609.12108"
       },
       {
         "authors": "J. Zhong, R. V. Mehrizi, M. Pirani, C. Yu, A. Kasaiezadeh, Y. V. Pant, A. Khajepour",
@@ -21,7 +22,8 @@
         "year": "2024",
         "selected": true,
         "role": "first",
-        "title_zh": "面向车辆综合性能的学习型智能体模型预测控制"
+        "title_zh": "面向车辆综合性能的学习型智能体模型预测控制",
+        "arxiv": "https://arxiv.org/abs/2609.11871"
       },
       {
         "authors": "Y. Cui, S. Huang, J. Zhong, Z. Liu, Y. Wang, C. Sun, B. Li, X. Wang, A. Khajepour",
@@ -63,7 +65,8 @@
         "year": "2025",
         "selected": true,
         "role": "coauthor",
-        "title_zh": "DriveSOTIF：利用多模态大语言模型提升预期功能安全"
+        "title_zh": "DriveSOTIF：利用多模态大语言模型提升预期功能安全",
+        "arxiv": "https://arxiv.org/abs/2505.07084"
       },
       {
         "authors": "Z. Deng, W. Hu, T. Huang, C. Sun, J. Zhong, A. Khajepour",
@@ -107,7 +110,8 @@
         "year": "2024",
         "selected": true,
         "role": "first",
-        "title_zh": "数据驱动的分布式控制方案：面向路径跟踪的学习型多目标智能体模型预测控制"
+        "title_zh": "数据驱动的分布式控制方案：面向路径跟踪的学习型多目标智能体模型预测控制",
+        "arxiv": "https://arxiv.org/abs/2609.12142"
       },
       {
         "authors": "J. Zhong, G. Tao, J. Liu",

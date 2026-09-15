@@ -47,6 +47,7 @@ The selector changes language on the same page. Every reload starts in English; 
 - **Data files:** update English fields and matching `_zh` fields together: `title/title_zh`, `description/description_zh`, `image_alt/image_alt_zh`. For the formula, also pair `learning/learning_zh` and `prior/prior_zh`.
 - **Biography:** edit both `localized-copy` blocks (`lang="en"` and `lang="zh-CN"`) in `_pages/about.md`. The opening sentence and section labels use `data-zh="中文"`.
 - **Name and page description:** set `author.name` / `author.name_zh` and `description` / `description_zh` in `_config.yml`. The Chinese display name is `钟嘉鸣`, without spaces. Keep names in publication author lists as originally published.
+- **Email link:** set `author.email` in `_config.yml` to update the profile’s mail link.
 - **Profile roles:** edit the `author.roles` list in `_config.yml`. Each entry has `title/title_zh`, `institution/institution_zh` and `url`; list order controls display order. Both languages are maintained here.
 - **Experience:** include start/end months in both `dates` and `dates_zh`, e.g. `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`.
 - **New project-link labels:** add the Chinese mapping under `links` in `_data/translations.yml`. Untranslated project fields/labels fall back to English.
@@ -63,7 +64,7 @@ The **Research vision in Home** is in `_data/research.yml` under `vision`: edit 
       text_zh: "这一方向希望回答什么研究问题？"
 ```
 
-The **Research trajectory** follows these questions in six themes with short research labels. Edit `phases` and the nested `steps` in `_data/trajectory.yml`. Their list order determines the route; update English and Chinese together:
+The **Research trajectory** follows these questions in six themes with short research labels. Edit `phases` and the nested `steps` in `_data/trajectory.yml`. Their list order determines the route; update English and Chinese together. Shared captions live under `stages`; each phase selects one with `stage: foundations`, `ongoing`, or `frontier`:
 
 ```yaml
 phases:
@@ -179,11 +180,11 @@ No stitched image file is created: replacing the original photo updates its tile
 
 ### Formula and trajectory styling
 
-The research formula and trajectory arrows share one animated gradient. Set its colors and `18s` duration with `--research-gradient` and `--research-gradient-duration` at the top of `assets/css/profile.css`. The soft arrowhead is defined in `assets/icons/trajectory-arrowhead.svg`; its size, line thickness and fading tail are controlled by the masks in `.trajectory-phase::after`. The tip keeps its proportions on phones. Reduced-motion preferences automatically show a static gradient.
+The research formula and trajectory arrows share one animated gradient. Set its colors and `18s` duration with `--research-gradient` and `--research-gradient-duration` at the top of `assets/css/profile.css`. The soft arrowhead is defined in `assets/icons/trajectory-arrowhead.svg`; its size, line thickness and fading tail are controlled by the masks in `.trajectory-track::after`. The tip keeps its proportions on phones. Reduced-motion preferences automatically show a static gradient.
 
 Project titles precede their images and descriptions. Desktop uses an image on the left and text/links on the right below each title; phones stack title → image/GIF → description/links. Project, publication and career entries use spacing instead of separator lines.
 
-Keep public image-source URLs in comments beside the relevant project. The SafeTrucks entry records the source of its snow-driving photo.
+Optional project image attribution uses `image_credit/image_credit_zh`, `image_source_url`, `image_license` and `image_license_url`. CoInfra provides an example. For a wide figure, set `image_aspect_ratio` (e.g. `"2437 / 889"`) to display its native proportions without empty padding. Keep public image-source URLs in comments beside the relevant project. The SafeTrucks entry records the source of its snow-driving photo.
 
 ### Browser icon (favicon)
 
@@ -203,6 +204,7 @@ In `_data/publications.json`, copy an existing paper inside a group's `items` ar
 | `selected` | `true` to display; `false` to hide while retaining the record |
 | `role` | `first` (†), `co-first` (*), `corresponding` (‡), or `coauthor` (no symbol) |
 | `project` | Optional project URL |
+| `arxiv` | Optional verified arXiv version of the same paper |
 
 The template automatically highlights the exact author name `J. Zhong` and adds the role symbol. Change the name, symbols or bilingual legend once in `_data/publication_roles.yml`. Papers display in file order. JSON requires double quotes and no trailing comma after the final entry.
 

@@ -25,7 +25,7 @@ author:
       institution_zh: "加拿大国家研究委员会"
       url: "https://nrc.canada.ca/en"
   googlescholar: "https://scholar.google.com/citations?user=kSAQtOoAAAAJ"
-  github: "jiamingZhong93"
+  email: "jiaming.zhong@uwaterloo.ca"
   linkedin: "jiaming-zhong"
 include: [".htaccess", "_pages", "files"]
 exclude: ["docs", "google_scholar_crawler", ".bundle", ".jekyll-assets-cache", ".sass-cache", ".github", "Gemfile", "Gemfile.lock", "README.md", "run_server.sh", "node_modules", "package.json", "package-lock.json", "scripts", "preview.cmd", "preview.sh", "tmp", "vendor", "assets/js/_main.js", "assets/js/plugins", "assets/js/vendor"]

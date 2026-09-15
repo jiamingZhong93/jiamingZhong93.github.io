@@ -1,9 +1,12 @@
 {% assign trajectory = site.data.trajectory %}
 <figure class="research-trajectory">
-<figcaption class="trajectory-heading" data-zh="{{ trajectory.title_zh | default: trajectory.title | escape }}">{{ trajectory.title | escape }}</figcaption>
+<figcaption><h2 class="home-subheading trajectory-heading" data-zh="{{ trajectory.title_zh | default: trajectory.title | escape }}">{{ trajectory.title | escape }}</h2></figcaption>
 <ol class="trajectory-map" role="list">
 {% for phase in trajectory.phases %}
 <li class="trajectory-phase">
+{% assign stage = trajectory.stages[phase.stage] %}
+{% if stage %}<p class="trajectory-stage" data-zh="{{ stage.title_zh | default: stage.title | escape }}">{{ stage.title | escape }}</p>{% endif %}
+<div class="trajectory-track" aria-hidden="true">
 <div class="trajectory-motif" aria-hidden="true">
 <svg viewBox="0 0 28 28" fill="none" focusable="false">
 {% case phase.id %}
@@ -16,6 +19,7 @@
 {% else %}<path d="M4 14h20m-6-6 6 6-6 6"/>
 {% endcase %}
 </svg>
+</div>
 </div>
 <h3 class="trajectory-theme" data-zh="{{ phase.title_zh | default: phase.title | escape }}">{{ phase.title | escape }}</h3>
 <ol class="trajectory-methods" role="list">

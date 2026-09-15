@@ -47,6 +47,7 @@
 - **数据文件：** 成对修改 `title/title_zh`、`description/description_zh`、`image_alt/image_alt_zh`。公式还包括 `learning/learning_zh`、`prior/prior_zh`。
 - **个人简介：** 在 `_pages/about.md` 中分别修改 `lang="en"` 和 `lang="zh-CN"` 的两个 `localized-copy` 区块。开场句和各部分标题的中文在 `data-zh="中文"` 中。
 - **姓名与页面简介：** 在 `_config.yml` 中成对维护 `author.name` / `author.name_zh` 和 `description` / `description_zh`。中文姓名使用“钟嘉鸣”，姓与名之间不留空格；论文作者列表保留原文姓名。
+- **邮箱链接：** 修改 `_config.yml` 的 `author.email`，即可更新个人栏的邮件链接。
 - **个人职位：** 在 `_config.yml` 的 `author.roles` 列表统一修改中英文。每项包含 `title/title_zh`、`institution/institution_zh` 和 `url`；列表顺序即显示顺序。
 - **工作经历：** `dates` 和 `dates_zh` 都填写起止月份，例如 `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`。
 - **新项目链接名称：** 在 `_data/translations.yml` 的 `links` 下加入中文对应值。项目字段和链接名称缺少翻译时显示英文。
@@ -63,7 +64,7 @@
       text_zh: "这一方向希望回答什么研究问题？"
 ```
 
-**研究历程图** 位于这些问题之后，分为六个主题，每组包含若干简短的研究标签。在 `_data/trajectory.yml` 的 `phases` 及各组内部的 `steps` 中维护；两层列表的顺序决定路线，中英文同时修改：
+**研究历程图** 位于这些问题之后，分为六个主题，每组包含若干简短的研究标签。在 `_data/trajectory.yml` 的 `phases` 及各组内部的 `steps` 中维护；两层列表的顺序决定路线。阶段名称统一在 `stages` 中维护；每组用 `stage: foundations`、`ongoing` 或 `frontier` 选择阶段，中英文同时修改：
 
 ```yaml
 phases:
@@ -179,7 +180,7 @@ phases:
 
 ### 公式与研究历程的样式
 
-研究公式与研究历程箭头使用同一套动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。圆润的箭头形状在 `assets/icons/trajectory-arrowhead.svg` 中定义；大小、线身粗细与尾部淡入由 `.trajectory-phase::after` 中的遮罩控制。箭头头部在手机端也保持原有比例。系统开启“减少动态效果”时自动显示静态渐变。
+研究公式与研究历程箭头使用同一套动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。圆润的箭头形状在 `assets/icons/trajectory-arrowhead.svg` 中定义；大小、线身粗细与尾部淡入由 `.trajectory-track::after` 中的遮罩控制。箭头头部在手机端也保持原有比例。系统开启“减少动态效果”时自动显示静态渐变。
 
 每个项目先显示标题，电脑上标题下方左图右文，手机上依次为“标题 → 图片/GIF → 介绍和链接”。项目、论文及经历条目通过间距区分，不使用分隔横线。
 
@@ -190,6 +191,8 @@ phases:
 JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。如需重新设计，请同时更新 `images/` 下的配套文件：`favicon.ico`、`favicon-16x16.png`、`favicon-32x32.png`、`apple-touch-icon.png`（180 × 180）、`android-chrome-192x192.png` 和 `android-chrome-512x512.png`。修改 SVG 后，PNG/ICO 文件不会自动重新生成。
 
 替换图标后，同步更新 [_includes/head/custom.html](../_includes/head/custom.html) 和 [images/site.webmanifest](../images/site.webmanifest) 中的版本后缀（当前为 `?v=jz-1`），让浏览器重新加载新图标。
+
+项目图片如需署名，可填写 `image_credit/image_credit_zh`、`image_source_url`、`image_license` 和 `image_license_url`；CoInfra 条目提供了示例。宽幅图可设置 `image_aspect_ratio`（如 `"2437 / 889"`），按原比例显示，避免多余留白。
 
 ## 4. 修改论文
 
@@ -203,6 +206,7 @@ JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。
 | `selected` | `true` 显示；`false` 保留记录但隐藏 |
 | `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者（无符号） |
 | `project` | 可选的项目网址 |
+| `arxiv` | 可选，须核实为同一篇论文的 arXiv 版本 |
 
 系统自动加粗与 `J. Zhong` 完全匹配的作者姓名，并添加相应的作者角色符号。修改姓名、符号或双语图例时，只改 `_data/publication_roles.yml` 即可。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
 
