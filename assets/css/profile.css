@@ -186,7 +186,10 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
 .publication-venue { font-size: .875rem; line-height: 1.6; margin-bottom: .15rem !important; }
 .publication-project { font-size: .875rem; }
 .compact-section { padding-top: 2.8rem; }
-.career-list article { display: grid; grid-template-columns: 165px minmax(0,1fr); gap: 1rem; padding: .6rem 0; border: 0; }
+/* Chinese year/month ranges need a wider shared column to keep every row aligned. */
+html[lang="zh-CN"] .career-list { --career-date-width: 13rem; }
+html[lang="zh-CN"] .career-date { white-space: nowrap; }
+.career-list article { display: grid; grid-template-columns: var(--career-date-width,165px) minmax(0,1fr); gap: 1rem; padding: .6rem 0; border: 0; }
 .career-date { font-size: .875rem; color: var(--muted); margin: .1rem 0 0 !important; }
 .career-list h3 { font-size: .87rem; line-height: 1.5; margin: 0 0 .1rem; font-weight: 600; }
 .career-list h3 a { color: var(--ink); }
@@ -201,7 +204,7 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
   #main { gap: 28px; padding: 2rem 1.5rem 0; }
   .author__avatar img { width: 198px; height: 224px; }
   .research-project.has-media { gap: 1.1rem; grid-template-columns: minmax(0,34%) minmax(0,1fr); }
-  .career-list article { grid-template-columns: 145px minmax(0,1fr); }
+  .career-list article { grid-template-columns: var(--career-date-width,145px) minmax(0,1fr); }
 }
 @media (max-width: 800px) {
   html { font-size: 16px; }
