@@ -40,7 +40,7 @@ Navigation labels, Chinese translations and section links live together in `_dat
 
 Teaching entries live under `teaching` in `_data/career.yml` and use the same bilingual fields as Experience. They appear immediately before Experience.
 
-For an experience shared by multiple organizations over the same period, use an optional `organizations` array with `name`, `name_zh` and `url` for each organization; keep one set of dates and one role for the combined entry. Single-organization entries continue to use `organization`, `organization_zh` and `url`. Education institution names display as plain text.
+For an experience shared by multiple organizations over the same period, use an optional `organizations` array with `name`, `name_zh` and `url` for each organization; keep one set of dates and one role for the combined entry. Single-organization entries continue to use `organization`, `organization_zh` and `url`. Teaching and Education institution names display as plain text.
 
 ### Maintain English and Chinese together
 

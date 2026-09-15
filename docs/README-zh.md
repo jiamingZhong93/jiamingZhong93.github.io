@@ -40,7 +40,7 @@
 
 教学经历在 `_data/career.yml` 的 `teaching` 下维护，使用与工作经历相同的中英文字段，显示在工作经历之前。
 
-同一时段涉及多个单位的经历，可用 `organizations` 数组为每个单位填写 `name`、`name_zh` 和 `url`，合并条目只保留一组日期和职位。单一单位的条目仍使用 `organization`、`organization_zh` 和 `url`。教育经历中的学校名称显示为纯文本。
+同一时段涉及多个单位的经历，可用 `organizations` 数组为每个单位填写 `name`、`name_zh` 和 `url`，合并条目只保留一组日期和职位。单一单位的条目仍使用 `organization`、`organization_zh` 和 `url`。教学与教育经历中的学校名称显示为纯文本。
 
 ### 中英文要一起维护
 

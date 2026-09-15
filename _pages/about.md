@@ -48,7 +48,7 @@ redirect_from: ["/about/", "/about.html"]
 
 <section id="teaching" class="profile-section compact-section" aria-labelledby="teaching-label">
 <h2 class="section-label" id="teaching-label" data-zh="03 / 教学经历">03 / TEACHING</h2>
-<div class="career-list">{% for item in site.data.career.teaching %}<article><p class="career-date">{{ item.dates }}</p><div><h3><a href="{{ item.url }}" data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</a></h3><p data-zh="{{ item.role_zh | default: item.role | escape }}">{{ item.role }}</p></div></article>{% endfor %}</div>
+<div class="career-list">{% for item in site.data.career.teaching %}<article><p class="career-date">{{ item.dates }}</p><div><h3 data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</h3><p data-zh="{{ item.role_zh | default: item.role | escape }}">{{ item.role }}</p></div></article>{% endfor %}</div>
 </section>
 
 <section id="experience" class="profile-section compact-section" aria-labelledby="experience-label">
