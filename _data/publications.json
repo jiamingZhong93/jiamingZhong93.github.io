@@ -98,7 +98,8 @@
         "selected": false
       }
     ],
-    "title": "Journal articles"
+    "title": "Journal articles",
+    "type": "journal"
   },
   {
     "items": [
@@ -125,7 +126,8 @@
         "role": "first"
       }
     ],
-    "title": "Conference papers"
+    "title": "Conference papers",
+    "type": "conference"
   },
   {
     "items": [
@@ -138,7 +140,8 @@
         "selected": false
       }
     ],
-    "title": "Accepted manuscript"
+    "title": "Accepted manuscript",
+    "type": "publication"
   },
   {
     "items": [
@@ -174,7 +177,8 @@
         "selected": false
       }
     ],
-    "title": "Preprints"
+    "title": "Preprints",
+    "type": "publication"
   },
   {
     "items": [
@@ -193,6 +197,7 @@
         "selected": false
       }
     ],
-    "title": "Manuscripts under review"
+    "title": "Manuscripts under review",
+    "type": "publication"
   }
 ]

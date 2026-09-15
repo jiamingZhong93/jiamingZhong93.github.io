@@ -22,7 +22,16 @@
 <h3>{% if paper.url %}<a href="{{ paper.url }}" data-zh="{{ paper.title_zh | default: paper.title | escape }}">{{ paper.title | escape }}</a>{% else %}<span data-zh="{{ paper.title_zh | default: paper.title | escape }}">{{ paper.title | escape }}</span>{% endif %}</h3>
 <p class="publication-authors">{% for author in authors limit:display_author_count %}{% assign author_name = author | strip %}{% if author_name == site.data.publication_roles.author_name %}<strong>{{ author_name | escape }}</strong>{% else %}{{ author_name | escape }}{% endif %}{% if paper.co_first_authors contains author_name %}<sup class="publication-symbol" aria-label="{{ co_first_role.label | escape }}" data-zh-aria-label="{{ co_first_role.label_zh | default: co_first_role.label | escape }}">{{ co_first_role.symbol }}</sup>{% elsif author_name == site.data.publication_roles.author_name and author_role %}<sup class="publication-symbol" aria-label="{{ author_role.label | escape }}" data-zh-aria-label="{{ author_role.label_zh | default: author_role.label | escape }}">{{ author_role.symbol }}</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}{% if display_author_count < authors.size %}, et al.{% endif %}</p>
 {% if paper.venue and paper.venue != '' %}<p class="publication-venue">{{ paper.venue | escape }}</p>{% endif %}
-{% if paper.arxiv or paper.project %}<div class="publication-links">
+{% if paper.url or paper.arxiv or paper.project %}<div class="publication-links">
+{% if paper.url %}
+{% assign publication_type = paper.type | default: group.type | default: 'publication' %}
+{% case publication_type %}
+{% when 'journal' %}{% assign publication_label = 'Journal' %}
+{% when 'conference' %}{% assign publication_label = 'Conference' %}
+{% else %}{% assign publication_label = 'Publication' %}
+{% endcase %}
+<a class="publication-project" href="{{ paper.url | escape }}"><span data-zh="{{ site.data.translations.links[publication_label] | escape }}">{{ publication_label }}</span> <span aria-hidden="true">↗</span></a>
+{% endif %}
 {% if paper.arxiv %}<a class="publication-project" href="{{ paper.arxiv | escape }}">arXiv <span aria-hidden="true">↗</span></a>{% endif %}
 {% if paper.project %}<a class="publication-project" href="{{ paper.project }}"><span data-zh="项目">Project</span> <span aria-hidden="true">↗</span></a>{% endif %}
 </div>{% endif %}
