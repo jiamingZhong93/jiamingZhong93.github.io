@@ -163,6 +163,7 @@
         "project": "https://github.com/HopeYless/SAP-CoPE-Project",
         "title": "SAP-CoPE: Social-Aware Planning using Cooperative Pose Estimation with Infrastructure Sensor Nodes",
         "url": "https://arxiv.org/abs/2504.05727",
+        "arxiv": "https://arxiv.org/abs/2504.05727",
         "venue": "arXiv:2504.05727",
         "year": "2025",
         "selected": false
@@ -172,13 +173,14 @@
         "note": "Preprint",
         "title": "Augmented Kinesthetic Teaching: Enhancing Task Execution Efficiency through Intuitive Human Instructions",
         "url": "https://arxiv.org/abs/2312.00262",
+        "arxiv": "https://arxiv.org/abs/2312.00262",
         "venue": "arXiv:2312.00262",
         "year": "2023",
         "selected": false
       }
     ],
     "title": "Preprints",
-    "type": "publication"
+    "type": "preprint"
   },
   {
     "items": [

@@ -207,14 +207,14 @@ In `_data/publications.json`, copy an existing paper inside a group's `items` ar
 | `title` / `title_zh` | Original paper title / Chinese reading translation |
 | `authors` | Complete author list in published order, separated by English commas; no HTML, symbols or manually added `et al.` |
 | `venue`, `year`, `url` | Original venue, year, and paper link; omit `venue` for a preprint not accepted by a journal/conference |
-| `type` | Optional per-paper override of the group's `type`: `journal`, `conference` or `publication` |
+| `type` | Optional per-paper override of the group's `type`: `journal`, `conference`, `preprint` or `publication` |
 | `selected` | `true` to display; `false` to hide while retaining the record |
 | `role` | `first` (†), `co-first` (*), `corresponding` (‡), or `coauthor` (no symbol) |
 | `co_first_authors` | Optional array containing **every** shared first author, using names exactly as they appear in `authors` |
 | `project` | Optional project URL |
 | `arxiv` | Optional verified arXiv version of the same paper |
 
-Set each group's `type` once: `journal` for journal articles, `conference` for conference papers, and `publication` for other work. A paper's own `type` overrides its group. If neither sets a type, or the chosen value is unrecognized, it falls back to `publication`. The bottom link row uses **Journal / Conference / Publication** (期刊 / 会议 / 论文), then optional **arXiv**, then **Project**. Its first link and the linked title both use `url`, so maintain that address only once.
+Set each group's `type` once: `journal` for journal articles, `conference` for conference papers, `preprint` for preprints, and `publication` for other work. A paper's own `type` overrides its group; if neither sets a type, or the chosen value is unrecognized, it falls back to `publication`. Titles always use `url`. For non-preprints, the bottom row starts with **Journal / Conference / Publication** (期刊 / 会议 / 论文), reusing `url`, followed by optional **arXiv** and **Project** links. Preprints omit the first link and show only **arXiv**, then **Project**, when provided; set `arxiv` for these records. After formal publication, change the type to `journal` or `conference` (or move the paper into that group and remove its override), update `url` and `venue`, and retain `arxiv`.
 
 The template highlights `J. Zhong` and applies the same shared-first-author symbol to every name in `co_first_authors`. For example, `"co_first_authors": ["A. Researcher", "J. Zhong"]` marks both names. Keep the full `authors` list in JSON. The default `abbreviate_after_author: false` in `_data/publication_roles.yml` displays all authors. Optionally set it to `true` to display authors through J. Zhong, retain any later shared first authors, and abbreviate the remainder as `et al.`.
 

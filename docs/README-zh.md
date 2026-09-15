@@ -207,14 +207,14 @@ JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。
 | `title` / `title_zh` | 原始论文题目 / 便于阅读的中文译题 |
 | `authors` | 按论文顺序填写完整作者列表，用英文逗号分隔；不用 HTML，不手动加符号或 `et al.` |
 | `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接；未被期刊或会议接收的预印本省略 `venue` |
-| `type` | 单篇论文可选，覆盖分组的 `type`：`journal`、`conference` 或 `publication` |
+| `type` | 单篇论文可选，覆盖分组的 `type`：`journal`、`conference`、`preprint` 或 `publication` |
 | `selected` | `true` 显示；`false` 保留记录但隐藏 |
 | `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者（无符号） |
 | `co_first_authors` | 可选数组，填写该论文的**所有共同第一作者**，姓名须与 `authors` 中完全一致 |
 | `project` | 可选的项目网址 |
 | `arxiv` | 可选，须核实为同一篇论文的 arXiv 版本 |
 
-每个分组统一设置 `type`：期刊论文用 `journal`，会议论文用 `conference`，其他成果用 `publication`。单篇论文的 `type` 优先于分组设置；两处均未设置或最终取值无法识别时，按 `publication` 处理。底部链接依次为**期刊 / 会议 / 论文**（Journal / Conference / Publication）、可选的 **arXiv**、可选的**项目**。第一个链接和题目均使用同一个 `url`，无需重复维护网址。
+每个分组统一设置 `type`：期刊论文用 `journal`，会议论文用 `conference`，预印本用 `preprint`，其他成果用 `publication`。单篇论文的 `type` 优先于分组设置；两处均未设置或最终取值无法识别时，按 `publication` 处理。题目始终链接到 `url`。非预印本的底部链接依次为**期刊 / 会议 / 论文**（复用 `url`）、可选的 **arXiv**、可选的**项目**；预印本省略第一个链接，仅按顺序显示已配置的 **arXiv** 和**项目**，建议填写 `arxiv`。正式发表后，将类型改为 `journal` 或 `conference`（或移入对应分组并删除单篇覆盖值），更新 `url`、`venue`，保留 `arxiv`。
 
 系统自动加粗 `J. Zhong`，并为 `co_first_authors` 中的每位作者加上相同的共同第一作者符号。例如，`"co_first_authors": ["A. Researcher", "J. Zhong"]` 会同时标记这两位作者。JSON 中始终保留完整的 `authors` 列表。`_data/publication_roles.yml` 中默认设置 `abbreviate_after_author: false`，显示全部作者；如需省略，可改成 `true`，显示至 J. Zhong，并保留其后的共同第一作者，其余作者统一缩写为 `et al.`。
 
