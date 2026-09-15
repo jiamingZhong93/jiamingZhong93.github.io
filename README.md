@@ -1,4 +1,4 @@
-# Jiaming Zhong · 钟嘉鸣
+# Jiaming Zhong
 
 Personal academic homepage for research in trustworthy Physical AI, with English and Chinese content. Built with Jekyll and published through GitHub Pages.
 

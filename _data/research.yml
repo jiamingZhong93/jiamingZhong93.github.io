@@ -5,8 +5,8 @@ vision:
   learning_zh: 数据驱动学习
   prior: Model-based prior
   prior_zh: 基于模型的先验
-  description: "My research focuses on hybrid data-driven and model-based priors that formally embed AI within classic models, human preferences, and safety-critical architectures. Data-driven learning improves intelligence and adaptability under uncertainty, while structured schemes incorporate human knowledge as priors and enforce safety, stability, and robustness. The goal is to enable physical systems to learn from experience and adapt to changing conditions while remaining dependable in real-world deployment."
-  description_zh: "我的研究聚焦于数据驱动方法与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。数据驱动学习提升系统在不确定环境下的智能水平与适应能力，结构化方法则将人类知识作为先验，保障安全、稳定与鲁棒。目标是让物理系统能够从经验中学习、适应环境变化，并在真实部署中保持可靠运行。"
+  description: "My research focuses on hybrid data-driven and model-based priors that formally embed AI within classic models, human preferences, and safety-critical architectures. Data-driven learning improves intelligence and adaptability under uncertainty, while structured schemes incorporate human knowledge as priors and enforce safety, stability, and robustness. My long-term goal is to build trustworthy Physical AI that transfers knowledge across tasks and environments, with verifiable safety and reliability."
+  description_zh: "我的研究聚焦于数据驱动方法与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。数据驱动学习提升系统在不确定环境下的智能水平与适应能力，结构化方法则将人类知识作为先验，保障安全、稳定与鲁棒。我的长期目标是构建可信物理人工智能，使自主系统能够跨任务、跨环境迁移知识，并具备可验证的安全性与可靠性。"
   bullets:
     - text: "How can multimodal learning capture the dynamics and interactions of our complex physical world?"
       text_zh: "多模态学习如何刻画复杂物理世界中的动力学与交互关系？"
@@ -16,10 +16,14 @@ vision:
       text_zh: "如何实现模仿学习、强化学习、自监督学习与经典方法的形式化融合？"
 
 projects:
+  # Optional image_size: [original width, height]; image_crop: [x, y, width, height].
+  # Crops are in original pixels and trim only outer padding in the page, not the file.
+  # 可选：image_size 为原图宽高；image_crop 为 [左上角 x, y, 裁切宽, 高]，单位为原图像素。
   - id: articulated-vehicles
     title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
     description: "Ongoing research on **Transformer-based imitation learning** and **reinforcement-learning-enhanced MPC** for articulated heavy-duty and off-road vehicles under complex vehicle–terrain interactions. The SafeTrucks project combines vehicle dynamics, road weather, friction information, and AI to improve heavy-vehicle safety."
     image: /images/research/safetrucks-snow.jpg
+    image_size: [1121, 510]
     image_alt: An articulated truck driving on a snow-covered forest road, from the SafeTrucks website.
     image_alt_zh: SafeTrucks 官网照片：铰接式卡车行驶在积雪覆盖的林间道路上。
     # Public photo and description: https://safetrucks.fmi.fi/index.php/project-description/
@@ -32,6 +36,8 @@ projects:
   - id: drivellm
     title: "DriveLLM: Explainable Decision-Making for Autonomous Driving"
     image: /images/research/drivellm.png
+    image_size: [1283, 1049]
+    image_crop: [19, 0, 1245, 1019]
     image_alt: WATonobus and driving scenes with pedestrians, snow, and LiDAR sensing from the DriveLLM research overview.
     description: "Integrating **large language models (LLMs)** with autonomous driving stacks for commonsense reasoning and explainable decisions. **Driving-specific fine-tuning** and **cyber-physical feedback** help address unfamiliar scenarios and human instructions, with real-world WATonobus case studies."
     links:
@@ -50,6 +56,8 @@ projects:
     description: "Cooperative camera–LiDAR perception with shared **bird’s-eye-view (BEV) representations**, **3D detection**, and **delay-aware multi-node fusion**. CoInfra provides a real-world platform and adverse-weather dataset for robust vehicle–infrastructure cooperation beyond onboard sensing."
     description_zh: "融合相机与激光雷达观测，结合共享**鸟瞰视角（BEV）表征**、**三维目标检测**与**时延感知的多节点融合**。CoInfra 提供真实部署平台与恶劣天气数据集，支持超越车载感知范围的稳健车路协同研究。"
     image: /images/research/coinfra.jpg
+    image_size: [2437, 889]
+    image_crop: [7, 7, 2424, 876]
     image_alt: CoInfra multi-node LiDAR point clouds and camera views with 3D object annotations around a roundabout.
     image_alt_zh: CoInfra 环岛场景中的多节点激光雷达点云、相机视角与三维目标标注。
     image_credit: CoInfra project
@@ -65,6 +73,8 @@ projects:
   - id: multi-agent
     title: Learning-based multi-agent collaboration
     image: /images/research/multi-agent.png
+    image_size: [1188, 1044]
+    image_crop: [19, 9, 1161, 1021]
     image_alt: Vehicle subsystem agents and autonomous racing examples illustrating multi-agent coordination.
     description: "**ADMM-based distributed MPC** coordinates coupled agents with convergence guarantees, while a **learned warm-start** accelerates negotiation. The framework supports plug-and-play control objectives, evaluated through path-tracking simulations and electric-vehicle experiments."
     links:
@@ -84,6 +94,8 @@ projects:
   - id: learning-mpc
     title: Learning-based MPC
     image: /images/research/learning-mpc.png
+    image_size: [1526, 1040]
+    image_crop: [6, 0, 1514, 1019]
     image_alt: Vehicle tests on a wet surface, data-driven dynamics modeling, and uncertainty-aware MPC constraints.
     description: "**Online Gaussian-process (GP)** learning models unknown dynamics within agent-based MPC. **Multi-step uncertainty prediction** and **stochastic chance constraints** balance adaptability, tracking performance, and safety, supported by real-time data management and validation on physical vehicles."
     links:
@@ -101,6 +113,8 @@ projects:
   - id: f1tenth
     title: "F1TENTH: RL-MPC and World Models for Agile Racing"
     image: /images/research/f1tenth.jpg
+    image_size: [791, 318]
+    image_crop: [1, 1, 790, 317]
     image_alt: My F1TENTH autonomous racing platform with onboard sensors and mapping views.
     description: "Ongoing research on **RL-MPC** for objective tuning and **action-conditioned world models** for dynamics prediction. Vision and LiDAR observations inform predictive models that support downstream optimization-based planning and control for agile autonomous racing."
     links:
@@ -112,6 +126,8 @@ projects:
   - id: xlerobot
     title: "XLeRobot: Generative Mobile Manipulation"
     image: /images/research/xlerobot.jpg
+    image_size: [728, 318]
+    image_crop: [1, 1, 726, 317]
     image_alt: My mobile dual-arm XLeRobot platform and a close-up of its manipulation setup.
     description: "Ongoing exploration of **action-chunking policies**, **vision-language-action (VLA) models**, and **world-action models (WAM)** for generative mobile manipulation. XLeRobot connects multimodal perception with coordinated mobile-base and dual-arm actions."
     links:

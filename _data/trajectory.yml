@@ -38,8 +38,8 @@ phases:
         title: Learning-based ADMM
         title_zh: 基于学习的 ADMM
       - id: prediction
-        title: Accelerated convergence
-        title_zh: 加速收敛
+        title: Fast convergence
+        title_zh: 快速收敛
       - id: multi-agent-system
         title: Multi-agent system
         title_zh: 多智能体系统
@@ -56,7 +56,7 @@ phases:
         title_zh: 递归可解释
       - id: llm-decisions
         title: DriveLLM, LLM agent
-        title_zh: DriveLLM、大语言模型智能体
+        title_zh: DriveLLM, LLM agent
   - id: imitation
     stage: ongoing
     title: Imitation Control

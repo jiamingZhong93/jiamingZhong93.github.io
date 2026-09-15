@@ -48,7 +48,7 @@
 
 - **数据文件：** 成对修改 `title/title_zh`、`description/description_zh`、`image_alt/image_alt_zh`。公式还包括 `learning/learning_zh`、`prior/prior_zh`。
 - **个人简介：** 在 `_pages/about.md` 中分别修改 `lang="en"` 和 `lang="zh-CN"` 的两个 `localized-copy` 区块。开场句和各部分标题的中文在 `data-zh="中文"` 中。
-- **姓名与页面简介：** 在 `_config.yml` 中成对维护 `author.name` / `author.name_zh` 和 `description` / `description_zh`。中文姓名使用“钟嘉鸣”，姓与名之间不留空格；论文作者列表保留原文姓名。
+- **姓名与页面简介：** 在 `_config.yml` 中成对维护 `author.name` / `author.name_zh` 和 `description` / `description_zh`。中文姓名的姓与名之间不留空格；论文作者列表保留原文姓名。
 - **邮箱链接：** 修改 `_config.yml` 的 `author.email`，即可更新个人栏的邮件链接。
 - **个人职位：** 在 `_config.yml` 的 `author.roles` 列表统一修改中英文。每项包含 `title/title_zh`、`institution/institution_zh` 和 `url`；列表顺序即显示顺序。
 - **工作经历：** `dates` 和 `dates_zh` 都填写起止月份，例如 `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`。
@@ -81,7 +81,7 @@ phases:
 
 图的标题在文件顶部的 `title/title_zh`。修改主题名称时保留原有 `id`，小图标由这个字段选择；各研究步骤的 `id` 保持唯一，调整顺序时也保留。标签尽量简短，六个主题在电脑上排成三列两行、手机上排成两列三行，不显示描述或编号。文字与顺序只需修改 YAML；样式在 `assets/css/profile.css`，图标在 `_includes/research-trajectory.html`。
 
-在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时维护中英文。`description/description_zh` 支持用 Markdown `**加粗**` 突出关键方法；两种语言分别渲染到独立的 `localized-copy` 区块，切换语言时会保留格式。
+在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时维护中英文。`description/description_zh` 支持用 Markdown `**加粗**` 突出关键方法；两种语言分别渲染到独立的 `localized-copy` 区块，切换语言时会保留格式。若加粗内容以括号结尾，结束标记 `**` 与后续中文之间加一个空格，例如 `**强化学习（RL）** 增强控制`。
 
 ```yaml
   - id: my-project
@@ -186,7 +186,9 @@ phases:
 
 研究公式与研究历程箭头使用同一套动态渐变。在 `assets/css/profile.css` 顶部的 `--research-gradient` 和 `--research-gradient-duration` 中统一调整颜色与 `18s` 周期。圆润的箭头形状在 `assets/icons/trajectory-arrowhead.svg` 中定义；大小、线身粗细与尾部淡入由 `.trajectory-track::after` 中的遮罩控制。箭头头部在手机端也保持原有比例。系统开启“减少动态效果”时自动显示静态渐变。
 
-每个项目先显示标题，电脑上标题下方左图右文，图片上沿与介绍对齐；手机上依次为“标题 → 图片/GIF → 介绍和链接”。图片高度自适应，不使用固定画框或额外补边；如果原图文件本身含有白边，需要在原文件中裁去。项目、论文及经历条目通过间距区分，不使用分隔横线。
+每个项目先显示标题，电脑上标题下方左图右文，图片上沿与介绍对齐；手机上依次为“标题 → 图片/GIF → 介绍和链接”。图片保持原有比例、高度自适应，不额外添加边框、背景或补边。项目、论文及经历条目通过间距区分，不使用分隔横线。
+
+如需隐藏原图外围留白，可在 `_data/research.yml` 中设置 `image_size: [原图宽, 原图高]` 与 `image_crop: [x, y, 宽, 高]`，单位均为原图像素，原文件保持不变。例如 DriveLLM 分别使用 `[1283, 1049]` 和 `[19, 0, 1245, 1019]`。浏览器按裁切区域的比例显示，高度自适应、不拉伸。换图后应同步更新这两个字段，或删除 `image_crop` 以显示完整图片。只裁外围留白，不裁文字标注、图例或图表背景。
 
 项目图片的署名与许可信息保存在 `image_credit/image_credit_zh`、`image_source_url`、`image_license` 和 `image_license_url` 中，可参考 CoInfra 条目。页面不单独显示署名段落：配置 `image_source_url` 后，点击图片可打开来源页，悬停提示显示署名与许可；未配置时打开图片文件本身。替换图片时保留来源注释及许可元数据。
 

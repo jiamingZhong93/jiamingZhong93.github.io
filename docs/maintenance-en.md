@@ -48,7 +48,7 @@ The selector changes language on the same page. Every reload starts in English; 
 
 - **Data files:** update English fields and matching `_zh` fields together: `title/title_zh`, `description/description_zh`, `image_alt/image_alt_zh`. For the formula, also pair `learning/learning_zh` and `prior/prior_zh`.
 - **Biography:** edit both `localized-copy` blocks (`lang="en"` and `lang="zh-CN"`) in `_pages/about.md`. The opening sentence and section labels use `data-zh="中文"`.
-- **Name and page description:** set `author.name` / `author.name_zh` and `description` / `description_zh` in `_config.yml`. The Chinese display name is `钟嘉鸣`, without spaces. Keep names in publication author lists as originally published.
+- **Name and page description:** set `author.name` / `author.name_zh` and `description` / `description_zh` in `_config.yml`. Write the Chinese display name without spaces. Keep names in publication author lists as originally published.
 - **Email link:** set `author.email` in `_config.yml` to update the profile’s mail link.
 - **Profile roles:** edit the `author.roles` list in `_config.yml`. Each entry has `title/title_zh`, `institution/institution_zh` and `url`; list order controls display order. Both languages are maintained here.
 - **Experience:** include start/end months in both `dates` and `dates_zh`, e.g. `Feb 2025 – Jun 2025` / `2025年2月 – 2025年6月`.
@@ -81,7 +81,7 @@ phases:
 
 The diagram heading uses the top-level `title/title_zh`. Keep existing phase IDs when changing headings: they select the small icons. Keep all step IDs unique and preserve them when reordering. Short labels keep the six themes compact in three columns × two rows on desktop, or two columns × three rows on phones; no descriptions or numbers are shown. Text and order need only YAML edits. For visual changes, use `assets/css/profile.css`; icons are in `_includes/research-trajectory.html`.
 
-Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Keep descriptions concise and maintain both languages. Use Markdown `**bold**` to highlight key methods in `description/description_zh`; each language is rendered as a separate `localized-copy` block, so formatting survives language switching.
+Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Keep descriptions concise and maintain both languages. Use Markdown `**bold**` to highlight key methods in `description/description_zh`; each language is rendered as a separate `localized-copy` block, so formatting survives language switching. If bold Chinese text ends in parentheses, put a space after the closing `**` before the following Chinese text, e.g. `**强化学习（RL）** 增强控制`.
 
 ```yaml
   - id: my-project
@@ -186,7 +186,9 @@ No stitched image file is created: replacing the original photo updates its tile
 
 The research formula and trajectory arrows share one animated gradient. Set its colors and `18s` duration with `--research-gradient` and `--research-gradient-duration` at the top of `assets/css/profile.css`. The soft arrowhead is defined in `assets/icons/trajectory-arrowhead.svg`; its size, line thickness and fading tail are controlled by the masks in `.trajectory-track::after`. The tip keeps its proportions on phones. Reduced-motion preferences automatically show a static gradient.
 
-Project titles precede their images and descriptions. Desktop uses an image on the left, aligned with the top of the text/links on the right; phones stack title → image/GIF → description/links. Images have automatic height without a fixed frame or added padding. White margins inside the source image itself must be removed from that file if unwanted. Project, publication and career entries use spacing instead of separator lines.
+Project titles precede their images and descriptions. Desktop uses an image on the left, aligned with the top of the text/links on the right; phones stack title → image/GIF → description/links. Images keep their proportions with automatic height and no added border, background or padding. Project, publication and career entries use spacing instead of separator lines.
+
+To hide outer padding while preserving the original file, set `image_size: [original width, original height]` and `image_crop: [x, y, width, height]` in `_data/research.yml`, using original image pixels. DriveLLM uses `[1283, 1049]` and `[19, 0, 1245, 1019]`. The browser displays this crop without stretching; height follows its aspect ratio. When replacing an image, update both fields or remove `image_crop` to show the whole file. Crop only outer padding, never labels, legends or plot backgrounds.
 
 Retain project image attribution in `image_credit/image_credit_zh`, `image_source_url`, `image_license` and `image_license_url`; CoInfra provides an example. There is no separate credit paragraph: clicking the image opens `image_source_url` when supplied, and its hover title shows the credit and license. Otherwise, the image links to its own file. Keep source comments and license metadata when replacing a picture.
 

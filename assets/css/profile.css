@@ -169,9 +169,12 @@ html[lang="zh-CN"] .trajectory-methods span { word-break: keep-all; overflow-wra
 .project-links { display: flex; flex-wrap: wrap; column-gap: 1rem; row-gap: .3rem; font-size: .875rem; font-weight: 600; }
 .project-links a, .intro-actions a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
 .project-links a:hover, .intro-actions a:hover { text-decoration-color: currentColor; }
-.media-link { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: white; }
+.media-link { display: block; overflow: hidden; border: 0; border-radius: 0; background: transparent; }
 .project-media { width: 100%; }
 .project-media img { display: block; width: 100%; height: auto; margin: 0; }
+/* Trim only source-image margins; keep charts, lettering and the original files intact. */
+.project-media.is-cropped { position: relative; aspect-ratio: var(--crop-width) / var(--crop-height); }
+.project-media.is-cropped img { position: absolute; max-width: none; width: calc(100% * var(--image-width) / var(--crop-width)); left: calc(-100% * var(--crop-x) / var(--crop-width)); top: calc(-100% * var(--crop-y) / var(--crop-height)); }
 .section-note { font-size: .875rem; color: var(--muted); }
 .publication-legend { margin-bottom: .7rem; }
 .publication-legend > p { margin-bottom: .3rem; }
