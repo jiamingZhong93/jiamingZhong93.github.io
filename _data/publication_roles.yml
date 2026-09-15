@@ -1,9 +1,10 @@
 # Keep full, comma-separated author lists in publications.json.
-# Show authors through Jiaming, then et al.; retain any later co-first authors.
+# Show all authors by default. Set abbreviate_after_author to true to show
+# authors through Jiaming (including later co-first authors), then et al.
 # List every co-first author in a paper's co_first_authors array, using the same names.
 # Other role symbols describe Jiaming's role. Labels also update the legend.
 author_name: "J. Zhong"
-abbreviate_after_author: true
+abbreviate_after_author: false
 roles:
   - id: first
     symbol: "†"

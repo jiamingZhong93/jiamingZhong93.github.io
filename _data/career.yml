@@ -27,18 +27,15 @@ experience:
     role_zh: 副研究员（Associate Research Officer）
     dates_zh: 2025年6月 – 至今
   - dates: Feb 2025 – Jun 2025
-    organization: University of Waterloo
-    url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/
-    role: Postdoctoral Fellow · Mechatronic Vehicle Systems Lab
-    organization_zh: 滑铁卢大学
-    role_zh: 博士后 · 机电车辆系统实验室
-    dates_zh: 2025年2月 – 2025年6月
-  - dates: Feb 2025 – Jun 2025
-    organization: Reel-In Robotics
-    url: https://reelinrobotics.ca/
-    role: Autonomous Mobile Robot Lead
-    organization_zh: Reel-In Robotics
-    role_zh: 自主移动机器人研发负责人
+    organizations:
+      - name: University of Waterloo
+        name_zh: 滑铁卢大学
+        url: https://uwaterloo.ca/mechatronic-vehicle-systems-lab/
+      - name: Reel-In Robotics
+        name_zh: Reel-In Robotics
+        url: https://reelinrobotics.ca/
+    role: Researcher · Autonomous Mobile Robot Lead
+    role_zh: 研究人员 · 自主移动机器人研发负责人
     dates_zh: 2025年2月 – 2025年6月
   - dates: Dec 2021 – Aug 2023
     organization: LoopX

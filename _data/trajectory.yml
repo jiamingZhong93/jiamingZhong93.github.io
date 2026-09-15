@@ -17,7 +17,7 @@ stages:
 phases:
   - id: dynamics
     stage: foundations
-    title: Dynamics learning
+    title: Dynamics Learning
     title_zh: 动力学学习
     steps:
       - id: low-level-control
@@ -27,39 +27,39 @@ phases:
         title: Stochastic & real-time
         title_zh: 随机性与实时性
       - id: autonomous-racing
-        title: Electric / autonomous vehicles
-        title_zh: 电动/自动驾驶车辆
+        title: EV & AV control
+        title_zh: 电动与自动驾驶车辆控制
   - id: interactions
     stage: foundations
-    title: Interaction awareness
+    title: Interaction Awareness
     title_zh: 交互感知
     steps:
       - id: system-level-coordination
-        title: Learning-enhanced ADMM
-        title_zh: 学习增强的 ADMM
+        title: Learning-based ADMM
+        title_zh: 基于学习的 ADMM
       - id: prediction
-        title: Convergence and efficiency
-        title_zh: 收敛性与效率
+        title: Accelerated convergence
+        title_zh: 加速收敛
       - id: multi-agent-system
         title: Multi-agent system
         title_zh: 多智能体系统
   - id: decisions
     stage: foundations
-    title: Intelligent decisions
+    title: Intelligent Decisions
     title_zh: 智能决策
     steps:
       - id: high-level-decision-making
         title: Structured tokenization
         title_zh: 结构化词元编码
       - id: explainable-reasoning
-        title: Recursive interpretability
-        title_zh: 递归可解释性
+        title: Recursively explainable
+        title_zh: 递归可解释
       - id: llm-decisions
         title: DriveLLM, LLM agent
         title_zh: DriveLLM、大语言模型智能体
   - id: imitation
     stage: ongoing
-    title: Imitation control
+    title: Imitation Control
     title_zh: 模仿学习控制
     steps:
       - id: end-to-end
@@ -73,26 +73,26 @@ phases:
         title_zh: 铰接式/越野自动驾驶车辆
   - id: reinforcement
     stage: ongoing
-    title: Reinforcement learning
+    title: Reinforcement Learning
     title_zh: 强化学习
     steps:
       - id: task-level generalization
-        title: RL-MPC, Model-based RL
-        title_zh: RL-MPC、基于模型的强化学习
+        title: RL-MPC / MBRL
+        title_zh: RL-MPC / MBRL
       - id: rl-mpc
         title: Task-level generalization
         title_zh: 任务级泛化
       - id: model-based-rl
-        title: Autonomous racing (F1TENTH)
-        title_zh: 自动驾驶赛车
+        title: Roboracer (F1TENTH)
+        title_zh: Roboracer 自主赛车
   - id: manipulation
     stage: frontier
     title: Autonomous Operation
     title_zh: 自主操作
     steps:
       - id: physical AGI
-        title: Multimodal generation (VLA/WAM)
-        title_zh: 多模态生成（VLA/WAM）
+        title: Multimodal VLA/WAM
+        title_zh: 多模态 VLA/WAM
       - id: latent-space representation
         title: Physical AGI
         title_zh: 物理世界通用人工智能

@@ -40,6 +40,8 @@
 
 教学经历在 `_data/career.yml` 的 `teaching` 下维护，使用与工作经历相同的中英文字段，显示在工作经历之前。
 
+同一时段涉及多个单位的经历，可用 `organizations` 数组为每个单位填写 `name`、`name_zh` 和 `url`，合并条目只保留一组日期和职位。单一单位的条目仍使用 `organization`、`organization_zh` 和 `url`。教育经历中的学校名称显示为纯文本。
+
 ### 中英文要一起维护
 
 右上角的语言选项用于在同一页面切换语言，每次刷新默认显示英文。中文内容需要手动维护，不会自动翻译。
@@ -209,7 +211,7 @@ JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。
 | `project` | 可选的项目网址 |
 | `arxiv` | 可选，须核实为同一篇论文的 arXiv 版本 |
 
-系统自动加粗 `J. Zhong`，并为 `co_first_authors` 中的每位作者加上相同的共同第一作者符号。例如，`"co_first_authors": ["A. Researcher", "J. Zhong"]` 会同时标记这两位作者。JSON 中始终保留完整的 `authors` 列表：`_data/publication_roles.yml` 中的 `abbreviate_after_author: true` 会显示至 J. Zhong，并保留其后的共同第一作者，其余作者统一缩写为 `et al.`；改成 `false` 即显示全部作者。
+系统自动加粗 `J. Zhong`，并为 `co_first_authors` 中的每位作者加上相同的共同第一作者符号。例如，`"co_first_authors": ["A. Researcher", "J. Zhong"]` 会同时标记这两位作者。JSON 中始终保留完整的 `authors` 列表。`_data/publication_roles.yml` 中默认设置 `abbreviate_after_author: false`，显示全部作者；如需省略，可改成 `true`，显示至 J. Zhong，并保留其后的共同第一作者，其余作者统一缩写为 `et al.`。
 
 同一配置文件也控制加粗姓名、角色符号和双语图例。论文按文件顺序展示；JSON 使用双引号，最后一项后不要加逗号。
 

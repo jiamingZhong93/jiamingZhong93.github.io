@@ -40,6 +40,8 @@ Navigation labels, Chinese translations and section links live together in `_dat
 
 Teaching entries live under `teaching` in `_data/career.yml` and use the same bilingual fields as Experience. They appear immediately before Experience.
 
+For an experience shared by multiple organizations over the same period, use an optional `organizations` array with `name`, `name_zh` and `url` for each organization; keep one set of dates and one role for the combined entry. Single-organization entries continue to use `organization`, `organization_zh` and `url`. Education institution names display as plain text.
+
 ### Maintain English and Chinese together
 
 The selector changes language on the same page. Every reload starts in English; translations are maintained manually.
@@ -209,7 +211,7 @@ In `_data/publications.json`, copy an existing paper inside a group's `items` ar
 | `project` | Optional project URL |
 | `arxiv` | Optional verified arXiv version of the same paper |
 
-The template highlights `J. Zhong` and applies the same shared-first-author symbol to every name in `co_first_authors`. For example, `"co_first_authors": ["A. Researcher", "J. Zhong"]` marks both names. Keep the full `authors` list in JSON: `abbreviate_after_author: true` in `_data/publication_roles.yml` displays authors through J. Zhong, retains any later shared first authors, and abbreviates the remainder as `et al.`. Set it to `false` to show all authors.
+The template highlights `J. Zhong` and applies the same shared-first-author symbol to every name in `co_first_authors`. For example, `"co_first_authors": ["A. Researcher", "J. Zhong"]` marks both names. Keep the full `authors` list in JSON. The default `abbreviate_after_author: false` in `_data/publication_roles.yml` displays all authors. Optionally set it to `true` to display authors through J. Zhong, retain any later shared first authors, and abbreviate the remainder as `et al.`.
 
 The same configuration file controls the highlighted author name, role symbols and bilingual legend. Papers display in file order. JSON requires double quotes and no trailing comma after the final entry.
 
