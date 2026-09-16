@@ -414,17 +414,35 @@ images:
     fit: "cover"
     mobile_fit: "cover"
     # Photo source: https://safetrucks.fmi.fi/index.php/project-description/
-  photo_xlerobot_1.jpg:
-    mobile_max_width: 430
-    desktop: false
+  # XLeRobot: desktop uses the group below; phones show each action separately.
+  photo_xlerobot_pouring.png:
+    mobile_max_width: 520
     title: "XLeRobot"
     title_zh: "XLeRobot"
-    description: "Generative mobile manipulation with a dual-arm robot."
-    description_zh: "双臂机器人的生成式移动操作。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
+    description: "Dual-arm coordination for pouring a drink."
+    description_zh: "双臂配合，倒一杯饮料。"
+    position: "50% 70%"
+    mobile_position: "50% 70%"
     fit: "cover"
-    mobile_fit: "cover"
+  photo_xlerobot_platform.png:
+    mobile_max_width: 520
+    title: "XLeRobot"
+    title_zh: "XLeRobot"
+    description: "A compact mobile platform with two robotic arms."
+    description_zh: "搭载双机械臂的紧凑型移动平台。"
+    position: "50% 50%"
+    mobile_position: "50% 20%"
+    fit: "cover"
+  photo_xlerobot_tissue.png:
+    mobile_max_width: 600
+    title: "XLeRobot"
+    title_zh: "XLeRobot"
+    description: "Picking a tissue from the box."
+    description_zh: "从纸巾盒中抽取纸巾。"
+    # Exclude the clipped video label at the top; preserve the original PNG.
+    crop: "0 60 1809 824"
+    source_size: [1809, 884]
+    fit: "cover"
   photo_f1tenth_new_1.jpg:
     mobile_max_width: 600
     title: "F1Tenth"
@@ -448,6 +466,25 @@ images:
 # Optional max_aspect caps tile width / banner height to preserve a tall subject.
 # Leave at least one tile in each group without max_aspect so it fills the remaining width.
 desktop_groups:
+  - id: xlerobot-everyday-tasks
+    title: "XLeRobot"
+    title_zh: "XLeRobot"
+    description: "Dual-arm manipulation for everyday tasks."
+    description_zh: "面向日常任务的双臂操作。"
+    photos:
+      - file: photo_xlerobot_pouring.png
+        position: "50% 70%"
+        weight: 1.3
+        max_aspect: 3.4
+      - file: photo_xlerobot_platform.png
+        position: "50% 50%"
+        weight: 0.85
+        max_aspect: 0.87
+      - file: photo_xlerobot_tissue.png
+        # This uncapped action tile fills the remaining width on wide screens.
+        crop: "0 60 1809 580"
+        source_size: [1809, 884]
+        weight: 1.5
   - id: robot-development
     title: "Delivery robot: from development to demos"
     title_zh: "配送机器人：从研发到展示"

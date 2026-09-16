@@ -53,7 +53,12 @@
 {% for tile in group.photos %}
 <div class="home-background__tile{% if tile.fit == 'contain' %} is-contained{% endif %}" data-photo-key="/images/background/{{ tile.file | escape }}" style="--tile-position: {{ tile.position | default: '50% 50%' | escape }}; --tile-weight: {{ tile.weight | default: 1 }}; --tile-max-aspect: {{ tile.max_aspect | default: 100 }};">
 {% if tile.fit == 'contain' %}<img class="home-background__backdrop" src="{{ site.baseurl }}/images/background/{{ tile.file | escape }}" alt="" decoding="async" aria-hidden="true">{% endif %}
+{% if tile.crop and tile.source_size %}
+{% assign tile_crop_parts = tile.crop | split: ' ' %}
+<svg class="home-background__image" viewBox="{{ tile.crop | escape }}" preserveAspectRatio="xMidYMid {% if tile.fit == 'contain' %}meet{% else %}slice{% endif %}" aria-hidden="true" focusable="false"><svg x="{{ tile_crop_parts[0] }}" y="{{ tile_crop_parts[1] }}" width="{{ tile_crop_parts[2] }}" height="{{ tile_crop_parts[3] }}" viewBox="{{ tile.crop | escape }}" overflow="hidden"><image href="{{ site.baseurl }}/images/background/{{ tile.file | escape }}" width="{{ tile.source_size[0] }}" height="{{ tile.source_size[1] }}" /></svg></svg>
+{% else %}
 <img class="home-background__image" src="{{ site.baseurl }}/images/background/{{ tile.file | escape }}" alt="" decoding="async">
+{% endif %}
 </div>
 {% endfor %}
 </div>
