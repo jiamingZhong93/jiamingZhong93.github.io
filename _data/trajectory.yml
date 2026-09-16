@@ -94,8 +94,8 @@ phases:
         title: Multimodal VLA/WAM
         title_zh: 多模态 VLA/WAM
       - id: latent-space representation
-        title: Physical AGI
-        title_zh: 物理世界通用人工智能
+        title: Generalization & scaling
+        title_zh: 泛化与规模扩展
       - id: manipulation-world-models
         title: AV + arm (XLeRobot)
         title_zh: 移动底盘+机械臂
