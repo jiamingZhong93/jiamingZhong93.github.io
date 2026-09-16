@@ -13,8 +13,8 @@ info_extra: 1000
 fade_duration: 1000
 position: "50% 50%"
 mobile_position: "50% 50%"
-# Category totals: 2:1 gives experience about 2/3 of turns, scenery about 1/3.
-# Change these two numbers; photo counts do not change the category odds.
+# Prioritize unseen photos across both categories before starting a new round.
+# 2:1 favors experience while both categories have unseen photos; it is not a fixed playback ratio.
 category_weights:
   experience: 2
   scenery: 1
@@ -146,15 +146,22 @@ images:
     mobile_position: "50% 58%"
     fit: "cover"
     mobile_fit: "cover"
+  photo_20230116_212703921_iOS.jpg:
+    category: scenery
+    title: "Killarney, Georgian Bay"
+    title_zh: "基拉尼，乔治亚湾"
+    description: "Enjoy the moment."
+    description_zh: "享受当下。"
+    position: "50% 52%"
+    mobile_position: "50% 65%"
+    fit: "cover"
   photo_20230117_160446651_iOS.jpg:
     category: experience
-    mobile_max_width: 430
-    desktop: false
     title: "Underground mining"
     title_zh: "地下采矿"
     description: "Underground mine autonomy research with LoopX."
     description_zh: "与 LoopX 开展地下矿山自主作业研究。"
-    position: "50% 50%"
+    position: "50% 37%"
     mobile_position: "50% 55%"
     fit: "cover"
     mobile_fit: "cover"
@@ -401,12 +408,11 @@ images:
     mobile_fit: "cover"
   photo_20260214_212847377_iOS.jpg:
     category: scenery
-    desktop_max_width: 1500
     title: "Parc Oméga"
     title_zh: "欧米伽公园"
     description: "Deer in the forest."
     description_zh: "林间的鹿。"
-    position: "50% 72%"
+    position: "50% 67%"
     mobile_position: "50% 65%"
     fit: "cover"
     mobile_fit: "cover"
@@ -534,15 +540,11 @@ images:
     title_zh: "静静相伴"
     description: "Two ducks enjoying a quiet afternoon."
     description_zh: "两只野鸭，共享静谧午后。"
-    position: "50% 74%"
+    position: "50% 66%"
     mobile_position: "50% 82%"
     fit: "cover"
-    desktop_max_width: 1200
   photo_20260916_coinfra.webp:
     category: experience
-    # Native 862 x 392: avoid enlarging fine point-cloud detail across a desktop.
-    desktop: false
-    mobile_max_width: 600
     title: "CoInfra"
     title_zh: "CoInfra"
     description: "A shared view through cooperative LiDAR perception."
@@ -637,10 +639,9 @@ images:
     title_zh: "骑行渥太华河畔"
     description: "A sunset pause along the riverside ride."
     description_zh: "河畔骑行，停下来看看夕阳。"
-    position: "50% 94%"
+    position: "50% 82%"
     mobile_position: "50% 94%"
     fit: "cover"
-    desktop_max_width: 1000
   photo_20260916_perth.webp:
     category: scenery
     title: "Perth"
@@ -744,7 +745,6 @@ images:
     mobile_position: "50% 94%"
     fit: "cover"
     desktop_max_width: 1200
-
 # Desktop only: related research photos form one strip; scenic photos stay single.
 # Phones keep the individual entries above.
 # Tiles appear left to right. Each file must also be enabled under images.

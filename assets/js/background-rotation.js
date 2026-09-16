@@ -1,7 +1,7 @@
 'use strict';
 
-// Category odds are independent of library size. A choice is only consumed once
-// its photo reaches the screen: preloading and cancelled requests never count.
+// Unseen photos take priority across the whole library; category weights choose
+// their order. Only actual display counts, never preloads or cancelled requests.
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
@@ -68,20 +68,29 @@
     function peek(eligibleKeys, { exclude } = {}) {
       let candidates = enabled(eligibleKeys, exclude);
       if (!candidates.length) return null;
-      // Also avoid the last displayed photograph after a refresh or layout switch.
+      // Finish all eligible material before either category starts another round.
+      // A partly viewed desktop group still has something new to show after a
+      // layout change. Its group key must not hide a newly added member either.
+      const fresh = candidates.filter(entry => entry.members.some(member => !seen[entry.category].has(member)));
+      const reset = !fresh.length;
+      if (!reset) candidates = fresh;
+      // Freshness comes first: avoiding a shared member must not trigger a reset
+      // while a partly viewed group is the only remaining unseen material.
       const different = candidates.filter(entry => !overlaps(entry, history.at(-1)));
       if (different.length) candidates = different;
+      if (!reset) {
+        const entirelyFresh = candidates.filter(entry => entry.members.every(member => !seen[entry.category].has(member)));
+        if (entirelyFresh.length) candidates = entirelyFresh;
+      }
       const eligibleCategories = categories.filter(category => candidates.some(entry => entry.category === category));
       const scale = Math.max(...eligibleCategories.map(category => odds[category]));
       const total = eligibleCategories.reduce((sum, category) => sum + odds[category] / scale, 0);
       let threshold = random() * total;
       const category = eligibleCategories.find(category => (threshold -= odds[category] / scale) < 0) || eligibleCategories.at(-1);
       const categoryEntries = candidates.filter(entry => entry.category === category);
-      const fresh = categoryEntries.filter(entry => !seen[category].has(entry.key) && !entry.members.some(member => seen[category].has(member)));
-      const reset = !fresh.length;
-      let choices = reset ? categoryEntries : fresh;
+      let choices = categoryEntries;
       // A group and its mobile single photos share member IDs. Prefer material
-      // absent from recent slides, without distorting the category's configured odds.
+      // absent from recent slides within the selected category.
       const recent = history.slice(-6);
       const rested = choices.filter(entry => !recent.some(old => overlaps(entry, old)));
       if (rested.length) choices = rested;
@@ -97,8 +106,10 @@
       // Resizing into the same scene can commit a plain key. It records what was
       // shown without resetting a cycle or consuming a speculative next choice.
       if (choice?.reset && choice.revision === revision) {
-        seen[entry.category].clear();
-        decks[entry.category] = shuffle(decks[entry.category]);
+        for (const category of categories) {
+          seen[category].clear();
+          decks[category] = shuffle(decks[category]);
+        }
       }
       seen[entry.category].add(entry.key);
       for (const member of entry.members) seen[entry.category].add(member);

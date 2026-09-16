@@ -74,7 +74,8 @@
 {% if background_images != '' %}
 <div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-experience-weight="{{ background.category_weights.experience | default: 2 }}" data-scenery-weight="{{ background.category_weights.scenery | default: 1 }}" data-interval="{{ background.interval | default: 3000 }}" data-info-extra="{{ background.info_extra | default: 1000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
-<div class="home-background__stage" data-background-stage aria-hidden="true">{{ background_fallback | default: background_mobile_fallback }}</div>
+{% comment %}A fixed poster would repeat on every refresh before the random image loads. Keep it only for visitors without JavaScript.{% endcomment %}
+<div class="home-background__stage" data-background-stage aria-hidden="true"><noscript>{{ background_fallback | default: background_mobile_fallback }}</noscript></div>
 <div class="home-background__controls" hidden>
 <div class="home-background__panel" id="current-photo-info" hidden></div>
 <div class="home-background__panel home-background__panel--next" id="next-photo-info" hidden></div>
