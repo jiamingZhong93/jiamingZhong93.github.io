@@ -15,6 +15,7 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .home-background__stage, .home-background__fallback { width: 100%; height: 100%; cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .home-background__slide { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; overflow: hidden; }
 .home-background__image { position: relative; display: block; width: 100%; height: 100%; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); pointer-events: none; }
+.home-background, .home-background__stage, .home-background__slide, .home-background__tile, .home-background img { border-radius: 0; }
 .home-background__crop--mobile { display: none; }
 /* Keep the complete subject visible when a photo cannot fill a wide banner. */
 .home-background__backdrop { position: absolute; inset: -24px; display: none; width: calc(100% + 48px); height: calc(100% + 48px); max-width: none; margin: 0; object-fit: cover; object-position: var(--tile-position, 50% 50%); filter: blur(18px) brightness(.7); pointer-events: none; }
@@ -22,7 +23,6 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .home-background__slide.is-contained .home-background__backdrop { display: block; }
 /* Related photos share a desktop strip; each tile keeps its own focal point. */
 .home-background__strip { display: flex; width: 100%; height: 100%; gap: 0; }
-.home-background__strip img { border-radius: 0; }
 .home-background__tile { position: relative; flex: var(--tile-weight, 1) 1 0%; min-width: 0; max-width: calc(var(--cover-height) * var(--tile-max-aspect, 100)); height: 100%; overflow: hidden; }
 .home-background__tile.is-contained .home-background__image { object-fit: contain; }
 .home-background__tile.is-contained .home-background__backdrop { display: block; }

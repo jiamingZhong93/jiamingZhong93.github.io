@@ -4,6 +4,8 @@
 # Use cover to fill the banner without blurred sidebars; mobile_fit must stay cover.
 # Desktop contain is reserved for the explicitly cropped F1TENTH photo.
 # Framing is applied in the browser, without cutting the original file.
+# Optional subject: [x, y, width, height] with source_size keeps a padded subject
+# visible under cover framing; a photo is skipped only when that region cannot fit.
 # desktop: false keeps a photo on phones only; leave it unset to allow both layouts.
 enabled: true
 height: "220px"
@@ -14,14 +16,14 @@ fade_duration: 1000
 position: "50% 50%"
 mobile_position: "50% 50%"
 # Prioritize unseen photos across both categories before starting a new round.
-# 2:1 favors experience while both categories have unseen photos; it is not a fixed playback ratio.
+# Spread categories through the whole round, with random gaps. Weights give a small earlier-position preference, not a fixed ratio.
 category_weights:
   experience: 2
   scenery: 1
 images:
   photo_20180422_154734356_iOS.jpg:
     category: experience
-    title: "Electric vehicle drifting"
+    title: "EV drifting"
     title_zh: "电动汽车漂移"
     description: "I drifted an electric vehicle on snow."
     description_zh: "我驾驶电动汽车在雪地漂移。"
@@ -31,7 +33,7 @@ images:
     mobile_fit: "cover"
   photo_20180422_154738723_iOS.jpg:
     category: experience
-    title: "Electric vehicle drifting"
+    title: "EV drifting"
     title_zh: "电动汽车漂移"
     description: "I drifted an electric vehicle on snow."
     description_zh: "我驾驶电动汽车在雪地漂移。"
@@ -148,8 +150,8 @@ images:
     mobile_fit: "cover"
   photo_20230116_212703921_iOS.jpg:
     category: scenery
-    title: "Killarney, Georgian Bay"
-    title_zh: "基拉尼，乔治亚湾"
+    title: "Killarney"
+    title_zh: "基拉尼"
     description: "Enjoy the moment."
     description_zh: "享受当下。"
     position: "50% 52%"
@@ -457,8 +459,8 @@ images:
     category: experience
     desktop: false
     mobile_max_width: 520
-    title: "Heavy vehicles in winter"
-    title_zh: "冬日里的重型车辆"
+    title: "SafeTrucks"
+    title_zh: "SafeTrucks"
     description: "SafeTrucks research on safer heavy-vehicle control. Photo: SafeTrucks."
     description_zh: "SafeTrucks 重型车辆安全控制研究。图片：SafeTrucks。"
     position: "50% 57%"
@@ -527,8 +529,8 @@ images:
     fit: "cover"
   photo_20260916_banff_town_bev.webp:
     category: scenery
-    title: "Banff from above"
-    title_zh: "俯瞰班夫"
+    title: "Banff"
+    title_zh: "班夫"
     description: "A mountain town framed by the Canadian Rockies."
     description_zh: "落基山脉环抱着山谷中的小镇。"
     position: "50% 52%"
@@ -540,7 +542,7 @@ images:
     title_zh: "静静相伴"
     description: "Two ducks enjoying a quiet afternoon."
     description_zh: "两只野鸭，共享静谧午后。"
-    position: "50% 66%"
+    position: "50% 69%"
     mobile_position: "50% 82%"
     fit: "cover"
   photo_20260916_coinfra.webp:
@@ -549,12 +551,12 @@ images:
     title_zh: "CoInfra"
     description: "A shared view through cooperative LiDAR perception."
     description_zh: "协同激光雷达感知，共享环境视野。"
-    position: "50% 50%"
-    mobile_position: "50% 50%"
+    position: "50% 28%"
+    mobile_position: "50% 20%"
     fit: "cover"
   photo_20260916_gatineau.webp:
     category: scenery
-    title: "Gatineau at dusk"
+    title: "Gatineau"
     title_zh: "加蒂诺暮色"
     description: "Evening colours reflected on the river."
     description_zh: "暮色与河面相映。"
@@ -576,7 +578,7 @@ images:
     title_zh: "布拉佐山"
     description: "Snowy peaks above still blue water."
     description_zh: "雪峰与宁静的湖水相伴。"
-    position: "50% 75%"
+    position: "50% 80%"
     mobile_position: "50% 82%"
     fit: "cover"
   photo_20260916_niagara_falls.webp:
@@ -604,7 +606,7 @@ images:
     description: "The last light settling over the water."
     description_zh: "落日余晖洒向水面。"
     position: "50% 64%"
-    mobile_position: "50% 78%"
+    mobile_position: "50% 70%"
     fit: "cover"
   photo_20260916_ottawa3.webp:
     category: scenery
@@ -613,7 +615,7 @@ images:
     description: "Sailboats and reflections in the evening calm."
     description_zh: "晚风渐息，帆影映入水面。"
     position: "50% 64%"
-    mobile_position: "50% 84%"
+    mobile_position: "50% 70%"
     fit: "cover"
   photo_20260916_ottawa4.webp:
     category: scenery
@@ -626,17 +628,17 @@ images:
     fit: "cover"
   photo_20260916_ottawa5.webp:
     category: scenery
-    title: "Parliament Hill at night"
+    title: "Parliament Hill"
     title_zh: "国会山夜色"
     description: "City lights shining above the river."
     description_zh: "灯火映亮河畔夜色。"
-    position: "50% 75%"
-    mobile_position: "50% 89%"
+    position: "50% 73%"
+    mobile_position: "50% 77%"
     fit: "cover"
   photo_20260916_ottawa_river_biking.webp:
     category: scenery
-    title: "Cycling by the Ottawa River"
-    title_zh: "骑行渥太华河畔"
+    title: "Ottawa cycling"
+    title_zh: "渥太华骑行"
     description: "A sunset pause along the riverside ride."
     description_zh: "河畔骑行，停下来看看夕阳。"
     position: "50% 82%"
@@ -676,7 +678,7 @@ images:
     description: "Evening light along the rocky shore."
     description_zh: "傍晚的光，落在岩岸与湖面。"
     position: "50% 55%"
-    mobile_position: "50% 70%"
+    mobile_position: "50% 60%"
     fit: "cover"
   photo_20260916_toronto.webp:
     category: scenery
@@ -684,19 +686,22 @@ images:
     title_zh: "多伦多"
     description: "The city skyline beneath passing clouds."
     description_zh: "流云之下的城市天际线。"
-    position: "50% 62%"
-    mobile_position: "50% 80%"
+    position: "50% 65%"
+    mobile_position: "50% 65%"
     fit: "cover"
+    subject: [1980, 1510, 180, 760]
+    source_size: [4032, 3024]
   photo_20260916_toronto2.webp:
     category: scenery
-    title: "Toronto in golden light"
-    title_zh: "金色暮光中的多伦多"
+    title: "Toronto sunset"
+    title_zh: "多伦多暮色"
     description: "Evening sunlight catching the city skyline."
     description_zh: "晚霞与城市天际线相映。"
-    position: "50% 51%"
-    mobile_position: "50% 73%"
+    position: "50% 48%"
+    mobile_position: "50% 48%"
     fit: "cover"
-    desktop_max_width: 1200
+    subject: [2490, 1130, 210, 710]
+    source_size: [4032, 3024]
   photo_20260916_toronto3.webp:
     category: scenery
     title: "Toronto harbour"
@@ -708,24 +713,26 @@ images:
     fit: "cover"
   photo_20260916_toronto4.webp:
     category: scenery
-    title: "Toronto from the water"
-    title_zh: "水上看多伦多"
+    title: "Toronto waterfront"
+    title_zh: "多伦多湖畔"
     description: "A lakeside view of the city skyline."
     description_zh: "从湖面遥望城市天际线。"
-    position: "50% 55%"
-    mobile_position: "50% 71%"
+    position: "50% 60%"
+    mobile_position: "50% 60%"
     fit: "cover"
-    desktop_max_width: 1000
+    subject: [1910, 1060, 220, 1250]
+    source_size: [4032, 3024]
   photo_20260916_waterloogoose.webp:
     category: scenery
-    title: "Geese in Waterloo"
-    title_zh: "滑铁卢的加拿大雁"
+    title: "Waterloo geese"
+    title_zh: "滑铁卢大鹅"
     description: "Familiar neighbours on a green afternoon."
     description_zh: "绿草地上，熟悉的邻居。"
-    position: "50% 69%"
-    mobile_position: "50% 93%"
+    position: "50% 70%"
+    mobile_position: "50% 80%"
     fit: "cover"
-    desktop_max_width: 1200
+    subject: [1000, 1510, 2470, 880]
+    source_size: [4032, 3024]
   photo_20260916_kingston.webp:
     category: scenery
     title: "Kingston waterfront"
@@ -733,12 +740,12 @@ images:
     description: "Sailboats beneath an open blue sky."
     description_zh: "蓝天下，帆船停泊在宁静湖畔。"
     position: "50% 70%"
-    mobile_position: "50% 78%"
+    mobile_position: "50% 65%"
     fit: "cover"
   photo_20260916_skate.webp:
     category: scenery
-    title: "Winter on the canal"
-    title_zh: "运河冬日"
+    title: "Canal skating"
+    title_zh: "运河滑冰"
     description: "Skating along a frozen city waterway."
     description_zh: "在冰封的城市运河上滑行。"
     position: "50% 92%"
@@ -774,8 +781,8 @@ desktop_groups:
         weight: 1.5
   - id: robot-development
     category: experience
-    title: "Delivery robot: from development to demos"
-    title_zh: "配送机器人：从研发到展示"
+    title: "Robot development"
+    title_zh: "机器人研发"
     description: "Testing at the Accelerator Center and showcasing at the Toronto Auto Show."
     description_zh: "在 Accelerator Center 测试，并亮相多伦多车展。"
     photos:
@@ -809,8 +816,8 @@ desktop_groups:
         position: "50% 60%"
   - id: winter-robots
     category: experience
-    title: "Delivery robots in winter"
-    title_zh: "冬日里的配送机器人"
+    title: "Winter robots"
+    title_zh: "冬日机器人"
     description: "Campus deliveries and snow testing in Waterloo."
     description_zh: "在滑铁卢开展校园配送与雪地测试。"
     photos:

@@ -1,7 +1,8 @@
 'use strict';
 
-// Unseen photos take priority across the whole library; category weights choose
-// their order. Only actual display counts, never preloads or cancelled requests.
+// Unseen photos take priority across the whole library. Randomized category
+// spacing keeps work and scenery interleaved throughout each round; weights
+// give a modest earlier-position preference. Only actual display counts.
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
@@ -65,6 +66,35 @@
         .filter(entry => entry && entry.key !== exclude && odds[entry.category] > 0);
     }
 
+    function chooseCategory(candidates, eligibleKeys, reset) {
+      const available = categories.filter(category => candidates.some(entry => entry.category === category));
+      if (available.length === 1) return available[0];
+      // Compare the next randomized slot in each category's progress through the
+      // round. Dividing by its own pool size spreads even a small work collection
+      // across a large scenery collection instead of spending it all up front.
+      // Include the current (excluded) slide in this denominator, and reconstruct
+      // progress from seen members so refreshing cannot restart the spacing.
+      const pool = enabled(eligibleKeys);
+      const scale = Math.max(...available.map(category => odds[category]));
+      let selected;
+      let earliest = Infinity;
+      for (const category of available) {
+        const categoryPool = pool.filter(entry => entry.category === category);
+        const displayed = reset ? 0 : categoryPool.filter(entry =>
+          entry.members.every(member => seen[category].has(member))).length;
+        const other = available.find(value => value !== category);
+        // A bounded fraction of one slot expresses weight preference without
+        // letting even extreme weights defeat interleaving or no-repeat rounds.
+        const preference = .4 * (odds[category] / scale - odds[other] / scale);
+        const position = (displayed + random() - preference) / categoryPool.length;
+        if (position < earliest) {
+          earliest = position;
+          selected = category;
+        }
+      }
+      return selected;
+    }
+
     function peek(eligibleKeys, { exclude } = {}) {
       let candidates = enabled(eligibleKeys, exclude);
       if (!candidates.length) return null;
@@ -82,11 +112,7 @@
         const entirelyFresh = candidates.filter(entry => entry.members.every(member => !seen[entry.category].has(member)));
         if (entirelyFresh.length) candidates = entirelyFresh;
       }
-      const eligibleCategories = categories.filter(category => candidates.some(entry => entry.category === category));
-      const scale = Math.max(...eligibleCategories.map(category => odds[category]));
-      const total = eligibleCategories.reduce((sum, category) => sum + odds[category] / scale, 0);
-      let threshold = random() * total;
-      const category = eligibleCategories.find(category => (threshold -= odds[category] / scale) < 0) || eligibleCategories.at(-1);
+      const category = chooseCategory(candidates, eligibleKeys, reset);
       const categoryEntries = candidates.filter(entry => entry.category === category);
       let choices = categoryEntries;
       // A group and its mobile single photos share member IDs. Prefer material

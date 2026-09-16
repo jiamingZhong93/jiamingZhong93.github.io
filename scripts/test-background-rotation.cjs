@@ -26,33 +26,52 @@ function next(rotation, keys, exclude) {
   return choice;
 }
 
-test('categories with unseen photos receive 2:1 priority independently of library size', () => {
-  const library = entries(8, 120);
-  const keys = library.map(entry => entry.key);
-  const rotation = create({ entries: library, random: seeded(12) });
-  let experience = 0;
-  let weightedChoices = 0;
-  let remaining = { experience: 8, scenery: 120 };
-  let previous;
-  for (let i = 0; i < 18000; i++) {
-    const choice = next(rotation, keys, previous);
-    assert.notEqual(choice.key, previous);
-    if (choice.reset) remaining = { experience: 8, scenery: 120 };
-    if (remaining.experience && remaining.scenery) {
-      weightedChoices++;
-      experience += choice.category === 'experience';
+function longestRun(sequence) {
+  let longest = 0;
+  let run = 0;
+  sequence.forEach((category, i) => {
+    run = category === sequence[i - 1] ? run + 1 : 1;
+    longest = Math.max(longest, run);
+  });
+  return longest;
+}
+
+test('unequal desktop and mobile pools interleave through the whole no-repeat round', () => {
+  for (const [experience, scenery, maxRun] of [[10, 34, 8], [31, 40, 4]]) {
+    const library = entries(experience, scenery);
+    const keys = library.map(entry => entry.key);
+    const categoryOrders = new Set();
+    const gaps = new Set();
+    for (let seed = 1; seed <= 100; seed++) {
+      const rotation = create({ entries: library, random: seeded(seed) });
+      const shown = new Set();
+      const sequence = [];
+      let previous;
+      let lastWork = -1;
+      for (let i = 0; i < keys.length; i++) {
+        const choice = next(rotation, keys, previous);
+        assert.equal(choice.reset, false);
+        assert.equal(shown.has(choice.key), false);
+        shown.add(choice.key);
+        sequence.push(choice.category);
+        if (choice.category === 'experience') {
+          if (lastWork >= 0) gaps.add(i - lastWork);
+          lastWork = i;
+        }
+        previous = choice.key;
+      }
+      assert.ok(lastWork >= keys.length * .75, 'work photos were exhausted before the final quarter');
+      assert.ok(longestRun(sequence) <= maxRun, `unmixed ${experience}:${scenery} round: ${sequence}`);
+      assert.equal(shown.size, keys.length);
+      categoryOrders.add(sequence.join(','));
     }
-    assert.ok(remaining[choice.category] > 0, 'exhausted category repeated while another still had unseen photos');
-    remaining[choice.category]--;
-    previous = choice.key;
+    assert.ok(categoryOrders.size > 90, 'categories should not follow a fixed repeated schedule');
+    assert.ok(gaps.size >= 3, 'work/scenery gaps should vary, not alternate mechanically');
   }
-  const ratio = experience / weightedChoices;
-  assert.ok(weightedChoices > 1500);
-  assert.ok(ratio > .64 && ratio < .69, `conditional experience share ${ratio}`);
 });
 
 test('desktop and mobile libraries visit every slide before repeating for two complete rounds', () => {
-  for (const [experience, scenery] of [[8, 30], [31, 39]]) {
+  for (const [experience, scenery] of [[10, 34], [31, 40]]) {
     const library = entries(experience, scenery);
     const keys = library.map(entry => entry.key);
     const rotation = create({ entries: library, random: seeded(21) });
@@ -72,22 +91,40 @@ test('desktop and mobile libraries visit every slide before repeating for two co
   }
 });
 
-test('edited weights change early selection odds and tolerate large finite values', () => {
+test('weights prefer earlier positions while preserving interleaving, including large finite values', () => {
   const library = entries(11, 10);
   const keys = library.map(entry => entry.key);
-  for (const weights of [{ experience: 1, scenery: 4 }, { experience: 4e307, scenery: 1.6e308 }]) {
+  function averagePosition(weights) {
     const random = seeded(23);
-    let scenery = 0;
-    for (let i = 0; i < 5000; i++) {
+    let positions = 0;
+    let first = 0;
+    for (let i = 0; i < 1000; i++) {
       const rotation = create({ entries: library, weights, random });
-      scenery += next(rotation, keys).category === 'scenery';
+      const sequence = keys.map((key, index) => {
+        const choice = next(rotation, keys);
+        if (choice.category === 'scenery') {
+          positions += index;
+          if (index === 0) first++;
+        }
+        return choice.category;
+      });
+      assert.ok(sequence.slice(-5).includes('experience'));
+      assert.ok(sequence.slice(-5).includes('scenery'));
+      assert.ok(longestRun(sequence) <= 3);
     }
-    assert.ok(scenery / 5000 > .78 && scenery / 5000 < .82);
+    return { position: positions / 10000, first: first / 1000 };
   }
+  const equal = averagePosition({ experience: 1, scenery: 1 });
+  const preferred = averagePosition({ experience: 1, scenery: 4 });
+  const huge = averagePosition({ experience: 4e307, scenery: 1.6e308 });
+  assert.ok(preferred.position < equal.position - .4, 'higher weight should move a category forward');
+  assert.ok(preferred.first > equal.first + .2);
+  assert.ok(preferred.first < .99, 'weight preference should still allow either category to start');
+  assert.deepEqual(huge, preferred, 'only relative weights should matter');
 });
 
 test('both actual library sizes complete two global rounds even when every slide follows a reload', () => {
-  for (const [experience, scenery] of [[8, 30], [31, 39]]) {
+  for (const [experience, scenery] of [[10, 34], [31, 40]]) {
     const library = entries(experience, scenery);
     const keys = library.map(entry => entry.key);
     const storage = memory();
@@ -104,6 +141,27 @@ test('both actual library sizes complete two global rounds even when every slide
         previous = choice.key;
       }
       assert.equal(seen.size, keys.length);
+    }
+  }
+});
+
+test('refreshing every slide preserves category spacing rather than front-loading work again', () => {
+  for (const [experience, scenery, maxRun] of [[10, 34, 8], [31, 40, 4]]) {
+    const library = entries(experience, scenery);
+    const keys = library.map(entry => entry.key);
+    for (let seed = 1; seed <= 30; seed++) {
+      const storage = memory();
+      const sequence = [];
+      const shown = new Set();
+      for (let reload = 0; reload < keys.length; reload++) {
+        const rotation = create({ entries: library, storage, random: seeded(seed * 100 + reload) });
+        const choice = next(rotation, keys);
+        assert.equal(shown.has(choice.key), false);
+        shown.add(choice.key);
+        sequence.push(choice.category);
+      }
+      assert.ok(sequence.lastIndexOf('experience') >= keys.length * .75);
+      assert.ok(longestRun(sequence) <= maxRun, `refresh produced a long same-category run: ${sequence}`);
     }
   }
 });

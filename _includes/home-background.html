@@ -14,7 +14,7 @@
 {% assign photo_fit = settings.fit | default: 'cover' %}
 {% assign photo_mobile_fit = 'cover' %}
 {% capture background_image %}
-<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}" data-photo-category="{{ settings.category | default: 'experience' | escape }}"{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}" data-photo-category="{{ settings.category | default: 'experience' | escape }}"{% if settings.subject and settings.source_size and settings.crop == nil and photo_fit == 'cover' %} data-photo-subject="{{ settings.subject | join: ' ' | escape }}" data-photo-size="{{ settings.source_size | join: ' ' | escape }}"{% endif %}{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
 {% if photo_fit == 'contain' or photo_mobile_fit == 'contain' %}
 <img class="home-background__backdrop" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" aria-hidden="true">
 {% endif %}
@@ -82,6 +82,7 @@
 </div>
 </div>
 <script src="{{ site.baseurl }}/assets/js/background-rotation.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{{ site.baseurl }}/assets/js/background-framing.js?v={{ site.time | date: '%s' }}"></script>
 <script src="{{ site.baseurl }}/assets/js/background.js?v={{ site.time | date: '%s' }}"></script>
 {% endif %}
 {% endif %}

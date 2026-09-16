@@ -1,16 +1,16 @@
 # Six themes, each with short bilingual research labels. List order controls the path.
 # 六个主题串联研究历程；在每个主题下维护中英文短标签，顺序由列表决定。
-# Stage captions are shared below; each phase selects one with its stage key.
-# 阶段标签统一在下方维护；每个主题通过 stage 选择对应阶段。
+# Methodological labels are shared below; stage keys remain stable for maintenance.
+# 方法论标签统一在下方维护；保留 stage 键，方便各主题引用。
 title: Research trajectory
 title_zh: 研究历程
 stages:
   foundations:
-    title: Foundations
-    title_zh: 研究基础
+    title: Hybrid foundation
+    title_zh: 混合架构基础
   ongoing:
-    title: Ongoing research
-    title_zh: 在研方向
+    title: Enhanced learning
+    title_zh: 学习能力提升
   frontier:
     title: Frontier exploration
     title_zh: 前沿探索

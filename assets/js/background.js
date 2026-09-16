@@ -47,6 +47,21 @@
   }
   const desktopWidthLimits = widthLimits('desktopMaxWidth');
   const mobileWidthLimits = widthLimits('mobileMaxWidth');
+  // These padded source rectangles protect subjects such as geese and the CN Tower.
+  // Ordinary scenery keeps its manually chosen desktop/mobile focal position.
+  const subjects = new Map(singles.filter(item => item.dataset.photoSubject).map(item => [item, {
+    source: item.dataset.photoSize.split(/\s+/).map(Number),
+    box: item.dataset.photoSubject.split(/\s+/).map(Number)
+  }]));
+  function subjectFrame(item) {
+    const subject = subjects.get(item);
+    return window.BackgroundFraming.frame(subject.source, subject.box, [cover.clientWidth, cover.clientHeight]);
+  }
+  function frameRecord(record) {
+    if (!subjects.has(record.item)) return;
+    const framing = subjectFrame(record.item);
+    if (framing) record.node.querySelector('.home-background__image').style.objectPosition = framing.position;
+  }
   const stage = cover.querySelector('[data-background-stage]');
   const controls = cover.querySelector('.home-background__controls');
   const panels = { current: controls.querySelector('#current-photo-info'), next: controls.querySelector('#next-photo-info') };
@@ -92,6 +107,7 @@
     if (desktopLayout.matches && item.dataset.desktop === 'false') return false;
     const limits = desktopLayout.matches ? desktopWidthLimits : mobileWidthLimits;
     if (limits.has(item) && !limits.get(item).matches) return false;
+    if (subjects.has(item) && !subjectFrame(item)) return false;
     const group = memberGroup.get(item);
     return !desktopLayout.matches || !group || !eligible(group);
   }
@@ -175,7 +191,7 @@
 
   async function loadRandom(exclude, valid = () => true) {
     while (valid()) {
-      const choice = rotation.peek(available(exclude).map(item => item.dataset.photoKey));
+      const choice = rotation.peek(available().map(item => item.dataset.photoKey), { exclude: exclude?.dataset.photoKey });
       if (!choice) break;
       const item = itemByKey.get(choice.key);
       const record = await waitForLayout(prepare(item));
@@ -251,6 +267,7 @@
   async function display(record) {
     const previous = current;
     current = record;
+    frameRecord(record);
     infoExtended = false;
     remaining = interval;
     // A released long press is readable on its current slide, but does not latch
@@ -323,7 +340,7 @@
       if (!eligible(record.item)) { layoutPending = true; continue; }
       cover.hidden = false;
       if (record !== current) await display(record);
-      else queueNext();
+      else { frameRecord(record); queueNext(); }
     }
     switching = false; syncTimer(true);
   }
@@ -334,6 +351,17 @@
   }
   desktopLayout.addEventListener('change', layoutChanged);
   for (const limit of widthQueries.values()) limit.addEventListener('change', layoutChanged);
+  // Subject fit depends on the actual banner dimensions, including tablet widths
+  // between CSS breakpoints. Reframe or select an eligible replacement on resize.
+  let bannerSize = [cover.clientWidth, cover.clientHeight];
+  if (subjects.size && 'ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      const size = [cover.clientWidth, cover.clientHeight];
+      if (size.every((value, index) => value === bannerSize[index])) return;
+      bannerSize = size;
+      layoutChanged();
+    }).observe(cover);
+  }
 
   cover.addEventListener('pointerenter', event => {
     if (event.pointerType !== 'mouse') return;
