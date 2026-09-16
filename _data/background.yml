@@ -779,22 +779,17 @@ images:
     description: "The Oriental Pearl above the Huangpu River."
     description_zh: "黄浦江畔的东方明珠与城市天际线。"
     position: "50% 64%"
-    mobile_position: "50% 76%"
+    mobile_position: "50% 61%"
     fit: "cover"
-    # Keep the spire and both observation spheres; the lower base may be cropped.
-    subject: [1500, 645, 310, 1100]
-    source_size: [3264, 2176]
   photo_20260916_shenzhen.webp:
     category: scenery
     title: "Shenzhen"
     title_zh: "深圳"
     description: "Flowers and the skyline around the Civic Center."
     description_zh: "花海、市民中心与城市天际线。"
-    position: "50% 59%"
+    position: "50% 74%"
     mobile_position: "50% 73%"
     fit: "cover"
-    subject: [2840, 760, 240, 1040]
-    source_size: [4496, 2529]
   photo_20260916_coastal_bridge.webp:
     category: scenery
     title: "Coastal bridge"
