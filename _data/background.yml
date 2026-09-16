@@ -13,8 +13,14 @@ info_extra: 1000
 fade_duration: 1000
 position: "50% 50%"
 mobile_position: "50% 50%"
+# Category totals: 2:1 gives experience about 2/3 of turns, scenery about 1/3.
+# Change these two numbers; photo counts do not change the category odds.
+category_weights:
+  experience: 2
+  scenery: 1
 images:
   photo_20180422_154734356_iOS.jpg:
+    category: experience
     title: "Electric vehicle drifting"
     title_zh: "电动汽车漂移"
     description: "I drifted an electric vehicle on snow."
@@ -24,6 +30,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20180422_154738723_iOS.jpg:
+    category: experience
     title: "Electric vehicle drifting"
     title_zh: "电动汽车漂移"
     description: "I drifted an electric vehicle on snow."
@@ -33,6 +40,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221002_211816789_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -43,6 +51,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221002_225600984_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -53,6 +62,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221007_153114634_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -63,6 +73,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221015_201823889_iOS.jpg:
+    category: experience
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Dad takes the child to work."
@@ -72,6 +83,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221104_200559616_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -82,6 +94,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221118_172355792_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -92,6 +105,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221118_174312015_iOS.jpg:
+    category: experience
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Campus delivery in the snow."
@@ -101,6 +115,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221120_232621002_iOS.jpg:
+    category: experience
     title: "Delivery robot"
     title_zh: "配送机器人"
     description: "Campus delivery at night."
@@ -110,6 +125,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221125_175832378_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     title: "Robot & shuttle bus"
     title_zh: "配送机器人与接驳巴士"
@@ -120,6 +136,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20221125_193929293_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     title: "Robot & shuttle bus"
     title_zh: "配送机器人与接驳巴士"
@@ -130,6 +147,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230117_160446651_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     desktop: false
     title: "Underground mining"
@@ -141,6 +159,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230129_162430220_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -151,6 +170,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230129_165020481_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -161,6 +181,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230129_165423899_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -171,6 +192,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230216_144647464_iOS.jpg:
+    category: experience
     mobile_max_width: 520
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -181,6 +203,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230216_163928287_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     title: "Delivery robot"
     title_zh: "配送机器人"
@@ -191,6 +214,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230928_191105157_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Learning-based control"
     title_zh: "基于学习的控制"
@@ -201,6 +225,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230928_191124793_iOS.jpg:
+    category: experience
     title: "Learning-based control"
     title_zh: "基于学习的控制"
     description: "Low-friction road surface testing."
@@ -210,6 +235,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20230928_191137142_iOS.jpg:
+    category: experience
     mobile_max_width: 600
     title: "Learning-based control"
     title_zh: "基于学习的控制"
@@ -220,6 +246,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240525_010116534_iOS.jpg:
+    category: scenery
     title: "Bruce Peninsula"
     title_zh: "布鲁斯半岛"
     description: "Little Cove at sunset."
@@ -229,6 +256,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240526_165334691_iOS.jpg:
+    category: scenery
     title: "Flowerpot Island"
     title_zh: "花瓶岛"
     description: "Beautiful and peaceful."
@@ -238,6 +266,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240602_220210028_iOS.jpg:
+    category: scenery
     title: "Banff town"
     title_zh: "班夫小镇"
     description: "Beautiful and peaceful."
@@ -247,6 +276,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240603_165727518_iOS.jpg:
+    category: scenery
     title: "Lake Louise"
     title_zh: "露易丝湖"
     description: "Stunning!"
@@ -256,6 +286,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240603_170208017_iOS.jpg:
+    category: scenery
     desktop: false
     title: "Lake Louise"
     title_zh: "露易丝湖"
@@ -266,6 +297,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240603_205551384_iOS.jpg:
+    category: scenery
     title: "Lake Agnes"
     title_zh: "阿格尼丝湖"
     description: "A mountain lake above Lake Louise."
@@ -275,6 +307,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240606_190705666_iOS.jpg:
+    category: scenery
     title: "Maligne Lake"
     title_zh: "玛琳湖"
     description: "Picturesque!"
@@ -284,6 +317,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240606_191152176_iOS.jpg:
+    category: scenery
     desktop: false
     title: "Maligne Lake"
     title_zh: "玛琳湖"
@@ -294,6 +328,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240606_201725840_iOS.jpg:
+    category: scenery
     title: "Maligne Lake"
     title_zh: "玛琳湖"
     description: "Picturesque!"
@@ -303,6 +338,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240607_001756457_iOS.jpg:
+    category: scenery
     title: "Maligne Lake"
     title_zh: "玛琳湖"
     description: "Picturesque!"
@@ -312,6 +348,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240607_180806563_iOS.jpg:
+    category: scenery
     title: "Icefields Parkway"
     title_zh: "冰原大道"
     description: "Scenery is everywhere."
@@ -321,6 +358,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240607_203746523_iOS.jpg:
+    category: scenery
     title: "Johnston Canyon"
     title_zh: "约翰斯顿峡谷"
     description: "Amazing!"
@@ -330,6 +368,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20240925_002300891_iOS.jpg:
+    category: experience
     mobile_max_width: 430
     desktop: false
     title: "Edmonton"
@@ -341,6 +380,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20251011_194941022_iOS.jpg:
+    category: scenery
     title: "Algonquin Park"
     title_zh: "阿冈昆公园"
     description: "Lookout Trail."
@@ -350,6 +390,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20251012_173208850_iOS.jpg:
+    category: scenery
     title: "Lake Muskoka"
     title_zh: "马斯科卡湖"
     description: "Gravenhurst."
@@ -359,6 +400,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_20260214_212847377_iOS.jpg:
+    category: scenery
     desktop_max_width: 1500
     title: "Parc Oméga"
     title_zh: "欧米伽公园"
@@ -369,6 +411,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_AV_test.jpg:
+    category: experience
     mobile_max_width: 520
     desktop: false
     title: "Autonomous driving"
@@ -380,6 +423,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_Big_little.jpg:
+    category: experience
     mobile_max_width: 430
     # The 255 x 190 original is too small for a desktop banner.
     desktop: false
@@ -392,6 +436,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_GM_testing.png:
+    category: experience
     mobile_max_width: 520
     desktop: false
     title: "Real vehicle testing"
@@ -403,6 +448,7 @@ images:
     fit: "cover"
     mobile_fit: "cover"
   photo_safetrucks-snow.jpg:
+    category: experience
     desktop: false
     mobile_max_width: 520
     title: "Heavy vehicles in winter"
@@ -414,8 +460,9 @@ images:
     fit: "cover"
     mobile_fit: "cover"
     # Photo source: https://safetrucks.fmi.fi/index.php/project-description/
-  # XLeRobot: desktop uses the group below; phones show each action separately.
+    # XLeRobot: desktop uses the group below; phones show each action separately.
   photo_xlerobot_pouring.png:
+    category: experience
     mobile_max_width: 520
     title: "XLeRobot"
     title_zh: "XLeRobot"
@@ -425,6 +472,7 @@ images:
     mobile_position: "50% 70%"
     fit: "cover"
   photo_xlerobot_platform.png:
+    category: experience
     mobile_max_width: 520
     title: "XLeRobot"
     title_zh: "XLeRobot"
@@ -434,6 +482,7 @@ images:
     mobile_position: "50% 20%"
     fit: "cover"
   photo_xlerobot_tissue.png:
+    category: experience
     mobile_max_width: 600
     title: "XLeRobot"
     title_zh: "XLeRobot"
@@ -441,9 +490,10 @@ images:
     description_zh: "从纸巾盒中抽取纸巾。"
     # Exclude the clipped video label at the top; preserve the original PNG.
     crop: "0 60 1809 824"
-    source_size: [1809, 884]
+    source_size: [ 1809, 884 ]
     fit: "cover"
   photo_f1tenth_new_1.jpg:
+    category: experience
     mobile_max_width: 600
     title: "F1Tenth"
     title_zh: "F1Tenth"
@@ -451,13 +501,249 @@ images:
     description_zh: "F1Tenth"
     # Crop the empty wall/floor, retaining the complete vehicle and antennas.
     crop: "0 990 4032 1150"
-    source_size: [4032, 3024]
+    source_size: [ 4032, 3024 ]
     # Above this width, retaining the car would leave broad blurred sides.
     desktop_max_width: 1100
     fit: "contain"
     mobile_fit: "cover"
     position: "50% 65%"
     mobile_position: "50% 65%"
+
+  # Added September 2026: individual, full-bleed crops on each device.
+  photo_20260916_aurora.webp:
+    category: scenery
+    title: "Northern lights"
+    title_zh: "极光"
+    description: "Green and violet light across the night sky."
+    description_zh: "绿紫交织的极光点亮夜空。"
+    position: "50% 94%"
+    mobile_position: "50% 78%"
+    fit: "cover"
+  photo_20260916_banff_town_bev.webp:
+    category: scenery
+    title: "Banff from above"
+    title_zh: "俯瞰班夫"
+    description: "A mountain town framed by the Canadian Rockies."
+    description_zh: "落基山脉环抱着山谷中的小镇。"
+    position: "50% 52%"
+    mobile_position: "50% 72%"
+    fit: "cover"
+  photo_20260916_buddy.webp:
+    category: scenery
+    title: "Quiet company"
+    title_zh: "静静相伴"
+    description: "Two ducks enjoying a quiet afternoon."
+    description_zh: "两只野鸭，共享静谧午后。"
+    position: "50% 74%"
+    mobile_position: "50% 82%"
+    fit: "cover"
+    desktop_max_width: 1200
+  photo_20260916_coinfra.webp:
+    category: experience
+    # Native 862 x 392: avoid enlarging fine point-cloud detail across a desktop.
+    desktop: false
+    mobile_max_width: 600
+    title: "CoInfra"
+    title_zh: "CoInfra"
+    description: "A shared view through cooperative LiDAR perception."
+    description_zh: "协同激光雷达感知，共享环境视野。"
+    position: "50% 50%"
+    mobile_position: "50% 50%"
+    fit: "cover"
+  photo_20260916_gatineau.webp:
+    category: scenery
+    title: "Gatineau at dusk"
+    title_zh: "加蒂诺暮色"
+    description: "Evening colours reflected on the river."
+    description_zh: "暮色与河面相映。"
+    position: "50% 62%"
+    mobile_position: "50% 78%"
+    fit: "cover"
+  photo_20260916_huntsville.webp:
+    category: scenery
+    title: "Huntsville"
+    title_zh: "亨茨维尔"
+    description: "Autumn colours beneath a glowing sunset."
+    description_zh: "落日映照秋色满城。"
+    position: "50% 45%"
+    mobile_position: "50% 65%"
+    fit: "cover"
+  photo_20260916_mountbrazeau.webp:
+    category: scenery
+    title: "Mount Brazeau"
+    title_zh: "布拉佐山"
+    description: "Snowy peaks above still blue water."
+    description_zh: "雪峰与宁静的湖水相伴。"
+    position: "50% 75%"
+    mobile_position: "50% 82%"
+    fit: "cover"
+  photo_20260916_niagara_falls.webp:
+    category: scenery
+    title: "Niagara Falls"
+    title_zh: "尼亚加拉大瀑布"
+    description: "A sweeping view of water and mist."
+    description_zh: "水流与雾气交织的壮阔景象。"
+    position: "50% 80%"
+    mobile_position: "50% 90%"
+    fit: "cover"
+  photo_20260916_ottawa.webp:
+    category: scenery
+    title: "Ottawa"
+    title_zh: "渥太华"
+    description: "Blue skies and a moment by the water."
+    description_zh: "蓝天碧水，片刻闲暇。"
+    position: "50% 62%"
+    mobile_position: "50% 75%"
+    fit: "cover"
+  photo_20260916_ottawa2.webp:
+    category: scenery
+    title: "Ottawa sunset"
+    title_zh: "渥太华落日"
+    description: "The last light settling over the water."
+    description_zh: "落日余晖洒向水面。"
+    position: "50% 64%"
+    mobile_position: "50% 78%"
+    fit: "cover"
+  photo_20260916_ottawa3.webp:
+    category: scenery
+    title: "Ottawa waterfront"
+    title_zh: "渥太华水畔"
+    description: "Sailboats and reflections in the evening calm."
+    description_zh: "晚风渐息，帆影映入水面。"
+    position: "50% 64%"
+    mobile_position: "50% 84%"
+    fit: "cover"
+  photo_20260916_ottawa4.webp:
+    category: scenery
+    title: "Ottawa canal"
+    title_zh: "渥太华运河"
+    description: "A sunny walk along the canal."
+    description_zh: "沿着运河，漫步晴日。"
+    position: "50% 70%"
+    mobile_position: "50% 80%"
+    fit: "cover"
+  photo_20260916_ottawa5.webp:
+    category: scenery
+    title: "Parliament Hill at night"
+    title_zh: "国会山夜色"
+    description: "City lights shining above the river."
+    description_zh: "灯火映亮河畔夜色。"
+    position: "50% 75%"
+    mobile_position: "50% 89%"
+    fit: "cover"
+  photo_20260916_ottawa_river_biking.webp:
+    category: scenery
+    title: "Cycling by the Ottawa River"
+    title_zh: "骑行渥太华河畔"
+    description: "A sunset pause along the riverside ride."
+    description_zh: "河畔骑行，停下来看看夕阳。"
+    position: "50% 94%"
+    mobile_position: "50% 94%"
+    fit: "cover"
+    desktop_max_width: 1000
+  photo_20260916_perth.webp:
+    category: scenery
+    title: "Perth"
+    title_zh: "珀斯"
+    description: "Stone, trees, and a quiet riverside afternoon."
+    description_zh: "石屋、绿树与宁静的河畔午后。"
+    position: "50% 68%"
+    mobile_position: "50% 72%"
+    fit: "cover"
+  photo_20260916_peytolake.webp:
+    category: scenery
+    title: "Peyto Lake"
+    title_zh: "佩托湖"
+    description: "Turquoise water beneath snow-lined mountain slopes."
+    description_zh: "雪山脚下，一湾碧蓝。"
+    position: "50% 77%"
+    mobile_position: "50% 82%"
+    fit: "cover"
+  photo_20260916_singingsandsbeach.webp:
+    category: scenery
+    title: "Singing Sands Beach"
+    title_zh: "鸣沙滩"
+    description: "Open skies and gentle light over the shore."
+    description_zh: "开阔天空下，湖岸沐浴柔光。"
+    position: "50% 65%"
+    mobile_position: "50% 76%"
+    fit: "cover"
+  photo_20260916_the_grotto.webp:
+    category: scenery
+    title: "The Grotto"
+    title_zh: "格罗托湖岸"
+    description: "Evening light along the rocky shore."
+    description_zh: "傍晚的光，落在岩岸与湖面。"
+    position: "50% 55%"
+    mobile_position: "50% 70%"
+    fit: "cover"
+  photo_20260916_toronto.webp:
+    category: scenery
+    title: "Toronto"
+    title_zh: "多伦多"
+    description: "The city skyline beneath passing clouds."
+    description_zh: "流云之下的城市天际线。"
+    position: "50% 62%"
+    mobile_position: "50% 80%"
+    fit: "cover"
+  photo_20260916_toronto2.webp:
+    category: scenery
+    title: "Toronto in golden light"
+    title_zh: "金色暮光中的多伦多"
+    description: "Evening sunlight catching the city skyline."
+    description_zh: "晚霞与城市天际线相映。"
+    position: "50% 51%"
+    mobile_position: "50% 73%"
+    fit: "cover"
+    desktop_max_width: 1200
+  photo_20260916_toronto3.webp:
+    category: scenery
+    title: "Toronto harbour"
+    title_zh: "多伦多港湾"
+    description: "Islands and waterfront seen from above."
+    description_zh: "俯瞰岛屿与港湾。"
+    position: "50% 54%"
+    mobile_position: "50% 68%"
+    fit: "cover"
+  photo_20260916_toronto4.webp:
+    category: scenery
+    title: "Toronto from the water"
+    title_zh: "水上看多伦多"
+    description: "A lakeside view of the city skyline."
+    description_zh: "从湖面遥望城市天际线。"
+    position: "50% 55%"
+    mobile_position: "50% 71%"
+    fit: "cover"
+    desktop_max_width: 1000
+  photo_20260916_waterloogoose.webp:
+    category: scenery
+    title: "Geese in Waterloo"
+    title_zh: "滑铁卢的加拿大雁"
+    description: "Familiar neighbours on a green afternoon."
+    description_zh: "绿草地上，熟悉的邻居。"
+    position: "50% 69%"
+    mobile_position: "50% 93%"
+    fit: "cover"
+    desktop_max_width: 1200
+  photo_20260916_kingston.webp:
+    category: scenery
+    title: "Kingston waterfront"
+    title_zh: "金斯顿湖畔"
+    description: "Sailboats beneath an open blue sky."
+    description_zh: "蓝天下，帆船停泊在宁静湖畔。"
+    position: "50% 70%"
+    mobile_position: "50% 78%"
+    fit: "cover"
+  photo_20260916_skate.webp:
+    category: scenery
+    title: "Winter on the canal"
+    title_zh: "运河冬日"
+    description: "Skating along a frozen city waterway."
+    description_zh: "在冰封的城市运河上滑行。"
+    position: "50% 92%"
+    mobile_position: "50% 94%"
+    fit: "cover"
+    desktop_max_width: 1200
 
 # Desktop only: related research photos form one strip; scenic photos stay single.
 # Phones keep the individual entries above.
@@ -467,6 +753,7 @@ images:
 # Leave at least one tile in each group without max_aspect so it fills the remaining width.
 desktop_groups:
   - id: xlerobot-everyday-tasks
+    category: experience
     title: "XLeRobot"
     title_zh: "XLeRobot"
     description: "Dual-arm manipulation for everyday tasks."
@@ -483,9 +770,10 @@ desktop_groups:
       - file: photo_xlerobot_tissue.png
         # This uncapped action tile fills the remaining width on wide screens.
         crop: "0 60 1809 580"
-        source_size: [1809, 884]
+        source_size: [ 1809, 884 ]
         weight: 1.5
   - id: robot-development
+    category: experience
     title: "Delivery robot: from development to demos"
     title_zh: "配送机器人：从研发到展示"
     description: "Testing at the Accelerator Center and showcasing at the Toronto Auto Show."
@@ -505,6 +793,7 @@ desktop_groups:
         weight: 0.8
         max_aspect: 1.6
   - id: campus-deliveries
+    category: experience
     title: "Campus deliveries"
     title_zh: "校园配送"
     description: "Street crossings, navigating among people, and parking from day to night."
@@ -519,6 +808,7 @@ desktop_groups:
       - file: photo_20221120_232621002_iOS.jpg
         position: "50% 60%"
   - id: winter-robots
+    category: experience
     title: "Delivery robots in winter"
     title_zh: "冬日里的配送机器人"
     description: "Campus deliveries and snow testing in Waterloo."
@@ -537,6 +827,7 @@ desktop_groups:
         position: "60% 65%"
         weight: 1.1
   - id: robot-shuttle
+    category: experience
     title: "Robot & shuttle bus"
     title_zh: "配送机器人与接驳巴士"
     description: "Autonomous driving buddies, big and small."
@@ -554,6 +845,7 @@ desktop_groups:
         weight: 1.15
         max_aspect: 2.1
   - id: wet-track-testing
+    category: experience
     title: "Learning-based control"
     title_zh: "基于学习的控制"
     description: "Vehicle testing on low-friction road surfaces."

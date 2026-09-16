@@ -1,6 +1,6 @@
 'use strict';
 
-// Preload a fixed random next candidate and preserve the current crossfade.
+// Preload a fixed weighted next candidate and preserve the current crossfade.
 // Details add one extra second per slide; only visibility pauses the remaining time.
 (() => {
   const cover = document.querySelector('.home-background');
@@ -21,6 +21,18 @@
     for (const member of members) memberGroup.set(member, group);
   }
   const pool = [...singles, ...groupMembers.keys()];
+  const itemByKey = new Map(pool.map(item => [item.dataset.photoKey, item]));
+  let storage;
+  try { storage = window.localStorage; } catch {}
+  const rotation = window.BackgroundRotation.create({
+    entries: pool.map(item => ({
+      key: item.dataset.photoKey,
+      category: item.dataset.photoCategory,
+      members: groupMembers.has(item) ? groupMembers.get(item).map(member => member.dataset.photoKey) : [item.dataset.photoKey]
+    })),
+    weights: { experience: cover.dataset.experienceWeight, scenery: cover.dataset.sceneryWeight },
+    storage
+  });
   const desktopLayout = window.matchMedia('(min-width: 801px)');
   const widthQueries = new Map();
   function widthLimits(field) {
@@ -47,7 +59,6 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const cache = new Map();
   const failed = new Set();
-  const storageKey = 'homepage:last-background';
   const holdDuration = 500;
   let current = null;
   let upcoming = null;
@@ -90,8 +101,7 @@
       if (item !== current?.item && item !== upcoming?.item) cache.delete(item);
     }
   }
-  function hasNext() { return current && available(current.item).length > 0; }
-  function random(items) { return items[Math.floor(Math.random() * items.length)]; }
+  function hasNext() { return current && rotation.hasNext(available(current.item).map(item => item.dataset.photoKey)); }
   function language() { return document.documentElement.lang === 'zh-CN'; }
   function isInfo(target) { return Object.values(panels).some(panel => panel.contains(target)); }
   function detailsVisible() { return Boolean(current && !dismissed && (mouseInside || touchOpen || keyboardFocus)); }
@@ -163,15 +173,14 @@
     return promise;
   }
 
-  async function loadRandom(exclude, firstAvoid, valid = () => true) {
-    let candidates = available(exclude);
-    while (candidates.length && valid()) {
-      const preferred = candidates.filter(item => item.dataset.photoKey !== firstAvoid);
-      const item = random(preferred.length ? preferred : candidates);
+  async function loadRandom(exclude, valid = () => true) {
+    while (valid()) {
+      const choice = rotation.peek(available(exclude).map(item => item.dataset.photoKey));
+      if (!choice) break;
+      const item = itemByKey.get(choice.key);
       const record = await waitForLayout(prepare(item));
-      if (valid() && record && eligible(item)) return record;
+      if (valid() && record && eligible(item)) return { ...record, choice };
       if (item !== current?.item && item !== upcoming?.item) cache.delete(item);
-      candidates = available(exclude);
     }
     return null;
   }
@@ -230,7 +239,7 @@
     const version = ++nextVersion;
     upcoming = null;
     updateInfo();
-    nextTask = loadRandom(current.item, null, () => version === nextVersion).then(record => {
+    nextTask = loadRandom(current.item, () => version === nextVersion).then(record => {
       if (version !== nextVersion) return null;
       upcoming = record;
       trimCache();
@@ -251,7 +260,7 @@
     if (previous) stage.append(record.node);
     else stage.replaceChildren(record.node); // Replace the HTML poster once a random photo is ready.
     controls.hidden = false;
-    try { sessionStorage.setItem(storageKey, record.item.dataset.photoKey); } catch {}
+    rotation.commit(record.choice || record.item.dataset.photoKey);
     queueNext();
     if (previous && fadeDuration > 0 && !reducedMotion.matches && record.node.animate) {
       const fade = record.node.animate([{ opacity: 0 }, { opacity: 1 }], {
@@ -412,9 +421,7 @@
     }).observe(cover);
   }
 
-  let previous = null;
-  try { previous = sessionStorage.getItem(storageKey); } catch {}
-  loadRandom(null, previous).then(async record => {
+  loadRandom(null).then(async record => {
     if (!record) {
       cover.hidden = true; switching = false;
       if (layoutPending) reconcileLayout();

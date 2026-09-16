@@ -139,9 +139,21 @@ On touch screens, **long press for about half a second** to show both captions. 
 
 Showing details adds **one second to that photo's hold time (3 → 4 seconds)** and keeps the carousel running. Repeated hovers do not add more time to the same photo. If the pointer or long press remains active at the next photo, its captions stay open and its hold time is also 4 seconds. The timer pauses only when the page is hidden or the banner is out of view, then resumes the remaining time. Every completed transition starts a fresh hold interval. **Tab** focuses the banner and shows details; **Enter/Space** advances; **Esc** closes details. One available photo stays visible with only its current details and no timer; failed images are skipped.
 
+**Balance the carousel:** set these two weights at the top level of `_data/background.yml`:
+
+```yaml
+category_weights:
+  experience: 2
+  scenery: 1
+```
+
+Set `category: experience` on research, work, startup and professional-experience photos; use `category: scenery` for landscapes and leisure photos. Set the category on each desktop group too. The weights apply to **whole categories, not individual photos**: with both categories available, `2:1` gives experience about two thirds of selections, regardless of how many scenic photos are added. Change only these two numbers to adjust the balance. Set a category to `0` to disable it; setting both to `0` hides the banner.
+
+Within each category, photos/groups are shuffled and used without replacement before that category starts another round. Recent history is retained across reloads using `localStorage`, as a best effort within the same browser and device; if storage is unavailable, it lasts only for the current page. The “Next” caption always names the queued selection; hovering and language changes do not reshuffle it. Selection weights do not change the timing above.
+
 To add a photo:
 
-1. Save a web-ready JPG, PNG or WebP in `images/background/`, using a unique name such as `photo_2026_waterloo.jpg`. Convert HEIC to JPG first; preserve the correct orientation. For large originals, an exported copy with a long edge around 2400 px keeps downloads light. Keep full-size originals outside this public directory.
+1. Save a web-ready JPG, PNG or WebP in `images/background/`, using a unique name such as `photo_2026_waterloo.webp`. Exporting a WebP copy reduces downloads without altering your original. Convert HEIC to WebP or JPG first, preserving orientation. A long edge around 2400–3200 px usually suits large photos; keep full-size originals outside this public directory.
 2. Add that exact filename under the existing `images` block in `_data/background.yml`, with English and Chinese text. **Files without a matching entry are not displayed.**
 3. Check desktop, tablet and phone framing. If a photo cannot work well across a wide banner, add `desktop: false` to keep it in the mobile layout only. To remove it from the carousel, delete its configuration entry; the original file can stay for later use. Use `enabled: false` to hide it temporarily on all devices.
 
@@ -150,7 +162,8 @@ Filenames **can start with numbers**; the `photo_` prefix is just a consistent n
 Example entry under `images`:
 
 ```yaml
-  photo_2026_waterloo.jpg:
+  photo_2026_waterloo.webp:
+    category: scenery
     fit: "cover"
     position: "50% 50%"
     mobile_position: "60% 50%"
@@ -175,7 +188,7 @@ Example entry under `images`:
 **Edit a desktop photo group:** find `desktop_groups` at the end of `_data/background.yml`. Each group has a unique `id`, bilingual `title` and `description`, and a `photos` list in left-to-right order. Tiles join edge to edge, with no gaps or individual rounded corners.
 
 - Each tile's `file` must also exist and be enabled under `images`, without `desktop: false`. Keep its individual captions and mobile framing there. When renaming or deleting a grouped file, update both places.
-- Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative width (default `1`). Keep `fit: "cover"` or omit it; adjust the width and position to preserve the subject without blurred padding.
+- Tile `position` controls its desktop crop independently of the single photo. `weight` controls relative **layout width** (default `1`), not selection probability; the group's `category` uses `category_weights` instead. Keep `fit: "cover"` or omit it; adjust the width and position to preserve the subject without blurred padding.
 - A tile can also pair `crop: "x y width height"` with `source_size: [original width, original height]`, in source pixels, for precise framing without changing the original file. Groups do not inherit single-photo crops. The crop is centered and framed according to `fit`; adjust `crop`, rather than `position`, to move the subject. Update or remove both fields when replacing the source photo.
 - Optional tile `max_aspect` caps its width divided by the banner height. **Leave at least one tile in every group without this cap** to fill the remaining width. Check both normal and extra-wide desktop windows.
 - A group's captions describe the complete strip; phones use the original individual captions. The group replaces its members in desktop rotation, so those images do not also repeat as desktop singles. Every tile loads before the strip crossfades in.

@@ -14,7 +14,7 @@
 {% assign photo_fit = settings.fit | default: 'cover' %}
 {% assign photo_mobile_fit = 'cover' %}
 {% capture background_image %}
-<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}"{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}" data-photo-category="{{ settings.category | default: 'experience' | escape }}"{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
 {% if photo_fit == 'contain' or photo_mobile_fit == 'contain' %}
 <img class="home-background__backdrop" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" aria-hidden="true">
 {% endif %}
@@ -48,7 +48,7 @@
 {% endfor %}
 {% for group in background.desktop_groups %}
 {% unless group.enabled == false %}
-<figure class="home-background__slide home-background__slide--group" data-photo-key="group:{{ group.id | escape }}" data-photo-group="{{ group.id | escape }}">
+<figure class="home-background__slide home-background__slide--group" data-photo-key="group:{{ group.id | escape }}" data-photo-group="{{ group.id | escape }}" data-photo-category="{{ group.category | default: 'experience' | escape }}">
 <div class="home-background__strip">
 {% for tile in group.photos %}
 <div class="home-background__tile{% if tile.fit == 'contain' %} is-contained{% endif %}" data-photo-key="/images/background/{{ tile.file | escape }}" style="--tile-position: {{ tile.position | default: '50% 50%' | escape }}; --tile-weight: {{ tile.weight | default: 1 }}; --tile-max-aspect: {{ tile.max_aspect | default: 100 }};">
@@ -72,7 +72,7 @@
 {% endcapture %}
 {% assign background_images = background_images | strip %}
 {% if background_images != '' %}
-<div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-interval="{{ background.interval | default: 3000 }}" data-info-extra="{{ background.info_extra | default: 1000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+<div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-experience-weight="{{ background.category_weights.experience | default: 2 }}" data-scenery-weight="{{ background.category_weights.scenery | default: 1 }}" data-interval="{{ background.interval | default: 3000 }}" data-info-extra="{{ background.info_extra | default: 1000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
 <div class="home-background__stage" data-background-stage aria-hidden="true">{{ background_fallback | default: background_mobile_fallback }}</div>
 <div class="home-background__controls" hidden>
@@ -80,6 +80,7 @@
 <div class="home-background__panel home-background__panel--next" id="next-photo-info" hidden></div>
 </div>
 </div>
+<script src="{{ site.baseurl }}/assets/js/background-rotation.js?v={{ site.time | date: '%s' }}"></script>
 <script src="{{ site.baseurl }}/assets/js/background.js?v={{ site.time | date: '%s' }}"></script>
 {% endif %}
 {% endif %}
