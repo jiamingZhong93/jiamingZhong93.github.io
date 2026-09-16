@@ -752,6 +752,58 @@ images:
     mobile_position: "50% 94%"
     fit: "cover"
     desktop_max_width: 1200
+  photo_20260916_lake_paddling.webp:
+    category: scenery
+    title: "Lake paddling"
+    title_zh: "湖上泛舟"
+    description: "A quiet moment on open water."
+    description_zh: "泛舟湖上，享受片刻宁静。"
+    position: "50% 75%"
+    mobile_position: "50% 100%"
+    fit: "cover"
+    subject: [966, 725, 193, 200]
+    source_size: [2073, 1170]
+  photo_20260916_city_panorama.webp:
+    category: scenery
+    title: "City panorama"
+    title_zh: "城市远眺"
+    description: "A city skyline beneath drifting clouds."
+    description_zh: "流云之下，远眺城市天际线。"
+    position: "50% 55%"
+    mobile_position: "50% 72%"
+    fit: "cover"
+  photo_20260916_shanghai.webp:
+    category: scenery
+    title: "Shanghai"
+    title_zh: "上海"
+    description: "The Oriental Pearl above the Huangpu River."
+    description_zh: "黄浦江畔的东方明珠与城市天际线。"
+    position: "50% 64%"
+    mobile_position: "50% 76%"
+    fit: "cover"
+    # Keep the spire and both observation spheres; the lower base may be cropped.
+    subject: [1500, 645, 310, 1100]
+    source_size: [3264, 2176]
+  photo_20260916_shenzhen.webp:
+    category: scenery
+    title: "Shenzhen"
+    title_zh: "深圳"
+    description: "Flowers and the skyline around the Civic Center."
+    description_zh: "花海、市民中心与城市天际线。"
+    position: "50% 59%"
+    mobile_position: "50% 73%"
+    fit: "cover"
+    subject: [2840, 760, 240, 1040]
+    source_size: [4496, 2529]
+  photo_20260916_coastal_bridge.webp:
+    category: scenery
+    title: "Coastal bridge"
+    title_zh: "跨海大桥"
+    description: "A sweeping bridge over blue coastal waters."
+    description_zh: "长桥横跨碧蓝海面。"
+    position: "50% 60%"
+    mobile_position: "50% 70%"
+    fit: "cover"
 # Desktop only: related research photos form one strip; scenic photos stay single.
 # Phones keep the individual entries above.
 # Tiles appear left to right. Each file must also be enabled under images.
