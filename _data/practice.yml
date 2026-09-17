@@ -8,8 +8,8 @@
 projects:
   - enabled: true
     id: practice-delivery-robots
-    title: "Delivery robots — agile interaction with crowds"
-    title_zh: "配送机器人：与人群敏捷交互"
+    title: "Autonomous delivery robots — agile interaction with crowds"
+    title_zh: "自主配送机器人：与人群敏捷交互"
     description: "Led **planning and control** for LoopX delivery robots navigating crowds on the University of Waterloo campus."
     description_zh: "主导 LoopX 配送机器人的**规划与控制**，支持其在滑铁卢大学校园中穿行人群。"
     image: /images/practice/delivery-robots.jpg
