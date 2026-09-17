@@ -32,3 +32,8 @@
 </ol>
 </figure>
 {% if trajectory.outlook %}<p class="trajectory-outlook" data-zh="{{ trajectory.outlook_zh | default: trajectory.outlook | escape }}">{{ trajectory.outlook | escape }}</p>{% endif %}
+{% if trajectory.applications %}
+<ul class="trajectory-applications">
+{% for application in trajectory.applications %}<li data-zh="{{ application.text_zh | default: application.text | escape }}">{{ application.text | escape }}</li>{% endfor %}
+</ul>
+{% endif %}

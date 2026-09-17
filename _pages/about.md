@@ -27,9 +27,9 @@ redirect_from: ["/about/", "/about.html"]
 </div>
 </div>
 <p class="vision-description" data-zh="{{ site.data.research.vision.description_zh | escape }}">{{ site.data.research.vision.description }}</p>
-<h2 id="core-questions-label" class="home-subheading core-focus-heading" data-zh="核心问题">Core questions</h2>
+<h2 id="research-focus-label" class="home-subheading core-focus-heading" data-zh="研究重点">Research focus</h2>
 <p class="core-questions-intro" data-zh="{{ site.data.research.vision.questions_intro_zh | escape }}">{{ site.data.research.vision.questions_intro | escape }}</p>
-<ul class="vision-points" aria-labelledby="core-questions-label">
+<ul class="vision-points" aria-labelledby="research-focus-label">
 {% for point in site.data.research.vision.bullets %}<li data-zh="{{ point.text_zh | default: point.text | escape }}">{{ point.text }}</li>{% endfor %}
 </ul>
 {% include research-trajectory.html %}
@@ -42,7 +42,8 @@ redirect_from: ["/about/", "/about.html"]
 </section>
 
 <section id="publications" class="profile-section" aria-labelledby="publications-label">
-<h2 class="section-label" id="publications-label" data-zh="02 / 代表论文">02 / SELECTED PUBLICATIONS</h2>
+<h2 class="section-label" id="publications-label" data-zh="02 / 论文">02 / PUBLICATIONS</h2>
+<p class="section-note"><span data-zh="以下列出部分代表论文，完整列表请见">Selected publications are listed below. The full list is available </span><a href="{{ site.author.googlescholar }}" data-zh="这里">here</a><span data-zh="。">.</span></p>
 {% include publication-legend.html %}
 {% include selected-publications.html %}
 </section>

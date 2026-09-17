@@ -93,10 +93,10 @@ html[lang="zh-CN"] .localized-copy { line-height: 1.9; }
 .home-vision { margin-top: 1.65rem; }
 .page__content .vision-heading, .page__content .home-subheading { font: inherit; font-size: .9rem; font-weight: 650; margin: 0 0 .8rem; padding: 0; border: 0; color: var(--ink); }
 .page__content .core-focus-heading { margin-top: 1.35rem; }
-.vision-points { padding-left: 1.15rem; margin: .8rem 0 0; font-size: .95rem; color: var(--muted); }
-.vision-points li { margin-bottom: .4rem; padding-left: .15rem; }
-.vision-points li::marker { color: var(--accent); }
-html:not([lang="zh-CN"]) .vision-points { font-style: italic; }
+.vision-points, .trajectory-applications { padding-left: 1.15rem; margin: .8rem 0 0; font-size: .95rem; color: var(--muted); }
+.vision-points li, .trajectory-applications li { margin-bottom: .4rem; padding-left: .15rem; }
+.vision-points li::marker, .trajectory-applications li::marker { color: var(--accent); }
+html:not([lang="zh-CN"]) .vision-points, html:not([lang="zh-CN"]) .trajectory-applications { font-style: italic; }
 .profile-section { padding-top: 3.1rem; }
 .page__content .section-label { font-family: inherit; font-size: .8rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); line-height: 1.5; margin: 0 0 1.2rem; padding: 0; border: 0; }
 html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
@@ -120,11 +120,13 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 @container (max-width: 360px) {
   .vision-equation { font-size: 1rem; }
 }
-.vision-description { font-size: 1rem; color: var(--muted); margin: .85rem 0 .3rem !important; }
+.page__content .vision-description, .page__content .core-questions-intro { font-family: inherit; font-size: 1rem; font-weight: 400; font-style: normal; line-height: 1.65; letter-spacing: normal; color: var(--muted); }
+.vision-description { margin: .85rem 0 .3rem !important; }
 /* Soft, open arrows share the equation's gradient and continue after every theme. */
 .research-trajectory { display: block; container-type: inline-size; margin: 1.65rem 0 .3rem; }
 .research-trajectory figcaption { margin: 0; font-family: inherit; font-style: normal; }
-.page__content .trajectory-outlook { margin-top: 1rem; }
+.page__content .trajectory-outlook { margin-top: 1rem; margin-bottom: .5rem; }
+.trajectory-applications { margin-top: 0; }
 .trajectory-map { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.35rem 1.25rem; margin: 0; padding: 1.15rem 1.15rem 1.2rem; list-style: none; border: 1px solid rgba(65,99,106,.09); border-radius: 14px; background: linear-gradient(115deg,rgba(224,239,237,.42),rgba(235,229,245,.42)); }
 .trajectory-phase { --phase-color: #2f737b; position: relative; min-width: 0; margin: 0; padding: 0; }
 .trajectory-phase:nth-child(2) { --phase-color: #456991; }
@@ -184,8 +186,11 @@ html[lang="zh-CN"] .trajectory-methods span { word-break: keep-all; overflow-wra
 .publication-symbol { color: var(--accent); font-weight: 700; }
 sup.publication-symbol { margin-left: .15em; font-size: .8em; }
 .publication-list { padding: 0; margin: 0; list-style: none; }
-.publication { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: .7rem; padding: 1rem 0; border: 0; margin: 0; }
-.publication-year { font-size: .875rem; color: var(--muted); padding-top: .15rem; }
+/* Year-only teaching entries align with publication years at every screen size. */
+.publication, #teaching .career-list article { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: .7rem; }
+.publication { padding: 1rem 0; border: 0; margin: 0; }
+.publication-year, .page__content .career-date { font-family: inherit; font-size: .875rem; font-weight: 400; font-style: normal; line-height: 1.65; letter-spacing: normal; color: var(--muted); }
+.publication-year { padding-top: .15rem; }
 .publication-body h3 { font-size: 1rem; line-height: 1.5; margin: 0 0 .3rem; font-weight: 650; }
 .publication-body h3 a { color: var(--ink); }
 .publication-body h3 a:hover { color: var(--accent); }
@@ -198,7 +203,7 @@ sup.publication-symbol { margin-left: .15em; font-size: .8em; }
 html[lang="zh-CN"] .career-list { --career-date-width: 13rem; }
 html[lang="zh-CN"] .career-date { white-space: nowrap; }
 .career-list article { display: grid; grid-template-columns: var(--career-date-width,165px) minmax(0,1fr); gap: 1rem; padding: .6rem 0; border: 0; }
-.career-date { font-size: .875rem; color: var(--muted); margin: .1rem 0 0 !important; }
+.career-date { margin: .1rem 0 0 !important; }
 .career-list h3 { font-size: .87rem; line-height: 1.5; margin: 0 0 .1rem; font-weight: 600; }
 .career-list h3 a { color: var(--ink); }
 .career-list article div > p { font-size: .875rem; line-height: 1.55; color: var(--muted); margin: 0; }
@@ -254,7 +259,7 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
   .publication-role-key { column-gap: .375rem; font-size: .8125rem; }
   .research-project.has-media { grid-template-columns: 1fr; gap: .9rem; }
   .career-list article { grid-template-columns: 1fr; gap: .2rem; }
-  .publication { grid-template-columns: 34px minmax(0,1fr); gap: .4rem; }
+  .publication, #teaching .career-list article { grid-template-columns: 34px minmax(0,1fr); gap: .4rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .home-background__panel { animation: none; } .vision-equation, .trajectory-track::after { animation: none; background-position: 45% 50%; } }
 @media (forced-colors: active) { .vision-equation { background: none; color: CanvasText; animation: none; } .trajectory-track::after { background: CanvasText; opacity: 1; animation: none; } }
