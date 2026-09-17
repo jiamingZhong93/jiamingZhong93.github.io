@@ -1,0 +1,84 @@
+# Practice projects use the same image, description and link fields as Research.
+# Original project figures/photos are kept in images/practice; sources are noted below.
+# Delivery/fleet/mining/warehouse: Research Statement Outline, slide 13.
+# EV photo: background/photo_20180422_154738723_iOS.jpg; production-work summary supplied by Jiaming.
+# Set enabled: false to hide an individual project; true (or omitted) shows it.
+projects:
+  - enabled: true
+    id: practice-delivery-robots
+    title: "Delivery Robots — agile interaction with crowds"
+    title_zh: "配送机器人：与人群敏捷交互"
+    description: "Led **planning and control** development for LoopX’s GoosEX delivery robots, enabling smooth navigation through crowds on the University of Waterloo campus."
+    description_zh: "主导 LoopX GoosEX 配送机器人的**规划与控制**研发，实现滑铁卢大学校园人群中的平稳导航。"
+    image: /images/practice/delivery-robots.jpg
+    image_size: [2276, 1280]
+    image_alt: A red GoosEX delivery robot crossing a pedestrian crossing alongside people on the University of Waterloo campus.
+    image_alt_zh: 红色 GoosEX 配送机器人与行人一起穿过滑铁卢大学校园的人行横道。
+    links:
+      - label: Project story
+        url: https://rtpark.uwaterloo.ca/news/loopx-building-better-autonomous-vehicles-one-pizza-at-a-time/
+    video_url: https://www.youtube.com/watch?v=sMiw-RJhRKk
+
+  - enabled: true
+    id: practice-fleet-map-sharing
+    title: Fleet map sharing for obstacle avoidance
+    title_zh: 用于避障的车队地图共享
+    description: "Developed a collaborative planner with LoopX and Rogers that shares **obstacle maps over 5G edge computing**, enabling the fleet to replan around blocked routes."
+    description_zh: "与 LoopX、Rogers 合作开发协同规划系统，通过 **5G 边缘计算共享障碍地图**，支持车队针对受阻道路重新规划路径。"
+    image: /images/practice/fleet-map-sharing.png
+    image_size: [1060, 578]
+    image_alt: A satellite map of the robot fleet alongside a shared obstacle map and a replanned route.
+    image_alt_zh: 机器人车队的卫星地图，以及共享障碍地图和重新规划的路线。
+    links:
+      - label: Project story
+        url: https://rtpark.uwaterloo.ca/news/loopx-building-better-autonomous-vehicles-one-pizza-at-a-time/
+      - label: Demo · LinkedIn
+        url: https://www.linkedin.com/feed/update/urn:li:activity:6998025350551130112
+
+  - enabled: true
+    id: practice-underground-mining
+    title: Autonomous driving for underground mining
+    title_zh: 地下矿山自动驾驶
+    description: "Developed **occupancy-map-based planning and control** for LoopX’s underground mining vehicles, generating smooth, collision-free trajectories. The demonstration shows an autonomous load–haul–dump vehicle in simulation."
+    description_zh: "为 LoopX 地下矿山车辆开发**基于占据地图的规划与控制**，生成平滑、无碰撞的行驶轨迹。演示展示了自主铲运机的仿真运行。"
+    image: /images/practice/underground-mining.png
+    image_size: [1262, 591]
+    image_alt: Simulation views of an autonomous load–haul–dump vehicle navigating an underground mine.
+    image_alt_zh: 自主铲运机在地下矿山行驶的仿真画面。
+    links:
+      - label: LoopX
+        url: https://www.loopx.ai/
+    video_url: https://www.youtube.com/watch?v=eGclbNCisBk
+
+  - enabled: true
+    id: practice-warehouse-robots
+    title: Warehouse mobile robots
+    title_zh: 仓储移动机器人
+    description: "Led **full-stack autonomy** development for warehouse AMRs at Reel-In Robotics, coordinating mobile robots with cable robots, conveyors, and cloud management."
+    description_zh: "在 Reel-In Robotics 主导仓储移动机器人的**全栈自主系统**开发，协同移动机器人、缆索机器人、输送线与云端管理系统。"
+    image: /images/practice/warehouse-mobile-robots.png
+    image_size: [840, 578]
+    image_alt: A Reel-In mobile robot carrying orange bins beside a cable-robot installation in a warehouse.
+    image_alt_zh: Reel-In 移动机器人在仓库缆索机器人装置旁运送橙色料箱。
+    links:
+      - label: Reel-In Robotics
+        url: https://reelinrobotics.ca/
+      - label: Project coverage
+        url: https://issuu.com/thegrower/docs/the_grower_october_2025/14
+
+  - enabled: true
+    id: practice-electric-vehicle-control
+    title: High-performance motion control for electric vehicles
+    title_zh: 电动汽车高性能运动控制
+    description: "Developed production EV control software at SAIC Motor and NIO, covering **state estimation**, **high-performance all-wheel-drive dynamics control**, and **air and active suspension control**."
+    description_zh: "在上汽和蔚来从事量产电动车控制软件开发，涵盖**状态估计**、**高性能四驱动态控制**以及**空气与主动悬架控制**。"
+    image: /images/practice/electric-vehicle-control.jpg
+    image_size: [1920, 808]
+    image_crop: [1040, 290, 880, 495]
+    image_alt: An instrumented vehicle on a wet test surface during motion-control experiments.
+    image_alt_zh: 配备测试设备的车辆在湿滑路面开展运动控制实验。
+    links:
+      - label: SAIC Motor
+        url: https://www.saicmotor.com/english/
+      - label: NIO
+        url: https://www.nio.com/

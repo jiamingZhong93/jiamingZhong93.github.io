@@ -8,7 +8,7 @@
         "url": "https://ieeexplore.ieee.org/document/11181563",
         "venue": "IEEE Transactions on Intelligent Transportation Systems, 26(12), 22818–22829",
         "year": "2025",
-        "selected": true,
+        "enabled": true,
         "role": "first",
         "title_zh": "面向即插即用车辆控制的多目标智能体模型预测控制器",
         "arxiv": "https://arxiv.org/abs/2609.12108"
@@ -20,7 +20,7 @@
         "url": "https://ieeexplore.ieee.org/document/10623843",
         "venue": "IEEE Transactions on Intelligent Transportation Systems, 25(11), 17482–17492",
         "year": "2024",
-        "selected": true,
+        "enabled": true,
         "role": "first",
         "title_zh": "面向车辆综合性能的学习型智能体模型预测控制",
         "arxiv": "https://arxiv.org/abs/2609.11871"
@@ -32,7 +32,7 @@
         "url": "https://ieeexplore.ieee.org/document/10297415",
         "venue": "IEEE Transactions on Intelligent Vehicles, 9(1), 1450–1464",
         "year": "2024",
-        "selected": true,
+        "enabled": true,
         "role": "co-first",
         "co_first_authors": ["Y. Cui", "S. Huang", "J. Zhong"],
         "title_zh": "DriveLLM：利用大语言模型探索完全自动驾驶之路"
@@ -44,7 +44,7 @@
         "url": "https://doi.org/10.1080/00423114.2025.2589913",
         "venue": "Vehicle System Dynamics, 1–33",
         "year": "2025",
-        "selected": true,
+        "enabled": true,
         "role": "corresponding",
         "title_zh": "车辆线控转向控制系统综述"
       },
@@ -54,7 +54,7 @@
         "url": "https://www.sciencedirect.com/science/article/pii/S0957417426005063",
         "venue": "Expert Systems with Applications, 314, 131593",
         "year": "2026",
-        "selected": true,
+        "enabled": true,
         "role": "coauthor",
         "title_zh": "DriveLegal：通过可信的混合检索增强大语言模型实现合法合规驾驶"
       },
@@ -64,7 +64,7 @@
         "url": "https://ieeexplore.ieee.org/document/11162558",
         "venue": "IEEE Transactions on Vehicular Technology, 1–14",
         "year": "2025",
-        "selected": true,
+        "enabled": true,
         "role": "coauthor",
         "title_zh": "DriveSOTIF：利用多模态大语言模型提升预期功能安全",
         "arxiv": "https://arxiv.org/abs/2505.07084"
@@ -75,7 +75,7 @@
         "url": "https://doi.org/10.1007/s42154-024-00289-w",
         "venue": "Automotive Innovation, 8(1), 1–12",
         "year": "2025",
-        "selected": true,
+        "enabled": true,
         "role": "coauthor",
         "title_zh": "面向自动驾驶仿真的社会交互预测型智能驾驶员模型"
       },
@@ -85,7 +85,7 @@
         "url": "https://www.sciencedirect.com/science/article/pii/S0967066124002843",
         "venue": "Control Engineering Practice, 154, 106125",
         "year": "2025",
-        "selected": true,
+        "enabled": true,
         "role": "coauthor",
         "title_zh": "工业重型车辆振动抑制的实用方案：一种新型增益自适应协调悬架控制系统"
       },
@@ -95,7 +95,7 @@
         "url": "https://doi.org/10.1177/09544070241245473",
         "venue": "Proceedings of the Institution of Mechanical Engineers, Part D: Journal of Automobile Engineering, 239(7), 2285–2296",
         "year": "2025",
-        "selected": false
+        "enabled": false
       }
     ],
     "title": "Journal articles",
@@ -110,7 +110,7 @@
         "url": "https://ieeexplore.ieee.org/document/10919711",
         "venue": "IEEE International Conference on Intelligent Transportation Systems (ITSC), 2999–3004",
         "year": "2024",
-        "selected": true,
+        "enabled": true,
         "role": "first",
         "title_zh": "数据驱动的分布式控制方案：面向路径跟踪的学习型多目标智能体模型预测控制",
         "arxiv": "https://arxiv.org/abs/2609.12142"
@@ -122,7 +122,7 @@
         "url": "https://ieeexplore.ieee.org/document/7813113",
         "venue": "International Conference on Cybernetics, Robotics and Control (CRC), 32–37",
         "year": "2016",
-        "selected": false,
+        "enabled": false,
         "role": "first"
       }
     ],
@@ -137,7 +137,7 @@
         "title": "Corner Modules in Vehicle Platforms: Design, Integration, and Control Perspectives",
         "venue": "Automotive Innovation",
         "year": "Accepted",
-        "selected": false
+        "enabled": false
       }
     ],
     "title": "Accepted manuscript",
@@ -153,7 +153,7 @@
         "url": "https://arxiv.org/abs/2507.02245",
         "arxiv": "https://arxiv.org/abs/2507.02245",
         "year": "2025",
-        "selected": true,
+        "enabled": true,
         "role": "coauthor",
         "title_zh": "CoInfra：面向恶劣天气下车路协同的大规模协同路侧感知系统与数据集"
       },
@@ -166,7 +166,7 @@
         "arxiv": "https://arxiv.org/abs/2504.05727",
         "venue": "arXiv:2504.05727",
         "year": "2025",
-        "selected": false
+        "enabled": false
       },
       {
         "authors": "C. Tang, J. Zhong, Y. Hu",
@@ -176,7 +176,7 @@
         "arxiv": "https://arxiv.org/abs/2312.00262",
         "venue": "arXiv:2312.00262",
         "year": "2023",
-        "selected": false
+        "enabled": false
       }
     ],
     "title": "Preprints",
@@ -189,14 +189,14 @@
         "title": "Mixed Vehicle Platoon Control Under Collision Avoidance Lane Change",
         "venue": "Under review",
         "year": "",
-        "selected": false
+        "enabled": false
       },
       {
         "authors": "J. Zhong, Y. Lu, L. Khoshnevisan, A. Khajepour",
         "title": "Robust Delay-compensated Controllers for Vehicle Steer-by-Wire Systems",
         "venue": "Under review",
         "year": "",
-        "selected": false
+        "enabled": false
       }
     ],
     "title": "Manuscripts under review",

@@ -27,6 +27,7 @@ Saving locally does not publish. Edit source files, never generated `_site/` fil
 | Bilingual name, default/alternate portrait and profile links | [_config.yml](../_config.yml), under `author` |
 | Bilingual profile titles and institutions | [_config.yml](../_config.yml), `author.roles` |
 | Home research vision and projects | [_data/research.yml](../_data/research.yml), `vision` and `projects` |
+| Practice projects and images | [_data/practice.yml](../_data/practice.yml), [images/practice/](../images/practice/) |
 | Bilingual research trajectory diagram in Home | [_data/trajectory.yml](../_data/trajectory.yml), `phases` and their `steps` |
 | Publications and author-role symbols | [_data/publications.json](../_data/publications.json), [_data/publication_roles.yml](../_data/publication_roles.yml) |
 | Teaching, experience and education | [_data/career.yml](../_data/career.yml) |
@@ -41,6 +42,19 @@ Navigation labels, Chinese translations and section links live together in `_dat
 Teaching entries live under `teaching` in `_data/career.yml` and use the same bilingual fields as Experience. They appear immediately before Experience.
 
 For an experience shared by multiple organizations over the same period, use an optional `organizations` array with `name`, `name_zh` and `url` for each organization; keep one set of dates and one role for the combined entry. Single-organization entries continue to use `organization`, `organization_zh` and `url`. Teaching and Education institution names display as plain text.
+
+### Show or hide individual entries
+
+Each Research, Practice, Publication and Teaching entry has an `enabled` switch. Set it to `false` to hide that entry, or `true` to restore it. The content stays in its data file, and the switch applies to both languages.
+
+| Section | Where to edit each entry | Hide / show |
+| --- | --- | --- |
+| Research | `_data/research.yml` → `projects` | `enabled: false` / `enabled: true` |
+| Practice | `_data/practice.yml` → `projects` | `enabled: false` / `enabled: true` |
+| Publication | `_data/publications.json` → each group's `items` | `"enabled": false` / `"enabled": true` |
+| Teaching | `_data/career.yml` → `teaching` | `enabled: false` / `enabled: true` |
+
+Use real Boolean values: do **not** quote `true` or `false`. In YAML, align `enabled` with the entry's other fields, such as `title` or `dates`; in JSON, add it inside the paper's object. If `enabled` is omitted, the entry displays by default. Publication now uses `enabled` instead of the former `selected` field; existing display choices are preserved.
 
 ### Maintain English and Chinese together
 
@@ -81,10 +95,13 @@ phases:
 
 The diagram heading uses the top-level `title/title_zh`. Keep existing phase IDs when changing headings: they select the small icons. Keep all step IDs unique and preserve them when reordering. Short labels keep the six themes compact in three columns × two rows on desktop, or two columns × three rows on phones; no descriptions or numbers are shown. Text and order need only YAML edits. For visual changes, use `assets/css/profile.css`; icons are in `_includes/research-trajectory.html`.
 
-Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Delete an entry to remove it. Keep descriptions concise and maintain both languages. Use Markdown `**bold**` to highlight key methods in `description/description_zh`; each language is rendered as a separate `localized-copy` block, so formatting survives language switching. If bold Chinese text ends in parentheses, put a space after the closing `**` before the following Chinese text, e.g. `**强化学习（RL）** 增强控制`.
+**Practice** follows Research and uses the same project layout, highlighting industry and startup work. The EV entry covers production software at NIO/SAIC (state estimation, four-wheel-drive dynamics, air and active suspension control), illustrated by the ice-driving photo. Edit its entries in `_data/practice.yml`, with static images in `images/practice/`. To replace an image, update `image`, `image_size` and the bilingual alt text; use `video_url` for an external demo and `links` for related webpages. Research and Practice share `_includes/project-list.html`.
+
+Copy an existing entry in `_data/research.yml` to add a project. Keep each `id` unique; the list order controls the display order. Set `enabled: false` to hide an entry without deleting it. Keep descriptions concise and maintain both languages. Use Markdown `**bold**` to highlight key methods in `description/description_zh`; each language is rendered as a separate `localized-copy` block, so formatting survives language switching. If bold Chinese text ends in parentheses, put a space after the closing `**` before the following Chinese text, e.g. `**强化学习（RL）** 增强控制`.
 
 ```yaml
   - id: my-project
+    enabled: true
     title: "My project: Short focus"
     title_zh: "我的项目：简短方向"
     description: "One sentence about the project and its **key method**."
@@ -105,7 +122,7 @@ Order each project's `links` list as **Thesis → publications → arXiv → pro
 | --- | --- |
 | Default portrait | Replace `images/avatar.jpg`; if renamed, update `author.avatar` in `_config.yml`. |
 | Alternate portrait | Replace `images/portraits/alternate.jpg`; if renamed, update `author.avatar_alternate`. |
-| Project image | Put it in `images/research/` and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work. Images share a common width and use their native proportions for automatic height; no `image_aspect_ratio` field is needed. |
+| Project image | Put Research images in `images/research/`, or Practice images in `images/practice/`, and set the project's `image` path. JPG, PNG, animated GIF, WebP and SVG work. Images share a common width and use their native proportions for automatic height; no `image_aspect_ratio` field is needed. |
 | Top cover | Put photos in `images/background/` and add matching filenames under `images` in `_data/background.yml`. Only configured photos join the carousel. |
 
 ### Portraits
@@ -223,7 +240,7 @@ In `_data/publications.json`, copy an existing paper inside a group's `items` ar
 | `authors` | Complete author list in published order, separated by English commas; no HTML, symbols or manually added `et al.` |
 | `venue`, `year`, `url` | Original venue, year, and paper link; omit `venue` for a preprint not accepted by a journal/conference |
 | `type` | Optional per-paper override of the group's `type`: `journal`, `conference`, `preprint` or `publication` |
-| `selected` | `true` to display; `false` to hide while retaining the record |
+| `enabled` | `true` to display; `false` to hide while retaining the record; omitted means visible |
 | `role` | `first` (†), `co-first` (*), `corresponding` (‡), or `coauthor` (no symbol) |
 | `co_first_authors` | Optional array containing **every** shared first author, using names exactly as they appear in `authors` |
 | `project` | Optional project URL |

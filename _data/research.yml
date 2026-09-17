@@ -22,6 +22,7 @@ projects:
   # Crops are in original pixels and trim only outer padding in the page, not the file.
   # 可选：image_size 为原图宽高；image_crop 为 [左上角 x, y, 裁切宽, 高]，单位为原图像素。
   - id: articulated-vehicles
+    enabled: true
     title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
     description: "Ongoing research on **Transformer-based imitation learning** and **reinforcement-learning-enhanced MPC** for articulated heavy-duty and off-road vehicles under complex vehicle–terrain interactions. The SafeTrucks project combines vehicle dynamics, road weather, friction information, and AI to improve heavy-vehicle safety."
     image: /images/research/safetrucks-snow.jpg
@@ -36,6 +37,7 @@ projects:
     title_zh: 基于学习的铰接式重型及越野车辆规划与控制
     description_zh: "面向复杂车辆—地形交互下的铰接式重型及越野车辆，正在探索**基于 Transformer 的模仿学习**与**强化学习增强的模型预测控制（MPC）**。SafeTrucks 项目结合车辆动力学、道路气象、摩擦信息与人工智能，提升重型车辆的行驶安全性。"
   - id: drivellm
+    enabled: true
     title: "DriveLLM: Explainable Decision-Making for Autonomous Driving"
     image: /images/research/drivellm.png
     image_size: [1283, 1049]
@@ -43,7 +45,7 @@ projects:
     image_alt: WATonobus and driving scenes with pedestrians, snow, and LiDAR sensing from the DriveLLM research overview.
     description: "Integrating **large language models (LLMs)** with autonomous driving stacks for commonsense reasoning and explainable decisions. **Driving-specific fine-tuning** and **cyber-physical feedback** help address unfamiliar scenarios and human instructions, with real-world WATonobus case studies."
     links:
-      - label: Paper · IEEE T-IV
+      - label: IEEE T-IV
         url: https://ieeexplore.ieee.org/document/10297415
       - label: Project
         url: https://github.com/DriveLLM/DriveLLM
@@ -53,6 +55,7 @@ projects:
   # Official project page and unmodified figure; CoInfra is an ongoing preprint project.
   # Image source: https://raw.githubusercontent.com/NingMingHao/CoInfra/main/assets/DatasetExample.jpg
   - id: coinfra
+    enabled: true
     title: "CoInfra: Cooperative Perception in Adverse Weather"
     title_zh: CoInfra：恶劣天气下的车路协同感知
     description: "Cooperative camera–LiDAR perception with shared **bird’s-eye-view (BEV) representations**, **3D detection**, and **delay-aware multi-node fusion**. CoInfra provides a real-world platform and adverse-weather dataset for robust vehicle–infrastructure cooperation beyond onboard sensing."
@@ -73,6 +76,7 @@ projects:
       - label: Project
         url: https://github.com/NingMingHao/CoInfra
   - id: multi-agent
+    enabled: true
     title: Learning-based multi-agent collaboration
     image: /images/research/multi-agent.png
     image_size: [1188, 1044]
@@ -80,9 +84,9 @@ projects:
     image_alt: Vehicle subsystem agents and autonomous racing examples illustrating multi-agent coordination.
     description: "**ADMM-based distributed MPC** coordinates coupled agents with convergence guarantees, while a **learned warm-start** accelerates negotiation. The framework supports plug-and-play control objectives, evaluated through path-tracking simulations and electric-vehicle experiments."
     links:
-      - label: Paper · IEEE T-ITS 2025
+      - label: IEEE T-ITS 2025
         url: https://ieeexplore.ieee.org/document/11181563
-      - label: Paper · ITSC 2024
+      - label: ITSC 2024
         url: https://ieeexplore.ieee.org/document/10919711
       - label: arXiv · T-ITS
         url: https://arxiv.org/abs/2609.12108
@@ -94,6 +98,7 @@ projects:
     description_zh: "基于**交替方向乘子法（ADMM）的分布式模型预测控制**，在收敛保证下协调耦合智能体，并通过**学习型热启动**加速协商。框架支持控制目标的即插即用，以路径跟踪仿真和电动汽车试验验证性能。"
     image_alt_zh: 展示车辆子系统智能体、自动驾驶赛车与多智能体协作的研究图片。
   - id: learning-mpc
+    enabled: true
     title: Learning-based MPC
     image: /images/research/learning-mpc.png
     image_size: [1526, 1040]
@@ -103,7 +108,7 @@ projects:
     links:
       - label: PhD thesis
         url: https://hdl.handle.net/10012/21401
-      - label: Paper · IEEE T-ITS 2024
+      - label: IEEE T-ITS 2024
         url: https://ieeexplore.ieee.org/document/10623843
       - label: arXiv
         url: https://arxiv.org/abs/2609.11871
@@ -113,6 +118,7 @@ projects:
     description_zh: "在智能体模型预测控制中，通过**在线高斯过程（GP）** 学习刻画未知动力学。结合**多步不确定性预测**与**随机机会约束**，兼顾适应能力、跟踪性能与安全，并以实时数据管理和实车试验加以支撑与验证。"
     image_alt_zh: 湿滑路面实车试验、数据驱动动力学建模，以及考虑不确定性的模型预测控制约束。
   - id: f1tenth
+    enabled: true
     title: "F1TENTH: RL-MPC and World Models for Agile Racing"
     image: /images/research/f1tenth.jpg
     image_size: [791, 318]
@@ -126,6 +132,7 @@ projects:
     description_zh: "正在研究用于控制目标调优的**强化学习与模型预测控制融合方法（RL-MPC）**，以及用于动力学预测的**动作条件世界模型**。结合视觉与激光雷达观测学习预测模型，支撑敏捷自主竞速中下游基于优化的规划与控制。"
     image_alt_zh: 搭载传感器的 F1TENTH 自主赛车平台及其建图画面。
   - id: xlerobot
+    enabled: true
     title: "XLeRobot: Generative Mobile Manipulation"
     image: /images/research/xlerobot.jpg
     image_size: [728, 318]

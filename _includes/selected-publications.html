@@ -2,7 +2,7 @@
 {% assign co_first_role = site.data.publication_roles.roles | where: 'id', 'co-first' | first %}
 {% for group in site.data.publications %}
 {% for paper in group.items %}
-{% if paper.selected %}
+{% if paper.enabled != false %}
 {% assign publication_type = paper.type | default: group.type | default: 'publication' %}
 {% assign show_publication_link = false %}
 {% if paper.url and publication_type != 'preprint' %}{% assign show_publication_link = true %}{% endif %}

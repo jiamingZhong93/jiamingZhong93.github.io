@@ -1,0 +1,19 @@
+<div class="research-projects" id="{{ project_group_id }}">
+{% for project in project_items %}
+{% if project.enabled != false %}
+<article id="{{ project.id }}" class="research-project{% if project.image %} has-media{% else %} text-project{% endif %}">
+<h3 data-zh="{{ project.title_zh | default: project.title | escape }}">{{ project.title }}</h3>
+{% if project.image %}
+<a class="project-media media-link{% if project.image_crop %} is-cropped{% endif %}" href="{{ project.image_source_url | default: project.image | escape }}"{% if project.image_crop %} style="--image-width: {{ project.image_size[0] }}; --crop-x: {{ project.image_crop[0] }}; --crop-y: {{ project.image_crop[1] }}; --crop-width: {{ project.image_crop[2] }}; --crop-height: {{ project.image_crop[3] }};"{% endif %}{% if project.image_credit %} title="{{ project.image_credit | escape }} · {{ project.image_license | escape }}"{% endif %} aria-label="View {{ project.title }} project image" data-zh-aria-label="查看{{ project.title_zh | default: project.title | escape }}项目图片">
+<img src="{{ project.image }}" alt="{{ project.image_alt | escape }}" data-zh-alt="{{ project.image_alt_zh | default: project.image_alt | escape }}" loading="lazy" width="{{ project.image_size[0] | default: 560 }}" height="{{ project.image_size[1] | default: 370 }}">
+</a>
+{% endif %}
+<div class="project-body">
+<div class="project-description localized-copy" lang="en">{{ project.description | markdownify }}</div>
+<div class="project-description localized-copy" lang="zh-CN">{{ project.description_zh | default: project.description | markdownify }}</div>
+<div class="project-links">{% for link in project.links %}<a href="{{ link.url }}"><span data-zh="{{ site.data.translations.links[link.label] | default: link.label | escape }}">{{ link.label }}</span> <span aria-hidden="true">↗</span></a>{% endfor %}{% if project.video_url %}<a href="{{ project.video_url }}"><span data-zh="视频">Video</span> <span aria-hidden="true">↗</span></a>{% endif %}</div>
+</div>
+</article>
+{% endif %}
+{% endfor %}
+</div>

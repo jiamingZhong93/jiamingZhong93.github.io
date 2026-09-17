@@ -27,6 +27,7 @@
 | 中英文姓名、默认/备用头像、个人链接 | [_config.yml](../_config.yml) 的 `author` |
 | 中英文职位及单位 | [_config.yml](../_config.yml) 的 `author.roles` |
 | Home 研究愿景、研究项目 | [_data/research.yml](../_data/research.yml) 的 `vision` 和 `projects` |
+| Practice 实践项目与图片 | [_data/practice.yml](../_data/practice.yml)、[images/practice/](../images/practice/) |
 | Home 中英文研究历程图 | [_data/trajectory.yml](../_data/trajectory.yml) 的 `phases` 及各组 `steps` |
 | 论文、作者角色符号 | [_data/publications.json](../_data/publications.json)、[_data/publication_roles.yml](../_data/publication_roles.yml) |
 | 教学、工作与教育经历 | [_data/career.yml](../_data/career.yml) |
@@ -41,6 +42,19 @@
 教学经历在 `_data/career.yml` 的 `teaching` 下维护，使用与工作经历相同的中英文字段，显示在工作经历之前。
 
 同一时段涉及多个单位的经历，可用 `organizations` 数组为每个单位填写 `name`、`name_zh` 和 `url`，合并条目只保留一组日期和职位。单一单位的条目仍使用 `organization`、`organization_zh` 和 `url`。教学与教育经历中的学校名称显示为纯文本。
+
+### 单独显示或隐藏条目
+
+Research、Practice、Publication 和 Teaching 的每一项都有 `enabled` 开关。设为 `false` 隐藏，改回 `true` 恢复显示；原内容保留在数据文件中，开关同时作用于中英文。
+
+| 部分 | 每一项所在位置 | 隐藏 / 显示 |
+| --- | --- | --- |
+| Research | `_data/research.yml` → `projects` | `enabled: false` / `enabled: true` |
+| Practice | `_data/practice.yml` → `projects` | `enabled: false` / `enabled: true` |
+| Publication | `_data/publications.json` → 各分组的 `items` | `"enabled": false` / `"enabled": true` |
+| Teaching | `_data/career.yml` → `teaching` | `enabled: false` / `enabled: true` |
+
+请使用真正的布尔值，`true` 和 `false` **不要加引号**。YAML 中将 `enabled` 与该条目的 `title`、`dates` 等字段对齐；JSON 中放在对应论文的对象内。省略 `enabled` 时默认显示。论文已用 `enabled` 替代旧的 `selected` 字段，原有显示状态保留。
 
 ### 中英文要一起维护
 
@@ -81,10 +95,13 @@ phases:
 
 图的标题在文件顶部的 `title/title_zh`。修改主题名称时保留原有 `id`，小图标由这个字段选择；各研究步骤的 `id` 保持唯一，调整顺序时也保留。标签尽量简短，六个主题在电脑上排成三列两行、手机上排成两列三行，不显示描述或编号。文字与顺序只需修改 YAML；样式在 `assets/css/profile.css`，图标在 `_includes/research-trajectory.html`。
 
-在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，删除整项即可移除。介绍保持简短，同时维护中英文。`description/description_zh` 支持用 Markdown `**加粗**` 突出关键方法；两种语言分别渲染到独立的 `localized-copy` 区块，切换语言时会保留格式。若加粗内容以括号结尾，结束标记 `**` 与后续中文之间加一个空格，例如 `**强化学习（RL）** 增强控制`。
+**Practice / 实践** 位于 Research 之后，沿用相同的图文格式，重点展示业界和创业经历。电动车条目介绍 NIO/SAIC 的量产软件工作（状态估计、四驱动态控制、空气与主动悬架控制），配图使用冰雪驾驶照片。条目在 `_data/practice.yml` 中维护，静态图片放在 `images/practice/`。更换图片时同步更新 `image`、`image_size` 和中英文替代文字；演示视频地址填入 `video_url`，相关网页放入 `links`。Research 与 Practice 共用 `_includes/project-list.html`。
+
+在 `_data/research.yml` 中复制现有项目即可新增。每个 `id` 必须唯一；调整条目顺序即可调整显示顺序，设为 `enabled: false` 可隐藏条目，无需删除原内容。介绍保持简短，同时维护中英文。`description/description_zh` 支持用 Markdown `**加粗**` 突出关键方法；两种语言分别渲染到独立的 `localized-copy` 区块，切换语言时会保留格式。若加粗内容以括号结尾，结束标记 `**` 与后续中文之间加一个空格，例如 `**强化学习（RL）** 增强控制`。
 
 ```yaml
   - id: my-project
+    enabled: true
     title: "My project: Short focus"
     title_zh: "我的项目：简短方向"
     description: "One sentence about the project and its **key method**."
@@ -105,7 +122,7 @@ phases:
 | --- | --- |
 | 默认头像 | 替换 `images/avatar.jpg`；若改名，同步修改 `_config.yml` 中的 `author.avatar`。 |
 | 备用头像 | 替换 `images/portraits/alternate.jpg`；若改名，同步修改 `author.avatar_alternate`。 |
-| 项目图片 | 放进 `images/research/`，修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG；宽度统一，高度按原图比例自适应，无需填写 `image_aspect_ratio`。 |
+| 项目图片 | Research 图片放进 `images/research/`，Practice 图片放进 `images/practice/`；修改项目的 `image` 路径。支持 JPG、PNG、GIF 动图、WebP、SVG；宽度统一，高度按原图比例自适应，无需填写 `image_aspect_ratio`。 |
 | 顶部背景 | 照片放进 `images/background/`，再在 `_data/background.yml` 的 `images` 下添加对应文件名；只有已配置的照片参与轮播。 |
 
 ### 头像
@@ -223,7 +240,7 @@ JZ 标识的可编辑源文件是 [images/favicon.svg](../images/favicon.svg)。
 | `authors` | 按论文顺序填写完整作者列表，用英文逗号分隔；不用 HTML，不手动加符号或 `et al.` |
 | `venue`、`year`、`url` | 原始期刊/会议信息、年份、论文链接；未被期刊或会议接收的预印本省略 `venue` |
 | `type` | 单篇论文可选，覆盖分组的 `type`：`journal`、`conference`、`preprint` 或 `publication` |
-| `selected` | `true` 显示；`false` 保留记录但隐藏 |
+| `enabled` | `true` 显示；`false` 保留记录但隐藏；省略时默认显示 |
 | `role` | `first` 第一作者 †；`co-first` 共同第一作者 *；`corresponding` 通讯作者 ‡；`coauthor` 合作者（无符号） |
 | `co_first_authors` | 可选数组，填写该论文的**所有共同第一作者**，姓名须与 `authors` 中完全一致 |
 | `project` | 可选的项目网址 |

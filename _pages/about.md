@@ -41,20 +41,25 @@ redirect_from: ["/about/", "/about.html"]
 {% include research-projects.html %}
 </section>
 
+<section id="practice" class="profile-section" aria-labelledby="practice-label">
+<h2 class="section-label" id="practice-label" data-zh="02 / 实践">02 / PRACTICE</h2>
+{% include practice-projects.html %}
+</section>
+
 <section id="publications" class="profile-section" aria-labelledby="publications-label">
-<h2 class="section-label" id="publications-label" data-zh="02 / 论文">02 / PUBLICATIONS</h2>
+<h2 class="section-label" id="publications-label" data-zh="03 / 论文">03 / PUBLICATION</h2>
 <p class="section-note"><span data-zh="以下列出部分代表论文，完整列表请见">Selected publications are listed below. The full list is available </span><a href="{{ site.author.googlescholar }}" data-zh="这里">here</a><span data-zh="。">.</span></p>
 {% include publication-legend.html %}
 {% include selected-publications.html %}
 </section>
 
 <section id="teaching" class="profile-section compact-section" aria-labelledby="teaching-label">
-<h2 class="section-label" id="teaching-label" data-zh="03 / 教学经历">03 / TEACHING</h2>
-<div class="career-list">{% for item in site.data.career.teaching %}<article><p class="career-date">{{ item.dates }}</p><div><h3 data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</h3><p data-zh="{{ item.role_zh | default: item.role | escape }}">{{ item.role }}</p></div></article>{% endfor %}</div>
+<h2 class="section-label" id="teaching-label" data-zh="04 / 教学经历">04 / TEACHING</h2>
+<div class="career-list">{% for item in site.data.career.teaching %}{% if item.enabled != false %}<article><p class="career-date">{{ item.dates }}</p><div><h3 data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</h3><p data-zh="{{ item.role_zh | default: item.role | escape }}">{{ item.role }}</p></div></article>{% endif %}{% endfor %}</div>
 </section>
 
 <section id="experience" class="profile-section compact-section" aria-labelledby="experience-label">
-<h2 class="section-label" id="experience-label" data-zh="04 / 工作经历">04 / EXPERIENCE</h2>
+<h2 class="section-label" id="experience-label" data-zh="05 / 工作经历">05 / EXPERIENCE</h2>
 <div class="career-list">{% for item in site.data.career.experience %}
 <article><p class="career-date" data-zh="{{ item.dates_zh | default: item.dates | escape }}">{{ item.dates }}</p><div>
 <h3>{% if item.organizations %}{% for organization in item.organizations %}<a href="{{ organization.url }}" data-zh="{{ organization.name_zh | default: organization.name | escape }}">{{ organization.name }}</a>{% unless forloop.last %} <span class="career-organization-separator">/</span> {% endunless %}{% endfor %}{% else %}<a href="{{ item.url }}" data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</a>{% endif %}</h3>
@@ -63,7 +68,7 @@ redirect_from: ["/about/", "/about.html"]
 </section>
 
 <section id="education" class="profile-section compact-section" aria-labelledby="education-label">
-<h2 class="section-label" id="education-label" data-zh="05 / 教育经历">05 / EDUCATION</h2>
+<h2 class="section-label" id="education-label" data-zh="06 / 教育经历">06 / EDUCATION</h2>
 <div class="career-list">{% for item in site.data.career.education %}<article><p class="career-date">{{ item.dates }}</p><div><h3 data-zh="{{ item.degree_zh | default: item.degree | escape }}">{{ item.degree }}</h3><p data-zh="{{ item.institution_zh | default: item.institution | escape }}">{{ item.institution }}</p></div></article>{% endfor %}</div>
 </section>
 
