@@ -749,17 +749,6 @@ images:
     mobile_position: "50% 94%"
     fit: "cover"
     desktop_max_width: 1200
-  photo_20260916_lake_paddling.webp:
-    category: scenery
-    title: "Lake paddling"
-    title_zh: "湖上泛舟"
-    description: "A quiet moment on open water."
-    description_zh: "泛舟湖上，享受片刻宁静。"
-    position: "50% 75%"
-    mobile_position: "50% 100%"
-    fit: "cover"
-    subject: [966, 725, 193, 200]
-    source_size: [2073, 1170]
   photo_20260916_city_panorama.webp:
     category: scenery
     title: "Montreal"
