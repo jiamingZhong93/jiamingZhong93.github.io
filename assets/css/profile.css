@@ -124,6 +124,7 @@ html[lang="zh-CN"] .section-label { letter-spacing: .08em; }
 /* Soft, open arrows share the equation's gradient and continue after every theme. */
 .research-trajectory { display: block; container-type: inline-size; margin: 1.65rem 0 .3rem; }
 .research-trajectory figcaption { margin: 0; font-family: inherit; font-style: normal; }
+.page__content .trajectory-outlook { margin-top: 1rem; }
 .trajectory-map { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.35rem 1.25rem; margin: 0; padding: 1.15rem 1.15rem 1.2rem; list-style: none; border: 1px solid rgba(65,99,106,.09); border-radius: 14px; background: linear-gradient(115deg,rgba(224,239,237,.42),rgba(235,229,245,.42)); }
 .trajectory-phase { --phase-color: #2f737b; position: relative; min-width: 0; margin: 0; padding: 0; }
 .trajectory-phase:nth-child(2) { --phase-color: #456991; }

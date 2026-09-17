@@ -4,6 +4,8 @@
 # 方法论标签统一在下方维护；保留 stage 键，方便各主题引用。
 title: Research trajectory
 title_zh: 研究历程
+outlook: "Beyond these testbeds, I envision trustworthy Physical AI across transportation, mining, warehousing and logistics, agriculture, off-road systems, and mobile manipulation. Combining learning, model-based reasoning, and optimization, I aim for reliable autonomy that generalizes across tasks and conditions, continually adapts, and respects physical and safety constraints."
+outlook_zh: "面向现有实验平台之外的更广泛应用，我希望将可信物理人工智能拓展至交通、矿业、仓储物流、农业、越野系统与移动操作。通过融合学习、基于模型的推理与优化，我致力于构建能够跨任务与工况泛化、持续适应，并遵守物理与安全约束的可靠自主系统。"
 stages:
   foundations:
     title: Hybrid foundation
