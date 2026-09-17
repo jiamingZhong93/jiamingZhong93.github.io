@@ -28,6 +28,7 @@ redirect_from: ["/about/", "/about.html"]
 </div>
 <p class="vision-description" data-zh="{{ site.data.research.vision.description_zh | escape }}">{{ site.data.research.vision.description }}</p>
 <h2 id="core-questions-label" class="home-subheading core-focus-heading" data-zh="核心问题">Core questions</h2>
+<p class="core-questions-intro" data-zh="{{ site.data.research.vision.questions_intro_zh | escape }}">{{ site.data.research.vision.questions_intro | escape }}</p>
 <ul class="vision-points" aria-labelledby="core-questions-label">
 {% for point in site.data.research.vision.bullets %}<li data-zh="{{ point.text_zh | default: point.text | escape }}">{{ point.text }}</li>{% endfor %}
 </ul>
