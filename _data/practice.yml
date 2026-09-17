@@ -43,8 +43,8 @@ projects:
     id: practice-autonomous-parking
     title: Autonomous parking using a ToF camera
     title_zh: 基于 ToF 相机的自动泊车
-    description: "Developed **autonomous parking with 3D ToF sensing** for delivery robots with LoopX and VSemi."
-    description_zh: "与 LoopX、VSemi 合作，利用**三维 ToF 感知**开发配送机器人自动泊车系统。"
+    description: "Developed **high-precision autonomous parking with 3D ToF sensing** for delivery robots with LoopX and VSemi."
+    description_zh: "与 LoopX、VSemi 合作，利用**三维 ToF 感知**开发配送机器人高精度自动泊车系统。"
     image: /images/practice/autonomous-parking.png
     image_size: [585, 453]
     image_crop: [0, 80, 585, 373]
