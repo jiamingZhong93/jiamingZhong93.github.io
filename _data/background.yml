@@ -516,7 +516,7 @@ images:
   # Added September 2026: individual, full-bleed crops on each device.
   photo_20260916_aurora.webp:
     category: scenery
-    title: "Northern lights"
+    title: "Aurora"
     title_zh: "极光"
     description: "Green and violet light across the night sky."
     description_zh: "绿紫交织的极光点亮夜空。"
@@ -763,8 +763,8 @@ images:
     source_size: [2073, 1170]
   photo_20260916_city_panorama.webp:
     category: scenery
-    title: "City panorama"
-    title_zh: "城市远眺"
+    title: "Montreal"
+    title_zh: "蒙特利尔"
     description: "A city skyline beneath drifting clouds."
     description_zh: "流云之下，远眺城市天际线。"
     position: "50% 55%"
@@ -790,8 +790,8 @@ images:
     fit: "cover"
   photo_20260916_coastal_bridge.webp:
     category: scenery
-    title: "Coastal bridge"
-    title_zh: "跨海大桥"
+    title: "Dalian"
+    title_zh: "大连"
     description: "A sweeping bridge over blue coastal waters."
     description_zh: "长桥横跨碧蓝海面。"
     position: "50% 60%"
