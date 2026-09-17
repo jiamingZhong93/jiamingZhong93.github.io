@@ -5,8 +5,8 @@ vision:
   learning_zh: 数据驱动学习
   prior: Model-based prior
   prior_zh: 基于模型的先验
-  description: "My research focuses on hybrid data-driven and model-based priors that formally embed AI within classic models, human preferences, and safety-critical architectures. Data-driven learning improves intelligence and adaptability under uncertainty, while structured schemes incorporate human knowledge as priors and enforce safety, stability, and robustness. My goal is to build trustworthy Physical AI that transfers knowledge across tasks and environments, with verifiable safety and reliability."
-  description_zh: "我的研究聚焦于数据驱动方法与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。数据驱动学习提升系统在不确定环境下的智能水平与适应能力，结构化方法则将人类知识作为先验，保障安全、稳定与鲁棒。我的目标是构建可信物理人工智能，使自主系统能够跨任务、跨环境迁移知识，并具备可验证的安全性与可靠性。"
+  description: "My research focuses on hybrid data-driven and model-based priors that formally embed AI within classic models, human preferences, and safety-critical architectures. Modern learning enables representations and policies that are adaptive under uncertainty and generalizable across tasks and environments, while structured schemes incorporate human knowledge as priors and enforce safety, stability, and robustness."
+  description_zh: "我的研究聚焦于数据驱动方法与模型先验的融合，以形式化方式将人工智能与经典模型、人类偏好及安全关键架构相结合。现代学习方法使表征与策略能够适应不确定性，并跨任务、跨环境泛化；结构化方法则将人类知识作为先验，保障安全、稳定与鲁棒。"
   questions_intro: "My long-term research agenda is organized around three fundamental questions:"
   questions_intro_zh: "我的长期研究规划围绕以下三个基本问题展开："
   bullets:
