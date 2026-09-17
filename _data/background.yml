@@ -417,18 +417,17 @@ images:
     mobile_position: "50% 65%"
     fit: "cover"
     mobile_fit: "cover"
-  photo_AV_test.jpg:
+  photo_AV_test.png:
     category: experience
-    mobile_max_width: 520
-    desktop: false
     title: "Autonomous driving"
     title_zh: "自动驾驶"
     description: "Two-vehicle interaction test."
     description_zh: "双车交互测试。"
-    position: "50% 50%"
-    mobile_position: "50% 55%"
+    # Keep both vehicles and the roof sensor; use a closer crop on phones/tablets.
+    source_size: [2172, 724]
+    position: "50% 51%"
+    mobile_crop: "540 150 1110 440"
     fit: "cover"
-    mobile_fit: "cover"
   photo_Big_little.jpg:
     category: experience
     mobile_max_width: 430
@@ -460,8 +459,8 @@ images:
     mobile_max_width: 520
     title: "SafeTrucks"
     title_zh: "SafeTrucks"
-    description: "SafeTrucks research on safer heavy-vehicle control. Photo: SafeTrucks."
-    description_zh: "SafeTrucks 重型车辆安全控制研究。图片：SafeTrucks。"
+    description: "SafeTrucks research on safer heavy-vehicle control."
+    description_zh: "SafeTrucks 重型车辆安全控制研究。"
     position: "50% 57%"
     mobile_position: "60% 55%"
     fit: "cover"
