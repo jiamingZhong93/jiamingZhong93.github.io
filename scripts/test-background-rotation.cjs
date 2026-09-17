@@ -36,134 +36,108 @@ function longestRun(sequence) {
   return longest;
 }
 
-test('unequal desktop and mobile pools interleave through the whole no-repeat round', () => {
-  for (const [experience, scenery, maxRun] of [[10, 34, 8], [31, 40, 4]]) {
+test('category frequency is 60:40 for unequal desktop and mobile pools, with varied spacing', () => {
+  for (const [experience, scenery] of [[10, 34], [31, 40]]) {
     const library = entries(experience, scenery);
     const keys = library.map(entry => entry.key);
-    const categoryOrders = new Set();
-    const gaps = new Set();
-    for (let seed = 1; seed <= 100; seed++) {
+    const orders = new Set();
+    for (let seed = 1; seed <= 50; seed++) {
       const rotation = create({ entries: library, random: seeded(seed) });
-      const shown = new Set();
       const sequence = [];
       let previous;
-      let lastWork = -1;
-      for (let i = 0; i < keys.length; i++) {
+      for (let i = 0; i < 600; i++) {
         const choice = next(rotation, keys, previous);
-        assert.equal(choice.reset, false);
-        assert.equal(shown.has(choice.key), false);
-        shown.add(choice.key);
+        assert.notEqual(choice.key, previous);
         sequence.push(choice.category);
-        if (choice.category === 'experience') {
-          if (lastWork >= 0) gaps.add(i - lastWork);
-          lastWork = i;
-        }
         previous = choice.key;
       }
-      assert.ok(lastWork >= keys.length * .75, 'work photos were exhausted before the final quarter');
-      assert.ok(longestRun(sequence) <= maxRun, `unmixed ${experience}:${scenery} round: ${sequence}`);
-      assert.equal(shown.size, keys.length);
-      categoryOrders.add(sequence.join(','));
+      const workCount = sequence.filter(category => category === 'experience').length;
+      assert.ok(Math.abs(workCount - 360) <= 1, `expected about 360 work photos, got ${workCount}`);
+      assert.ok(longestRun(sequence) <= 4, 'categories should remain interleaved');
+      orders.add(sequence.slice(0, 40).join(','));
     }
-    assert.ok(categoryOrders.size > 90, 'categories should not follow a fixed repeated schedule');
-    assert.ok(gaps.size >= 3, 'work/scenery gaps should vary, not alternate mechanically');
+    assert.ok(orders.size > 40, 'the category order must retain random variation');
   }
 });
 
-test('desktop and mobile libraries visit every slide before repeating for two complete rounds', () => {
+test('each category visits every eligible slide before repeating independently', () => {
   for (const [experience, scenery] of [[10, 34], [31, 40]]) {
     const library = entries(experience, scenery);
     const keys = library.map(entry => entry.key);
     const rotation = create({ entries: library, random: seeded(21) });
+    const visited = { experience: new Set(), scenery: new Set() };
+    const counts = { experience: 0, scenery: 0 };
+    const sizes = { experience, scenery };
     let previous;
-    for (let round = 0; round < 2; round++) {
-      const seen = new Set();
-      for (let i = 0; i < keys.length; i++) {
-        const choice = next(rotation, keys, previous);
-        assert.equal(choice.reset, round > 0 && i === 0);
-        assert.equal(seen.has(choice.key), false, `${experience}:${scenery} repeated ${choice.key}`);
-        assert.notEqual(choice.key, previous, 'round boundary repeated the last slide');
-        seen.add(choice.key);
-        previous = choice.key;
+    while (counts.experience < experience * 2 || counts.scenery < scenery * 2) {
+      const choice = next(rotation, keys, previous);
+      const category = choice.category;
+      const newRound = counts[category] > 0 && counts[category] % sizes[category] === 0;
+      assert.equal(choice.reset, newRound);
+      if (newRound) {
+        assert.equal(visited[category].size, sizes[category]);
+        visited[category].clear();
       }
-      assert.deepEqual([...seen].sort(), [...keys].sort());
+      assert.equal(visited[category].has(choice.key), false, 'photo repeated inside its category round');
+      assert.notEqual(choice.key, previous);
+      visited[category].add(choice.key);
+      counts[category]++;
+      previous = choice.key;
     }
   }
 });
 
-test('weights prefer earlier positions while preserving interleaving, including large finite values', () => {
+test('weights control actual counts and only relative values matter, including huge finite weights', () => {
   const library = entries(11, 10);
   const keys = library.map(entry => entry.key);
-  function averagePosition(weights) {
-    const random = seeded(23);
-    let positions = 0;
-    let first = 0;
-    for (let i = 0; i < 1000; i++) {
-      const rotation = create({ entries: library, weights, random });
-      const sequence = keys.map((key, index) => {
-        const choice = next(rotation, keys);
-        if (choice.category === 'scenery') {
-          positions += index;
-          if (index === 0) first++;
-        }
-        return choice.category;
-      });
-      assert.ok(sequence.slice(-5).includes('experience'));
-      assert.ok(sequence.slice(-5).includes('scenery'));
-      assert.ok(longestRun(sequence) <= 3);
-    }
-    return { position: positions / 10000, first: first / 1000 };
+  function sequence(weights) {
+    const rotation = create({ entries: library, weights, random: seeded(23) });
+    return Array.from({ length: 500 }, () => next(rotation, keys).category);
   }
-  const equal = averagePosition({ experience: 1, scenery: 1 });
-  const preferred = averagePosition({ experience: 1, scenery: 4 });
-  const huge = averagePosition({ experience: 4e307, scenery: 1.6e308 });
-  assert.ok(preferred.position < equal.position - .4, 'higher weight should move a category forward');
-  assert.ok(preferred.first > equal.first + .2);
-  assert.ok(preferred.first < .99, 'weight preference should still allow either category to start');
+  const equal = sequence({ experience: 1, scenery: 1 });
+  const preferred = sequence({ experience: 1, scenery: 4 });
+  const huge = sequence({ experience: 4e307, scenery: 1.6e308 });
+  assert.ok(Math.abs(equal.filter(category => category === 'scenery').length - 250) <= 1);
+  assert.ok(Math.abs(preferred.filter(category => category === 'scenery').length - 400) <= 1);
   assert.deepEqual(huge, preferred, 'only relative weights should matter');
 });
 
-test('both actual library sizes complete two global rounds even when every slide follows a reload', () => {
+test('reloading each slide preserves both category frequency and independent no-repeat progress', () => {
   for (const [experience, scenery] of [[10, 34], [31, 40]]) {
     const library = entries(experience, scenery);
     const keys = library.map(entry => entry.key);
     const storage = memory();
+    const counts = { experience: 0, scenery: 0 };
+    const sizes = { experience, scenery };
+    const visited = { experience: new Set(), scenery: new Set() };
     let previous;
-    for (let round = 0; round < 2; round++) {
-      const seen = new Set();
-      for (let reload = 0; reload < keys.length; reload++) {
-        const rotation = create({ entries: library, storage, random: seeded(30 + reload + round * keys.length) });
-        const choice = next(rotation, keys);
-        assert.equal(choice.reset, round > 0 && reload === 0);
-        assert.equal(seen.has(choice.key), false, 'refresh repeated before global exhaustion');
-        assert.notEqual(choice.key, previous);
-        seen.add(choice.key);
-        previous = choice.key;
-      }
-      assert.equal(seen.size, keys.length);
+    for (let reload = 0; reload < 500; reload++) {
+      const rotation = create({ entries: library, storage, random: seeded(30 + reload) });
+      const choice = next(rotation, keys);
+      const category = choice.category;
+      const newRound = counts[category] > 0 && counts[category] % sizes[category] === 0;
+      assert.equal(choice.reset, newRound);
+      if (newRound) visited[category].clear();
+      assert.equal(visited[category].has(choice.key), false);
+      assert.notEqual(choice.key, previous);
+      visited[category].add(choice.key);
+      counts[category]++;
+      previous = choice.key;
     }
+    assert.ok(Math.abs(counts.experience - 300) <= 1, 'refresh must not restart category preference');
   }
 });
 
-test('refreshing every slide preserves category spacing rather than front-loading work again', () => {
-  for (const [experience, scenery, maxRun] of [[10, 34, 8], [31, 40, 4]]) {
-    const library = entries(experience, scenery);
-    const keys = library.map(entry => entry.key);
-    for (let seed = 1; seed <= 30; seed++) {
-      const storage = memory();
-      const sequence = [];
-      const shown = new Set();
-      for (let reload = 0; reload < keys.length; reload++) {
-        const rotation = create({ entries: library, storage, random: seeded(seed * 100 + reload) });
-        const choice = next(rotation, keys);
-        assert.equal(shown.has(choice.key), false);
-        shown.add(choice.key);
-        sequence.push(choice.category);
-      }
-      assert.ok(sequence.lastIndexOf('experience') >= keys.length * .75);
-      assert.ok(longestRun(sequence) <= maxRun, `refresh produced a long same-category run: ${sequence}`);
-    }
+test('strong custom frequency weights retain their balance across page reloads', () => {
+  const library = entries(8, 12);
+  const keys = library.map(entry => entry.key);
+  const storage = memory();
+  let work = 0;
+  for (let reload = 0; reload < 1000; reload++) {
+    const rotation = create({ entries: library, storage, weights: { experience: 9, scenery: 1 }, random: seeded(300 + reload) });
+    if (next(rotation, keys).category === 'experience') work++;
   }
+  assert.ok(Math.abs(work - 900) <= 1);
 });
 
 test('refresh remembers displayed photographs but reshuffles the remaining deck', () => {
@@ -220,7 +194,7 @@ test('unshown preloads and failed candidates never change the persisted seen set
   assert.ok(visited.includes(speculative.key), 'cancelled or failed photo was lost');
 });
 
-test('a speculative new round does not clear either category until it is displayed', () => {
+test('a speculative category reset changes no state and its commit preserves the other category', () => {
   const library = entries(3, 4);
   const keys = library.map(entry => entry.key);
   const storage = memory();
@@ -236,31 +210,26 @@ test('a speculative new round does not clear either category until it is display
   rotation.commit(replacement);
   const state = JSON.parse(storage.getItem());
   assert.deepEqual(state.seen[replacement.category], [replacement.key]);
-  assert.deepEqual(state.seen[replacement.category === 'experience' ? 'scenery' : 'experience'], []);
-  const shown = new Set([replacement.key]);
-  for (let i = 1; i < keys.length; i++) {
-    const choice = next(rotation, keys);
-    assert.equal(choice.reset, false);
-    assert.equal(shown.has(choice.key), false);
-    shown.add(choice.key);
-  }
-  assert.ok(shown.has(speculative.key), 'cancelled new-round candidate must remain available');
+  const other = replacement.category === 'experience' ? 'scenery' : 'experience';
+  assert.deepEqual(state.seen[other], JSON.parse(saved).seen[other]);
+  assert.ok(Object.values(state.progress).some(value => value > 0), 'display should consume the weighted slot');
 });
 
-test('existing version-one category histories are retained when moving to global rounds', () => {
+test('old version-one global-round histories survive migration to category rounds', () => {
   const library = entries(2, 3);
   const storage = memory(JSON.stringify({ version: 1,
     seen: { experience: ['experience-0', 'experience-1'], scenery: ['scenery-0'] },
     history: [{ key: 'experience-1', members: ['experience-1'] }]
   }));
   const rotation = create({ entries: library, storage, random: seeded(19) });
-  const keys = library.map(entry => entry.key);
-  const first = next(rotation, keys);
-  const second = next(rotation, keys);
+  const scenicKeys = library.filter(entry => entry.category === 'scenery').map(entry => entry.key);
+  const first = next(rotation, scenicKeys);
+  const second = next(rotation, scenicKeys);
   assert.deepEqual([first.key, second.key].sort(), ['scenery-1', 'scenery-2']);
   assert.equal(first.reset, false);
   assert.equal(second.reset, false);
-  assert.equal(rotation.peek(keys).reset, true);
+  assert.equal(rotation.peek(scenicKeys).reset, true);
+  assert.deepEqual(JSON.parse(storage.getItem()).seen.experience, ['experience-0', 'experience-1']);
 });
 
 test('new and deleted entries reconcile with saved state', () => {
@@ -294,18 +263,16 @@ test('desktop groups and mobile members share display history', () => {
   assert.notEqual(reloaded.peek(['group-ab', 'c', 'd']).key, 'group-ab');
 });
 
-test('a partly viewed group shows its unseen member before any global reset', () => {
+test('a partly viewed group shows its unseen member before that category resets', () => {
   const library = [
     { key: 'a', category: 'experience' }, { key: 'b', category: 'experience' },
-    { key: 'c', category: 'scenery' },
+    { key: 'c', category: 'experience' },
     { key: 'group-ab', members: ['a', 'b'], category: 'experience' }
   ];
   const rotation = create({ entries: library, random: seeded(20) });
   rotation.commit('a');
   const desktop = ['group-ab', 'c'];
-  // Prefer an entirely new scene while it is available.
   assert.equal(next(rotation, desktop).key, 'c');
-  // A resize can re-display a; overlapping it must not hide the unseen b.
   rotation.commit('a');
   const group = next(rotation, desktop);
   assert.equal(group.key, 'group-ab');
@@ -335,39 +302,37 @@ test('newly eligible photos are visited when the viewport expands', () => {
   assert.ok(wider.slice(3).includes(next(rotation, wider).key));
 });
 
-test('rounds use the current viewport pool and uncommitted resets cannot hide newly eligible photos', () => {
+test('each category uses its current viewport pool without a speculative reset hiding new photos', () => {
   const library = entries(4, 5);
   const keys = library.map(entry => entry.key);
   const narrow = ['experience-0', 'experience-1', 'scenery-0', 'scenery-1'];
-  const hidden = keys.filter(key => !narrow.includes(key));
   const rotation = create({ entries: library, random: seeded(24) });
-  for (let i = 0; i < narrow.length; i++) {
-    const choice = next(rotation, narrow);
-    assert.equal(choice.reset, false);
-  }
-  // Ineligible photos do not prevent a narrow-screen round from completing.
+  for (const key of narrow) rotation.commit(key);
   assert.equal(rotation.peek(narrow).reset, true);
-  const revealed = new Set();
-  for (let i = 0; i < hidden.length; i++) {
-    const choice = next(rotation, keys);
-    assert.equal(choice.reset, false, 'a cancelled narrow-screen preload must not reset the full pool');
-    assert.ok(hidden.includes(choice.key));
-    assert.equal(revealed.has(choice.key), false);
-    revealed.add(choice.key);
+  for (const category of ['experience', 'scenery']) {
+    const categoryKeys = keys.filter(key => key.startsWith(category));
+    const hidden = categoryKeys.filter(key => !narrow.includes(key));
+    const revealed = new Set();
+    for (let i = 0; i < hidden.length; i++) {
+      const choice = next(rotation, categoryKeys);
+      assert.equal(choice.reset, false);
+      assert.ok(hidden.includes(choice.key));
+      assert.equal(revealed.has(choice.key), false);
+      revealed.add(choice.key);
+    }
+    assert.equal(rotation.peek(categoryKeys).reset, true);
   }
-  assert.equal(rotation.peek(keys).reset, true);
-  // If the smaller pool actually starts a new round, it still completes that
-  // round independently of photographs which cannot be displayed there.
-  const first = next(rotation, narrow);
-  assert.equal(first.reset, true);
-  const nextRound = new Set([first.key]);
-  for (let i = 1; i < narrow.length; i++) {
-    const choice = next(rotation, narrow);
-    assert.equal(choice.reset, false);
-    assert.equal(nextRound.has(choice.key), false);
-    nextRound.add(choice.key);
-  }
-  assert.equal(nextRound.size, narrow.length);
+});
+
+test('temporary single-category availability does not create catch-up bursts on resize', () => {
+  const library = entries(6, 9);
+  const keys = library.map(entry => entry.key);
+  const rotation = create({ entries: library, random: seeded(25) });
+  const onlyWork = keys.filter(key => key.startsWith('experience'));
+  for (let i = 0; i < 200; i++) next(rotation, onlyWork);
+  const sequence = Array.from({ length: 100 }, () => next(rotation, keys).category);
+  assert.ok(Math.abs(sequence.filter(category => category === 'experience').length - 60) <= 1);
+  assert.ok(longestRun(sequence) <= 3);
 });
 
 test('zero category weights disable that category; both zero produce no candidate', () => {

@@ -38,7 +38,7 @@ projects:
     description_zh: "面向复杂车辆—地形交互下的铰接式重型及越野车辆，正在探索**基于 Transformer 的模仿学习**与**强化学习增强的模型预测控制（MPC）**。SafeTrucks 项目结合车辆动力学、道路气象、摩擦信息与人工智能，提升重型车辆的行驶安全性。"
   - id: drivellm
     enabled: true
-    title: "DriveLLM: Explainable Decision-Making for Autonomous Driving"
+    title: "DriveLLM: explainable decision-making for autonomous driving"
     image: /images/research/drivellm.png
     image_size: [1283, 1049]
     image_crop: [19, 0, 1245, 1019]
@@ -56,7 +56,7 @@ projects:
   # Image source: https://raw.githubusercontent.com/NingMingHao/CoInfra/main/assets/DatasetExample.jpg
   - id: coinfra
     enabled: true
-    title: "CoInfra: Cooperative Perception in Adverse Weather"
+    title: "CoInfra: cooperative perception in adverse weather"
     title_zh: CoInfra：恶劣天气下的车路协同感知
     description: "Cooperative camera–LiDAR perception with shared **bird’s-eye-view (BEV) representations**, **3D detection**, and **delay-aware multi-node fusion**. CoInfra provides a real-world platform and adverse-weather dataset for robust vehicle–infrastructure cooperation beyond onboard sensing."
     description_zh: "融合相机与激光雷达观测，结合共享**鸟瞰视角（BEV）表征**、**三维目标检测**与**时延感知的多节点融合**。CoInfra 提供真实部署平台与恶劣天气数据集，支持超越车载感知范围的稳健车路协同研究。"
@@ -99,7 +99,7 @@ projects:
     image_alt_zh: 展示车辆子系统智能体、自动驾驶赛车与多智能体协作的研究图片。
   - id: learning-mpc
     enabled: true
-    title: Learning-based MPC
+    title: Learning-based model predictive control
     image: /images/research/learning-mpc.png
     image_size: [1526, 1040]
     image_crop: [6, 0, 1514, 1019]
@@ -119,21 +119,22 @@ projects:
     image_alt_zh: 湿滑路面实车试验、数据驱动动力学建模，以及考虑不确定性的模型预测控制约束。
   - id: f1tenth
     enabled: true
-    title: "F1TENTH: RL-MPC and World Models for Agile Racing"
-    image: /images/research/f1tenth.jpg
-    image_size: [791, 318]
-    image_crop: [1, 1, 790, 317]
-    image_alt: My F1TENTH autonomous racing platform with onboard sensors and mapping views.
+    title: "F1TENTH: RL-MPC and world models for agile racing"
+    # Share the new source photo with the banner; this crop emphasizes the car.
+    image: /images/background/photo_f1tenth.png
+    image_size: [2048, 768]
+    image_crop: [560, 145, 930, 465]
+    image_alt: My F1TENTH autonomous racing platform with onboard vision and LiDAR sensors.
     description: "Ongoing research on **RL-MPC** for objective tuning and **action-conditioned world models** for dynamics prediction. Vision and LiDAR observations inform predictive models that support downstream optimization-based planning and control for agile autonomous racing."
     links:
       - label: Platform
         url: https://f1tenth.org/
     title_zh: "F1TENTH：融合 RL-MPC 与世界模型的敏捷竞速"
     description_zh: "正在研究用于控制目标调优的**强化学习与模型预测控制融合方法（RL-MPC）**，以及用于动力学预测的**动作条件世界模型**。结合视觉与激光雷达观测学习预测模型，支撑敏捷自主竞速中下游基于优化的规划与控制。"
-    image_alt_zh: 搭载传感器的 F1TENTH 自主赛车平台及其建图画面。
+    image_alt_zh: 搭载视觉与激光雷达传感器的 F1TENTH 自主赛车平台。
   - id: xlerobot
     enabled: true
-    title: "XLeRobot: Generative Mobile Manipulation"
+    title: "XLeRobot: generative mobile manipulation"
     image: /images/research/xlerobot.jpg
     image_size: [728, 318]
     image_crop: [1, 1, 726, 317]

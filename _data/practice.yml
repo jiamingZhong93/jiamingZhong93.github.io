@@ -1,18 +1,20 @@
 # Practice projects use the same image, description and link fields as Research.
 # Original project figures/photos are kept in images/practice; sources are noted below.
-# Delivery/fleet/mining/warehouse: Research Statement Outline, slide 13.
+# Delivery/fleet/warehouse: Research Statement Outline, slide 13.
+# Mining: updated simulation image supplied by Jiaming.
 # Parking image: autonomous-parking demonstration frame from Research Statement Outline.
 # EV photo: background/photo_20180422_154738723_iOS.jpg; production-work summary supplied by Jiaming.
 # Set enabled: false to hide an individual project; true (or omitted) shows it.
 projects:
   - enabled: true
     id: practice-delivery-robots
-    title: "Delivery Robots — agile interaction with crowds"
+    title: "Delivery robots — agile interaction with crowds"
     title_zh: "配送机器人：与人群敏捷交互"
     description: "Led **planning and control** for LoopX delivery robots navigating crowds on the University of Waterloo campus."
     description_zh: "主导 LoopX 配送机器人的**规划与控制**，支持其在滑铁卢大学校园中穿行人群。"
     image: /images/practice/delivery-robots.jpg
     image_size: [2276, 1280]
+    image_crop: [240, 0, 2036, 1060]
     image_alt: A red GoosEX delivery robot crossing a pedestrian crossing alongside people on the University of Waterloo campus.
     image_alt_zh: 红色 GoosEX 配送机器人与行人一起穿过滑铁卢大学校园的人行横道。
     links:
@@ -28,6 +30,7 @@ projects:
     description_zh: "与 LoopX、Rogers 开发 **5G 地图共享与协同重规划**，支持车队避障。"
     image: /images/practice/fleet-map-sharing.png
     image_size: [1060, 578]
+    image_crop: [36, 162, 1010, 406]
     image_alt: A satellite map of the robot fleet alongside a shared obstacle map and a replanned route.
     image_alt_zh: 机器人车队的卫星地图，以及共享障碍地图和重新规划的路线。
     links:
@@ -44,6 +47,7 @@ projects:
     description_zh: "与 LoopX、VSemi 合作，利用**三维 ToF 感知**开发配送机器人自动泊车系统。"
     image: /images/practice/autonomous-parking.png
     image_size: [585, 453]
+    image_crop: [0, 80, 585, 373]
     image_alt: An overhead view of a red delivery robot parking between cones, with no people in the scene.
     image_alt_zh: 红色配送机器人在锥桶之间泊车的俯视画面，场景中没有人物。
     links:
@@ -56,10 +60,10 @@ projects:
     title_zh: 地下矿山自动驾驶
     description: "Developed **occupancy-map-based planning and control** for LoopX mining vehicles, demonstrated in underground load–haul–dump simulation."
     description_zh: "为 LoopX 矿山车辆开发**基于占据地图的规划与控制**，并以地下铲运机仿真演示。"
-    image: /images/practice/underground-mining.png
-    image_size: [1262, 591]
-    image_alt: Simulation views of an autonomous load–haul–dump vehicle navigating an underground mine.
-    image_alt_zh: 自主铲运机在地下矿山行驶的仿真画面。
+    image: /images/practice/underground-mining-simulation.png
+    image_size: [1864, 932]
+    image_alt: Underground load–haul–dump simulation alongside a point-cloud map and planned path.
+    image_alt_zh: 地下铲运机仿真，以及点云地图和规划路径。
     links:
       - label: LoopX
         url: https://www.loopx.ai/
@@ -73,6 +77,7 @@ projects:
     description_zh: "在 Reel-In Robotics 主导**仓储移动机器人的全栈开发**，集成缆索机器人、输送线与云端协同。"
     image: /images/practice/warehouse-mobile-robots.png
     image_size: [840, 578]
+    image_crop: [140, 110, 700, 360]
     image_alt: A Reel-In mobile robot carrying orange bins beside a cable-robot installation in a warehouse.
     image_alt_zh: Reel-In 移动机器人在仓库缆索机器人装置旁运送橙色料箱。
     links:

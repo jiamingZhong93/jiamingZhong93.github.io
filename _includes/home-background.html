@@ -14,16 +14,24 @@
 {% assign photo_fit = settings.fit | default: 'cover' %}
 {% assign photo_mobile_fit = 'cover' %}
 {% capture background_image %}
-<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}" data-photo-category="{{ settings.category | default: 'experience' | escape }}"{% if settings.subject and settings.source_size and settings.crop == nil and photo_fit == 'cover' %} data-photo-subject="{{ settings.subject | join: ' ' | escape }}" data-photo-size="{{ settings.source_size | join: ' ' | escape }}"{% endif %}{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
+<figure class="home-background__slide{% if photo_fit == 'contain' %} is-contained{% endif %}" data-photo-key="{{ file.path | escape }}" data-photo-category="{{ settings.category | default: 'experience' | escape }}"{% if settings.subject and settings.source_size and settings.crop == nil and settings.mobile_crop == nil and photo_fit == 'cover' %} data-photo-subject="{{ settings.subject | join: ' ' | escape }}" data-photo-size="{{ settings.source_size | join: ' ' | escape }}"{% endif %}{% if settings.desktop == false %} data-desktop="false"{% endif %}{% if settings.desktop_max_width %} data-desktop-max-width="{{ settings.desktop_max_width | escape }}"{% endif %}{% if settings.mobile_max_width %} data-mobile-max-width="{{ settings.mobile_max_width | escape }}"{% endif %} style="--tile-position: {{ settings.position | default: background.position | default: '50% 50%' | escape }}; --tile-mobile-position: {{ settings.mobile_position | default: settings.position | default: background.mobile_position | default: background.position | default: '50% 50%' | escape }};">
 {% if photo_fit == 'contain' or photo_mobile_fit == 'contain' %}
 <img class="home-background__backdrop" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async" aria-hidden="true">
 {% endif %}
-{% if settings.crop and settings.source_size %}
-{% assign crop_parts = settings.crop | split: ' ' %}
+{% if settings.source_size and settings.crop or settings.source_size and settings.mobile_crop %}
 {% for viewport in (1..2) %}
+{% assign viewport_crop = settings.crop %}
 {% assign crop_fit = photo_fit %}
-{% if viewport == 2 %}{% assign crop_fit = photo_mobile_fit %}{% endif %}
-<svg class="home-background__image home-background__crop--{% if viewport == 1 %}desktop{% else %}mobile{% endif %}" viewBox="{{ settings.crop | escape }}" preserveAspectRatio="xMidYMid {% if crop_fit == 'contain' %}meet{% else %}slice{% endif %}" aria-hidden="true" focusable="false"><svg x="{{ crop_parts[0] }}" y="{{ crop_parts[1] }}" width="{{ crop_parts[2] }}" height="{{ crop_parts[3] }}" viewBox="{{ settings.crop | escape }}" overflow="hidden"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg></svg>
+{% if viewport == 2 %}
+{% assign viewport_crop = settings.mobile_crop | default: settings.crop %}
+{% assign crop_fit = photo_mobile_fit %}
+{% endif %}
+{% if viewport_crop %}
+{% assign crop_parts = viewport_crop | split: ' ' %}
+<svg class="home-background__image home-background__crop--{% if viewport == 1 %}desktop{% else %}mobile{% endif %}" viewBox="{{ viewport_crop | escape }}" preserveAspectRatio="xMidYMid {% if crop_fit == 'contain' %}meet{% else %}slice{% endif %}" aria-hidden="true" focusable="false"><svg x="{{ crop_parts[0] }}" y="{{ crop_parts[1] }}" width="{{ crop_parts[2] }}" height="{{ crop_parts[3] }}" viewBox="{{ viewport_crop | escape }}" overflow="hidden"><image href="{{ site.baseurl }}{{ file.path | escape }}" width="{{ settings.source_size[0] }}" height="{{ settings.source_size[1] }}" /></svg></svg>
+{% else %}
+<img class="home-background__image home-background__crop--{% if viewport == 1 %}desktop{% else %}mobile{% endif %}" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async">
+{% endif %}
 {% endfor %}
 {% else %}
 <img class="home-background__image" src="{{ site.baseurl }}{{ file.path | escape }}" alt="" decoding="async">
@@ -72,7 +80,7 @@
 {% endcapture %}
 {% assign background_images = background_images | strip %}
 {% if background_images != '' %}
-<div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-experience-weight="{{ background.category_weights.experience | default: 2 }}" data-scenery-weight="{{ background.category_weights.scenery | default: 1 }}" data-interval="{{ background.interval | default: 3000 }}" data-info-extra="{{ background.info_extra | default: 1000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
+<div class="home-background{% if background_fallback == '' %} is-mobile-only{% endif %}" tabindex="0" role="region" aria-label="Photo carousel. Hover or long press for details; press Enter or Space for the next photo." data-experience-weight="{{ background.category_weights.experience | default: 1.5 }}" data-scenery-weight="{{ background.category_weights.scenery | default: 1 }}" data-interval="{{ background.interval | default: 3000 }}" data-info-extra="{{ background.info_extra | default: 1000 }}" data-fade-duration="{{ background.fade_duration | default: 1000 }}" style="--background-height: {{ background.height | default: '220px' | escape }}; --background-mobile-height: {{ background.mobile_height | default: '150px' | escape }};">
 <template class="home-background__pool">{{ background_images }}</template>
 {% comment %}A fixed poster would repeat on every refresh before the random image loads. Keep it only for visitors without JavaScript.{% endcomment %}
 <div class="home-background__stage" data-background-stage aria-hidden="true"><noscript>{{ background_fallback | default: background_mobile_fallback }}</noscript></div>

@@ -2,7 +2,6 @@
 # Keep matching files in images/background/; photo_ is a naming convention, not a requirement.
 # position / mobile_position set the horizontal and vertical focal point.
 # Use cover to fill the banner without blurred sidebars; mobile_fit must stay cover.
-# Desktop contain is reserved for the explicitly cropped F1TENTH photo.
 # Framing is applied in the browser, without cutting the original file.
 # Optional subject: [x, y, width, height] with source_size keeps a padded subject
 # visible under cover framing; a photo is skipped only when that region cannot fit.
@@ -15,10 +14,10 @@ info_extra: 1000
 fade_duration: 1000
 position: "50% 50%"
 mobile_position: "50% 50%"
-# Prioritize unseen photos across both categories before starting a new round.
-# Spread categories through the whole round, with random gaps. Weights give a small earlier-position preference, not a fixed ratio.
+# Category weights control long-run appearances, independently of photo counts.
+# Research/experience:scenery = 1.5:1 (about 60%:40%); each category cycles its own photos.
 category_weights:
-  experience: 2
+  experience: 1.5
   scenery: 1
 images:
   photo_20180422_154734356_iOS.jpg:
@@ -500,22 +499,19 @@ images:
     crop: "0 60 1809 824"
     source_size: [ 1809, 884 ]
     fit: "cover"
-  photo_f1tenth_new_1.jpg:
+  photo_f1tenth.png:
     category: experience
-    mobile_max_width: 600
-    title: "F1Tenth"
-    title_zh: "F1Tenth"
-    description: "F1Tenth"
-    description_zh: "F1Tenth"
-    # Crop the empty wall/floor, retaining the complete vehicle and antennas.
-    crop: "0 990 4032 1150"
-    source_size: [ 4032, 3024 ]
-    # Above this width, retaining the car would leave broad blurred sides.
-    desktop_max_width: 1100
-    fit: "contain"
+    title: "F1TENTH"
+    title_zh: "F1TENTH"
+    description: "F1TENTH"
+    description_zh: "F1TENTH"
+    # New source shared with Research. Fill every viewport without blurred sides.
+    source_size: [2048, 768]
+    mobile_crop: "360 100 1320 520"
+    fit: "cover"
     mobile_fit: "cover"
-    position: "50% 65%"
-    mobile_position: "50% 65%"
+    position: "50% 60%"
+    mobile_position: "50% 56%"
 
   # Added September 2026: individual, full-bleed crops on each device.
   photo_20260916_aurora.webp:

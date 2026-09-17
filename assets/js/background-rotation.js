@@ -1,15 +1,15 @@
 'use strict';
 
-// Unseen photos take priority across the whole library. Randomized category
-// spacing keeps work and scenery interleaved throughout each round; weights
-// give a modest earlier-position preference. Only actual display counts.
+// Category weights control actual display frequency, independent of pool sizes.
+// Each category completes its own shuffled no-repeat round. Only actual
+// display consumes either a photograph or a weighted category slot.
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.BackgroundRotation = api;
 })(typeof globalThis === 'object' ? globalThis : this, function () {
   const categories = ['experience', 'scenery'];
-  const defaults = { experience: 2, scenery: 1 };
+  const defaults = { experience: 1.5, scenery: 1 };
   const historyLimit = 36;
 
   function create({ entries, weights = defaults, storage, storageKey = 'homepage:background-rotation:v1', random = Math.random }) {
@@ -30,6 +30,13 @@
       [...library.values()].filter(entry => entry.category === category).flatMap(entry => [entry.key, ...entry.members])
     )]));
     const seen = Object.fromEntries(categories.map(category => [category, new Set()]));
+    // A bounded service balance keeps weighted categories mixed without long
+    // random streaks. Persist it so refreshing cannot restart the preference.
+    const progress = Object.fromEntries(categories.map(category => [category, 0]));
+    const scale = Math.max(...Object.values(odds), 1);
+    const shares = Object.fromEntries(categories.map(category => [category,
+      odds[category] > 0 ? Math.max(Number.MIN_VALUE, odds[category] / scale) : 0
+    ]));
     let history = [];
     let revision = 0;
 
@@ -40,6 +47,10 @@
           if (Array.isArray(saved.seen?.[category])) {
             for (const key of saved.seen[category].slice(-5000)) if (known.get(category).has(key)) seen[category].add(key);
           }
+        }
+        for (const category of categories) {
+          const value = saved.progress?.[category];
+          if (Number.isFinite(value) && value >= 0 && value <= Number.MAX_SAFE_INTEGER) progress[category] = value;
         }
         if (Array.isArray(saved.history)) history = saved.history.slice(-historyLimit)
           .filter(item => item && typeof item.key === 'string' && Array.isArray(item.members))
@@ -66,64 +77,57 @@
         .filter(entry => entry && entry.key !== exclude && odds[entry.category] > 0);
     }
 
-    function chooseCategory(candidates, eligibleKeys, reset) {
-      const available = categories.filter(category => candidates.some(entry => entry.category === category));
+    function chooseCategory(available) {
       if (available.length === 1) return available[0];
-      // Compare the next randomized slot in each category's progress through the
-      // round. Dividing by its own pool size spreads even a small work collection
-      // across a large scenery collection instead of spending it all up front.
-      // Include the current (excluded) slide in this denominator, and reconstruct
-      // progress from seen members so refreshing cannot restart the spacing.
-      const pool = enabled(eligibleKeys);
-      const scale = Math.max(...available.map(category => odds[category]));
       let selected;
       let earliest = Infinity;
       for (const category of available) {
-        const categoryPool = pool.filter(entry => entry.category === category);
-        const displayed = reset ? 0 : categoryPool.filter(entry =>
-          entry.members.every(member => seen[category].has(member))).length;
-        const other = available.find(value => value !== category);
-        // A bounded fraction of one slot expresses weight preference without
-        // letting even extreme weights defeat interleaving or no-repeat rounds.
-        const preference = .4 * (odds[category] / scale - odds[other] / scale);
-        const position = (displayed + random() - preference) / categoryPool.length;
+        // Randomize the next service slot within one interval. A larger weight
+        // gives more slots, rather than just an earlier spot in a global round.
+        const position = (progress[category] + random()) / shares[category];
         if (position < earliest) {
           earliest = position;
           selected = category;
         }
       }
-      return selected;
+      return selected || available[0];
     }
 
     function peek(eligibleKeys, { exclude } = {}) {
-      let candidates = enabled(eligibleKeys, exclude);
+      const candidates = enabled(eligibleKeys, exclude);
       if (!candidates.length) return null;
-      // Finish all eligible material before either category starts another round.
-      // A partly viewed desktop group still has something new to show after a
-      // layout change. Its group key must not hide a newly added member either.
-      const fresh = candidates.filter(entry => entry.members.some(member => !seen[entry.category].has(member)));
-      const reset = !fresh.length;
-      if (!reset) candidates = fresh;
-      // Freshness comes first: avoiding a shared member must not trigger a reset
-      // while a partly viewed group is the only remaining unseen material.
-      const different = candidates.filter(entry => !overlaps(entry, history.at(-1)));
-      if (different.length) candidates = different;
-      if (!reset) {
-        const entirelyFresh = candidates.filter(entry => entry.members.every(member => !seen[entry.category].has(member)));
-        if (entirelyFresh.length) candidates = entirelyFresh;
+      const pools = {};
+      const resets = {};
+      for (const category of categories) {
+        const pool = candidates.filter(entry => entry.category === category);
+        const fresh = pool.filter(entry => entry.members.some(member => !seen[category].has(member)));
+        resets[category] = !fresh.length;
+        pools[category] = fresh.length ? fresh : pool;
       }
-      const category = chooseCategory(candidates, eligibleKeys, reset);
-      const categoryEntries = candidates.filter(entry => entry.category === category);
-      let choices = categoryEntries;
+      // Avoid repeating the same scene across reloads and desktop/mobile groups
+      // whenever an alternative exists, without losing an unseen group member.
+      const different = Object.values(pools).flat().filter(entry => !overlaps(entry, history.at(-1)));
+      if (different.length) {
+        const differentKeys = new Set(different.map(entry => entry.key));
+        for (const category of categories) pools[category] = pools[category].filter(entry => differentKeys.has(entry.key));
+      }
+      const available = categories.filter(category => pools[category].length);
+      const category = chooseCategory(available);
+      const reset = resets[category];
+      let choices = pools[category];
+      if (!reset) {
+        const entirelyFresh = choices.filter(entry => entry.members.every(member => !seen[category].has(member)));
+        if (entirelyFresh.length) choices = entirelyFresh;
+      }
       // A group and its mobile single photos share member IDs. Prefer material
       // absent from recent slides within the selected category.
       const recent = history.slice(-6);
       const rested = choices.filter(entry => !recent.some(old => overlaps(entry, old)));
       if (rested.length) choices = rested;
       const choiceKeys = new Set(choices.map(entry => entry.key));
-      const deck = reset ? shuffle(categoryEntries) : decks[category];
+      const deck = reset ? shuffle(pools[category]) : decks[category];
       const selected = deck.find(entry => choiceKeys.has(entry.key));
-      return selected ? { key: selected.key, category, reset, revision } : null;
+      return selected ? { key: selected.key, category, reset, revision, available } : null;
     }
 
     function commit(choice) {
@@ -132,10 +136,16 @@
       // Resizing into the same scene can commit a plain key. It records what was
       // shown without resetting a cycle or consuming a speculative next choice.
       if (choice?.reset && choice.revision === revision) {
-        for (const category of categories) {
-          seen[category].clear();
-          decks[category] = shuffle(decks[category]);
-        }
+        seen[entry.category].clear();
+        decks[entry.category] = shuffle(decks[entry.category]);
+      }
+      // Only a displayed, current selection consumes a category slot. A resize
+      // that maps a group to its member records the image without skewing odds.
+      // If only one category can be shown, do not accumulate catch-up debt.
+      if (choice?.revision === revision && choice.available?.length > 1) {
+        progress[entry.category]++;
+        const baseline = Math.min(...choice.available.map(category => progress[category] / shares[category]));
+        for (const category of choice.available) progress[category] = Math.max(0, progress[category] - baseline * shares[category]);
       }
       seen[entry.category].add(entry.key);
       for (const member of entry.members) seen[entry.category].add(member);
@@ -144,7 +154,7 @@
       revision++;
       try {
         storage?.setItem(storageKey, JSON.stringify({ version: 1,
-          seen: Object.fromEntries(categories.map(category => [category, [...seen[category]]])), history
+          seen: Object.fromEntries(categories.map(category => [category, [...seen[category]]])), history, progress
         }));
       } catch {} // Continue the same no-repeat cycle in memory if persistence fails.
       return true;
