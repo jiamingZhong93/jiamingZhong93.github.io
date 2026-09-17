@@ -541,14 +541,16 @@ images:
     position: "50% 69%"
     mobile_position: "50% 82%"
     fit: "cover"
-  photo_20260916_coinfra.webp:
+  photo_coinfra.png:
     category: experience
     title: "CoInfra"
     title_zh: "CoInfra"
     description: "A shared view through cooperative LiDAR perception."
     description_zh: "协同激光雷达感知，共享环境视野。"
-    position: "50% 28%"
-    mobile_position: "50% 20%"
+    # Wide source keeps the intersection and vehicle detections in the desktop crop.
+    source_size: [2172, 724]
+    position: "50% 48%"
+    mobile_crop: "280 40 1610 620"
     fit: "cover"
   photo_20260916_gatineau.webp:
     category: scenery

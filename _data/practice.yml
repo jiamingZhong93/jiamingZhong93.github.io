@@ -18,8 +18,8 @@ projects:
     image_alt: A red GoosEX delivery robot crossing a pedestrian crossing alongside people on the University of Waterloo campus.
     image_alt_zh: 红色 GoosEX 配送机器人与行人一起穿过滑铁卢大学校园的人行横道。
     links:
-      - label: Project story
-        url: https://rtpark.uwaterloo.ca/news/loopx-building-better-autonomous-vehicles-one-pizza-at-a-time/
+      - label: Project
+        url: https://uwaterloo.ca/robohub/news/loopx-ai-canadas-first-autonomous-all-weather-pizza-delivery
     video_url: https://www.youtube.com/watch?v=sMiw-RJhRKk
 
   - enabled: true
@@ -34,9 +34,9 @@ projects:
     image_alt: A satellite map of the robot fleet alongside a shared obstacle map and a replanned route.
     image_alt_zh: 机器人车队的卫星地图，以及共享障碍地图和重新规划的路线。
     links:
-      - label: Project story
+      - label: Project
         url: https://rtpark.uwaterloo.ca/news/loopx-building-better-autonomous-vehicles-one-pizza-at-a-time/
-      - label: Demo · LinkedIn
+      - label: LinkedIn
         url: https://www.linkedin.com/feed/update/urn:li:activity:6998025350551130112
 
   - enabled: true
@@ -51,7 +51,7 @@ projects:
     image_alt: An overhead view of a red delivery robot parking between cones, with no people in the scene.
     image_alt_zh: 红色配送机器人在锥桶之间泊车的俯视画面，场景中没有人物。
     links:
-      - label: Demo · LinkedIn
+      - label: LinkedIn
         url: https://www.linkedin.com/feed/update/urn:li:activity:6994385468838592512
 
   - enabled: true
