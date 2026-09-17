@@ -258,8 +258,7 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
 @media (max-width: 520px) {
   .publication-role-key { column-gap: .375rem; font-size: .8125rem; }
   .research-project.has-media { grid-template-columns: 1fr; gap: .9rem; }
-  .career-list article { grid-template-columns: 1fr; gap: .2rem; }
-  .publication, #teaching .career-list article { grid-template-columns: 34px minmax(0,1fr); gap: .4rem; }
+  .publication, .career-list article, #teaching .career-list article { grid-template-columns: 1fr; gap: .2rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } .home-background__panel { animation: none; } .vision-equation, .trajectory-track::after { animation: none; background-position: 45% 50%; } }
 @media (forced-colors: active) { .vision-equation { background: none; color: CanvasText; animation: none; } .trajectory-track::after { background: CanvasText; opacity: 1; animation: none; } }
