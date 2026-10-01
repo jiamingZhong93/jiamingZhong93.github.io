@@ -78,6 +78,7 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .author__role + .author__role { margin-top: .75rem; }
 .profile_box .author__role--former .author__bio,
 .profile_box .author__role--former .author__affiliation { font-size: .8125rem; line-height: 1.5; color: var(--muted); font-weight: 400; }
+.profile_box .author__role--former .author__bio { font-weight: 600; }
 .profile_box .author__past-industry { margin: .45rem 0 0; font-size: .75rem; line-height: 1.5; letter-spacing: -.015em; color: var(--muted); }
 .author__past-companies { white-space: nowrap; }
 .author__affiliation a { color: var(--muted); }
@@ -247,7 +248,7 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
   .profile-nav__links a { padding: .75rem 0; }
   #main { display: block; padding: 1.4rem 1.2rem 0; }
   .sidebar, .sidebar.sticky { width: 100%; float: none; margin: 0 0 2rem; padding: 0; position: static !important; }
-  .profile_box { display: grid; grid-template-columns: clamp(132px,36.5vw,146px) minmax(0,1fr); gap: 0 .75rem; align-items: stretch; }
+  .profile_box { display: grid; grid-template-columns: clamp(124px,34vw,136px) minmax(0,1fr); gap: 0 .75rem; align-items: stretch; }
   /* Preserve the desktop portrait ratio; distribute the text within its height. */
   .author__avatar { position: relative; align-self: start; aspect-ratio: 208 / 236; height: auto; min-height: 0; }
   .author__content { display: flex; flex-direction: column; justify-content: space-between; }
@@ -259,7 +260,7 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
   .author__role + .author__role { margin-top: .25rem; }
   .profile_box .author__role--former .author__bio,
   .profile_box .author__role--former .author__affiliation { font-size: .75rem; line-height: 1.4; }
-  .profile_box .author__past-industry { line-height: 1.4; }
+  .profile_box .author__past-industry { margin-top: .2rem; line-height: 1.4; }
   .profile_box .author__bio { font-size: .875rem; }
   .profile_box .author__affiliation { font-size: .875rem; margin: .12rem 0 0; }
   .profile-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; padding: .75rem 0 0; margin: .75rem 0 0; }
@@ -269,12 +270,12 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
   .profile-section { padding-top: 2.7rem; }
 }
 @media (min-width: 360px) and (max-width: 374px) {
-  .profile_box { grid-template-columns: 126px minmax(0,1fr); column-gap: .5rem; }
+  .profile_box { grid-template-columns: 120px minmax(0,1fr); column-gap: .5rem; }
 }
 /* On very narrow screens, keep a natural portrait instead of squeezing the text. */
 @media (max-width: 359px) {
   .profile_box { grid-template-columns: minmax(0,1fr); row-gap: 1rem; }
-  .author__avatar { width: 146px; }
+  .author__avatar { width: 136px; }
   .author__content { display: block; }
   .profile_box .author__name { margin-bottom: .5rem; }
   .author__role + .author__role { margin-top: .75rem; }
