@@ -74,11 +74,17 @@ a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid
 .profile_box .author__name { font-size: 1.35rem; letter-spacing: -.035em; margin: 1.1rem 0 .65rem; }
 .profile_box .author__bio { font-size: .875rem; color: var(--ink); margin: 0; font-weight: 550; }
 .profile_box .author__affiliation { font-size: .875rem; line-height: 1.55; color: var(--muted); margin: .12rem 0 0; }
-.author__role + .author__role { margin-top: .85rem; }
+/* Previous affiliations remain secondary to the current Waterloo role. */
+.author__role + .author__role { margin-top: .75rem; }
+.profile_box .author__role--former .author__bio,
+.profile_box .author__role--former .author__affiliation { font-size: .8125rem; line-height: 1.5; color: var(--muted); font-weight: 400; }
+.profile_box .author__past-industry { margin: .45rem 0 0; font-size: .75rem; line-height: 1.5; letter-spacing: -.015em; color: var(--muted); }
+.author__past-companies { white-space: nowrap; }
 .author__affiliation a { color: var(--muted); }
 .profile-links { list-style: none; padding: .5rem 0 0; margin: 1rem 0 0; border: 0; }
 .profile-links li { margin: .4rem 0; font-size: .875rem; }
-.profile-links i { width: 1.5rem; color: var(--muted); }
+.profile-links a { display: inline-flex; align-items: center; gap: .35rem; }
+.profile-links i { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 1.2rem; width: 1.2rem; line-height: 1; color: var(--muted); }
 .page__content p { margin: 0 0 1rem; }
 .page__content section { scroll-margin-top: 0; }
 .page__content #about-me { margin-top: 0; }
@@ -241,12 +247,19 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
   .profile-nav__links a { padding: .75rem 0; }
   #main { display: block; padding: 1.4rem 1.2rem 0; }
   .sidebar, .sidebar.sticky { width: 100%; float: none; margin: 0 0 2rem; padding: 0; position: static !important; }
-  .profile_box { display: grid; grid-template-columns: clamp(96px,26vw,112px) minmax(0,1fr); gap: 0 1rem; align-items: start; }
-  .author__avatar { position: relative; align-self: stretch; min-height: 0; max-height: 140px; }
+  .profile_box { display: grid; grid-template-columns: clamp(132px,36.5vw,146px) minmax(0,1fr); gap: 0 .75rem; align-items: stretch; }
+  /* Preserve the desktop portrait ratio; distribute the text within its height. */
+  .author__avatar { position: relative; align-self: start; aspect-ratio: 208 / 236; height: auto; min-height: 0; }
+  .author__content { display: flex; flex-direction: column; justify-content: space-between; }
   .portrait-toggle { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; }
   .portrait-flipper { position: absolute; inset: 0; display: block; height: auto; }
   .author__avatar img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 12px; }
-  .profile_box .author__name { margin: 0 0 .25rem; font-size: 1.4rem; }
+  .profile_box .author__name { margin: 0 0 .25rem; font-size: 1.4rem; line-height: 1.2; }
+  .profile_box .author__name::before { display: none; }
+  .author__role + .author__role { margin-top: .25rem; }
+  .profile_box .author__role--former .author__bio,
+  .profile_box .author__role--former .author__affiliation { font-size: .75rem; line-height: 1.4; }
+  .profile_box .author__past-industry { line-height: 1.4; }
   .profile_box .author__bio { font-size: .875rem; }
   .profile_box .author__affiliation { font-size: .875rem; margin: .12rem 0 0; }
   .profile-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; padding: .75rem 0 0; margin: .75rem 0 0; }
@@ -254,6 +267,18 @@ html[lang="zh-CN"] .career-date { white-space: nowrap; }
   .profile-links i { width: 1.2rem; }
   .page { width: 100%; float: none; }
   .profile-section { padding-top: 2.7rem; }
+}
+@media (min-width: 360px) and (max-width: 374px) {
+  .profile_box { grid-template-columns: 126px minmax(0,1fr); column-gap: .5rem; }
+}
+/* On very narrow screens, keep a natural portrait instead of squeezing the text. */
+@media (max-width: 359px) {
+  .profile_box { grid-template-columns: minmax(0,1fr); row-gap: 1rem; }
+  .author__avatar { width: 146px; }
+  .author__content { display: block; }
+  .profile_box .author__name { margin-bottom: .5rem; }
+  .author__role + .author__role { margin-top: .75rem; }
+  .profile-links { margin-top: 0; padding-top: 0; }
 }
 @media (max-width: 520px) {
   .publication-role-key { column-gap: .375rem; font-size: .8125rem; }
