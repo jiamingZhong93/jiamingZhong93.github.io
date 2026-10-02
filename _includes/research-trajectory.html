@@ -5,7 +5,8 @@
 {% for phase in trajectory.phases %}
 <li class="trajectory-phase">
 {% assign stage = trajectory.stages[phase.stage] %}
-{% if stage %}<p class="trajectory-stage" data-zh="{{ stage.title_zh | default: stage.title | escape }}">{{ stage.title | escape }}</p>{% endif %}
+{% if stage %}<p class="trajectory-stage"><span data-zh="{{ stage.title_zh | default: stage.title | escape }}">{{ stage.title | escape }}</span>{% if stage.context %} <span class="trajectory-stage__context" data-zh="{{ stage.context_zh | default: stage.context | escape }}">{{ stage.context | escape }}</span>{% endif %}</p>{% endif %}
+<div class="trajectory-details">
 <div class="trajectory-track" aria-hidden="true">
 <div class="trajectory-motif" aria-hidden="true">
 <svg viewBox="0 0 28 28" fill="none" focusable="false">
@@ -27,6 +28,7 @@
 <li id="trajectory-{{ step.id | escape }}"><span data-zh="{{ step.title_zh | default: step.title | escape }}">{{ step.title | escape }}</span></li>
 {% endfor %}
 </ol>
+</div>
 </li>
 {% endfor %}
 </ol>

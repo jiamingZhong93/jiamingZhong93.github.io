@@ -1,7 +1,7 @@
 # Six themes, each with short bilingual research labels. List order controls the path.
 # 六个主题串联研究历程；在每个主题下维护中英文短标签，顺序由列表决定。
-# Methodological labels are shared below; stage keys remain stable for maintenance.
-# 方法论标签统一在下方维护；保留 stage 键，方便各主题引用。
+# Methodological labels are shared below; context wraps as a group after the title.
+# 方法论标签统一在下方维护；context 在标题放不下时从括号前整体换行。
 title: Research trajectory
 title_zh: 研究历程
 outlook: "Real-world applications requiring adaptation, generalization, and constraints:"
@@ -19,12 +19,23 @@ stages:
   foundations:
     title: Hybrid foundation
     title_zh: 混合架构基础
+    context: (PhD)
+    context_zh: （博士阶段）
   ongoing:
     title: Enhanced learning
     title_zh: 学习能力提升
+    context: (NRC)
+    context_zh: （NRC）
+  ongoing_postdoc:
+    title: Enhanced learning
+    title_zh: 学习能力提升
+    context: (NRC & Postdoc)
+    context_zh: （NRC 与博士后阶段）
   frontier:
     title: Frontier exploration
     title_zh: 前沿探索
+    context: (On-going & future work)
+    context_zh: （在研与未来工作）
 phases:
   - id: dynamics
     stage: foundations
@@ -83,7 +94,7 @@ phases:
         title: Articulated/off-road AVs
         title_zh: 铰接式/越野自动驾驶车辆
   - id: reinforcement
-    stage: ongoing
+    stage: ongoing_postdoc
     title: Reinforcement Learning
     title_zh: 强化学习
     steps:

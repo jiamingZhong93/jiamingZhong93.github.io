@@ -41,12 +41,11 @@ projects:
     enabled: true
     title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
     description: "Ongoing research at NRC on **Transformer-based imitation learning** and **reinforcement-learning-enhanced MPC** for articulated heavy-duty and off-road vehicles under complex vehicle–terrain interactions. The SafeTrucks project combines vehicle dynamics, road weather, friction information, and AI to improve heavy-vehicle safety."
-    image: /images/research/safetrucks-snow.jpg
-    image_size: [1121, 510]
-    image_alt: An articulated truck driving on a snow-covered forest road, from the SafeTrucks website.
-    image_alt_zh: SafeTrucks 官网照片：铰接式卡车行驶在积雪覆盖的林间道路上。
-    # Public photo and description: https://safetrucks.fmi.fi/index.php/project-description/
-    # Original image: https://safetrucks.fmi.fi/wp-content/uploads/2023/08/rekka2.jpg
+    image: /images/research/articulated-truck-team.jpg
+    image_size: [1707, 956]
+    image_alt: Research team standing beside an articulated heavy-duty truck and trailer.
+    image_alt_zh: 研究团队在铰接式重型卡车及挂车旁的合照。
+    # Project description: https://safetrucks.fmi.fi/index.php/project-description/
     links:
       - label: SafeTrucks project
         url: https://safetrucks.fmi.fi/index.php/project-description/
