@@ -29,8 +29,8 @@ stages:
   ongoing_postdoc:
     title: Enhanced learning
     title_zh: 学习能力提升
-    context: (NRC & Postdoc)
-    context_zh: （NRC 与博士后阶段）
+    context: (NRC & on-going postdoc)
+    context_zh: （NRC 与博士后在研工作）
   frontier:
     title: Frontier exploration
     title_zh: 前沿探索

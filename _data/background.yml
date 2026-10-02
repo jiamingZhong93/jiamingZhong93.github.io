@@ -453,6 +453,19 @@ images:
     mobile_position: "50% 55%"
     fit: "cover"
     mobile_fit: "cover"
+  photo_nrc_articulated_truck.jpg:
+    category: experience
+    title: "Articulated truck"
+    title_zh: "铰接式卡车"
+    description: "Heavy-duty vehicle research at NRC."
+    description_zh: "NRC 重型车辆研究。"
+    # Keep all visible wheels (roughly x=260–1820, y=850–965) in both crops.
+    # Phone framing retains more height so the front and rear wheels fit together.
+    source_size: [2275, 1279]
+    crop: "90 625 1900 550"
+    mobile_crop: "90 479 1900 800"
+    fit: "cover"
+    mobile_fit: "cover"
   photo_safetrucks-snow.jpg:
     category: experience
     desktop: false
