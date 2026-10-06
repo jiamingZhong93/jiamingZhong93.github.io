@@ -18,10 +18,10 @@ vision:
       text_zh: "以动作为条件的世界模型如何支撑下游基于优化的任务？"
       emphasis: "action-conditioned world models"
       emphasis_zh: "以动作为条件的世界模型"
-    - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classic schemes?"
-      text_zh: "如何实现模仿学习、强化学习、自监督学习与经典方法的形式化融合？"
-      emphasis: "imitation, reinforcement, and self-supervised learning"
-      emphasis_zh: "模仿学习、强化学习、自监督学习"
+    - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classic robust schemes?"
+      text_zh: "如何实现模仿学习、强化学习、自监督学习与经典鲁棒方法的形式化融合？"
+      emphasis: "formally integrated"
+      emphasis_zh: "形式化融合"
 
 projects:
   # Optional image_size: [original width, height]; image_crop: [x, y, width, height].
