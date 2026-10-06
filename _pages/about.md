@@ -70,7 +70,7 @@ redirect_from: ["/about/", "/about.html"]
 <h2 class="section-label" id="experience-label" data-zh="05 / 工作经历">05 / EXPERIENCE</h2>
 <div class="career-list">{% for item in site.data.career.experience %}
 <article><p class="career-date" data-zh="{{ item.dates_zh | default: item.dates | escape }}">{{ item.dates }}</p><div>
-<h3>{% if item.organizations %}{% for organization in item.organizations %}<a href="{{ organization.url }}" data-zh="{{ organization.name_zh | default: organization.name | escape }}">{{ organization.name }}</a>{% unless forloop.last %} <span class="career-organization-separator">/</span> {% endunless %}{% endfor %}{% else %}<a href="{{ item.url }}" data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</a>{% endif %}</h3>
+<h3>{% if item.organizations %}{% for organization in item.organizations %}{% if organization.url %}<a href="{{ organization.url }}" data-zh="{{ organization.name_zh | default: organization.name | escape }}">{{ organization.name }}</a>{% else %}<span data-zh="{{ organization.name_zh | default: organization.name | escape }}">{{ organization.name }}</span>{% endif %}{% unless forloop.last %} <span class="career-organization-separator">/</span> {% endunless %}{% endfor %}{% else %}<a href="{{ item.url }}" data-zh="{{ item.organization_zh | default: item.organization | escape }}">{{ item.organization }}</a>{% endif %}</h3>
 <p data-zh="{{ item.role_zh | default: item.role | escape }}">{{ item.role }}</p>
 </div></article>{% endfor %}</div>
 </section>
