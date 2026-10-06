@@ -22,13 +22,20 @@ teaching:
     organization_zh: 滑铁卢大学
     role_zh: "完成 ExpecTAtions 工作坊培训，获得教学助理资格认证。"
 experience:
-  - dates: Jun 2025 – present
+  - dates: Oct 2026 – present
+    organization: University of Waterloo
+    url: https://uwaterloo.ca/
+    role: Postdoctoral Fellow
+    organization_zh: 滑铁卢大学
+    role_zh: 博士后研究员
+    dates_zh: 2026年10月 – 至今
+  - dates: Jun 2025 – Sep 2026
     organization: National Research Council Canada
     url: https://nrc.canada.ca/en
     role: Associate Research Officer
     organization_zh: 加拿大国家研究委员会
     role_zh: 副研究员（Associate Research Officer）
-    dates_zh: 2025年6月 – 至今
+    dates_zh: 2025年6月 – 2026年9月
   - dates: Feb 2025 – Jun 2025
     organizations:
       - name: University of Waterloo

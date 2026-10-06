@@ -10,17 +10,37 @@ vision:
   questions_intro: "My long-term research agenda is organized around three fundamental questions:"
   questions_intro_zh: "我的长期研究规划围绕以下三个基本问题展开："
   bullets:
-    - text: "How can multimodal learning capture the dynamics and interactions of our complex physical world?"
-      text_zh: "多模态学习如何刻画复杂物理世界中的动力学与交互关系？"
-    - text: "How can action-conditioned predictive world models support downstream optimization-based tasks?"
-      text_zh: "以动作为条件的预测性世界模型如何支撑下游基于优化的任务？"
+    - text: "How can multimodal representation learning capture the dynamics and interactions of our complex physical world?"
+      text_zh: "多模态表征学习如何刻画复杂物理世界中的动力学与交互关系？"
+      emphasis: "multimodal representation learning"
+      emphasis_zh: "多模态表征学习"
+    - text: "How can action-conditioned world models support downstream optimization-based tasks?"
+      text_zh: "以动作为条件的世界模型如何支撑下游基于优化的任务？"
+      emphasis: "action-conditioned world models"
+      emphasis_zh: "以动作为条件的世界模型"
     - text: "How can imitation, reinforcement, and self-supervised learning be formally integrated with classic schemes?"
       text_zh: "如何实现模仿学习、强化学习、自监督学习与经典方法的形式化融合？"
+      emphasis: "imitation, reinforcement, and self-supervised learning"
+      emphasis_zh: "模仿学习、强化学习、自监督学习"
 
 projects:
   # Optional image_size: [original width, height]; image_crop: [x, y, width, height].
   # Crops are in original pixels and trim only outer padding in the page, not the file.
   # 可选：image_size 为原图宽高；image_crop 为 [左上角 x, y, 裁切宽, 高]，单位为原图像素。
+  - id: articulated-vehicles
+    enabled: true
+    title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
+    description: "Ongoing research at NRC on **Transformer-based imitation learning** and **reinforcement-learning-enhanced MPC** for articulated heavy-duty and off-road vehicles under complex vehicle–terrain interactions. The SafeTrucks project combines vehicle dynamics, road weather, friction information, and AI to improve heavy-vehicle safety."
+    image: /images/research/articulated-truck-team.jpg
+    image_size: [1707, 956]
+    image_alt: Research team standing beside an articulated heavy-duty truck and trailer.
+    image_alt_zh: 研究团队在铰接式重型卡车及挂车旁的合照。
+    # Project description: https://safetrucks.fmi.fi/index.php/project-description/
+    links:
+      - label: SafeTrucks project
+        url: https://safetrucks.fmi.fi/index.php/project-description/
+    title_zh: 基于学习的铰接式重型及越野车辆规划与控制
+    description_zh: "在加拿大国家研究委员会（NRC），面向复杂车辆—地形交互下的铰接式重型及越野车辆，正在探索**基于 Transformer 的模仿学习**与**强化学习增强的模型预测控制（MPC）**。SafeTrucks 项目结合车辆动力学、道路气象、摩擦信息与人工智能，提升重型车辆的行驶安全性。"
   - id: drivellm
     enabled: true
     title: "DriveLLM: explainable decision-making for autonomous driving"
@@ -37,20 +57,6 @@ projects:
     title_zh: "DriveLLM：面向自动驾驶的可解释决策"
     description_zh: "将**大语言模型（LLMs）** 融入自动驾驶软件栈，实现常识推理与可解释决策。结合**面向驾驶场景的模型微调**与**信息物理反馈**，探索对陌生场景和人类指令的应对，并开展 WATonobus 实车案例研究。"
     image_alt_zh: DriveLLM 研究概览中的 WATonobus，以及涉及行人、积雪和激光雷达感知的驾驶场景。
-  - id: articulated-vehicles
-    enabled: true
-    title: Learning-based planning and control for articulated heavy-duty and off-road vehicles
-    description: "Ongoing research at NRC on **Transformer-based imitation learning** and **reinforcement-learning-enhanced MPC** for articulated heavy-duty and off-road vehicles under complex vehicle–terrain interactions. The SafeTrucks project combines vehicle dynamics, road weather, friction information, and AI to improve heavy-vehicle safety."
-    image: /images/research/articulated-truck-team.jpg
-    image_size: [1707, 956]
-    image_alt: Research team standing beside an articulated heavy-duty truck and trailer.
-    image_alt_zh: 研究团队在铰接式重型卡车及挂车旁的合照。
-    # Project description: https://safetrucks.fmi.fi/index.php/project-description/
-    links:
-      - label: SafeTrucks project
-        url: https://safetrucks.fmi.fi/index.php/project-description/
-    title_zh: 基于学习的铰接式重型及越野车辆规划与控制
-    description_zh: "在加拿大国家研究委员会（NRC），面向复杂车辆—地形交互下的铰接式重型及越野车辆，正在探索**基于 Transformer 的模仿学习**与**强化学习增强的模型预测控制（MPC）**。SafeTrucks 项目结合车辆动力学、道路气象、摩擦信息与人工智能，提升重型车辆的行驶安全性。"
   - id: learning-mpc
     enabled: true
     title: Learning-based model predictive control

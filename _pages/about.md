@@ -30,7 +30,15 @@ redirect_from: ["/about/", "/about.html"]
 <h2 id="research-focus-label" class="home-subheading core-focus-heading" data-zh="研究重点">Research focus</h2>
 <p class="core-questions-intro" data-zh="{{ site.data.research.vision.questions_intro_zh | escape }}">{{ site.data.research.vision.questions_intro | escape }}</p>
 <ul class="vision-points" aria-labelledby="research-focus-label">
-{% for point in site.data.research.vision.bullets %}<li data-zh="{{ point.text_zh | default: point.text | escape }}">{{ point.text }}</li>{% endfor %}
+{% for point in site.data.research.vision.bullets %}
+{% if point.emphasis %}
+{% assign question_parts = point.text | split: point.emphasis %}
+{% assign question_parts_zh = point.text_zh | split: point.emphasis_zh %}
+<li><span data-zh="{{ question_parts_zh[0] | escape }}">{{ question_parts[0] | escape }}</span><strong><em data-zh="{{ point.emphasis_zh | escape }}">{{ point.emphasis | escape }}</em></strong><span data-zh="{{ question_parts_zh[1] | escape }}">{{ question_parts[1] | escape }}</span></li>
+{% else %}
+<li data-zh="{{ point.text_zh | default: point.text | escape }}">{{ point.text | escape }}</li>
+{% endif %}
+{% endfor %}
 </ul>
 {% include research-trajectory.html %}
 </div>
